@@ -23,6 +23,13 @@ class WebViewVC: UIViewController, UIWebViewDelegate, UIGestureRecognizerDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 128, height: 28))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "logoFreeStand.png")
+        imageView.image = image
+        navigationItem.titleView = imageView
+        
         print("viewDidLoad")
         webView.delegate = self
         request = URLRequest(url: url)

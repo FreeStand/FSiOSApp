@@ -16,8 +16,17 @@ class HomeVC: UIViewController {
     @IBOutlet weak var FeedbackCardView: UIView!
     @IBOutlet weak var ShareCardView: UIView!
     
+    var button: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 128, height: 28))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "logoFreeStand.png")
+        imageView.image = image
+        navigationItem.titleView = imageView
+        
         self.topCardView.layer.cornerRadius = 5
         self.NextCardView.layer.cornerRadius = 5
         self.ProductCardView.layer.cornerRadius = 5
@@ -45,16 +54,41 @@ class HomeVC: UIViewController {
         self.ShareCardView.clipsToBounds = true
     }
     
-    @IBAction func ProductsBtnPressed(_ sender: Any) {
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let MoreVC = storyBoard.instantiateViewController(withIdentifier: "MoreVC") as! MoreVC
-//        let HistoryVC = storyBoard.instantiateViewController(withIdentifier: "MoreVC") as! HistoryVC
-//        let navController = UINavigationController(rootViewController: MoreVC)
-//        self.navigationController?.pushViewController(MoreVC, animated: false)
-//        self.present(navController, animated:true, completion: nil)
-
-        
+    @IBAction func ProductsBtnPressed(_ sender: UIButton) {
+        button = "products"
+        performSegue(withIdentifier: "homeToHistory", sender: UIButton.self)
     }
 
+    @IBAction func WhatNextBtnPressed(_ sender: UIButton) {
+        button = "next"
+        performSegue(withIdentifier: "homeToWeb", sender: UIButton.self)
+    }
     
+    @IBAction func FeedbackBtnPressed(_ sender: UIButton) {
+        button = "feedback"
+        performSegue(withIdentifier: "homeToWeb", sender: UIButton.self)
+    }
+    @IBAction func ShareBtnPressed(_ sender: UIButton) {
+        button = "share"
+        performSegue(withIdentifier: "homeToWeb", sender: UIButton.self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "homeToWeb" {
+            if let vc = segue.destination as? WebViewVC{
+                print("0")
+                if button == "next" {
+                    print("1")
+                    vc.url = NSURL(string: "https://google.com")! as URL
+                } else if button == "feedback"{
+                    print("3")
+                    vc.url = NSURL(string: "https://facebook.com")! as URL
+                } else if button == "share"{
+                    print("4")
+                    vc.url = NSURL(string: "https://duckduckgo.com")! as URL
+                }
+            }
+        }
+    }
 }
