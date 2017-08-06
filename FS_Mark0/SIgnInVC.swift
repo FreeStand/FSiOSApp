@@ -76,15 +76,13 @@ class SIgnInVC: UIViewController {
                 
                 if let user = user {
                     let userData = [["email":user.email],["name":user.displayName]]
-                    self.getProfPic(fid: FBSDKAccessToken.current().userID)
+                    DispatchQueue.global(qos: .background).async {
+                        self.getProfPic(fid: FBSDKAccessToken.current().userID)
+                    }
                     self.completeSignIn(id: user.uid, userData: userData as! [Dictionary<String, String>])
                 }
-                
-
             }
         }
-        
-        
     }
     
     func completeSignIn(id: String, userData: [Dictionary<String, String>]) {
@@ -95,7 +93,6 @@ class SIgnInVC: UIViewController {
         
         let user = Auth.auth().currentUser
         if user?.phoneNumber != nil {
-//            print(user?.phoneNumber)
             UserDefaults.standard.set(true, forKey: "isLoggedIn")
             let delegateTemp = UIApplication.shared.delegate
             delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
@@ -114,7 +111,6 @@ class SIgnInVC: UIViewController {
             let imgURL = NSURL(string: imgURLString)
             let imageData = NSData(contentsOf: imgURL! as URL)
             UserDefaults.standard.set(imageData, forKey: "profImageData")
-//            var image = UIImage(data: imageData! as Data)
         }
     }
     

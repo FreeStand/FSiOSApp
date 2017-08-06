@@ -29,7 +29,6 @@ class PhoneAuthVC: UIViewController, UITextFieldDelegate {
         let width = CGFloat(2.0)
         textField.becomeFirstResponder()
         SendCodeBtn.alpha = 0.5
-//        3A7CFF
         border.borderColor = UIColor().HexToColor(hexString: "#3A7CFF", alpha: 1.0).cgColor
         border.frame = CGRect(x: 0, y: textField.frame.size.height - width, width:  textField.frame.size.width, height: textField.frame.size.height)
         

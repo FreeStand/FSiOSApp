@@ -45,21 +45,16 @@ class HomeVC: UIViewController {
         self.ShareCardView.clipsToBounds = true
     }
     
-   
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func ProductsBtnPressed(_ sender: Any) {
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let MoreVC = storyBoard.instantiateViewController(withIdentifier: "MoreVC") as! MoreVC
+//        let HistoryVC = storyBoard.instantiateViewController(withIdentifier: "MoreVC") as! HistoryVC
+//        let navController = UINavigationController(rootViewController: MoreVC)
+//        self.navigationController?.pushViewController(MoreVC, animated: false)
+//        self.present(navController, animated:true, completion: nil)
+
+        
     }
+
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

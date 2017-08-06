@@ -21,12 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-//        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = view.bounds
-//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        Uitab.addSubview(blurEffectView)
-        
         UITabBar.appearance().barTintColor = UIColor().HexToColor(hexString: "#000000", alpha: 1.0)
         UITabBar.appearance().tintColor = UIColor.white
         
@@ -62,15 +56,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let token = Messaging.messaging().fcmToken
         print("FCM Token: \(String(describing: token))")
                 
-        NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification(notification:)), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification(notification:)), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
         application.registerForRemoteNotifications()
+        FirebaseApp.configure()
+
 
         return true
     }
     
-    override init() {
-        FirebaseApp.configure()
-    }
+//    override init() {
+//        FirebaseApp.configure()
+//    }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         

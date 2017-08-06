@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class UserInfo {
+    private var _phone: String!
     var name: String {
         return (Auth.auth().currentUser?.displayName)!
     }
@@ -20,5 +21,6 @@ class UserInfo {
     var uid: String {
         return (Auth.auth().currentUser?.uid)!
     }
+       
 }
 

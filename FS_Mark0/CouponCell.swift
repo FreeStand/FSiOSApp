@@ -9,6 +9,10 @@
 import UIKit
 
 class CouponCell: UITableViewCell {
+    
+    enum Notifications: String, NotificationName {
+        case myNotification
+    }
 
     @IBOutlet weak var redeemBtn: UIButton!
     
@@ -23,4 +27,13 @@ class CouponCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func redeemBtnPressed(_ sender: Any) {
+        print("redeem")
+    }
+    
+    @IBAction func infoBtnPressed(_ sender: Any) {
+        print("info")
+        NotificationCenter.default.post(name: Notifications.myNotification.name, object: nil)
+    }
+    
 }

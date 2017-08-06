@@ -41,8 +41,6 @@ class PhoneAuthVerificationVC: UIViewController, UITextFieldDelegate {
         border.borderWidth = width
         verificationCode.layer.addSublayer(border)
         verificationCode.layer.masksToBounds = true
-
-        // Do any additional setup after loading the view.
     }
 
     
@@ -51,7 +49,6 @@ class PhoneAuthVerificationVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func ResendBtnPressed(_ sender: Any) {
-//        let phoneNum = UserDefaults.standard.string(forKey: "PhoneNum")
         PhoneAuthProvider.provider().verifyPhoneNumber(UserDefaults.standard.string(forKey: "PhoneNum")!) { (verificationID, error) in
             if error != nil {
                 print("Error: \(error.debugDescription)")
@@ -59,7 +56,6 @@ class PhoneAuthVerificationVC: UIViewController, UITextFieldDelegate {
                 UserDefaults.standard.set(verificationID, forKey: "authVID")
                 Toast(text: "OTP Resent successfully", delay: Delay.short, duration: Delay.long).show()
                 print("FS: Code Sent Successfully")
-//                self.performSegue(withIdentifier: "code", sender: nil)
             }
         }
     }

@@ -19,7 +19,6 @@ class SettingsVC: UIViewController, UIGestureRecognizerDelegate {
         
         self.navigationItem.title = "Settings"
         self.navigationController?.navigationBar.tintColor = UIColor.black
-        
     }
     
     func respondToEdgeGesture (_ gestureRecognizer: UIScreenEdgePanGestureRecognizer) {

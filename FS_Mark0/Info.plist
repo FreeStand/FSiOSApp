@@ -34,7 +34,7 @@
 	<key>FacebookDisplayName</key>
 	<string>FreeStnd</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
-	<string>NO</string>
+	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

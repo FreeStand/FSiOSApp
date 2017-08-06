@@ -18,11 +18,13 @@ class MoreVC: UITableViewController {
         
         self.tableView.tableFooterView = UIView()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        DataService.ds.REF_USER_CURRENT.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            if let phoneNumber = value?["phoneNumber"] as? String {
+                UserDefaults.standard.set(phoneNumber, forKey: "phoneNumber")
+            }
+        })
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,9 +56,12 @@ class MoreVC: UITableViewController {
             performSegue(withIdentifier: "moreToHistory", sender: nil)
             break
         case 4:
-            performSegue(withIdentifier: "moreToSupport", sender: nil)
+            performSegue(withIdentifier: "moreToFAQs", sender: nil)
+
             break
         case 5:
+            break
+        case 6:
             logOut()
             break
         default:

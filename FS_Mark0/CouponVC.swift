@@ -11,17 +11,37 @@ import UIKit
 class CouponVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var infoView: UIView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         topView.addBottomBorderWithColor(color: UIColor().HexToColor(hexString: "#B2B2B2", alpha: 1.0), width: 0.5)
+        NotificationCenter.default.addObserver(self, selector: #selector(infoBtnPressed), name: Notification.Name("myNotification"), object: nil)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    func infoBtnPressed() {
+        print("Notification Received")
+        
+        if infoView.isHidden == true {
+            view.bringSubview(toFront: infoView)
+            UIView.transition(with: self.view, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                self.infoView.isHidden = false
+            }, completion: nil)
+        }
+        
+    }
+    
+    @IBAction func closeBtnPressed(_ sender: Any) {
+        if infoView.isHidden == false {
+            UIView.transition(with: self.view, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                self.infoView.isHidden = true
+            }, completion: nil)
+            view.sendSubview(toBack: infoView)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -30,14 +50,9 @@ class CouponVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         cell.clipsToBounds = true
         cell.layer.cornerRadius = 5.0
         
-//        cell.contentView.layer.cornerRadius = 5.0
-//        cell.contentView.clipsToBounds = true
-        
         cell.contentView.layer.borderWidth = 0.5
         cell.contentView.layer.borderColor = UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0).cgColor
-//        cell.contentView.addBottomBorderWithColor(color: UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0), width: 8.0)
         cell.contentView.addTopBorderWithColor(color: UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0), width: 8.0)
-        // Configure the cell...
         
         return cell
     }
@@ -53,6 +68,10 @@ class CouponVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 260
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("cell")
     }
     
     

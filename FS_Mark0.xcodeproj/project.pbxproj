@@ -26,6 +26,9 @@
 		92AA3DFC1F2D32C800A6613E /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */; };
 		92ABFF191F1C9F00004A797C /* WebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ABFF181F1C9F00004A797C /* WebViewVC.swift */; };
 		92ABFF1B1F1CB5A5004A797C /* CreditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ABFF1A1F1CB5A5004A797C /* CreditVC.swift */; };
+		92AF006A1F35B4880061E243 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF00691F35B4880061E243 /* Notification.swift */; };
+		92AF006C1F35ED0C0061E243 /* FAQVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF006B1F35ED0C0061E243 /* FAQVC.swift */; };
+		92AF006E1F3613C20061E243 /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF006D1F3613C20061E243 /* HistoryVC.swift */; };
 		92B14B421F34880A005C45FE /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B14B411F34880A005C45FE /* TabBar.swift */; };
 		92B14B441F349134005C45FE /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B14B431F349134005C45FE /* CouponCell.swift */; };
 		92B14B481F34943B005C45FE /* CouponVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B14B471F34943B005C45FE /* CouponVC.swift */; };
@@ -60,6 +63,9 @@
 		92ABFF0A1F1B7E79004A797C /* SurveyMonkeyiOSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SurveyMonkeyiOSSDK.framework; path = "Pods/surveymonkey-ios-sdk/SurveyMonkeyiOSSDK.framework"; sourceTree = "<group>"; };
 		92ABFF181F1C9F00004A797C /* WebViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
 		92ABFF1A1F1CB5A5004A797C /* CreditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditVC.swift; sourceTree = "<group>"; };
+		92AF00691F35B4880061E243 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		92AF006B1F35ED0C0061E243 /* FAQVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQVC.swift; sourceTree = "<group>"; };
+		92AF006D1F3613C20061E243 /* HistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
 		92B14B411F34880A005C45FE /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		92B14B431F349134005C45FE /* CouponCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponCell.swift; sourceTree = "<group>"; };
 		92B14B471F34943B005C45FE /* CouponVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponVC.swift; sourceTree = "<group>"; };
@@ -141,12 +147,14 @@
 				92AA3DF71F2D247D00A6613E /* MoreVC.swift */,
 				92AA3DF91F2D2BFC00A6613E /* SettingsVC.swift */,
 				92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */,
+				92B14B431F349134005C45FE /* CouponCell.swift */,
+				92B14B471F34943B005C45FE /* CouponVC.swift */,
 				92125DE31F0407EB00826AC1 /* MainVC.swift */,
 				92C2F1FA1F119689004C79DC /* FormVC.swift */,
 				92ABFF181F1C9F00004A797C /* WebViewVC.swift */,
 				92ABFF1A1F1CB5A5004A797C /* CreditVC.swift */,
-				92B14B431F349134005C45FE /* CouponCell.swift */,
-				92B14B471F34943B005C45FE /* CouponVC.swift */,
+				92AF006B1F35ED0C0061E243 /* FAQVC.swift */,
+				92AF006D1F3613C20061E243 /* HistoryVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -169,6 +177,7 @@
 				92EA3E201F2CB71F00060424 /* UIView.swift */,
 				92125DC21F010BAC00826AC1 /* AppDelegate.swift */,
 				92B14B411F34880A005C45FE /* TabBar.swift */,
+				92AF00691F35B4880061E243 /* Notification.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -330,8 +339,10 @@
 				92DE41C11F16920A00535ACE /* UserInfo.swift in Sources */,
 				92B14B481F34943B005C45FE /* CouponVC.swift in Sources */,
 				9220FE7B1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift in Sources */,
+				92AF006E1F3613C20061E243 /* HistoryVC.swift in Sources */,
 				92EA3E1F1F2C953800060424 /* HomeVC.swift in Sources */,
 				92125DE21F03CD5600826AC1 /* DataService.swift in Sources */,
+				92AF006C1F35ED0C0061E243 /* FAQVC.swift in Sources */,
 				92125DDE1F026C1000826AC1 /* UserData.swift in Sources */,
 				92B14B441F349134005C45FE /* CouponCell.swift in Sources */,
 				92125DD51F012A9700826AC1 /* QRCodeVC.swift in Sources */,
@@ -339,6 +350,7 @@
 				92ABFF1B1F1CB5A5004A797C /* CreditVC.swift in Sources */,
 				92C2F1FB1F119689004C79DC /* FormVC.swift in Sources */,
 				92125DE41F0407EB00826AC1 /* MainVC.swift in Sources */,
+				92AF006A1F35B4880061E243 /* Notification.swift in Sources */,
 				92ABFF191F1C9F00004A797C /* WebViewVC.swift in Sources */,
 				92C2F1F91F11818E004C79DC /* UIColor.swift in Sources */,
 				92AA3DFA1F2D2BFC00A6613E /* SettingsVC.swift in Sources */,
