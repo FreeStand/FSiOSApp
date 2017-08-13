@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeVC: UIViewController {
+class HomeVC: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var topCardView: UIView!
     @IBOutlet weak var NextCardView: UIView!
@@ -52,8 +52,12 @@ class HomeVC: UIViewController {
         self.ProductCardView.clipsToBounds = true
         self.FeedbackCardView.clipsToBounds = true
         self.ShareCardView.clipsToBounds = true
+        
+       
     }
+
     
+   
     @IBAction func ProductsBtnPressed(_ sender: UIButton) {
         button = "products"
         performSegue(withIdentifier: "homeToHistory", sender: UIButton.self)

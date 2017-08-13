@@ -9,14 +9,37 @@
 import UIKit
 
 class HistoryVC: UITableViewController {
+    
+    
+    var orderList = [Order]()
+    var refHandle: UInt!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = "Orders"
         self.navigationController?.navigationBar.tintColor = UIColor.black
+        
+        updateTable()
     }
 
+    func updateTable() {
+        refHandle = DataService.ds.REF_USER_CURRENT.child("orders").observe(.childAdded, with: { (snapshot) in
+            
+            if let dict = snapshot.value as? [String: AnyObject] {
+                let order = Order()
+                
+                order.setValuesForKeys(dict)
+                self.orderList.append(order)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
+            }
+            
+        })
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -26,16 +49,23 @@ class HistoryVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return orderList.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath)
-
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath) as? OrderCell {
+            
+            let order: Order!
+            order = orderList[indexPath.row]
+            cell.configureCell(order: order)
+            return cell
+        }
         // Configure the cell...
 
-        return cell
+        
+        
+        return UITableViewCell()
     }
     
 

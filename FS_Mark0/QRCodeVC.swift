@@ -15,8 +15,6 @@ import SwiftKeychainWrapper
 class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
     
     var qrcodeRef: DatabaseReference!
-
-    
     @IBOutlet weak var previewView: UIView!
     
     lazy var reader: QRCodeReader = QRCodeReader()
@@ -78,8 +76,8 @@ class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         previewView.addSubview(blurEffectView)
         previewView.sendSubview(toBack: view)
-        
-        scanInPreviewAction()
+
+        scanInPreviewAction()        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -95,35 +93,58 @@ class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
         
         reader.startScanning()
         reader.didFindCode = { result in
-//            print(result.value)
-            self.updateQRCode(qrCode: result.value)
+            self.checkForDuplicateScan(qrCode: result.value)
         }
     }
     
-    func updateQRCode(qrCode: String) {
-        print(qrCode)
-        let data = ["uid": KeychainWrapper.standard.string(forKey: "KEY_UID"),
-        "boxID": qrCode
-        ]
-        
-        let childValues = ["\(qrCode)":data]
-        DataService.ds.REF_BOX.updateChildValues(childValues)
-        qrcodeRef = DataService.ds.REF_USER_CURRENT.child("boxID")
-        qrcodeRef.updateChildValues(["\(qrCode)":true])
-        qrcodeRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let _ = snapshot.value as? NSNull {
-                self.qrcodeRef.setValue(true)
+    let timestamp = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: .medium, timeStyle: .short)
+
+    func checkForDuplicateScan(qrCode: String) {
+        DataService.ds.REF_USER_CURRENT.child("orders").observe(.value, with: { (snapshot) in
+            if snapshot.hasChild(qrCode) {
+                print("Already Scanned")
+                let alert = UIAlertController(title: "Already Redeemed", message: "This offer has already been redeemed by you. Stay tuned.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
+                    self.tabBarController?.selectedIndex = 0
+                }))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                print("New Scan")
+                self.updateQRCode(qrCode: qrCode)
             }
         })
+    }
+    
+    
+    func updateQRCode(qrCode: String) {
+        print(qrCode)
+        var data = ["uid": KeychainWrapper.standard.string(forKey: "KEY_UID"),
+                    "boxID": qrCode,
+                    "time": timestamp
+        ]
         
-        tabBarController?.selectedIndex = 1
+        var childValues = ["\(qrCode)":data]
+        DataService.ds.REF_BOX.updateChildValues(childValues)
         
+        
+        data = ["boxID": qrCode,
+                "time": timestamp
+        ]
+        childValues = ["\(qrCode)":data]
+        
+        DataService.ds.REF_USER_CURRENT.child("orders").updateChildValues(childValues)
+        
+        
+        performSegue(withIdentifier: "QRToThankYou", sender: nil)
+        // Place code here for Thank You View
     }
     
     // MARK: - QRCodeReader Delegate Methods
     func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
         reader.stopScanning()
         
+        
+        print("reader called")
         dismiss(animated: true) { [weak self] in
             let alert = UIAlertController(
                 title: "QRCodeReader",
@@ -147,10 +168,4 @@ class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
         
         dismiss(animated: true, completion: nil)
     }
-    
-//    @IBAction func SkipBtnPressed(_ sender: Any) {
-//        print("Skip Btn Pressed")
-//        tabBarController?.selectedIndex = 1
-//    }
-    
 }

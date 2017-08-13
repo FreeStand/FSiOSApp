@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().barTintColor = UIColor().HexToColor(hexString: "#000000", alpha: 1.0)
         UITabBar.appearance().tintColor = UIColor.white
         
+//        UINavigationBar.appearance().barTintColor = UIColor.cyan
+
+        
         let userDefaults = UserDefaults.standard
         if let isLogin = userDefaults.value(forKey: "isLoggedIn") as! Bool? {
             if (isLogin == false) {

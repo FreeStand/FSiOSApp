@@ -25,17 +25,7 @@ class CreditVC: UIViewController, UIGestureRecognizerDelegate {
         twitterBtn.setTitle(String.fontAwesomeIcon(name: .twitter), for: .normal)
         youTubeBtn.setTitle(String.fontAwesomeIcon(name: .youTube), for: .normal)
         instagramBtn.setTitle(String.fontAwesomeIcon(name: .instagram), for: .normal)
-        
-        let edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.respondToEdgeGesture))
-        edgeGesture.edges = .left
-        view.addGestureRecognizer(edgeGesture)
 
-    }
-    
-    func respondToEdgeGesture (_ gestureRecognizer: UIScreenEdgePanGestureRecognizer) {
-        if gestureRecognizer.state == .recognized {
-            performSegue(withIdentifier: "creditToMain", sender: nil)
-        }
     }
 
 

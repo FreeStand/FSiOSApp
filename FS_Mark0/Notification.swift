@@ -24,5 +24,6 @@ extension RawRepresentable where RawValue == String, Self: NotificationName {
 class MyClass {
     enum Notifications: String, NotificationName {
         case myNotification
+        case QRDoneNotification
     }
 }

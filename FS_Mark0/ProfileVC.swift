@@ -12,7 +12,7 @@ import SwiftKeychainWrapper
 import FBSDKLoginKit
 
 
-class ProfileVC: UIViewController, UIGestureRecognizerDelegate {
+class ProfileVC: UIViewController {
 
     @IBOutlet weak var profImgView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -23,9 +23,6 @@ class ProfileVC: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.respondToEdgeGesture))
-        edgeGesture.edges = .left
-        view.addGestureRecognizer(edgeGesture)
         let imageData = UserDefaults.standard.object(forKey: "profImageData") as! NSData
         profImgView.maskCircle(anyImage: UIImage(data: imageData as Data)!)
  
@@ -45,11 +42,5 @@ class ProfileVC: UIViewController, UIGestureRecognizerDelegate {
         loginManager.logOut()
         UserDefaults.standard.set(false, forKey: "isLoggedIn")
         UIApplication.shared.delegate?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
-    }
-    
-    func respondToEdgeGesture (_ gestureRecognizer: UIScreenEdgePanGestureRecognizer) {
-        if gestureRecognizer.state == .recognized {
-            performSegue(withIdentifier: "profileToMore", sender: nil)
-        }
     }
 }

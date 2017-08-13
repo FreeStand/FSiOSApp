@@ -20,6 +20,7 @@ class DataService {
     private var _REF_BOX = DB_BASE.child("boxes")
     private var _REF_USERS = DB_BASE.child("users")
     private var _REF_CHANNELS = DB_BASE.child("channels")
+//    private var _REF_ORDERS = 
     
     var REF_BASE: DatabaseReference {
         return _REF_BASE
@@ -28,6 +29,10 @@ class DataService {
     var REF_BOX: DatabaseReference {
         return _REF_BOX
     }
+    
+//    var REF_ORDERS: DatabaseReference {
+//        return _REF_ORDERS
+//    }
     
     var REF_USERS: DatabaseReference {
         return _REF_USERS
