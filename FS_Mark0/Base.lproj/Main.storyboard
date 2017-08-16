@@ -335,7 +335,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More samples, more opinions. Mo’ bitches, mo’ problems." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAK-Tv-u4E">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More samples, more opinions. " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAK-Tv-u4E">
                                                         <rect key="frame" x="16" y="27" width="335" height="14"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                         <nil key="textColor"/>
@@ -365,7 +365,7 @@
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUh-6c-T5S">
                                                         <rect key="frame" x="152" y="14" width="54" height="54"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="29"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -970,7 +970,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZYq-y1-Qh3">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms &amp; Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEl-81-jS1">
                                         <rect key="frame" x="32" y="32" width="170" height="25"/>
@@ -983,7 +983,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="28" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="Ocw-Rq-Yf1">
-                                        <rect key="frame" x="32" y="89" width="311" height="521"/>
+                                        <rect key="frame" x="32" y="89" width="311" height="451"/>
                                         <string key="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
 
 Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. 
@@ -1022,23 +1022,6 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                     <constraint firstAttribute="trailing" secondItem="zvF-PY-4sA" secondAttribute="trailing" constant="32" id="z9Z-hk-mmb"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UNl-NW-XAN">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coupons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bxo-mq-Roc">
-                                        <rect key="frame" x="152.5" y="30.5" width="70.5" height="23.5"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Bxo-mq-Roc" secondAttribute="bottom" constant="10" id="Ew5-WG-Lp3"/>
-                                    <constraint firstItem="Bxo-mq-Roc" firstAttribute="centerX" secondItem="UNl-NW-XAN" secondAttribute="centerX" id="mdt-T7-rki"/>
-                                    <constraint firstAttribute="height" constant="64" id="rjB-uB-YQa"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cJE-fB-tNM">
                                 <rect key="frame" x="8" y="64" width="359" height="554"/>
                                 <color key="backgroundColor" red="0.88682395219802856" green="0.9080316424369812" blue="0.95565217733383179" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1053,7 +1036,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ug7-yY-qe7">
                                                     <rect key="frame" x="0.0" y="0.0" width="359" height="124"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="royalcanin" translatesAutoresizingMaskIntoConstraints="NO" id="iB9-Bv-dLg">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biralogo" translatesAutoresizingMaskIntoConstraints="NO" id="iB9-Bv-dLg">
                                                             <rect key="frame" x="0.0" y="0.0" width="359" height="124"/>
                                                         </imageView>
                                                     </subviews>
@@ -1076,7 +1059,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get 50% off on red apples. Terms and conditions apply. Get 50% off on red apples." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1h-oZ-o5v">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get 50% off on Bira Blonde. Terms and conditions apply. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1h-oZ-o5v">
                                                     <rect key="frame" x="34" y="160" width="276" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="OuM-x1-T6u"/>
@@ -1137,28 +1120,25 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                         <color key="backgroundColor" red="0.88627450980392153" green="0.90980392156862744" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ZYq-y1-Qh3" firstAttribute="leading" secondItem="isP-Vx-bsO" secondAttribute="leadingMargin" constant="-16" id="3XO-K9-hjn"/>
-                            <constraint firstItem="cJE-fB-tNM" firstAttribute="top" secondItem="UNl-NW-XAN" secondAttribute="bottom" id="6df-79-g11"/>
                             <constraint firstItem="BIq-s0-RHh" firstAttribute="top" secondItem="ZYq-y1-Qh3" secondAttribute="bottom" constant="-49" id="7ac-Aj-UHA"/>
-                            <constraint firstAttribute="trailing" secondItem="UNl-NW-XAN" secondAttribute="trailing" id="HAC-hF-iw1"/>
+                            <constraint firstItem="cJE-fB-tNM" firstAttribute="top" secondItem="noW-1H-uSc" secondAttribute="bottom" id="BMy-TZ-RFv"/>
                             <constraint firstAttribute="trailing" secondItem="cJE-fB-tNM" secondAttribute="trailing" constant="8" id="LqB-QA-v7k"/>
                             <constraint firstItem="BIq-s0-RHh" firstAttribute="top" secondItem="cJE-fB-tNM" secondAttribute="bottom" id="T7b-UO-cQI"/>
-                            <constraint firstItem="UNl-NW-XAN" firstAttribute="top" secondItem="isP-Vx-bsO" secondAttribute="top" id="UIC-ZY-X7s"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZYq-y1-Qh3" secondAttribute="trailing" constant="-16" id="UYf-JZ-4QQ"/>
-                            <constraint firstItem="ZYq-y1-Qh3" firstAttribute="top" secondItem="UNl-NW-XAN" secondAttribute="bottom" constant="-64" id="gOk-Fp-gmC"/>
-                            <constraint firstItem="UNl-NW-XAN" firstAttribute="leading" secondItem="isP-Vx-bsO" secondAttribute="leading" id="hYK-IU-OFD"/>
+                            <constraint firstItem="ZYq-y1-Qh3" firstAttribute="top" secondItem="noW-1H-uSc" secondAttribute="bottom" constant="6" id="ed6-Vx-2wj"/>
                             <constraint firstItem="cJE-fB-tNM" firstAttribute="leading" secondItem="isP-Vx-bsO" secondAttribute="leading" constant="8" id="nft-m7-Emx"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Coupons" image="icCouponInactive" selectedImage="icCouponInactive" id="mNg-1s-2H1"/>
+                    <navigationItem key="navigationItem" title="Coupons" id="Oc5-WF-bf6"/>
                     <connections>
                         <outlet property="infoView" destination="ZYq-y1-Qh3" id="baw-kM-G2F"/>
                         <outlet property="tableView" destination="cJE-fB-tNM" id="cko-mD-xsQ"/>
-                        <outlet property="topView" destination="UNl-NW-XAN" id="OCo-Ik-Znc"/>
+                        <segue destination="i5o-o6-Bzo" kind="show" identifier="couponToDetail" id="Wnf-mL-RTJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3d-fD-bIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-111" y="1728"/>
+            <point key="canvasLocation" x="1932" y="1728"/>
         </scene>
         <!--More-->
         <scene sceneID="XFO-2V-r5Y">
@@ -1441,7 +1421,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ri-oT-30r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1228" y="1728"/>
+            <point key="canvasLocation" x="567" y="1728"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="wdr-az-T9c">
@@ -1642,6 +1622,24 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
             </objects>
             <point key="canvasLocation" x="1257" y="2489"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="XII-Lt-SzL">
+            <objects>
+                <viewController id="i5o-o6-Bzo" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tq3-Ez-UoC"/>
+                        <viewControllerLayoutGuide type="bottom" id="iqD-Bm-4Uj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TJN-HU-MRW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wcg-mu-AOe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1932" y="2489"/>
+        </scene>
         <!--HistoryVC-->
         <scene sceneID="6VH-di-VhF">
             <objects>
@@ -1658,7 +1656,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="275.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="dogproducts" translatesAutoresizingMaskIntoConstraints="NO" id="nca-Z4-PRq">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="beerproducts" translatesAutoresizingMaskIntoConstraints="NO" id="nca-Z4-PRq">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="156"/>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ysR-Ju-gjX">
@@ -1695,7 +1693,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                             <color key="textColor" red="0.23921568627450979" green="0.28627450980392155" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Dog Products campaign" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLQ-va-3La">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Bira Campaign" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLQ-va-3La">
                                             <rect key="frame" x="32" y="196.5" width="311" height="19.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="43N-as-rPM"/>
@@ -1749,7 +1747,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                     </tabBar>
                     <connections>
                         <segue destination="aTs-eA-9g8" kind="relationship" relationship="viewControllers" id="PRD-0B-HXS"/>
-                        <segue destination="uhW-DX-AZJ" kind="relationship" relationship="viewControllers" id="yQz-lf-DZ6"/>
+                        <segue destination="p2h-KJ-2BS" kind="relationship" relationship="viewControllers" id="yQz-lf-DZ6"/>
                         <segue destination="BWt-FP-pa5" kind="relationship" relationship="viewControllers" id="TPY-yq-n10"/>
                         <segue destination="ePs-1O-ziA" kind="relationship" relationship="viewControllers" id="Fzm-W3-ja7"/>
                         <segue destination="NuE-wi-XOc" kind="relationship" relationship="viewControllers" id="hgn-95-t9L"/>
@@ -1795,7 +1793,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LCd-EA-uVv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="554" y="1728"/>
+            <point key="canvasLocation" x="-108" y="1728"/>
         </scene>
         <!--Home-->
         <scene sceneID="RTj-qW-0j1">
@@ -1816,10 +1814,30 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
             </objects>
             <point key="canvasLocation" x="-3410" y="1728"/>
         </scene>
+        <!--Coupons-->
+        <scene sceneID="OVr-mS-elG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p2h-KJ-2BS" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Coupons" image="icCouponInactive" selectedImage="icCouponInactive" id="mNg-1s-2H1"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="czR-wl-6gM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uhW-DX-AZJ" kind="relationship" relationship="rootViewController" id="py0-j8-D4b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FbQ-1S-asV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1257" y="1728"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="beerproducts" width="359" height="163"/>
+        <image name="biralogo" width="359" height="124"/>
         <image name="days" width="54" height="54"/>
-        <image name="dogproducts" width="359" height="163"/>
         <image name="fb" width="207" height="36"/>
         <image name="feedback" width="54" height="54"/>
         <image name="heart" width="54" height="54"/>
@@ -1841,12 +1859,11 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
         <image name="login3" width="241" height="240"/>
         <image name="logoFreeStand" width="200" height="44"/>
         <image name="products" width="54" height="55"/>
-        <image name="royalcanin" width="359" height="124"/>
         <image name="scanOverlay" width="375" height="667"/>
         <image name="share" width="54" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="we8-ba-wtK"/>
-        <segue reference="iu7-zU-hBv"/>
+        <segue reference="IfO-wu-8nd"/>
+        <segue reference="etB-uy-1ss"/>
     </inferredMetricsTieBreakers>
 </document>

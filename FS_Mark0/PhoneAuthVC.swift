@@ -12,6 +12,9 @@ import FirebaseAuth
 
 
 class PhoneAuthVC: UIViewController, UITextFieldDelegate {
+    enum Notifications: String, NotificationName {
+        case phoneAuthNotification
+    }
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var SendCodeBtn: UIButton!
@@ -39,14 +42,21 @@ class PhoneAuthVC: UIViewController, UITextFieldDelegate {
         SendCodeBtn.isEnabled = false
         
         textField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-
         textField.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissNotifReceived), name: Notification.Name("phoneAuthVCNotification"), object: nil)
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         textField.resignFirstResponder()
     }
-
+    
+    func dismissNotifReceived() {
+        self.dismiss(animated: true, completion: nil)
+        NotificationCenter.default.post(name: Notifications.phoneAuthNotification.name, object: nil)
+    }
+    
     @IBAction func SendCodeBtnPressed(_ sender: Any) {
         
         activityIndicator.isHidden  = false

@@ -53,10 +53,21 @@ class HomeVC: UIViewController, UIGestureRecognizerDelegate {
         self.FeedbackCardView.clipsToBounds = true
         self.ShareCardView.clipsToBounds = true
         
-       
+        let edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.goToPreviousTab))
+        edgeGesture.edges = .left
+//        view.addGestureRecognizer(edgeGesture)
     }
 
-    
+    func goToPreviousTab(sender:UISwipeGestureRecognizer) {
+        
+        if sender.direction == UISwipeGestureRecognizerDirection.left {
+            
+            tabBarController?.selectedIndex += 1
+            
+        } 
+        
+    }
+
    
     @IBAction func ProductsBtnPressed(_ sender: UIButton) {
         button = "products"
@@ -84,10 +95,10 @@ class HomeVC: UIViewController, UIGestureRecognizerDelegate {
                 print("0")
                 if button == "next" {
                     print("1")
-                    vc.url = NSURL(string: "https://google.com")! as URL
+                    vc.url = NSURL(string: "https://www.surveymonkey.com/r/C5PRQ63")! as URL
                 } else if button == "feedback"{
                     print("3")
-                    vc.url = NSURL(string: "https://facebook.com")! as URL
+                    vc.url = NSURL(string: "https://www.surveymonkey.com/r/CPX2NTQ")! as URL
                 } else if button == "share"{
                     print("4")
                     vc.url = NSURL(string: "https://duckduckgo.com")! as URL

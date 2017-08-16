@@ -21,18 +21,12 @@ class SIgnInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissNotifReceived), name: Notification.Name("phoneAuthNotification"), object: nil)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-
+    func dismissNotifReceived() {
+        self.dismiss(animated: true, completion: nil)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     @IBAction func facebookBtnTapped(_ sender: Any) {
         fbBtn.isHidden = true

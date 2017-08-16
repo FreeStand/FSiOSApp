@@ -11,6 +11,10 @@ import FirebaseAuth
 import Toaster
 
 class PhoneAuthVerificationVC: UIViewController, UITextFieldDelegate {
+    
+    enum Notifications: String, NotificationName {
+        case phoneAuthVCNotification
+    }
     var phoneNum: String!
 
     @IBOutlet weak var verificationCode: UITextField!
@@ -105,6 +109,8 @@ class PhoneAuthVerificationVC: UIViewController, UITextFieldDelegate {
                 print("FS: ProviderID: \(String(describing: user?.providerID))")
                 
                 let delegateTemp = UIApplication.shared.delegate
+                self.dismiss(animated: true, completion: nil)
+                NotificationCenter.default.post(name: Notifications.phoneAuthVCNotification.name, object: nil)
                 delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
             }
         })

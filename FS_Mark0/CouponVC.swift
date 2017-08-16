@@ -10,7 +10,6 @@ import UIKit
 
 class CouponVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var infoView: UIView!
     
 
@@ -18,7 +17,6 @@ class CouponVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        topView.addBottomBorderWithColor(color: UIColor().HexToColor(hexString: "#B2B2B2", alpha: 1.0), width: 0.5)
         NotificationCenter.default.addObserver(self, selector: #selector(infoBtnPressed), name: Notification.Name("myNotification"), object: nil)
     }
 
@@ -28,7 +26,7 @@ class CouponVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         if infoView.isHidden == true {
             view.bringSubview(toFront: infoView)
-            UIView.transition(with: self.view, duration: 0.5, options: .transitionFlipFromRight, animations: {
+            UIView.transition(with: self.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 self.infoView.isHidden = false
             }, completion: nil)
         }
@@ -37,7 +35,7 @@ class CouponVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBAction func closeBtnPressed(_ sender: Any) {
         if infoView.isHidden == false {
-            UIView.transition(with: self.view, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+            UIView.transition(with: self.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 self.infoView.isHidden = true
             }, completion: nil)
             view.sendSubview(toBack: infoView)

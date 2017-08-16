@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().barTintColor = UIColor().HexToColor(hexString: "#000000", alpha: 1.0)
         UITabBar.appearance().tintColor = UIColor.white
         
-//        UINavigationBar.appearance().barTintColor = UIColor.cyan
+//        UINavigationBar.appearance().barTintColor = UIColor.black
 
         
         let userDefaults = UserDefaults.standard

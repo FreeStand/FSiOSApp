@@ -8,15 +8,15 @@
 
 import UIKit
 
-class TabBarTBC: UITabBarController, UITabBarControllerDelegate {
+class TabBarTBC: UITabBarController, UITabBarControllerDelegate, UIGestureRecognizerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
         
         let edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.goToPreviousTab))
-        //        edgeGesture.edges = .left
-        view.addGestureRecognizer(edgeGesture)
+                edgeGesture.edges = .left
+//        view.addGestureRecognizer(edgeGesture)
         // Do any additional setup after loading the view.
     }
     
