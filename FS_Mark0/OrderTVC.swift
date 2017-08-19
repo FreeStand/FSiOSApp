@@ -10,17 +10,51 @@ import UIKit
 
 class OrderTVC: UITableViewController {
 
+    var orderList = [Order]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Orders"
+        self.navigationController?.navigationBar.tintColor = UIColor.black
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        getSamplesFromUserDB()
     }
+    
+    func getSamplesFromUserDB() {
+        DataService.ds.REF_USER_CURRENT.child("samples").observe(.childAdded, with: { (snapshot) in
+            self.getSamplesInfoFromSamplesDB(key: snapshot.key)
+        }) { (error) in
+            print("Error: Can't load samples from users DB.")
+        }
+    }
+    
+    func getSamplesInfoFromSamplesDB(key: String) {
+        DataService.ds.REF_SAMPLES.child(key).observe(.value, with: { (snapshot) in
+            if let dict = snapshot.value as? [String: AnyObject] {
+                print(dict)
+                let order = Order()
 
-        // MARK: - Table view data source
+                order.campaignID = dict["campaignID"] as? String
+                order.partnerID = dict["partnerID"] as? String
+                order.time = dict["time"] as? String
+                order.uID = dict["uID"] as? String
+                
+                self.orderList.append(order)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } else {
+                print("Error: Can't cast dict from snapshot in getSamplesInfoFromSamplesDB")
+            }
+
+        }) { (error) in
+            print("Error: Can't load samples from Samples DB")
+        }
+        
+        
+    }
+    
+    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -29,24 +63,29 @@ class OrderTVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return orderList.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as? OrderCell{
 
-        cell.clipsToBounds = true
-        cell.layer.cornerRadius = 5.0
-        
-        cell.contentView.layer.borderWidth = 0.5
-        cell.contentView.layer.borderColor = UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0).cgColor
-        cell.contentView.addTopBorderWithColor(color: UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0), width: 8.0)
-        cell.contentView.addLeftBorderWithColor(color: UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0), width: 8.0)
-        cell.contentView.addRightBorderWithColor(color: UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0), width: 8.0)
-        
-        
-        return cell
+            cell.clipsToBounds = true
+            cell.layer.cornerRadius = 5.0
+            
+            cell.contentView.layer.borderWidth = 0.5
+            cell.contentView.layer.borderColor = UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0).cgColor
+            cell.contentView.addTopBorderWithColor(color: UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0), width: 8.0)
+            cell.contentView.addLeftBorderWithColor(color: UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0), width: 8.0)
+            cell.contentView.addRightBorderWithColor(color: UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0), width: 8.0)
+            
+            let order: Order!
+            order = orderList[indexPath.row]
+            cell.configureCell(order: order)
+            
+            return cell
+        }
+        return UITableViewCell()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -9,7 +9,7 @@
 import Foundation
 class Order: NSObject{
     var time: String?
-    var sampleID: String?
-    var uid: String?
-    var imgUrl: String?
+    var campaignID: String?
+    var partnerID:String?
+    var uID: String?
 }

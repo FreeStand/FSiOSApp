@@ -11,16 +11,16 @@ import UIKit
 class OrderCell: UITableViewCell {
 
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var campaignLabel: UILabel!
     @IBOutlet weak var productImgView: UIImageView!
     
-    var time: String?
-    var imgUrl: URL?
     var order: Order!
     
     func configureCell(order: Order) {
         self.order = order
-        time = self.order.time!
-        timeLabel.text = "Collected on " + time!
+        timeLabel.text = "Collected on " + order.time! + " from " + order.partnerID!
+        campaignLabel.text = order.campaignID
     }
 
 }
+
