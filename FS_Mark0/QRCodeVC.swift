@@ -132,18 +132,14 @@ class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
             } else {
                 print("Error: can't get dictionary from snapshot value")
             }
-            
         })
-        
     }
     
     
     func updateQRCode(qrCode: String) {
         print(qrCode)
         DataService.ds.updateFirebaseDBUserWithQR(userData: [["\(qrCode)": "true" as AnyObject]])
-//        let userData = ["time": timestamp,"uid": KeychainWrapper.standard.string(forKey: "KEY_UID"), "scanned": "true"]
-//        let data = ["\(qrCode)":userData]
-        DataService.ds.REF_SAMPLES.child(qrCode).updateChildValues(["time": timestamp,"uid": KeychainWrapper.standard.string(forKey: "KEY_UID"), "scanned": "true" ])
+        DataService.ds.REF_SAMPLES.child(qrCode).updateChildValues(["time": timestamp,"uID": KeychainWrapper.standard.string(forKey: "KEY_UID")!, "scanned": "true" ])
         
         performSegue(withIdentifier: "QRToThankYou", sender: nil)
 
