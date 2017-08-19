@@ -35,6 +35,6 @@
 	<key>GOOGLE_APP_ID</key>
 	<string>1:120360845842:ios:e28bf9a856a25110</string>
 	<key>DATABASE_URL</key>
-	<string>https://free-stand-1c22f.firebaseio.com</string>
+	<string>https://free-stand-1c22f.firebaseio.com/</string>
 </dict>
 </plist>

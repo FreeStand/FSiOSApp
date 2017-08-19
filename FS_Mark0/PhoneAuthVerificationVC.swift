@@ -102,8 +102,9 @@ class PhoneAuthVerificationVC: UIViewController, UITextFieldDelegate {
                 let currentUser = Auth.auth().currentUser
                 print("FS: Current User: \(String(describing: currentUser)) in Phone Auth")
                 
-                let userData = ["phoneNumber":user?.phoneNumber]
-                DataService.ds.updateFirebaseDBPhone(uID: (Auth.auth().currentUser?.uid)!, phoneNumber: userData as! Dictionary<String, String>)
+                let userData = ["phoneNo":user?.phoneNumber]
+                DataService.ds.updateFirebaseDBUserWithUserData(userData: [userData as! Dictionary<String, String> as Dictionary<String, AnyObject>])
+//                DataService.ds.updateFirebaseDBPhone(uID: (Auth.auth().currentUser?.uid)!, phoneNo: userData as! Dictionary<String, String>)
                 print("Phone Number: \(String(describing: user?.phoneNumber))")
                 _ = user?.providerData[0]
                 print("FS: ProviderID: \(String(describing: user?.providerID))")

@@ -1,46 +1,26 @@
 //
-//  HistoryVC.swift
+//  OrderTVC.swift
 //  FS_Mark0
 //
-//  Created by Aryan Sharma on 05/08/17.
+//  Created by Aryan Sharma on 19/08/17.
 //  Copyright © 2017 Aryan Sharma. All rights reserved.
 //
 
 import UIKit
 
-class HistoryVC: UITableViewController {
-    
-    
-    var orderList = [Order]()
-    var refHandle: UInt!
+class OrderTVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = "Orders"
-        self.navigationController?.navigationBar.tintColor = UIColor.black
-        
-        updateTable()
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    func updateTable() {
-        refHandle = DataService.ds.REF_USER_CURRENT.child("orders").observe(.childAdded, with: { (snapshot) in
-            
-            if let dict = snapshot.value as? [String: AnyObject] {
-                let order = Order()
-                
-                order.setValuesForKeys(dict)
-                self.orderList.append(order)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-                
-            }
-            
-        })
-    }
-    
-    // MARK: - Table view data source
+        // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -49,25 +29,29 @@ class HistoryVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return orderList.count
+        return 3
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath) as? OrderCell {
-            
-            let order: Order!
-            order = orderList[indexPath.row]
-            cell.configureCell(order: order)
-            return cell
-        }
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath)
 
+        cell.clipsToBounds = true
+        cell.layer.cornerRadius = 5.0
+        
+        cell.contentView.layer.borderWidth = 0.5
+        cell.contentView.layer.borderColor = UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0).cgColor
+        cell.contentView.addTopBorderWithColor(color: UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0), width: 8.0)
+        cell.contentView.addLeftBorderWithColor(color: UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0), width: 8.0)
+        cell.contentView.addRightBorderWithColor(color: UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0), width: 8.0)
         
         
-        return UITableViewCell()
+        return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 276
+    }
 
     /*
     // Override to support conditional editing of the table view.

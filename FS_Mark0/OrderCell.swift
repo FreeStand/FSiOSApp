@@ -11,8 +11,10 @@ import UIKit
 class OrderCell: UITableViewCell {
 
     @IBOutlet weak var timeLabel: UILabel!
-    var time: String?
+    @IBOutlet weak var productImgView: UIImageView!
     
+    var time: String?
+    var imgUrl: URL?
     var order: Order!
     
     func configureCell(order: Order) {

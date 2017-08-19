@@ -71,7 +71,7 @@ class HomeVC: UIViewController, UIGestureRecognizerDelegate {
    
     @IBAction func ProductsBtnPressed(_ sender: UIButton) {
         button = "products"
-        performSegue(withIdentifier: "homeToHistory", sender: UIButton.self)
+        performSegue(withIdentifier: "homeToOrder", sender: UIButton.self)
     }
 
     @IBAction func WhatNextBtnPressed(_ sender: UIButton) {

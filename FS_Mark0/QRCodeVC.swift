@@ -100,43 +100,53 @@ class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
     let timestamp = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: .medium, timeStyle: .short)
 
     func checkForDuplicateScan(qrCode: String) {
-        DataService.ds.REF_USER_CURRENT.child("orders").observe(.value, with: { (snapshot) in
-            if snapshot.hasChild(qrCode) {
-                print("Already Scanned")
-                let alert = UIAlertController(title: "Already Redeemed", message: "This offer has already been redeemed by you. Stay tuned.", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
-                    self.tabBarController?.selectedIndex = 0
-                }))
-                self.present(alert, animated: true, completion: nil)
+        
+        DataService.ds.REF_SAMPLES.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dict = snapshot.value as? [String:Any] {
+                if let sampleDict = dict[qrCode] as? [String:Any] {
+                    print(sampleDict)
+                    if let isScanned = sampleDict["scanned"] as? Bool {
+                        if isScanned == true {
+                            print("Already Scanned")
+                            let alert = UIAlertController(title: "Already Redeemed", message: "This offer has already been redeemed by you. Stay tuned.", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
+                                self.tabBarController?.selectedIndex = 0
+                            }))
+                            self.present(alert, animated: true, completion: nil)
+                        } else {
+                            print("New Scan")
+                            self.updateQRCode(qrCode: qrCode)
+                        }
+                    } else {
+                        print("Error: can't read/find 'scanned' ")
+                    }
+                }else {
+                    print("Error: Invalid Code Scanned")
+                    let alert = UIAlertController(title: "Invalid QR Code Scanned", message: "The code that you've scanned is Invalid.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alert) in
+                        self.tabBarController?.selectedIndex = 0
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                }
             } else {
-                print("New Scan")
-                self.updateQRCode(qrCode: qrCode)
+                print("Error: can't get dictionary from snapshot value")
             }
+            
         })
+        
     }
     
     
     func updateQRCode(qrCode: String) {
         print(qrCode)
-        var data = ["uid": KeychainWrapper.standard.string(forKey: "KEY_UID"),
-                    "boxID": qrCode,
-                    "time": timestamp
-        ]
-        
-        var childValues = ["\(qrCode)":data]
-        DataService.ds.REF_BOX.updateChildValues(childValues)
-        
-        
-        data = ["boxID": qrCode,
-                "time": timestamp
-        ]
-        childValues = ["\(qrCode)":data]
-        
-        DataService.ds.REF_USER_CURRENT.child("orders").updateChildValues(childValues)
-        
+        DataService.ds.updateFirebaseDBUserWithQR(userData: [["\(qrCode)": "true" as AnyObject]])
+//        let userData = ["time": timestamp,"uid": KeychainWrapper.standard.string(forKey: "KEY_UID"), "scanned": "true"]
+//        let data = ["\(qrCode)":userData]
+        DataService.ds.REF_SAMPLES.child(qrCode).updateChildValues(["time": timestamp,"uid": KeychainWrapper.standard.string(forKey: "KEY_UID"), "scanned": "true" ])
         
         performSegue(withIdentifier: "QRToThankYou", sender: nil)
-        // Place code here for Thank You View
+
     }
     
     // MARK: - QRCodeReader Delegate Methods

@@ -15,7 +15,6 @@
 		92125DCA1F010BAC00826AC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92125DC91F010BAC00826AC1 /* Assets.xcassets */; };
 		92125DCD1F010BAC00826AC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92125DCB1F010BAC00826AC1 /* LaunchScreen.storyboard */; };
 		92125DD51F012A9700826AC1 /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92125DD41F012A9700826AC1 /* QRCodeVC.swift */; };
-		92125DD91F02361700826AC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92125DD81F02361700826AC1 /* GoogleService-Info.plist */; };
 		92125DDB1F02553B00826AC1 /* SIgnInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92125DDA1F02553B00826AC1 /* SIgnInVC.swift */; };
 		92125DDE1F026C1000826AC1 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92125DDD1F026C1000826AC1 /* UserData.swift */; };
 		92125DE21F03CD5600826AC1 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92125DE11F03CD5600826AC1 /* DataService.swift */; };
@@ -23,6 +22,8 @@
 		9220FE7B1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220FE7A1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift */; };
 		9220FE7D1F0C4FE600B0D402 /* PhoneAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220FE7C1F0C4FE600B0D402 /* PhoneAuthVC.swift */; };
 		9220FE7F1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */; };
+		922785621F476C450066F700 /* OrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922785611F476C450066F700 /* OrderTVC.swift */; };
+		923A801A1F45991D0044C97C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 923A80191F45991D0044C97C /* GoogleService-Info.plist */; };
 		92AA3DF81F2D247D00A6613E /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DF71F2D247D00A6613E /* MoreVC.swift */; };
 		92AA3DFA1F2D2BFC00A6613E /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DF91F2D2BFC00A6613E /* SettingsVC.swift */; };
 		92AA3DFC1F2D32C800A6613E /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */; };
@@ -30,7 +31,6 @@
 		92ABFF1B1F1CB5A5004A797C /* CreditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ABFF1A1F1CB5A5004A797C /* CreditVC.swift */; };
 		92AF006A1F35B4880061E243 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF00691F35B4880061E243 /* Notification.swift */; };
 		92AF006C1F35ED0C0061E243 /* FAQVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF006B1F35ED0C0061E243 /* FAQVC.swift */; };
-		92AF006E1F3613C20061E243 /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF006D1F3613C20061E243 /* HistoryVC.swift */; };
 		92AF00701F3734420061E243 /* TabBarTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF006F1F3734410061E243 /* TabBarTBC.swift */; };
 		92B14B421F34880A005C45FE /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B14B411F34880A005C45FE /* TabBar.swift */; };
 		92B14B441F349134005C45FE /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B14B431F349134005C45FE /* CouponCell.swift */; };
@@ -54,7 +54,6 @@
 		92125DCC1F010BAC00826AC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92125DCE1F010BAC00826AC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92125DD41F012A9700826AC1 /* QRCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
-		92125DD81F02361700826AC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92125DDA1F02553B00826AC1 /* SIgnInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SIgnInVC.swift; sourceTree = "<group>"; };
 		92125DDC1F025D2600826AC1 /* FS_Mark0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FS_Mark0.entitlements; sourceTree = "<group>"; };
 		92125DDD1F026C1000826AC1 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -63,6 +62,8 @@
 		9220FE7A1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+isFirstLaunch.swift"; sourceTree = "<group>"; };
 		9220FE7C1F0C4FE600B0D402 /* PhoneAuthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneAuthVC.swift; sourceTree = "<group>"; };
 		9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneAuthVerificationVC.swift; sourceTree = "<group>"; };
+		922785611F476C450066F700 /* OrderTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTVC.swift; sourceTree = "<group>"; };
+		923A80191F45991D0044C97C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92AA3DF71F2D247D00A6613E /* MoreVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
 		92AA3DF91F2D2BFC00A6613E /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		92ABFF1A1F1CB5A5004A797C /* CreditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditVC.swift; sourceTree = "<group>"; };
 		92AF00691F35B4880061E243 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		92AF006B1F35ED0C0061E243 /* FAQVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQVC.swift; sourceTree = "<group>"; };
-		92AF006D1F3613C20061E243 /* HistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
 		92AF006F1F3734410061E243 /* TabBarTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarTBC.swift; sourceTree = "<group>"; };
 		92B14B411F34880A005C45FE /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		92B14B431F349134005C45FE /* CouponCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponCell.swift; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 				92125DCB1F010BAC00826AC1 /* LaunchScreen.storyboard */,
 				92125DC91F010BAC00826AC1 /* Assets.xcassets */,
 				92125DCE1F010BAC00826AC1 /* Info.plist */,
-				92125DD81F02361700826AC1 /* GoogleService-Info.plist */,
+				923A80191F45991D0044C97C /* GoogleService-Info.plist */,
 				92125DDC1F025D2600826AC1 /* FS_Mark0.entitlements */,
 			);
 			path = FS_Mark0;
@@ -162,11 +162,11 @@
 				92ABFF181F1C9F00004A797C /* WebViewVC.swift */,
 				92ABFF1A1F1CB5A5004A797C /* CreditVC.swift */,
 				92AF006B1F35ED0C0061E243 /* FAQVC.swift */,
-				92AF006D1F3613C20061E243 /* HistoryVC.swift */,
 				92AF006F1F3734410061E243 /* TabBarTBC.swift */,
 				92F490B51F38ECB10096521D /* ThankYouVC.swift */,
 				920BF1CC1F3F641A007E6DC8 /* Order.swift */,
 				920BF1CE1F3F6F46007E6DC8 /* OrderCell.swift */,
+				922785611F476C450066F700 /* OrderTVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -279,7 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92125DCD1F010BAC00826AC1 /* LaunchScreen.storyboard in Resources */,
-				92125DD91F02361700826AC1 /* GoogleService-Info.plist in Resources */,
+				923A801A1F45991D0044C97C /* GoogleService-Info.plist in Resources */,
 				92125DCA1F010BAC00826AC1 /* Assets.xcassets in Resources */,
 				92125DC81F010BAC00826AC1 /* Main.storyboard in Resources */,
 			);
@@ -350,9 +350,9 @@
 				92F490B61F38ECB10096521D /* ThankYouVC.swift in Sources */,
 				92125DDB1F02553B00826AC1 /* SIgnInVC.swift in Sources */,
 				92DE41C11F16920A00535ACE /* UserInfo.swift in Sources */,
+				922785621F476C450066F700 /* OrderTVC.swift in Sources */,
 				92B14B481F34943B005C45FE /* CouponVC.swift in Sources */,
 				9220FE7B1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift in Sources */,
-				92AF006E1F3613C20061E243 /* HistoryVC.swift in Sources */,
 				92EA3E1F1F2C953800060424 /* HomeVC.swift in Sources */,
 				92125DE21F03CD5600826AC1 /* DataService.swift in Sources */,
 				92AF006C1F35ED0C0061E243 /* FAQVC.swift in Sources */,

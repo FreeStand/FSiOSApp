@@ -64,7 +64,8 @@ class SIgnInVC: UIViewController {
                     }
                     print(user_gender)
                     let userData = ["gender":user_gender]
-                    DataService.ds.updateFirebaseDBUserGender(uID: (user?.uid)!, gender: userData)
+                    DataService.ds.updateFirebaseDBUserWithUserData( userData: [userData as Dictionary<String, AnyObject>] )
+//                    DataService.ds.updateFirebaseDBUserGender(uID: (user?.uid)!, gender: userData)
                 }
                 
                 
@@ -80,7 +81,7 @@ class SIgnInVC: UIViewController {
     }
     
     func completeSignIn(id: String, userData: [Dictionary<String, String>]) {
-        DataService.ds.createFirebaseDBUser(uID: id, userData: userData)
+        DataService.ds.createFirebaseUserWithUID(uID: (Auth.auth().currentUser?.uid)!, userData: userData)
         let keychainResult = KeychainWrapper.standard.set(id, forKey: "KEY_UID")
         print("FS: Data saved to keychain with result: \(keychainResult)")
 
@@ -103,6 +104,7 @@ class SIgnInVC: UIViewController {
         if (fid != "") {
             let imgURLString = "http://graph.facebook.com/" + fid + "/picture?type=large" //type=normal
             let imgURL = NSURL(string: imgURLString)
+            DataService.ds.updateFirebaseDBUserWithUserData( userData: [["photoURL": imgURLString as AnyObject]])
             let imageData = NSData(contentsOf: imgURL! as URL)
             UserDefaults.standard.set(imageData, forKey: "profImageData")
         }
