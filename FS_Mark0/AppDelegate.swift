@@ -48,7 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         if #available(iOS 10, *) {
-//            UNUserNotificationCenter.current().delegate = self as! UNUserNotificationCenterDelegate
             UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (granted, error) in })
             application.registerForRemoteNotifications()
         } else {
@@ -59,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let token = Messaging.messaging().fcmToken
         print("FCM Token: \(String(describing: token))")
                 
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification(notification:)), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
         application.registerForRemoteNotifications()
         FirebaseApp.configure()
 
@@ -116,7 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Message ID: \(messageID)")
         }
         
-
+        
         
         // Print full message.
         print(userInfo)
@@ -136,6 +134,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Message ID: \(messageID)")
         }
         
+        if application.applicationState == .inactive {
+            print("inactive")
+        } else {
+            print("active")
+        }
         // Print full message.
         print(userInfo)
         

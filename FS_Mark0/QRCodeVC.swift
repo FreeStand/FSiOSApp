@@ -27,6 +27,66 @@ class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
         return QRCodeReaderViewController(builder: builder)
     }()
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        previewView.layer.cornerRadius = 10
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        previewView.addSubview(blurEffectView)
+        previewView.sendSubview(toBack: view)
+
+        scanInPreviewAction()        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        scanInPreviewAction()
+    }
+
+    
+    func scanInPreviewAction() {
+        guard checkScanPermissions(), !reader.isRunning else { return }
+        
+        reader.previewLayer.frame = previewView.bounds
+        previewView.layer.addSublayer(reader.previewLayer)
+        
+        reader.startScanning()
+        reader.didFindCode = { result in
+            self.checkForDuplicateScan(code: result.value)
+        }
+    }
+    
+    let timestamp = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: .medium, timeStyle: .short)
+
+    func checkForDuplicateScan(code: String) {
+        let qrCode = code
+        DataService.ds.REF_SAMPLES.observe(.value, with: { (snapshot) in
+            if let dict = snapshot.value as? NSDictionary {
+                print(dict)
+                if let newDict = dict[qrCode] as? [String: Any] {
+                    print(newDict)
+                } else {
+                    print("Error: Can't")
+                }
+            }
+        }) { (error) in
+            print("Error: \(error.localizedDescription)")
+        }
+    }
+    
+    
+    func updateQRCode(qrCode: String) {
+        print(qrCode)
+        DataService.ds.updateFirebaseDBUserWithQR(userData: [["\(qrCode)": "true" as AnyObject]])
+        DataService.ds.REF_SAMPLES.child(qrCode).updateChildValues(["time": timestamp,"uID": KeychainWrapper.standard.string(forKey: "KEY_UID")!, "scanned": true ])
+        
+        performSegue(withIdentifier: "QRToThankYou", sender: nil)
+
+    }
+    
     // MARK: - Actions
     private func checkScanPermissions() -> Bool {
         do {
@@ -66,84 +126,6 @@ class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        previewView.layer.cornerRadius = 10
-        
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        previewView.addSubview(blurEffectView)
-        previewView.sendSubview(toBack: view)
-
-        scanInPreviewAction()        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        scanInPreviewAction()
-    }
-
-    
-    func scanInPreviewAction() {
-        guard checkScanPermissions(), !reader.isRunning else { return }
-        
-        reader.previewLayer.frame = previewView.bounds
-        previewView.layer.addSublayer(reader.previewLayer)
-        
-        reader.startScanning()
-        reader.didFindCode = { result in
-            self.checkForDuplicateScan(qrCode: result.value)
-        }
-    }
-    
-    let timestamp = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: .medium, timeStyle: .short)
-
-    func checkForDuplicateScan(qrCode: String) {
-        
-        DataService.ds.REF_SAMPLES.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            if let dict = snapshot.value as? [String:Any] {
-                if let sampleDict = dict[qrCode] as? [String:Any] {
-                    print(sampleDict)
-                    if let isScanned = sampleDict["scanned"] as? Bool {
-                        if isScanned == true {
-                            print("Already Scanned")
-                            let alert = UIAlertController(title: "Already Redeemed", message: "This offer has already been redeemed by you. Stay tuned.", preferredStyle: UIAlertControllerStyle.alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
-                                self.tabBarController?.selectedIndex = 0
-                            }))
-                            self.present(alert, animated: true, completion: nil)
-                        } else {
-                            print("New Scan")
-                            self.updateQRCode(qrCode: qrCode)
-                        }
-                    } else {
-                        print("Error: can't read/find 'scanned' ")
-                    }
-                }else {
-                    print("Error: Invalid Code Scanned")
-                    let alert = UIAlertController(title: "Invalid QR Code Scanned", message: "The code that you've scanned is Invalid.", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alert) in
-                        self.tabBarController?.selectedIndex = 0
-                    }))
-                    self.present(alert, animated: true, completion: nil)
-                }
-            } else {
-                print("Error: can't get dictionary from snapshot value")
-            }
-        })
-    }
-    
-    
-    func updateQRCode(qrCode: String) {
-        print(qrCode)
-        DataService.ds.updateFirebaseDBUserWithQR(userData: [["\(qrCode)": "true" as AnyObject]])
-        DataService.ds.REF_SAMPLES.child(qrCode).updateChildValues(["time": timestamp,"uID": KeychainWrapper.standard.string(forKey: "KEY_UID")!, "scanned": "true" ])
-        
-        performSegue(withIdentifier: "QRToThankYou", sender: nil)
-
-    }
     
     // MARK: - QRCodeReader Delegate Methods
     func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {

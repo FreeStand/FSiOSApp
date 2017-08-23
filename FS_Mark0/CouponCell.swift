@@ -15,6 +15,18 @@ class CouponCell: UITableViewCell {
     }
 
     @IBOutlet weak var redeemBtn: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    
+    var coupon: Coupon!
+    var redirectURL: String!
+    
+    func configureCell(coupon: Coupon) {
+        self.coupon = coupon
+        titleLabel.text = coupon.title
+        subtitleLabel.text = coupon.subtitle
+        redirectURL = coupon.redirectURL
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,10 +37,6 @@ class CouponCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-
-    @IBAction func redeemBtnPressed(_ sender: Any) {
-        print("redeem")
     }
     
     @IBAction func infoBtnPressed(_ sender: Any) {

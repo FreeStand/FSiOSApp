@@ -53,7 +53,7 @@ class MoreVC: UITableViewController {
             performSegue(withIdentifier: "moreToProfile", sender: nil)
             break
         case 3:
-            performSegue(withIdentifier: "moreToHistory", sender: nil)
+            performSegue(withIdentifier: "moreToOrders", sender: nil)
             break
         case 4:
             performSegue(withIdentifier: "moreToFAQs", sender: nil)

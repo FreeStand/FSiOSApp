@@ -8,11 +8,10 @@
 
 import UIKit
 
-class WebViewVC: UIViewController, UIWebViewDelegate, UIGestureRecognizerDelegate {
+class WebViewVC: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     
     var url: URL!
     var request: URLRequest!
@@ -35,19 +34,8 @@ class WebViewVC: UIViewController, UIWebViewDelegate, UIGestureRecognizerDelegat
         request = URLRequest(url: url)
         webView.loadRequest(request)
         
-        let edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.respondToEdgeGesture))
-        edgeGesture.edges = .left
-        webView.addGestureRecognizer(edgeGesture)
-    
         self.navigationController?.navigationBar.tintColor = UIColor.black
     }
-    
-    func respondToEdgeGesture (_ gestureRecognizer: UIScreenEdgePanGestureRecognizer) {
-        if gestureRecognizer.state == .recognized {
-            performSegue(withIdentifier: "webToCreditVC", sender: nil)
-        }
-    }
-
        
     func webViewDidStartLoad(_ webView: UIWebView) {
         print("Loading Started")

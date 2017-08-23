@@ -890,7 +890,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="118"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IOg-Su-f1D" id="OYE-Ow-E4W">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="118"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="117.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icGreenCircle12Dp" translatesAutoresizingMaskIntoConstraints="NO" id="PT2-aP-KlH">
@@ -1050,10 +1050,9 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50% OFF!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VmI-uv-TLR">
-                                                    <rect key="frame" x="34" y="138" width="101.5" height="16"/>
+                                                    <rect key="frame" x="34" y="138" width="291" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="P9S-PS-fvZ"/>
-                                                        <constraint firstAttribute="width" constant="101.40000000000001" id="yEs-F5-lfo"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="14"/>
                                                     <nil key="textColor"/>
@@ -1079,9 +1078,6 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                                     <state key="normal" title="REDEEM">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="redeemBtnPressed:" destination="nCI-2r-lY7" eventType="touchUpInside" id="wC7-tk-Tum"/>
-                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6t-lT-jiW">
                                                     <rect key="frame" x="34" y="211" width="24" height="24"/>
@@ -1100,6 +1096,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                                 <constraint firstAttribute="trailing" secondItem="Ug7-yY-qe7" secondAttribute="trailing" id="6OW-j3-yeY"/>
                                                 <constraint firstAttribute="trailing" secondItem="HIV-fc-IrD" secondAttribute="trailing" constant="26" id="CdK-ht-faM"/>
                                                 <constraint firstItem="h1h-oZ-o5v" firstAttribute="leading" secondItem="Tgb-vl-TZX" secondAttribute="leadingMargin" constant="26" id="RFI-hS-ge9"/>
+                                                <constraint firstAttribute="trailing" secondItem="VmI-uv-TLR" secondAttribute="trailing" constant="34" id="Sle-gb-sUl"/>
                                                 <constraint firstItem="c6t-lT-jiW" firstAttribute="leading" secondItem="Tgb-vl-TZX" secondAttribute="leadingMargin" constant="26" id="Vnc-Wt-rfl"/>
                                                 <constraint firstItem="h1h-oZ-o5v" firstAttribute="top" secondItem="VmI-uv-TLR" secondAttribute="bottom" constant="6" id="Xuf-lj-AaY"/>
                                                 <constraint firstItem="VmI-uv-TLR" firstAttribute="top" secondItem="Ug7-yY-qe7" secondAttribute="bottom" constant="14.199999999999999" id="Zrm-FZ-N8e"/>
@@ -1111,7 +1108,9 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="redeemBtn" destination="HIV-fc-IrD" id="Puc-G2-ANH"/>
+                                            <outlet property="redeemBtn" destination="HIV-fc-IrD" id="NVH-go-G0P"/>
+                                            <outlet property="subtitleLabel" destination="h1h-oZ-o5v" id="n9u-ea-w3J"/>
+                                            <outlet property="titleLabel" destination="VmI-uv-TLR" id="yq7-dM-cF0"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1133,7 +1132,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                     <connections>
                         <outlet property="infoView" destination="ZYq-y1-Qh3" id="baw-kM-G2F"/>
                         <outlet property="tableView" destination="cJE-fB-tNM" id="cko-mD-xsQ"/>
-                        <segue destination="i5o-o6-Bzo" kind="show" identifier="couponToDetail" id="Wnf-mL-RTJ"/>
+                        <segue destination="fRH-DG-Chz" kind="show" identifier="couponsToWebView" id="hpo-mX-kJx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3d-fD-bIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1155,7 +1154,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tcg-CE-fQb" id="ybo-bE-rx7">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoFreeStand" translatesAutoresizingMaskIntoConstraints="NO" id="t5U-xm-9b7">
@@ -1176,7 +1175,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                         <rect key="frame" x="0.0" y="200" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6EI-Z8-wzP" id="Pt4-w8-5Z4">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icSettings" translatesAutoresizingMaskIntoConstraints="NO" id="L07-TY-KF9">
@@ -1217,7 +1216,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                         <rect key="frame" x="0.0" y="252" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B81-vg-b3I" id="Q18-ph-NFE">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icUser" translatesAutoresizingMaskIntoConstraints="NO" id="2QG-8z-lUE">
@@ -1258,7 +1257,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                         <rect key="frame" x="0.0" y="304" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tio-El-JPY" id="1So-zF-Mn1">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icClock" translatesAutoresizingMaskIntoConstraints="NO" id="ger-8l-KLw">
@@ -1299,7 +1298,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                         <rect key="frame" x="0.0" y="356" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N0P-tt-Fuu" id="NHO-44-c2m">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icHelp" translatesAutoresizingMaskIntoConstraints="NO" id="yDN-kf-Bs0">
@@ -1336,7 +1335,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                         <rect key="frame" x="0.0" y="408" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZJE-j0-lTC" id="mv0-Uq-1lR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icContactUs" translatesAutoresizingMaskIntoConstraints="NO" id="2vQ-Ut-3yg">
@@ -1373,7 +1372,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                         <rect key="frame" x="0.0" y="460" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0KD-y8-U0X" id="Tdq-EN-baa">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icLogOut" translatesAutoresizingMaskIntoConstraints="NO" id="NHt-D8-Vhb">
@@ -1415,6 +1414,9 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="More" id="nNy-86-R57"/>
+                    <connections>
+                        <segue destination="mm4-Hl-6QI" kind="show" identifier="moreToOrders" id="eSf-3o-5Nj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ri-oT-30r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1661,7 +1663,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                         <rect key="frame" x="0.0" y="28" width="375" height="146"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ouy-pl-oCI" id="Dbz-2o-ncT">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="146"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="145.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a question people will have about Freestand." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLI-YS-Orp">
@@ -1711,24 +1713,6 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UIq-tP-slC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1257" y="2489"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="XII-Lt-SzL">
-            <objects>
-                <viewController id="i5o-o6-Bzo" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Tq3-Ez-UoC"/>
-                        <viewControllerLayoutGuide type="bottom" id="iqD-Bm-4Uj"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="TJN-HU-MRW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wcg-mu-AOe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1932" y="2489"/>
         </scene>
         <!--Tab BarTBC-->
         <scene sceneID="eJr-V8-7kO">
@@ -1858,6 +1842,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
         <image name="share" width="54" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IfO-wu-8nd"/>
+        <segue reference="eSf-3o-5Nj"/>
+        <segue reference="iu7-zU-hBv"/>
     </inferredMetricsTieBreakers>
 </document>

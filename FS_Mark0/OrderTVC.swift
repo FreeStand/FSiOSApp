@@ -31,13 +31,33 @@ class OrderTVC: UITableViewController {
     func getSamplesInfoFromSamplesDB(key: String) {
         DataService.ds.REF_SAMPLES.child(key).observe(.value, with: { (snapshot) in
             if let dict = snapshot.value as? [String: AnyObject] {
-                print(dict)
                 let order = Order()
 
-                order.campaignID = dict["campaignID"] as? String
-                order.partnerID = dict["partnerID"] as? String
-                order.time = dict["time"] as? String
-                order.uID = dict["uID"] as? String
+                if let campaignID = dict["campaignID"] as? String {
+                    order.campaignID = campaignID
+                } else {
+                    print("Error: Can't retrieve CampaignID")
+                }
+                if let partnerID = dict["partnerID"] as? String {
+                    order.partnerID = partnerID
+                } else {
+                    print("Error: Can't retrieve partnerID")
+                }
+                if let time = dict["time"] as? String {
+                    order.time = time
+                } else {
+                    print("Error: Can't retrieve time")
+                }
+                if let uID = dict["uID"] as? String {
+                    order.uID = uID
+                } else {
+                    print("Error: Can't retrieve uID")
+                }
+
+//                order.campaignID = dict["campaignID"] as? String
+//                order.partnerID = dict["partnerID"] as? String
+//                order.time = dict["time"] as? String
+//                order.uID = dict["uID"] as? String
                 
                 self.orderList.append(order)
                 DispatchQueue.main.async {

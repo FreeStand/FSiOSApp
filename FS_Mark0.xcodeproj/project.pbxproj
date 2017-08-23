@@ -18,17 +18,16 @@
 		92125DDB1F02553B00826AC1 /* SIgnInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92125DDA1F02553B00826AC1 /* SIgnInVC.swift */; };
 		92125DDE1F026C1000826AC1 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92125DDD1F026C1000826AC1 /* UserData.swift */; };
 		92125DE21F03CD5600826AC1 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92125DE11F03CD5600826AC1 /* DataService.swift */; };
-		92125DE41F0407EB00826AC1 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92125DE31F0407EB00826AC1 /* MainVC.swift */; };
 		9220FE7B1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220FE7A1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift */; };
 		9220FE7D1F0C4FE600B0D402 /* PhoneAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220FE7C1F0C4FE600B0D402 /* PhoneAuthVC.swift */; };
 		9220FE7F1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */; };
 		922785621F476C450066F700 /* OrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922785611F476C450066F700 /* OrderTVC.swift */; };
+		922785681F4921A20066F700 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922785671F4921A20066F700 /* Coupon.swift */; };
 		923A801A1F45991D0044C97C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 923A80191F45991D0044C97C /* GoogleService-Info.plist */; };
 		92AA3DF81F2D247D00A6613E /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DF71F2D247D00A6613E /* MoreVC.swift */; };
 		92AA3DFA1F2D2BFC00A6613E /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DF91F2D2BFC00A6613E /* SettingsVC.swift */; };
 		92AA3DFC1F2D32C800A6613E /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */; };
 		92ABFF191F1C9F00004A797C /* WebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ABFF181F1C9F00004A797C /* WebViewVC.swift */; };
-		92ABFF1B1F1CB5A5004A797C /* CreditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ABFF1A1F1CB5A5004A797C /* CreditVC.swift */; };
 		92AF006A1F35B4880061E243 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF00691F35B4880061E243 /* Notification.swift */; };
 		92AF006C1F35ED0C0061E243 /* FAQVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF006B1F35ED0C0061E243 /* FAQVC.swift */; };
 		92AF00701F3734420061E243 /* TabBarTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF006F1F3734410061E243 /* TabBarTBC.swift */; };
@@ -37,7 +36,6 @@
 		92B14B481F34943B005C45FE /* CouponVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B14B471F34943B005C45FE /* CouponVC.swift */; };
 		92BCF4E71F30BF470047EB74 /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCF4E61F30BF470047EB74 /* AlertVC.swift */; };
 		92C2F1F91F11818E004C79DC /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C2F1F81F11818E004C79DC /* UIColor.swift */; };
-		92C2F1FB1F119689004C79DC /* FormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C2F1FA1F119689004C79DC /* FormVC.swift */; };
 		92DE41C11F16920A00535ACE /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE41C01F16920A00535ACE /* UserInfo.swift */; };
 		92EA3E1F1F2C953800060424 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EA3E1E1F2C953800060424 /* HomeVC.swift */; };
 		92EA3E211F2CB71F00060424 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EA3E201F2CB71F00060424 /* UIView.swift */; };
@@ -58,18 +56,17 @@
 		92125DDC1F025D2600826AC1 /* FS_Mark0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FS_Mark0.entitlements; sourceTree = "<group>"; };
 		92125DDD1F026C1000826AC1 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		92125DE11F03CD5600826AC1 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
-		92125DE31F0407EB00826AC1 /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		9220FE7A1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+isFirstLaunch.swift"; sourceTree = "<group>"; };
 		9220FE7C1F0C4FE600B0D402 /* PhoneAuthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneAuthVC.swift; sourceTree = "<group>"; };
 		9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneAuthVerificationVC.swift; sourceTree = "<group>"; };
 		922785611F476C450066F700 /* OrderTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTVC.swift; sourceTree = "<group>"; };
+		922785671F4921A20066F700 /* Coupon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coupon.swift; sourceTree = "<group>"; };
 		923A80191F45991D0044C97C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92AA3DF71F2D247D00A6613E /* MoreVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
 		92AA3DF91F2D2BFC00A6613E /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		92ABFF0A1F1B7E79004A797C /* SurveyMonkeyiOSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SurveyMonkeyiOSSDK.framework; path = "Pods/surveymonkey-ios-sdk/SurveyMonkeyiOSSDK.framework"; sourceTree = "<group>"; };
 		92ABFF181F1C9F00004A797C /* WebViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
-		92ABFF1A1F1CB5A5004A797C /* CreditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditVC.swift; sourceTree = "<group>"; };
 		92AF00691F35B4880061E243 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		92AF006B1F35ED0C0061E243 /* FAQVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQVC.swift; sourceTree = "<group>"; };
 		92AF006F1F3734410061E243 /* TabBarTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarTBC.swift; sourceTree = "<group>"; };
@@ -78,7 +75,6 @@
 		92B14B471F34943B005C45FE /* CouponVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponVC.swift; sourceTree = "<group>"; };
 		92BCF4E61F30BF470047EB74 /* AlertVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
 		92C2F1F81F11818E004C79DC /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		92C2F1FA1F119689004C79DC /* FormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormVC.swift; sourceTree = "<group>"; };
 		92DE41C01F16920A00535ACE /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		92EA3E1E1F2C953800060424 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		92EA3E201F2CB71F00060424 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -130,6 +126,8 @@
 		92125DC11F010BAC00826AC1 /* FS_Mark0 */ = {
 			isa = PBXGroup;
 			children = (
+				922785641F48B0B70066F700 /* Model */,
+				922785631F48B0710066F700 /* View */,
 				92125DDF1F03CD1800826AC1 /* Controllers */,
 				92125DE01F03CD3800826AC1 /* Services */,
 				92AB4E631F2CF8DD00CB0DAA /* Helpers */,
@@ -146,26 +144,14 @@
 		92125DDF1F03CD1800826AC1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				92125DDA1F02553B00826AC1 /* SIgnInVC.swift */,
-				9220FE7C1F0C4FE600B0D402 /* PhoneAuthVC.swift */,
-				9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */,
-				92EA3E1E1F2C953800060424 /* HomeVC.swift */,
-				92125DD41F012A9700826AC1 /* QRCodeVC.swift */,
-				92BCF4E61F30BF470047EB74 /* AlertVC.swift */,
-				92AA3DF71F2D247D00A6613E /* MoreVC.swift */,
+				922785651F48B0D10066F700 /* Login/SignUp */,
+				92AF006F1F3734410061E243 /* TabBarTBC.swift */,
+				922785661F48B0EF0066F700 /* MainTabBar */,
 				92AA3DF91F2D2BFC00A6613E /* SettingsVC.swift */,
 				92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */,
-				92B14B431F349134005C45FE /* CouponCell.swift */,
-				92B14B471F34943B005C45FE /* CouponVC.swift */,
-				92125DE31F0407EB00826AC1 /* MainVC.swift */,
-				92C2F1FA1F119689004C79DC /* FormVC.swift */,
-				92ABFF181F1C9F00004A797C /* WebViewVC.swift */,
-				92ABFF1A1F1CB5A5004A797C /* CreditVC.swift */,
 				92AF006B1F35ED0C0061E243 /* FAQVC.swift */,
-				92AF006F1F3734410061E243 /* TabBarTBC.swift */,
+				92ABFF181F1C9F00004A797C /* WebViewVC.swift */,
 				92F490B51F38ECB10096521D /* ThankYouVC.swift */,
-				920BF1CC1F3F641A007E6DC8 /* Order.swift */,
-				920BF1CE1F3F6F46007E6DC8 /* OrderCell.swift */,
 				922785611F476C450066F700 /* OrderTVC.swift */,
 			);
 			name = Controllers;
@@ -180,6 +166,46 @@
 				92DE41C01F16920A00535ACE /* UserInfo.swift */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		922785631F48B0710066F700 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				92B14B431F349134005C45FE /* CouponCell.swift */,
+				920BF1CE1F3F6F46007E6DC8 /* OrderCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		922785641F48B0B70066F700 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				922785671F4921A20066F700 /* Coupon.swift */,
+				920BF1CC1F3F641A007E6DC8 /* Order.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		922785651F48B0D10066F700 /* Login/SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				92125DDA1F02553B00826AC1 /* SIgnInVC.swift */,
+				9220FE7C1F0C4FE600B0D402 /* PhoneAuthVC.swift */,
+				9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */,
+			);
+			name = Login/SignUp;
+			sourceTree = "<group>";
+		};
+		922785661F48B0EF0066F700 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				92EA3E1E1F2C953800060424 /* HomeVC.swift */,
+				92B14B471F34943B005C45FE /* CouponVC.swift */,
+				92125DD41F012A9700826AC1 /* QRCodeVC.swift */,
+				92BCF4E61F30BF470047EB74 /* AlertVC.swift */,
+				92AA3DF71F2D247D00A6613E /* MoreVC.swift */,
+			);
+			name = MainTabBar;
 			sourceTree = "<group>";
 		};
 		92AB4E631F2CF8DD00CB0DAA /* Helpers */ = {
@@ -361,15 +387,13 @@
 				92AF00701F3734420061E243 /* TabBarTBC.swift in Sources */,
 				92125DD51F012A9700826AC1 /* QRCodeVC.swift in Sources */,
 				92BCF4E71F30BF470047EB74 /* AlertVC.swift in Sources */,
-				92ABFF1B1F1CB5A5004A797C /* CreditVC.swift in Sources */,
 				920BF1CF1F3F6F46007E6DC8 /* OrderCell.swift in Sources */,
-				92C2F1FB1F119689004C79DC /* FormVC.swift in Sources */,
-				92125DE41F0407EB00826AC1 /* MainVC.swift in Sources */,
 				92AF006A1F35B4880061E243 /* Notification.swift in Sources */,
 				92ABFF191F1C9F00004A797C /* WebViewVC.swift in Sources */,
 				92C2F1F91F11818E004C79DC /* UIColor.swift in Sources */,
 				92AA3DFA1F2D2BFC00A6613E /* SettingsVC.swift in Sources */,
 				920BF1CD1F3F641A007E6DC8 /* Order.swift in Sources */,
+				922785681F4921A20066F700 /* Coupon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,7 @@ class HomeVC: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var ShareCardView: UIView!
     
     var button: String!
+    let result = "test1"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,10 +54,26 @@ class HomeVC: UIViewController, UIGestureRecognizerDelegate {
         self.FeedbackCardView.clipsToBounds = true
         self.ShareCardView.clipsToBounds = true
         
-        let edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.goToPreviousTab))
-        edgeGesture.edges = .left
-//        view.addGestureRecognizer(edgeGesture)
+//        self.checkForDuplicateScan(qrCode: result)
+    
     }
+    
+    func checkForDuplicateScan(qrCode: String) {
+        DataService.ds.REF_SAMPLES.observe(.value, with: { (snapshot) in
+            if let dict = snapshot.value as? NSDictionary {
+                print(dict)
+                print(qrCode)
+                if let newDict = dict["\(qrCode)"] as? NSDictionary {
+                    print(newDict)
+                } else {
+                    print("Error: Can't")
+                }
+            }
+        }) { (error) in
+            print("Error: \(error.localizedDescription)")
+        }
+    }
+
 
     func goToPreviousTab(sender:UISwipeGestureRecognizer) {
         
