@@ -21,9 +21,14 @@ class DataService {
     private var _REF_USERS = DB_BASE.child("users")
     private var _REF_CHANNELS = DB_BASE.child("channels")
     private var _REF_COUPONS = DB_BASE.child("coupons")
+    private var _REF_NOTIFICATIONS = DB_BASE.child("notifications")
     
     var REF_BASE: DatabaseReference {
         return _REF_BASE
+    }
+    
+    var REF_NOTIFICATIONS: DatabaseReference {
+        return _REF_NOTIFICATIONS
     }
     
     var REF_SAMPLES: DatabaseReference {
@@ -73,20 +78,5 @@ class DataService {
         }
     }
     
-    func checkForDuplicateScanInSamplesDB(qrCode: String) {
-        REF_SAMPLES.observe(.value, with: { (snapshot) in
-                if let dict = snapshot.value as? NSDictionary {
-//                    print(dict)
-                    print(qrCode)
-                    if let newDict = dict[qrCode] as? [String: AnyObject] {
-                        print(newDict)
-                    } else {
-                        print("Error: Can't")
-                    }
-                }
-            }) { (error) in
-                print("Error: \(error.localizedDescription)")
-        }
-    }
     
 }

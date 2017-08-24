@@ -712,6 +712,34 @@
             </objects>
             <point key="canvasLocation" x="-2734" y="1728"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="KL2-iU-eqN">
+            <objects>
+                <tableViewController id="sPR-lN-Qhs" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="odp-bs-6Vz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="nKX-QT-VGP">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nKX-QT-VGP" id="t0P-7U-0MZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="sPR-lN-Qhs" id="CLe-ab-cHJ"/>
+                            <outlet property="delegate" destination="sPR-lN-Qhs" id="c6m-dD-7J0"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x6z-NO-P4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3391" y="2529"/>
+        </scene>
         <!--Thank YouVC-->
         <scene sceneID="E0g-5R-ep5">
             <objects>
@@ -886,7 +914,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.88627450980392153" green="0.90980392156862744" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="alertViewTableCell" rowHeight="118" id="IOg-Su-f1D">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="alertCell" rowHeight="118" id="IOg-Su-f1D" customClass="AlertCell" customModule="FS_Mark0" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="118"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IOg-Su-f1D" id="OYE-Ow-E4W">
@@ -909,7 +937,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Oyk-ae-Xo5">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Oyk-ae-Xo5">
                                             <rect key="frame" x="35" y="50" width="305" height="43.5"/>
                                             <string key="text">This is the body of the message. This is the body of the message. This is the body of the message. This is the body of the message.</string>
                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="12"/>
@@ -941,6 +969,11 @@
                                         <constraint firstItem="ZdJ-CD-pOe" firstAttribute="leading" secondItem="PT2-aP-KlH" secondAttribute="trailing" constant="11" id="vH0-Q2-24J"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="subtitleLabel" destination="Oyk-ae-Xo5" id="Zzn-l7-duS"/>
+                                    <outlet property="timeLabel" destination="6f9-ca-cSv" id="4QN-94-3lz"/>
+                                    <outlet property="titleLabel" destination="ZdJ-CD-pOe" id="BZi-e5-jDS"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

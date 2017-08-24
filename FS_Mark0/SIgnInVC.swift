@@ -70,7 +70,7 @@ class SIgnInVC: UIViewController {
                 
                 
                 if let user = user {
-                    let userData = [["email":user.email],["name":user.displayName]]
+                    let userData = [["email":user.email],["name":user.displayName],["fcmToken":InstanceID.instanceID().token()]]
                     DispatchQueue.global(qos: .background).async {
                         self.getProfPic(fid: FBSDKAccessToken.current().userID)
                     }

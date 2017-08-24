@@ -65,11 +65,33 @@ class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
         let qrCode = code
         DataService.ds.REF_SAMPLES.observe(.value, with: { (snapshot) in
             if let dict = snapshot.value as? NSDictionary {
-                print(dict)
                 if let newDict = dict[qrCode] as? [String: Any] {
-                    print(newDict)
+                    if let isScanned = newDict["scanned"] as? Bool {
+                        if isScanned == true {
+                            print("Already Scanned")
+                            
+                            let alert = UIAlertController(title: "Already Redeemed", message: "This offer has already been redeemed by you. Stay tuned.", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
+                                self.tabBarController?.selectedIndex = 0
+                            }))
+                            self.present(alert, animated: true, completion: nil)
+                            
+                        } else {
+                            print("New Scan")
+                            self.updateQRCode(qrCode: qrCode)
+                        }
+                    } else {
+                        print("Error: Can't cast scanned from sample")
+                    }
                 } else {
-                    print("Error: Can't")
+                    let alert = UIAlertController(title: "Invalid Code Scanned", message: "The code that you've scanned is invalid.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
+                        self.tabBarController?.selectedIndex = 0
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+
+                    
+                    print("Error: Can't cast sample/find qrCode")
                 }
             }
         }) { (error) in

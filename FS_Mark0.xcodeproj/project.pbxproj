@@ -23,7 +23,6 @@
 		9220FE7F1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */; };
 		922785621F476C450066F700 /* OrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922785611F476C450066F700 /* OrderTVC.swift */; };
 		922785681F4921A20066F700 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922785671F4921A20066F700 /* Coupon.swift */; };
-		923A801A1F45991D0044C97C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 923A80191F45991D0044C97C /* GoogleService-Info.plist */; };
 		92AA3DF81F2D247D00A6613E /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DF71F2D247D00A6613E /* MoreVC.swift */; };
 		92AA3DFA1F2D2BFC00A6613E /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DF91F2D2BFC00A6613E /* SettingsVC.swift */; };
 		92AA3DFC1F2D32C800A6613E /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */; };
@@ -34,6 +33,9 @@
 		92B14B421F34880A005C45FE /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B14B411F34880A005C45FE /* TabBar.swift */; };
 		92B14B441F349134005C45FE /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B14B431F349134005C45FE /* CouponCell.swift */; };
 		92B14B481F34943B005C45FE /* CouponVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B14B471F34943B005C45FE /* CouponVC.swift */; };
+		92BCD5341F4DF4FC00284E3B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92BCD5331F4DF4FC00284E3B /* GoogleService-Info.plist */; };
+		92BCD5361F4E0A4C00284E3B /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCD5351F4E0A4C00284E3B /* Alert.swift */; };
+		92BCD5381F4E0A8A00284E3B /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCD5371F4E0A8A00284E3B /* AlertCell.swift */; };
 		92BCF4E71F30BF470047EB74 /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCF4E61F30BF470047EB74 /* AlertVC.swift */; };
 		92C2F1F91F11818E004C79DC /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C2F1F81F11818E004C79DC /* UIColor.swift */; };
 		92DE41C11F16920A00535ACE /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE41C01F16920A00535ACE /* UserInfo.swift */; };
@@ -61,7 +63,6 @@
 		9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneAuthVerificationVC.swift; sourceTree = "<group>"; };
 		922785611F476C450066F700 /* OrderTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTVC.swift; sourceTree = "<group>"; };
 		922785671F4921A20066F700 /* Coupon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coupon.swift; sourceTree = "<group>"; };
-		923A80191F45991D0044C97C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92AA3DF71F2D247D00A6613E /* MoreVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
 		92AA3DF91F2D2BFC00A6613E /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -73,6 +74,9 @@
 		92B14B411F34880A005C45FE /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		92B14B431F349134005C45FE /* CouponCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponCell.swift; sourceTree = "<group>"; };
 		92B14B471F34943B005C45FE /* CouponVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponVC.swift; sourceTree = "<group>"; };
+		92BCD5331F4DF4FC00284E3B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		92BCD5351F4E0A4C00284E3B /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		92BCD5371F4E0A8A00284E3B /* AlertCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
 		92BCF4E61F30BF470047EB74 /* AlertVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
 		92C2F1F81F11818E004C79DC /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		92DE41C01F16920A00535ACE /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -135,7 +139,7 @@
 				92125DCB1F010BAC00826AC1 /* LaunchScreen.storyboard */,
 				92125DC91F010BAC00826AC1 /* Assets.xcassets */,
 				92125DCE1F010BAC00826AC1 /* Info.plist */,
-				923A80191F45991D0044C97C /* GoogleService-Info.plist */,
+				92BCD5331F4DF4FC00284E3B /* GoogleService-Info.plist */,
 				92125DDC1F025D2600826AC1 /* FS_Mark0.entitlements */,
 			);
 			path = FS_Mark0;
@@ -173,6 +177,7 @@
 			children = (
 				92B14B431F349134005C45FE /* CouponCell.swift */,
 				920BF1CE1F3F6F46007E6DC8 /* OrderCell.swift */,
+				92BCD5371F4E0A8A00284E3B /* AlertCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 			children = (
 				922785671F4921A20066F700 /* Coupon.swift */,
 				920BF1CC1F3F641A007E6DC8 /* Order.swift */,
+				92BCD5351F4E0A4C00284E3B /* Alert.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -305,7 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92125DCD1F010BAC00826AC1 /* LaunchScreen.storyboard in Resources */,
-				923A801A1F45991D0044C97C /* GoogleService-Info.plist in Resources */,
+				92BCD5341F4DF4FC00284E3B /* GoogleService-Info.plist in Resources */,
 				92125DCA1F010BAC00826AC1 /* Assets.xcassets in Resources */,
 				92125DC81F010BAC00826AC1 /* Main.storyboard in Resources */,
 			);
@@ -384,11 +390,13 @@
 				92AF006C1F35ED0C0061E243 /* FAQVC.swift in Sources */,
 				92125DDE1F026C1000826AC1 /* UserData.swift in Sources */,
 				92B14B441F349134005C45FE /* CouponCell.swift in Sources */,
+				92BCD5381F4E0A8A00284E3B /* AlertCell.swift in Sources */,
 				92AF00701F3734420061E243 /* TabBarTBC.swift in Sources */,
 				92125DD51F012A9700826AC1 /* QRCodeVC.swift in Sources */,
 				92BCF4E71F30BF470047EB74 /* AlertVC.swift in Sources */,
 				920BF1CF1F3F6F46007E6DC8 /* OrderCell.swift in Sources */,
 				92AF006A1F35B4880061E243 /* Notification.swift in Sources */,
+				92BCD5361F4E0A4C00284E3B /* Alert.swift in Sources */,
 				92ABFF191F1C9F00004A797C /* WebViewVC.swift in Sources */,
 				92C2F1F91F11818E004C79DC /* UIColor.swift in Sources */,
 				92AA3DFA1F2D2BFC00A6613E /* SettingsVC.swift in Sources */,

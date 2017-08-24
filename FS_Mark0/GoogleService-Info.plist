@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>120360845842-6lvrk27qtmbja53c4rirge9d93kog400.apps.googleusercontent.com</string>
+	<string>225537858800-4happep34rf0tsiusi30vr0jh92c0ijn.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.120360845842-6lvrk27qtmbja53c4rirge9d93kog400</string>
+	<string>com.googleusercontent.apps.225537858800-4happep34rf0tsiusi30vr0jh92c0ijn</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCl6PuSFhifY1GQNO8hpTMG9cHnHSRYYnY</string>
+	<string>AIzaSyAsL6MWECW9_pB7jMsNAFI9VT045JqZdgk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>120360845842</string>
+	<string>225537858800</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>buildFlash.FS-Mark0</string>
 	<key>PROJECT_ID</key>
-	<string>free-stand-1c22f</string>
+	<string>fsmark0-c03e0</string>
 	<key>STORAGE_BUCKET</key>
-	<string>free-stand-1c22f.appspot.com</string>
+	<string>fsmark0-c03e0.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:120360845842:ios:e28bf9a856a25110</string>
+	<string>1:225537858800:ios:e28bf9a856a25110</string>
 	<key>DATABASE_URL</key>
-	<string>https://free-stand-1c22f.firebaseio.com/</string>
+	<string>https://fsmark0-c03e0.firebaseio.com</string>
 </dict>
 </plist>
