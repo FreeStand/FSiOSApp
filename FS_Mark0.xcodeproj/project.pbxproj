@@ -36,6 +36,9 @@
 		92BCD5341F4DF4FC00284E3B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92BCD5331F4DF4FC00284E3B /* GoogleService-Info.plist */; };
 		92BCD5361F4E0A4C00284E3B /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCD5351F4E0A4C00284E3B /* Alert.swift */; };
 		92BCD5381F4E0A8A00284E3B /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCD5371F4E0A8A00284E3B /* AlertCell.swift */; };
+		92BCD53E1F5544C400284E3B /* UIColor+FIAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCD53D1F5544C400284E3B /* UIColor+FIAdditions.swift */; };
+		92BCD5401F554EEA00284E3B /* FeedbackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCD53F1F554EEA00284E3B /* FeedbackVC.swift */; };
+		92BCD5421F55620900284E3B /* RadioCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCD5411F55620900284E3B /* RadioCheck.swift */; };
 		92BCF4E71F30BF470047EB74 /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCF4E61F30BF470047EB74 /* AlertVC.swift */; };
 		92C2F1F91F11818E004C79DC /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C2F1F81F11818E004C79DC /* UIColor.swift */; };
 		92DE41C11F16920A00535ACE /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE41C01F16920A00535ACE /* UserInfo.swift */; };
@@ -77,6 +80,9 @@
 		92BCD5331F4DF4FC00284E3B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92BCD5351F4E0A4C00284E3B /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		92BCD5371F4E0A8A00284E3B /* AlertCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
+		92BCD53D1F5544C400284E3B /* UIColor+FIAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+FIAdditions.swift"; sourceTree = "<group>"; };
+		92BCD53F1F554EEA00284E3B /* FeedbackVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackVC.swift; sourceTree = "<group>"; };
+		92BCD5411F55620900284E3B /* RadioCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioCheck.swift; sourceTree = "<group>"; };
 		92BCF4E61F30BF470047EB74 /* AlertVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
 		92C2F1F81F11818E004C79DC /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		92DE41C01F16920A00535ACE /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -152,6 +158,7 @@
 				92AF006F1F3734410061E243 /* TabBarTBC.swift */,
 				922785661F48B0EF0066F700 /* MainTabBar */,
 				92AA3DF91F2D2BFC00A6613E /* SettingsVC.swift */,
+				92BCD53F1F554EEA00284E3B /* FeedbackVC.swift */,
 				92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */,
 				92AF006B1F35ED0C0061E243 /* FAQVC.swift */,
 				92ABFF181F1C9F00004A797C /* WebViewVC.swift */,
@@ -217,11 +224,13 @@
 		92AB4E631F2CF8DD00CB0DAA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				92BCD53D1F5544C400284E3B /* UIColor+FIAdditions.swift */,
 				92125DDD1F026C1000826AC1 /* UserData.swift */,
 				92EA3E201F2CB71F00060424 /* UIView.swift */,
 				92125DC21F010BAC00826AC1 /* AppDelegate.swift */,
 				92B14B411F34880A005C45FE /* TabBar.swift */,
 				92AF00691F35B4880061E243 /* Notification.swift */,
+				92BCD5411F55620900284E3B /* RadioCheck.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -372,6 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92BCD53E1F5544C400284E3B /* UIColor+FIAdditions.swift in Sources */,
 				92EA3E211F2CB71F00060424 /* UIView.swift in Sources */,
 				9220FE7F1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift in Sources */,
 				92125DC31F010BAC00826AC1 /* AppDelegate.swift in Sources */,
@@ -380,12 +390,14 @@
 				92AA3DF81F2D247D00A6613E /* MoreVC.swift in Sources */,
 				92B14B421F34880A005C45FE /* TabBar.swift in Sources */,
 				92F490B61F38ECB10096521D /* ThankYouVC.swift in Sources */,
+				92BCD5401F554EEA00284E3B /* FeedbackVC.swift in Sources */,
 				92125DDB1F02553B00826AC1 /* SIgnInVC.swift in Sources */,
 				92DE41C11F16920A00535ACE /* UserInfo.swift in Sources */,
 				922785621F476C450066F700 /* OrderTVC.swift in Sources */,
 				92B14B481F34943B005C45FE /* CouponVC.swift in Sources */,
 				9220FE7B1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift in Sources */,
 				92EA3E1F1F2C953800060424 /* HomeVC.swift in Sources */,
+				92BCD5421F55620900284E3B /* RadioCheck.swift in Sources */,
 				92125DE21F03CD5600826AC1 /* DataService.swift in Sources */,
 				92AF006C1F35ED0C0061E243 /* FAQVC.swift in Sources */,
 				92125DDE1F026C1000826AC1 /* UserData.swift in Sources */,

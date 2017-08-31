@@ -22,9 +22,14 @@ class DataService {
     private var _REF_CHANNELS = DB_BASE.child("channels")
     private var _REF_COUPONS = DB_BASE.child("coupons")
     private var _REF_NOTIFICATIONS = DB_BASE.child("notifications")
+    private var _REF_QUESTIONS = DB_BASE.child("questions")
     
     var REF_BASE: DatabaseReference {
         return _REF_BASE
+    }
+    
+    var REF_QUESTIONS: DatabaseReference {
+        return _REF_QUESTIONS
     }
     
     var REF_NOTIFICATIONS: DatabaseReference {

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 class HomeVC: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var topCardView: UIView!
@@ -54,27 +54,8 @@ class HomeVC: UIViewController, UIGestureRecognizerDelegate {
         self.FeedbackCardView.clipsToBounds = true
         self.ShareCardView.clipsToBounds = true
         
-//        self.checkForDuplicateScan(qrCode: result)
-    
     }
-    
-    func checkForDuplicateScan(qrCode: String) {
-        DataService.ds.REF_SAMPLES.observe(.value, with: { (snapshot) in
-            if let dict = snapshot.value as? NSDictionary {
-                print(dict)
-                print(qrCode)
-                if let newDict = dict["\(qrCode)"] as? NSDictionary {
-                    print(newDict)
-                } else {
-                    print("Error: Can't")
-                }
-            }
-        }) { (error) in
-            print("Error: \(error.localizedDescription)")
-        }
-    }
-
-
+  
     func goToPreviousTab(sender:UISwipeGestureRecognizer) {
         
         if sender.direction == UISwipeGestureRecognizerDirection.left {
@@ -98,7 +79,7 @@ class HomeVC: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func FeedbackBtnPressed(_ sender: UIButton) {
         button = "feedback"
-        performSegue(withIdentifier: "homeToWeb", sender: UIButton.self)
+        performSegue(withIdentifier: "toFeedback", sender: UIButton.self)
     }
     @IBAction func ShareBtnPressed(_ sender: UIButton) {
         button = "share"

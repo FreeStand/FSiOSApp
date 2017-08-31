@@ -13,34 +13,30 @@ import FBSDKLoginKit
 
 
 class ProfileVC: UIViewController {
+    
+    
 
     @IBOutlet weak var profImgView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var genderAgeLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var logOutBtn: UIButton!
+    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         let imageData = UserDefaults.standard.object(forKey: "profImageData") as! NSData
         profImgView.maskCircle(anyImage: UIImage(data: imageData as Data)!)
  
-        nameLabel.text = UserInfo.init().name
-        emailLabel.text = UserInfo.init().email
-        phoneLabel.text = UserDefaults.standard.string(forKey: "phoneNum")
-        logOutBtn.layer.cornerRadius = 10
         self.navigationItem.title = "Profile"
         self.navigationController?.navigationBar.tintColor = UIColor.black
+        
+        emailLabel.text = UserInfo.ui.email
+        nameLabel.text = UserInfo.ui.name
+        phoneLabel.text = UserInfo.ui.phoneNo
+        
     }
-    
-    @IBAction func logOutBtnPressed(_ sender: Any) {
-        print("Log Out Btn Pressed")
-        KeychainWrapper.standard.removeObject(forKey: "KEY_UID")
-        try! Auth.auth().signOut()
-        let loginManager = FBSDKLoginManager()
-        loginManager.logOut()
-        UserDefaults.standard.set(false, forKey: "isLoggedIn")
-        UIApplication.shared.delegate?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
-    }
+       
 }

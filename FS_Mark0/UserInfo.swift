@@ -11,16 +11,24 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class UserInfo {
-    private var _phone: String!
+    
+    static let ui = UserInfo()
+    
+    private var _NAME = Auth.auth().currentUser?.displayName ?? "Aryan"
+    private var _EMAIL = Auth.auth().currentUser?.email ?? "email"
+    private var _PHONE = Auth.auth().currentUser?.phoneNumber ?? "9876543210"
+    
     var name: String {
-        return (Auth.auth().currentUser?.displayName)!
+        return _NAME
     }
+    
     var email: String {
-        return (Auth.auth().currentUser?.email)!
+        return _EMAIL
     }
-    var uid: String {
-        return (Auth.auth().currentUser?.uid)!
+    
+    var phoneNo: String {
+        return _PHONE
     }
-       
+    
 }
 
