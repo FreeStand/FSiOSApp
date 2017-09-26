@@ -723,7 +723,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YRA-uK-LuC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2735" y="1728"/>
+            <point key="canvasLocation" x="-4431" y="1728"/>
         </scene>
         <!--Thank YouVC-->
         <scene sceneID="E0g-5R-ep5">
@@ -790,11 +790,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FyQ-ko-EUR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="716"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ugY-Ya-f3q">
-                                <rect key="frame" x="16" y="72" width="20" height="20"/>
+                                <rect key="frame" x="16" y="28" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1924,34 +1924,34 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                 <color key="backgroundColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="deviceRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="deviceRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="homeCell" rowHeight="170" id="brN-w0-kEm">
-                                        <rect key="frame" x="0.0" y="28" width="359" height="170"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BrandCell" rowHeight="186" id="brN-w0-kEm" customClass="BrandCell" customModule="FS_Mark0" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="359" height="186"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="brN-w0-kEm" id="bOo-q3-ED4">
-                                            <rect key="frame" x="0.0" y="0.0" width="359" height="170"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="186"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="birawide" translatesAutoresizingMaskIntoConstraints="NO" id="jtf-bD-hsI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="120"/>
+                                                    <rect key="frame" x="0.0" y="8" width="359" height="120"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="120" id="PCi-zB-fMY"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2U-gJ-WGI">
-                                                    <rect key="frame" x="16" y="120.5" width="327" height="1"/>
+                                                    <rect key="frame" x="16" y="145" width="327" height="1"/>
                                                     <color key="backgroundColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="deviceRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="io0-rd-1uN"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 DEALS AVAILABLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQb-Tj-6do">
-                                                    <rect key="frame" x="32" y="134" width="137.5" height="19.5"/>
+                                                    <rect key="frame" x="32" y="150.5" width="137.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="14"/>
                                                     <color key="textColor" red="0.13725490196078433" green="0.20784313725490194" blue="0.27450980392156865" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3L8-ds-4ce">
-                                                    <rect key="frame" x="325.5" y="134" width="9.5" height="19.5"/>
+                                                    <rect key="frame" x="325.5" y="150.5" width="9.5" height="19.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="19.5" id="Ho3-3a-kyi"/>
                                                         <constraint firstAttribute="width" constant="9.5" id="cqh-7T-1vZ"/>
@@ -1963,8 +1963,8 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="jtf-bD-hsI" firstAttribute="leading" secondItem="bOo-q3-ED4" secondAttribute="leading" id="0uw-SO-9h5"/>
-                                                <constraint firstAttribute="bottom" secondItem="y2U-gJ-WGI" secondAttribute="bottom" constant="48" id="1QJ-I9-bEu"/>
-                                                <constraint firstItem="jtf-bD-hsI" firstAttribute="top" secondItem="bOo-q3-ED4" secondAttribute="top" id="3eR-bI-sJX"/>
+                                                <constraint firstAttribute="bottom" secondItem="y2U-gJ-WGI" secondAttribute="bottom" constant="40" id="1QJ-I9-bEu"/>
+                                                <constraint firstItem="jtf-bD-hsI" firstAttribute="top" secondItem="bOo-q3-ED4" secondAttribute="top" constant="8" id="3eR-bI-sJX"/>
                                                 <constraint firstAttribute="trailing" secondItem="3L8-ds-4ce" secondAttribute="trailing" constant="24" id="QjF-Dp-MXw"/>
                                                 <constraint firstAttribute="trailing" secondItem="jtf-bD-hsI" secondAttribute="trailing" id="Why-29-OXA"/>
                                                 <constraint firstItem="FQb-Tj-6do" firstAttribute="leading" secondItem="bOo-q3-ED4" secondAttribute="leadingMargin" constant="24" id="mjz-nK-QJ1"/>
@@ -1974,6 +1974,10 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                                 <constraint firstAttribute="bottom" secondItem="3L8-ds-4ce" secondAttribute="bottom" constant="16" id="wIf-pf-yz5"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="img" destination="jtf-bD-hsI" id="QS3-34-rew"/>
+                                            <outlet property="totalDealsLabel" destination="FQb-Tj-6do" id="xa2-YH-dTb"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -1999,7 +2003,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gkC-RN-DPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2735.1999999999998" y="2488.6056971514245"/>
+            <point key="canvasLocation" x="-2735" y="1728"/>
         </scene>
         <!--FeedbackVC-->
         <scene sceneID="TAJ-Ul-oeD">
@@ -2555,6 +2559,6 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="oBY-Mo-JZ4"/>
-        <segue reference="hpo-mX-kJx"/>
+        <segue reference="IfO-wu-8nd"/>
     </inferredMetricsTieBreakers>
 </document>

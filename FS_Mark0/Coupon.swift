@@ -10,6 +10,6 @@ import Foundation
 class Coupon: NSObject{
     var title: String?
     var subtitle: String?
-    var redirectURL:String?
+    var redirectURL: String?
     var uID: String?
 }

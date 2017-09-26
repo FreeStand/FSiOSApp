@@ -10,6 +10,6 @@ import Foundation
 class Order: NSObject{
     var time: String?
     var campaignID: String?
-    var partnerID:String?
+    var partnerID: String?
     var uID: String?
 }

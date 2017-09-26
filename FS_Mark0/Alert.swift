@@ -10,5 +10,5 @@ import Foundation
 class Alert: NSObject{
     var time: String?
     var title: String?
-    var body:String?
+    var body: String?
 }
