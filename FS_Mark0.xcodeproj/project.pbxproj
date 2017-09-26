@@ -28,6 +28,7 @@
 		9298BD461F7A63360048ABFA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9298BD451F7A63360048ABFA /* GoogleService-Info.plist */; };
 		9298BD481F7ADFA50048ABFA /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9298BD471F7ADFA50048ABFA /* Brand.swift */; };
 		9298BD4A1F7AE0430048ABFA /* BrandCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9298BD491F7AE0430048ABFA /* BrandCell.swift */; };
+		9298BD4E1F7AFA490048ABFA /* CouponVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9298BD4D1F7AFA490048ABFA /* CouponVC.swift */; };
 		92AA3DF81F2D247D00A6613E /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DF71F2D247D00A6613E /* MoreVC.swift */; };
 		92AA3DFA1F2D2BFC00A6613E /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DF91F2D2BFC00A6613E /* SettingsVC.swift */; };
 		92AA3DFC1F2D32C800A6613E /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */; };
@@ -37,7 +38,6 @@
 		92AF00701F3734420061E243 /* TabBarTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF006F1F3734410061E243 /* TabBarTBC.swift */; };
 		92B14B421F34880A005C45FE /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B14B411F34880A005C45FE /* TabBar.swift */; };
 		92B14B441F349134005C45FE /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B14B431F349134005C45FE /* CouponCell.swift */; };
-		92B14B481F34943B005C45FE /* CouponVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B14B471F34943B005C45FE /* CouponVC.swift */; };
 		92BCD5361F4E0A4C00284E3B /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCD5351F4E0A4C00284E3B /* Alert.swift */; };
 		92BCD5381F4E0A8A00284E3B /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCD5371F4E0A8A00284E3B /* AlertCell.swift */; };
 		92BCD53E1F5544C400284E3B /* UIColor+FIAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCD53D1F5544C400284E3B /* UIColor+FIAdditions.swift */; };
@@ -46,7 +46,6 @@
 		92BCF4E71F30BF470047EB74 /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCF4E61F30BF470047EB74 /* AlertVC.swift */; };
 		92C2F1F91F11818E004C79DC /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C2F1F81F11818E004C79DC /* UIColor.swift */; };
 		92DE41C11F16920A00535ACE /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE41C01F16920A00535ACE /* UserInfo.swift */; };
-		92EA3E1F1F2C953800060424 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EA3E1E1F2C953800060424 /* HomeVC.swift */; };
 		92EA3E211F2CB71F00060424 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EA3E201F2CB71F00060424 /* UIView.swift */; };
 		92F490B61F38ECB10096521D /* ThankYouVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F490B51F38ECB10096521D /* ThankYouVC.swift */; };
 /* End PBXBuildFile section */
@@ -75,6 +74,7 @@
 		9298BD451F7A63360048ABFA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9298BD471F7ADFA50048ABFA /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		9298BD491F7AE0430048ABFA /* BrandCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCell.swift; sourceTree = "<group>"; };
+		9298BD4D1F7AFA490048ABFA /* CouponVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponVC.swift; sourceTree = "<group>"; };
 		92AA3DF71F2D247D00A6613E /* MoreVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
 		92AA3DF91F2D2BFC00A6613E /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -85,7 +85,6 @@
 		92AF006F1F3734410061E243 /* TabBarTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarTBC.swift; sourceTree = "<group>"; };
 		92B14B411F34880A005C45FE /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		92B14B431F349134005C45FE /* CouponCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponCell.swift; sourceTree = "<group>"; };
-		92B14B471F34943B005C45FE /* CouponVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponVC.swift; sourceTree = "<group>"; };
 		92BCD5351F4E0A4C00284E3B /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		92BCD5371F4E0A8A00284E3B /* AlertCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
 		92BCD53D1F5544C400284E3B /* UIColor+FIAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+FIAdditions.swift"; sourceTree = "<group>"; };
@@ -94,7 +93,6 @@
 		92BCF4E61F30BF470047EB74 /* AlertVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
 		92C2F1F81F11818E004C79DC /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		92DE41C01F16920A00535ACE /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
-		92EA3E1E1F2C953800060424 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		92EA3E201F2CB71F00060424 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		92F490B51F38ECB10096521D /* ThankYouVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouVC.swift; sourceTree = "<group>"; };
 		A6577A906A0B1F3A3F3C222B /* Pods-FS_Mark0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FS_Mark0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0.debug.xcconfig"; sourceTree = "<group>"; };
@@ -162,6 +160,7 @@
 		92125DDF1F03CD1800826AC1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9298BD4D1F7AFA490048ABFA /* CouponVC.swift */,
 				922785651F48B0D10066F700 /* Login/SignUp */,
 				92AF006F1F3734410061E243 /* TabBarTBC.swift */,
 				922785661F48B0EF0066F700 /* MainTabBar */,
@@ -223,8 +222,6 @@
 		922785661F48B0EF0066F700 /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
-				92EA3E1E1F2C953800060424 /* HomeVC.swift */,
-				92B14B471F34943B005C45FE /* CouponVC.swift */,
 				92125DD41F012A9700826AC1 /* QRCodeVC.swift */,
 				92BCF4E61F30BF470047EB74 /* AlertVC.swift */,
 				92AA3DF71F2D247D00A6613E /* MoreVC.swift */,
@@ -434,10 +431,9 @@
 				92BCD5401F554EEA00284E3B /* FeedbackVC.swift in Sources */,
 				92125DDB1F02553B00826AC1 /* SIgnInVC.swift in Sources */,
 				92DE41C11F16920A00535ACE /* UserInfo.swift in Sources */,
+				9298BD4E1F7AFA490048ABFA /* CouponVC.swift in Sources */,
 				922785621F476C450066F700 /* OrderTVC.swift in Sources */,
-				92B14B481F34943B005C45FE /* CouponVC.swift in Sources */,
 				9220FE7B1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift in Sources */,
-				92EA3E1F1F2C953800060424 /* HomeVC.swift in Sources */,
 				92BCD5421F55620900284E3B /* RadioCheck.swift in Sources */,
 				92125DE21F03CD5600826AC1 /* DataService.swift in Sources */,
 				9298BD4A1F7AE0430048ABFA /* BrandCell.swift in Sources */,

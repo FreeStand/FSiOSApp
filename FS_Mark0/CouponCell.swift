@@ -17,6 +17,7 @@ class CouponCell: UITableViewCell {
     @IBOutlet weak var redeemBtn: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var img: UIImageView!
     
     var coupon: Coupon!
     var redirectURL: String!
@@ -25,6 +26,7 @@ class CouponCell: UITableViewCell {
         self.coupon = coupon
         titleLabel.text = coupon.title
         subtitleLabel.text = coupon.subtitle
+        img.downloadedFrom(link: coupon.imgURL!)
         redirectURL = coupon.redirectURL
     }
     

@@ -25,7 +25,7 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 128, height: 28))
         imageView.contentMode = .scaleAspectFit
-        let image = UIImage(named: "logoFreeStand.png")
+        let image = UIImage(named: "freestandLogoWhite.png")
         imageView.image = image
         navigationItem.titleView = imageView
         
@@ -34,7 +34,8 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
         request = URLRequest(url: url)
         webView.loadRequest(request)
         
-        self.navigationController?.navigationBar.tintColor = UIColor.black
+//        self.navigationItem.title = "Profile"
+        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
        
     func webViewDidStartLoad(_ webView: UIWebView) {

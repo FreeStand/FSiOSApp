@@ -12,7 +12,8 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     var brandList = [Brand]()
-
+    var selectedBrand: Brand!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 128, height: 28))
@@ -33,12 +34,9 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if let dict = snapshot.value as? NSDictionary {
                 let brand = Brand()
                 
-                if let name = snapshot.key as? String {
-                    brand.name = name
-                } else {
-                    print("Error: Can't find/cast name in Brand")
-                }
-                
+                let name = snapshot.key
+                brand.name = name
+            
                 if let imgURL = dict["imgURL"] as? String {
                     brand.imgUrl = imgURL
                 } else {
@@ -82,16 +80,25 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
             return cell
         }
-        
         return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("BrandCell")
+        selectedBrand = brandList[indexPath.row]
+        performSegue(withIdentifier: "homeToCoupon", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 186
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "homeToCoupon" {
+            if let vc = segue.destination as? CouponVC {
+                vc.brand = selectedBrand
+            }
+        }
     }
 
 }

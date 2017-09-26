@@ -2,59 +2,44 @@
 //  CouponVC.swift
 //  FS_Mark0
 //
-//  Created by Aryan Sharma on 04/08/17.
+//  Created by Aryan Sharma on 27/09/17.
 //  Copyright © 2017 Aryan Sharma. All rights reserved.
 //
 
 import UIKit
 
-class CouponVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var infoView: UIView!
+class CouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var brandImg: UIImageView!
+    @IBOutlet weak var brandLbl: UILabel!
+    @IBOutlet weak var infoView: UIView!
+
+    
+    var brand: Brand!
     var couponList = [Coupon]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
+        
+        brandImg.downloadedFrom(link: brand.imgUrl!)
+        brandLbl.text = brand.name
         tableView.dataSource = self
+        tableView.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(infoBtnPressed), name: Notification.Name("myNotification"), object: nil)
         getCoupons()
+        
+        self.navigationItem.title = brand.name
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        let attrs = [
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17)!
+        ]
+        
+        navigationController?.navigationBar.titleTextAttributes = attrs
+
     }
     
-    func getCoupons() {
-        DataService.ds.REF_COUPONS.observe(.childAdded, with: { (snapshot) in
-            if let dict = snapshot.value as? [String: AnyObject] {
-                let coupon = Coupon()
-                    print(dict)
-                if let title = dict["title"] as? String {
-                    coupon.title = title
-                } else {
-                    print("Error: Can't retrieve coupon title")
-                }
-                if let subtitle = dict["subtitle"] as? String {
-                    coupon.subtitle = subtitle
-                } else {
-                    print("Error: Can't retrieve coupon subtitle")
-                }
-                if let redirectURL = dict["redirectURL"] as? String {
-                    coupon.redirectURL = redirectURL
-                } else {
-                    print("Error: Can't retrieve coupon redirectURL")
-                }
-                self.couponList.append(coupon)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } else {
-                print("Error: Can't cast dict from snapshot in getCoupons")
-            }
-
-        }) { (error) in
-            print("Error: Can't load Coupons from Coupons DB")
-        }
-    }
-
-
     @objc func infoBtnPressed() {
         print("Notification Received")
         
@@ -76,53 +61,79 @@ class CouponVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    func getCoupons() {
+        DataService.ds.REF_BRANDS.child(brand.name!).child("coupons").observe(.childAdded, with: { (snapshot) in
+            if let dict = snapshot.value as? NSDictionary {
+                let coupon = Coupon()
+                
+                if let title = dict["title"] as? String {
+                    coupon.title = title
+                } else {
+                    print("Error: Can't find/cast title in the coupon.")
+                }
+                
+                if let subtitle = dict["subtitle"] as? String {
+                    coupon.subtitle = subtitle
+                } else {
+                    print("Error: Can't find/cast subtitle in the coupon.")
+                }
+                
+                if let imgURL = dict["imgURL"] as? String {
+                    coupon.imgURL = imgURL
+                } else {
+                    print("Error: Can't find/cast imgURL in the coupon.")
+                }
+                
+                if let redirectURL = dict["redeemURL"] as? String {
+                    coupon.redirectURL = redirectURL
+                } else {
+                    print("Error: Can't find/cast redirectURL in the coupon.")
+                }
+                
+                self.couponList.append(coupon)
+                DispatchQueue.main.async {
+                    print("reload")
+                    self.tableView.reloadData()
+                }
+            } else {
+                print("Error: Can't cast dict in brand")
+            }
+        }) { (error) in
+            print("Error: Can't load Brands from Brands DB")
+        }
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return couponList.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 260
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "couponCell", for: indexPath) as? CouponCell {
-            
-            cell.clipsToBounds = true
-            cell.layer.cornerRadius = 5.0
-            
-            cell.contentView.layer.borderWidth = 0.5
-            cell.contentView.layer.borderColor = UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0).cgColor
-            cell.contentView.addTopBorderWithColor(color: UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0), width: 8.0)
             
             let coupon: Coupon!
             coupon = couponList[indexPath.row]
             cell.configureCell(coupon: coupon)
             cell.redeemBtn.addTarget(self, action: #selector(makeSegue), for: .touchUpInside)
-            
-            return cell
 
+            return cell
         }
+        
         return UITableViewCell()
     }
     
     @objc func makeSegue(button:UIButton) {
         performSegue(withIdentifier: "couponsToWebView", sender: button)
     }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return couponList.count
-    }
 
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 260
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("cell")
-    }
-    
-    
-    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "couponsToWebView" {
             if let vc = segue.destination as? WebViewVC {
@@ -132,9 +143,8 @@ class CouponVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 } else {
                     print("Error: Can't cast button in prepareForSegue")
                 }
-
+                
             }
         }
     }
-    
 }

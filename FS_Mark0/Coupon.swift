@@ -12,4 +12,5 @@ class Coupon: NSObject{
     var subtitle: String?
     var redirectURL: String?
     var uID: String?
+    var imgURL: String?
 }
