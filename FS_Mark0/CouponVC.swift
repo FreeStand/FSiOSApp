@@ -55,7 +55,7 @@ class CouponVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
 
 
-    func infoBtnPressed() {
+    @objc func infoBtnPressed() {
         print("Notification Received")
         
         if infoView.isHidden == true {
@@ -97,7 +97,7 @@ class CouponVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return UITableViewCell()
     }
     
-    func makeSegue(button:UIButton) {
+    @objc func makeSegue(button:UIButton) {
         performSegue(withIdentifier: "couponsToWebView", sender: button)
     }
     

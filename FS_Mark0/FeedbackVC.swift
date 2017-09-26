@@ -9,7 +9,7 @@
 import UIKit
 
 class FeedbackVC: UIViewController {
-    
+
     var selectedAnswer: String!
     var selectedAnswers = [String]()
     var iterator = 2
@@ -105,8 +105,8 @@ class FeedbackVC: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.fiBlueBar
         
         let attrs = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: UIFont(name: "AvenirNext-DemiBold", size: 17)!
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17)!
         ]
         
         navigationController?.navigationBar.titleTextAttributes = attrs
@@ -148,11 +148,16 @@ class FeedbackVC: UIViewController {
         }
     }
     
+    func updateDB() {
+        
+    }
+    
     @IBAction func nextBtnpressed(_ sender: UIButton) {
         selectedAnswers.append(selectedAnswer)
         if sender.title(for: .normal) == "NEXT" {
             changeQuestion()
         } else if sender.title(for: .normal) == "SUBMIT" {
+            performSegue(withIdentifier: "FeedbackToThankyou", sender: self)
             print(selectedAnswers)
         }
     }

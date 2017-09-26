@@ -5,49 +5,47 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - FBSDKCoreKit (4.25.0):
+  - FBSDKCoreKit (4.26.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.25.0):
+  - FBSDKLoginKit (4.26.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.25.0):
+  - FBSDKShareKit (4.26.0):
     - FBSDKCoreKit
-  - Firebase/Auth (4.1.0):
+  - Firebase/Auth (4.2.0):
     - Firebase/Core
-    - FirebaseAuth (= 4.1.0)
-  - Firebase/Core (4.1.0):
+    - FirebaseAuth (= 4.2.0)
+  - Firebase/Core (4.2.0):
     - FirebaseAnalytics (= 4.0.3)
-    - FirebaseCore (= 4.0.5)
-  - Firebase/Database (4.1.0):
+    - FirebaseCore (= 4.0.7)
+  - Firebase/Database (4.2.0):
     - Firebase/Core
-    - FirebaseDatabase (= 4.0.1)
-  - Firebase/Messaging (4.1.0):
+    - FirebaseDatabase (= 4.0.3)
+  - Firebase/Messaging (4.2.0):
     - Firebase/Core
-    - FirebaseMessaging (= 2.0.1)
+    - FirebaseMessaging (= 2.0.3)
   - FirebaseAnalytics (4.0.3):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - nanopb (~> 0.3)
-  - FirebaseAuth (4.1.0):
+  - FirebaseAuth (4.2.0):
     - FirebaseAnalytics (~> 4.0)
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (4.0.5):
+  - FirebaseCore (4.0.7):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - nanopb (~> 0.3)
-  - FirebaseDatabase (4.0.1):
+  - FirebaseDatabase (4.0.3):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - leveldb-library (~> 1.18)
-  - FirebaseInstanceID (2.0.1):
-    - FirebaseCore (~> 4.0)
-  - FirebaseMessaging (2.0.1):
+  - FirebaseInstanceID (2.0.3)
+  - FirebaseMessaging (2.0.3):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - Protobuf (~> 3.1)
-  - FontAwesome.swift (1.2.0)
   - GoogleInterchangeUtilities (1.2.2):
     - GoogleSymbolUtilities (~> 1.1)
   - GoogleMobileVision/BarcodeDetector (1.1.0):
@@ -81,9 +79,9 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.4.0)
-  - QRCodeReader.swift (7.4.3)
+  - QRCodeReader.swift (8.0.1)
   - SwiftKeychainWrapper (3.0.1)
-  - Toaster (2.0.4)
+  - Toaster (2.1.0)
 
 DEPENDENCIES:
   - FBSDKCoreKit
@@ -93,25 +91,23 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Messaging
-  - FontAwesome.swift
   - GoogleMobileVision/BarcodeDetector
-  - QRCodeReader.swift (~> 7.4.3)
+  - QRCodeReader.swift (~> 8.0.1)
   - SwiftKeychainWrapper
   - Toaster
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  FBSDKCoreKit: 53e3f4bfb64e80c5f229dd30ae33ff57fbbbd2d1
-  FBSDKLoginKit: f628c09684dae9c17f071cf90b014e886f5093ea
-  FBSDKShareKit: aea699d3cac749af08e360f4e949b82ffa8813f5
-  Firebase: ebebf41db7f10e0c7668b6eaaa857fbe599aa478
+  FBSDKCoreKit: c8b8582311ec11b145451d8b9717dc6cc2ae5a76
+  FBSDKLoginKit: f3f03b94c21eb834af243c0a881d48641f47ca60
+  FBSDKShareKit: 320712d8293fde6392872c91eb80ef0da5d73cc3
+  Firebase: 9548cae14d69718add12d75a5b312893f7ef89c7
   FirebaseAnalytics: 76f754d37ca5b04f36856729b6af3ca0152d1069
-  FirebaseAuth: 8d1d2389cf82f891048d6d50d27d044f55ae09a6
-  FirebaseCore: 7d876ea97a830cbe62ba7fbbe7670c833a324ba0
-  FirebaseDatabase: 94c38c783d23dc6679441050772d42e801d06e9e
-  FirebaseInstanceID: 0500e3cb54a1a4e01a8cffcc09323b8bb8fc7e1e
-  FirebaseMessaging: b45ff9ef5d932600d3f78ff43168e7c5707aa7dc
-  FontAwesome.swift: 60063e3f19ba4801155d4b0f2334ab7585763ab3
+  FirebaseAuth: 22f8a5170f31d1f111141950590f071f35df3229
+  FirebaseCore: 9a6cc1e3eaf75905390f9220596ad4fd8f92faee
+  FirebaseDatabase: 03940adcac54ce30db06f1fc2136f8581734ce2c
+  FirebaseInstanceID: a4fc702b5a026f7322964376047f1a3f1f7cc6ff
+  FirebaseMessaging: eaf1bfff0193170c04ea3ba3bfe983f68f893118
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleMobileVision: d344d69c8987ee239c8a47257e2039084682d181
   GoogleNetworkingUtilities: 3edd3a8161347494f2da60ea0deddc8a472d94cb
@@ -122,10 +118,10 @@ SPEC CHECKSUMS:
   leveldb-library: 10fb39c39e243db4af1828441162405bbcec1404
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
-  QRCodeReader.swift: 4a1d46f3057b1b6fc555578b2dc9f2dc99c7ccda
+  QRCodeReader.swift: 25e6110632fecba8f090f9814b4bd68fc6a519c9
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
-  Toaster: f13031c636ef065281bc11857be9a16c7659e04f
+  Toaster: 8c3225dc465bef4aa57e147a288724576df8e439
 
-PODFILE CHECKSUM: ae2ed6cdafc7a621541b77004fad18b55d8a348c
+PODFILE CHECKSUM: 48e6f83df94a20a75b3050feb88994a596c43b51
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.3.1

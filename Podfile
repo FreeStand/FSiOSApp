@@ -10,14 +10,13 @@ target 'FS_Mark0' do
 pod 'FBSDKCoreKit'
 pod 'FBSDKShareKit'
 pod 'FBSDKLoginKit'
-pod 'QRCodeReader.swift', '~> 7.4.3'
+pod 'QRCodeReader.swift', '~> 8.0.1'
 pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'Firebase/Auth'
 pod 'Firebase/Messaging'
 pod 'GoogleMobileVision/BarcodeDetector'
 pod 'SwiftKeychainWrapper'
-pod 'FontAwesome.swift'
 pod 'Toaster'
 
 end

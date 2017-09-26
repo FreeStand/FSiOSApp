@@ -53,15 +53,27 @@ class PhoneAuthVerificationVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func ResendBtnPressed(_ sender: Any) {
-        PhoneAuthProvider.provider().verifyPhoneNumber(UserDefaults.standard.string(forKey: "PhoneNum")!) { (verificationID, error) in
-            if error != nil {
-                print("Error: \(error.debugDescription)")
-            } else {
+        PhoneAuthProvider.provider().verifyPhoneNumber(UserDefaults.standard.string(forKey: "PhoneNum")!, uiDelegate: nil) { (verificationID, error) in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
                 UserDefaults.standard.set(verificationID, forKey: "authVID")
-                Toast(text: "OTP Resent successfully", delay: Delay.short, duration: Delay.long).show()
-                print("FS: Code Sent Successfully")
+                self.performSegue(withIdentifier: "code", sender: nil)
             }
+        
         }
+        
+//        PhoneAuthProvider.provider().verifyPhoneNumber(UserDefaults.standard.string(forKey: "PhoneNum")!) { (verificationID, error) in
+//            if error != nil {
+//                print("Error: \(error.debugDescription)")
+//            } else {
+//                UserDefaults.standard.set(verificationID, forKey: "authVID")
+//                Toast(text: "OTP Resent successfully", delay: Delay.short, duration: Delay.long).show()
+//                print("FS: Code Sent Successfully")
+//            }
+//        }
     }
     
     
@@ -109,10 +121,10 @@ class PhoneAuthVerificationVC: UIViewController, UITextFieldDelegate {
                 _ = user?.providerData[0]
                 print("FS: ProviderID: \(String(describing: user?.providerID))")
                 
-                let delegateTemp = UIApplication.shared.delegate
-                self.dismiss(animated: true, completion: nil)
-                NotificationCenter.default.post(name: Notifications.phoneAuthVCNotification.name, object: nil)
-                delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+//                self.dismiss(animated: true, completion: nil)
+//                NotificationCenter.default.post(name: Notifications.phoneAuthVCNotification.name, object: nil)
+                self.performSegue(withIdentifier: "toDOB", sender: nil)
+
             }
         })
     }
@@ -132,7 +144,7 @@ class PhoneAuthVerificationVC: UIViewController, UITextFieldDelegate {
     
 
     
-    func editingChanged() {
+    @objc func editingChanged() {
         if verificationCode.text?.characters.count == 6 {
             verifyBtn.alpha = 1.0
             verifyBtn.isEnabled = true

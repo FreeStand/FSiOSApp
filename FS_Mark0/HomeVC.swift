@@ -79,7 +79,7 @@ class HomeVC: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func FeedbackBtnPressed(_ sender: UIButton) {
         button = "feedback"
-        performSegue(withIdentifier: "toFeedback", sender: UIButton.self)
+//        performSegue(withIdentifier: "toFeedback", sender: UIButton.self)
     }
     @IBAction func ShareBtnPressed(_ sender: UIButton) {
         button = "share"

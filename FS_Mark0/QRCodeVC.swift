@@ -11,22 +11,24 @@ import UIKit
 import QRCodeReader
 import FirebaseDatabase
 import SwiftKeychainWrapper
+import FirebaseAuth
 
 class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
     
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var qrcodeRef: DatabaseReference!
     @IBOutlet weak var previewView: UIView!
     
     lazy var reader: QRCodeReader = QRCodeReader()
     lazy var readerVC: QRCodeReaderViewController = {
         let builder = QRCodeReaderViewControllerBuilder {
-            $0.reader = QRCodeReader(metadataObjectTypes: [AVMetadataObjectTypeQRCode], captureDevicePosition: .back)
+            $0.reader = QRCodeReader(metadataObjectTypes: [AVMetadataObject.ObjectType.qr], captureDevicePosition: .back)
             $0.showTorchButton = true
         }
         
         return QRCodeReaderViewController(builder: builder)
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,50 +64,52 @@ class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
     let timestamp = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: .medium, timeStyle: .short)
 
     func checkForDuplicateScan(code: String) {
-        let qrCode = code
-        DataService.ds.REF_SAMPLES.observe(.value, with: { (snapshot) in
-            if let dict = snapshot.value as? NSDictionary {
-                if let newDict = dict[qrCode] as? [String: Any] {
-                    if let isScanned = newDict["scanned"] as? Bool {
-                        if isScanned == true {
-                            print("Already Scanned")
-                            
-                            let alert = UIAlertController(title: "Already Redeemed", message: "This offer has already been redeemed by you. Stay tuned.", preferredStyle: UIAlertControllerStyle.alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
-                                self.tabBarController?.selectedIndex = 0
-                            }))
-                            self.present(alert, animated: true, completion: nil)
-                            
-                        } else {
-                            print("New Scan")
-                            self.updateQRCode(qrCode: qrCode)
-                        }
-                    } else {
-                        print("Error: Can't cast scanned from sample")
-                    }
-                } else {
-                    let alert = UIAlertController(title: "Invalid Code Scanned", message: "The code that you've scanned is invalid.", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
-                        self.tabBarController?.selectedIndex = 0
-                    }))
-                    self.present(alert, animated: true, completion: nil)
+        activityIndicator.startAnimating()
+        DataService.ds.REF_USER_CURRENT.observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.hasChild("samples") {
+                self.activityIndicator.stopAnimating()
+                print("Error: Already Redeemed")
+                let alert = UIAlertController(title: "Already Redeemed", message: "Only 1 box per user. Stay tuned.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
+                    self.tabBarController?.selectedIndex = 0
+                }))
+                self.present(alert, animated: true, completion: nil)
 
-                    
-                    print("Error: Can't cast sample/find qrCode")
-                }
+            } else {
+                self.checkValidCode(qrCode: code)
             }
         }) { (error) in
+            print("Error: \(error.localizedDescription)")
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    func checkValidCode(qrCode: String) {
+        DataService.ds.REF_COLLEGES.observeSingleEvent(of: .value, with: {(snapshot) in
+            if snapshot.hasChild(qrCode) {
+                print("Valid Code")
+                self.updateQRCode(qrCode: qrCode)
+            } else {
+                self.activityIndicator.stopAnimating()
+                print("Invalid Code")
+                let alert = UIAlertController(title: "Invalid Code Scanned", message: "The code scanned by you is invalid.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
+                    self.tabBarController?.selectedIndex = 0
+                }))
+                self.present(alert, animated: true, completion: nil)
+
+            }
+        }) { (error) in
+            self.activityIndicator.stopAnimating()
             print("Error: \(error.localizedDescription)")
         }
     }
     
-    
     func updateQRCode(qrCode: String) {
-        print(qrCode)
         DataService.ds.updateFirebaseDBUserWithQR(userData: [["\(qrCode)": "true" as AnyObject]])
-        DataService.ds.REF_SAMPLES.child(qrCode).updateChildValues(["time": timestamp,"uID": KeychainWrapper.standard.string(forKey: "KEY_UID")!, "scanned": true ])
-        
-        performSegue(withIdentifier: "QRToThankYou", sender: nil)
+        DataService.ds.REF_COLLEGES.child(qrCode).child("users").updateChildValues([(Auth.auth().currentUser?.uid)!:true])
+        self.activityIndicator.stopAnimating()
+        performSegue(withIdentifier: "QRToFeedback", sender: nil)
 
     }
     
@@ -167,11 +171,7 @@ class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
         }
     }
     
-    func reader(_ reader: QRCodeReaderViewController, didSwitchCamera newCaptureDevice: AVCaptureDeviceInput) {
-        if let cameraName = newCaptureDevice.device.localizedName {
-            print("Switching capturing to: \(cameraName)")
-        }
-    }
+
     
     func readerDidCancel(_ reader: QRCodeReaderViewController) {
         reader.stopScanning()

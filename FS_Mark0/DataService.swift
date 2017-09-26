@@ -17,6 +17,7 @@ class DataService {
     static let ds = DataService()
     
     private var _REF_BASE = DB_BASE
+    private var _REF_COLLEGES = DB_BASE.child("colleges")
     private var _REF_SAMPLES = DB_BASE.child("samples")
     private var _REF_USERS = DB_BASE.child("users")
     private var _REF_CHANNELS = DB_BASE.child("channels")
@@ -36,20 +37,24 @@ class DataService {
         return _REF_NOTIFICATIONS
     }
     
+    var REF_COLLEGES: DatabaseReference {
+        return _REF_COLLEGES
+    }
+
     var REF_SAMPLES: DatabaseReference {
         return _REF_SAMPLES
     }
-    
+
     var REF_COUPONS: DatabaseReference {
         return _REF_COUPONS
     }
     
-    var REF_USERS: DatabaseReference {
-        return _REF_USERS
-    }
-    
     var REF_CHANNELS: DatabaseReference {
         return _REF_CHANNELS
+    }
+    
+    var REF_USERS: DatabaseReference {
+        return _REF_USERS
     }
     
     var REF_USER_CURRENT: DatabaseReference {
@@ -83,5 +88,11 @@ class DataService {
         }
     }
     
+    func updateFirebaseDBCollegeQR(userData: [Dictionary<String, AnyObject>], qrCode: String) {
+        for value in userData {
+            REF_COLLEGES.child(qrCode).child("users").updateChildValues(value)
+        }
+    }
+
     
 }

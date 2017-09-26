@@ -44,7 +44,7 @@ class PhoneAuthVC: UIViewController, UITextFieldDelegate {
         textField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         textField.delegate = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(dismissNotifReceived), name: Notification.Name("phoneAuthVCNotification"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(dismissNotifReceived), name: Notification.Name("phoneAuthVCNotification"), object: nil)
         
     }
     
@@ -52,7 +52,7 @@ class PhoneAuthVC: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
     }
     
-    func dismissNotifReceived() {
+    @objc func dismissNotifReceived() {
         self.dismiss(animated: true, completion: nil)
         NotificationCenter.default.post(name: Notifications.phoneAuthNotification.name, object: nil)
     }
@@ -63,17 +63,31 @@ class PhoneAuthVC: UIViewController, UITextFieldDelegate {
         activityIndicator.startAnimating()
         UserDefaults.standard.set(phoneNumber, forKey: "PhoneNum")
         
-        PhoneAuthProvider.provider().verifyPhoneNumber(self.phoneNumber) { (verificationID, error) in
+        PhoneAuthProvider.provider().verifyPhoneNumber(self.phoneNumber, uiDelegate: nil) { (verificationID, error) in
             self.activityIndicator.stopAnimating()
             self.activityIndicator.isHidden = true
-            
-            if error != nil {
-                print("Error: \(error.debugDescription)")
-            } else {
+            DispatchQueue.main.async {
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
                 UserDefaults.standard.set(verificationID, forKey: "authVID")
                 self.performSegue(withIdentifier: "code", sender: nil)
             }
         }
+        
+//        PhoneAuthProvider.provider().verifyPhoneNumber(self.phoneNumber) { (verificationID, error) in
+//            self.activityIndicator.stopAnimating()
+//            self.activityIndicator.isHidden = true
+//
+//            if error != nil {
+//                print("Error: \(error.debugDescription)")
+//            } else {
+//                UserDefaults.standard.set(verificationID, forKey: "authVID")
+//                self.performSegue(withIdentifier: "code", sender: nil)
+//            }
+//        }
+        
     }
     
     // MARK: TextField Delegates
@@ -92,7 +106,7 @@ class PhoneAuthVC: UIViewController, UITextFieldDelegate {
     @IBAction func unwindToMain(segue:UIStoryboardSegue) {
     }
 
-    func editingChanged() {
+    @objc func editingChanged() {
         if textField.text?.characters.count == 10 {
             SendCodeBtn.alpha = 1.0
             SendCodeBtn.isEnabled = true

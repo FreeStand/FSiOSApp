@@ -21,11 +21,11 @@ class TabBarTBC: UITabBarController, UITabBarControllerDelegate, UIGestureRecogn
     }
     
     @IBAction func unwindToMainQR(segue:UIStoryboardSegue) {
-        print("Unwinding from custom tab bar controller...")
+        print("Unwinding to custom tab bar controller...")
         selectedIndex = 0
     }
     
-    func goToPreviousTab(sender:UISwipeGestureRecognizer) {
+    @objc func goToPreviousTab(sender:UISwipeGestureRecognizer) {
         
         if sender.direction == UISwipeGestureRecognizerDirection.left {
             

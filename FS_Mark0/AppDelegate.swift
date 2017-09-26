@@ -24,9 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UITabBar.appearance().barTintColor = UIColor().HexToColor(hexString: "#000000", alpha: 1.0)
         UITabBar.appearance().tintColor = UIColor.white
         
-//        UINavigationBar.appearance().barTintColor = UIColor.black
-
-        
         let userDefaults = UserDefaults.standard
         if let isLogin = userDefaults.value(forKey: "isLoggedIn") as! Bool? {
             if (isLogin == false) {
@@ -34,35 +31,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
             } else {
                 print("2")
-
                 self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
             }
         } else {
             print("3")
 
             self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
-
         }
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
-        
-        if #available(iOS 10, *) {
+
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
-            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (granted, error) in })
-            application.registerForRemoteNotifications()
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
         } else {
-            let notificationSettings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
-            UIApplication.shared.registerUserNotificationSettings(notificationSettings)
-            UIApplication.shared.registerForRemoteNotifications()
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
         }
+        
         application.registerForRemoteNotifications()
         let token = Messaging.messaging().fcmToken
-        print("FCM Token: \(String(describing: token))")
-                
-        NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification(notification:)), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
-        FirebaseApp.configure()
+        print("FCM token: \(token ?? "")")
 
+        NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification(notification:)), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
+        print("yahan")
+        FirebaseApp.configure()
+        print("here")
 
         return true
     }
@@ -106,8 +106,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
     }
-    
-    func tokenRefreshNotification(notification: NSNotification ) {
+
+    @objc func tokenRefreshNotification(notification: NSNotification ) {
         let refreshedToken = InstanceID.instanceID().token()
         print("InstanceID token: \(String(describing: refreshedToken))")
         connectToFCM()
@@ -120,14 +120,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-        
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-        
-        // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
@@ -140,14 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
         
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-        
-        // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }

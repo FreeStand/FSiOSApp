@@ -21,10 +21,10 @@ class SIgnInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        NotificationCenter.default.addObserver(self, selector: #selector(dismissNotifReceived), name: Notification.Name("phoneAuthNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissNotifReceived), name: Notification.Name("phoneAuthVCNotification"), object: nil)
     }
 
-    func dismissNotifReceived() {
+    @objc func dismissNotifReceived() {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -74,6 +74,8 @@ class SIgnInVC: UIViewController {
                     DispatchQueue.global(qos: .background).async {
                         self.getProfPic(fid: FBSDKAccessToken.current().userID)
                     }
+                    print(user.uid)
+                    print(userData)
                     self.completeSignIn(id: user.uid, userData: userData as! [Dictionary<String, String>])
                 }
             }
