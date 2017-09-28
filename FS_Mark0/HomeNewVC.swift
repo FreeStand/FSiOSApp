@@ -10,12 +10,21 @@ import UIKit
 
 class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var tableView: UITableView!
     var brandList = [Brand]()
     var selectedBrand: Brand!
+    var isBarHidden = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.bringSubview(toFront: loadingView)
+        self.navigationController?.navigationBar.layer.zPosition = -1
+        self.tabBarController?.tabBar.layer.zPosition = -1
+        indicatorView.startAnimating()
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 128, height: 28))
         imageView.contentMode = .scaleAspectFit
         let image = UIImage(named: "freestandLogoWhite.png")
@@ -52,6 +61,10 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.brandList.append(brand)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    if self.isBarHidden {
+                        self.isBarHidden = false
+                        self.showBars()
+                    }
                 }
             } else {
                 print("Error: Can't cast dict from snapshot in Brands")
@@ -61,6 +74,13 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func showBars() {
+        view.sendSubview(toBack: loadingView)
+        self.loadingView.isHidden = true
+        self.navigationController?.navigationBar.layer.zPosition = 0
+        self.tabBarController?.tabBar.layer.zPosition = 0
+        self.indicatorView.stopAnimating()
+    }
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

@@ -1441,6 +1441,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7vS-sa-e4z">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login3" translatesAutoresizingMaskIntoConstraints="NO" id="VUO-Nb-HQj">
+                                        <rect key="frame" x="67" y="179" width="240" height="240"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" id="AAp-hl-tAo"/>
+                                            <constraint firstAttribute="height" constant="240" id="Hhf-Lf-Zck"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Freestand" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7h-RM-3zh">
+                                        <rect key="frame" x="88.5" y="438" width="198" height="26"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoFreeStand" translatesAutoresizingMaskIntoConstraints="NO" id="Q9j-np-Wes">
+                                        <rect key="frame" x="87.5" y="98" width="200" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="5WC-od-B7Q"/>
+                                            <constraint firstAttribute="width" constant="200" id="aSB-8b-LNJ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="s6H-Wa-pdU">
+                                        <rect key="frame" x="169" y="533" width="37" height="37"/>
+                                        <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.91764705882352937" green="0.92941176470588238" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="VUO-Nb-HQj" firstAttribute="top" secondItem="Q9j-np-Wes" secondAttribute="bottom" constant="37" id="6ko-AV-Nje"/>
+                                    <constraint firstItem="x7h-RM-3zh" firstAttribute="top" secondItem="VUO-Nb-HQj" secondAttribute="bottom" constant="19" id="9UO-7q-k1Z"/>
+                                    <constraint firstItem="s6H-Wa-pdU" firstAttribute="centerX" secondItem="7vS-sa-e4z" secondAttribute="centerX" id="NEz-Ub-xGQ"/>
+                                    <constraint firstItem="Q9j-np-Wes" firstAttribute="centerX" secondItem="7vS-sa-e4z" secondAttribute="centerX" id="Nnm-im-8TJ"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="s6H-Wa-pdU" secondAttribute="bottom" constant="40" id="TfZ-bK-iof"/>
+                                    <constraint firstItem="VUO-Nb-HQj" firstAttribute="centerX" secondItem="7vS-sa-e4z" secondAttribute="centerX" id="Tkb-nN-4Qa"/>
+                                    <constraint firstItem="Q9j-np-Wes" firstAttribute="top" secondItem="7vS-sa-e4z" secondAttribute="top" constant="98" id="bnq-dV-wRl"/>
+                                    <constraint firstItem="x7h-RM-3zh" firstAttribute="centerX" secondItem="7vS-sa-e4z" secondAttribute="centerX" id="kJG-rd-tx8"/>
+                                </constraints>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bira_creative" translatesAutoresizingMaskIntoConstraints="NO" id="YVA-1J-P4t">
                                 <rect key="frame" x="0.0" y="64" width="375" height="150"/>
                                 <constraints>
@@ -1524,21 +1564,27 @@
                             <constraint firstItem="oGZ-YW-34J" firstAttribute="leading" secondItem="yHc-VW-mIb" secondAttribute="leading" constant="8" id="X7m-A3-jcF"/>
                             <constraint firstAttribute="trailing" secondItem="YVA-1J-P4t" secondAttribute="trailing" id="ZhM-9C-udS"/>
                             <constraint firstItem="oGZ-YW-34J" firstAttribute="top" secondItem="0Jl-yD-haB" secondAttribute="bottom" constant="8" id="bfg-AR-dNR"/>
+                            <constraint firstAttribute="trailing" secondItem="7vS-sa-e4z" secondAttribute="trailing" id="cgz-0U-RdW"/>
+                            <constraint firstItem="7vS-sa-e4z" firstAttribute="top" secondItem="yHc-VW-mIb" secondAttribute="top" id="e73-TT-WPy"/>
                             <constraint firstItem="YVA-1J-P4t" firstAttribute="top" secondItem="qmU-Cj-yvL" secondAttribute="bottom" id="fNd-Ff-e1Y"/>
                             <constraint firstItem="YVA-1J-P4t" firstAttribute="leading" secondItem="yHc-VW-mIb" secondAttribute="leading" id="oae-AW-EoM"/>
                             <constraint firstItem="0kL-D7-uLd" firstAttribute="top" secondItem="oGZ-YW-34J" secondAttribute="bottom" constant="8" id="q4S-Ho-rni"/>
                             <constraint firstItem="0Jl-yD-haB" firstAttribute="leading" secondItem="yHc-VW-mIb" secondAttribute="leading" constant="24" id="sFV-yr-iGx"/>
+                            <constraint firstAttribute="bottom" secondItem="7vS-sa-e4z" secondAttribute="bottom" id="yZc-ub-3Cx"/>
+                            <constraint firstItem="7vS-sa-e4z" firstAttribute="leading" secondItem="yHc-VW-mIb" secondAttribute="leading" id="zEQ-cx-0EY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KiT-i0-Q3a"/>
                     <connections>
+                        <outlet property="indicatorView" destination="s6H-Wa-pdU" id="Mq9-Et-mrk"/>
+                        <outlet property="loadingView" destination="7vS-sa-e4z" id="2Ak-dc-6o2"/>
                         <outlet property="tableView" destination="oGZ-YW-34J" id="lOe-Xi-e8v"/>
                         <segue destination="EIR-L7-uMJ" kind="show" identifier="homeToCoupon" id="tgC-yq-gZd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gkC-RN-DPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2735" y="1728"/>
+            <point key="canvasLocation" x="-2735.1999999999998" y="1727.5862068965519"/>
         </scene>
         <!--FeedbackVC-->
         <scene sceneID="TAJ-Ul-oeD">
