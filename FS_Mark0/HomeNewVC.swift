@@ -38,6 +38,23 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.dataSource = self
         self.tableView.tableFooterView = UIView()
         getBrands()
+        genderAgeCheck()
+    }
+    
+    func genderAgeCheck() {
+        if let _ = UserDefaults.standard.string(forKey: "userGender") {
+        } else {
+            DataService.ds.REF_USER_CURRENT.observe(.value, with: { (snapshot) in
+                if let dict = snapshot.value as? NSDictionary {
+                    if let gender = dict["gender"] as? String {
+                        UserDefaults.standard.set(gender, forKey: "userGender")
+                    }
+                    if let ageGroup = dict["dob"] as? String {
+                        UserDefaults.standard.set(ageGroup, forKey: "userDob")
+                    }
+                }
+            })
+        }
     }
 
     func getBrands() {

@@ -8,10 +8,11 @@
 
 import UIKit
 
-class DobVC: UIViewController, UITextFieldDelegate {
+class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var male: RadioButton!
     @IBOutlet weak var female: RadioButton!
+    @IBOutlet weak var ageTextField: UITextField!
     var gender: String!
     
     enum Notifications: String, NotificationName {
@@ -24,34 +25,31 @@ class DobVC: UIViewController, UITextFieldDelegate {
         female.isSelected = false
     }
     
-    @IBOutlet weak var dobField: UITextField!
-    var datePicker : UIDatePicker!
+    var agePicker: UIPickerView!
+    
+    let agePickerValues = ["Below 18","18-24", "25-30", "31-36", "37-42", "43-49", "Above 50"]
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        agePicker = UIPickerView()
         gender = "Male"
-        dobField.delegate = self
+        ageTextField.delegate = self
+        agePicker.delegate = self
+        agePicker.dataSource = self
         male.alternateButton = [female!]
         female.alternateButton = [male!]
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    func pickUpDate(_ textField : UITextField) {
-        // DatePicker
-        self.datePicker = UIDatePicker(frame:CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 216))
-        self.datePicker.backgroundColor = UIColor.white
-        self.datePicker.datePickerMode = UIDatePickerMode.date
-        textField.inputView = self.datePicker
+        
+        ageTextField.inputView = agePicker
+        ageTextField.text = agePickerValues[0]
+        ageTextField.becomeFirstResponder()
         
         // ToolBar
         let toolBar = UIToolbar()
         toolBar.barStyle = .default
-        toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
+        toolBar.isTranslucent = false
+        toolBar.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
         toolBar.sizeToFit()
         
         // Adding Button ToolBar
@@ -60,25 +58,35 @@ class DobVC: UIViewController, UITextFieldDelegate {
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelClick))
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
-        textField.inputAccessoryView = toolBar
-    
+        ageTextField.inputAccessoryView = toolBar
+
+        
     }
 
     @objc func doneClick() {
-        let dateFormatter1 = DateFormatter()
-        dateFormatter1.dateStyle = .medium
-        dateFormatter1.timeStyle = .none
-        dobField.text = dateFormatter1.string(from: datePicker.date)
-        dobField.resignFirstResponder()
+        ageTextField.resignFirstResponder()
     }
     @objc func cancelClick() {
-        dobField.resignFirstResponder()
+        ageTextField.resignFirstResponder()
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.pickUpDate(self.dobField)
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
     
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return agePickerValues.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return agePickerValues[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        ageTextField.text = agePickerValues[row]
+//        self.view.endEditing(true)
+    }
     @IBAction func maleRadioPressed(_ sender: Any) {
         gender = "Male"
     }
@@ -89,8 +97,10 @@ class DobVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func submitPressed(sender: Any) {
         
+        UserDefaults.standard.set(ageTextField.text, forKey: "userDob")
+        UserDefaults.standard.set(gender,forKey: "userGender")
         
-        let userData = ["dob":dobField.text, "gender":gender]
+        let userData = ["dob":ageTextField.text, "gender":gender]
         DataService.ds.updateFirebaseDBUserWithUserData(userData: [userData as! Dictionary<String, String> as Dictionary<String, AnyObject>])
         
         

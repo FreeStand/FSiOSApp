@@ -14,8 +14,6 @@ import FBSDKLoginKit
 
 class ProfileVC: UIViewController {
     
-    
-
     @IBOutlet weak var profImgView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
@@ -36,23 +34,7 @@ class ProfileVC: UIViewController {
         emailLabel.text = UserInfo.ui.email
         nameLabel.text = UserInfo.ui.name
         phoneLabel.text = UserInfo.ui.phoneNo
-        displayGenderBday()
-    }
-   
-    func displayGenderBday() {
-        DataService.ds.REF_USER_CURRENT.observe(.value, with: { (snapshot) in
-            if let dict = snapshot.value as? NSDictionary {
-                if let gender = dict["gender"] as? String {
-                    self.genderLabel.text = gender
-                } else {
-                    print("Error: Can't fetch gender in ProfileVC")
-                }
-                if let bday = dict["dob"] as? String {
-                    self.ageLabel.text = bday
-                } else {
-                    print("Error: Can't fetch age in ProfileVC")
-                }
-            }
-        })
+        ageLabel.text = UserInfo.ui.dob
+        genderLabel.text = UserInfo.ui.gender
     }
 }

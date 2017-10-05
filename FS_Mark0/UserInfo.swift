@@ -14,22 +14,12 @@ class UserInfo {
     
     static let ui = UserInfo()
     
-    private var _NAME = Auth.auth().currentUser?.displayName ?? "Aryan"
-    private var _EMAIL = Auth.auth().currentUser?.email ?? "email"
+    private var _NAME = Auth.auth().currentUser?.displayName ?? "John Doe"
+    private var _EMAIL = Auth.auth().currentUser?.email ?? "email@example.com"
     private var _PHONE = Auth.auth().currentUser?.phoneNumber ?? "9876543210"
-//    private var _GENDER = getGender ?? "Unknown"
-    
-//    func getGender() -> String {
-//        DataService.ds.REF_USER_CURRENT.observe(.value, with: { (snapshot) in
-//            print(snapshot)
-//            if let dict = snapshot.value as? NSDictionary {
-//                if let gender = dict["gender"] as? String {
-//                    return gender
-//                }
-//            }
-//        })
-//        return "unknown"
-//    }
+    private var _GENDER = UserDefaults.standard.string(forKey: "userGender") ?? "Unknown"
+    private var _DOB = UserDefaults.standard.string(forKey: "userDob") ?? "Below 18"
+
 
     var name: String {
         return _NAME
@@ -41,6 +31,14 @@ class UserInfo {
     
     var phoneNo: String {
         return _PHONE
+    }
+    
+    var dob: String {
+        return _DOB
+    }
+    
+    var gender: String{
+        return _GENDER
     }
     
 }

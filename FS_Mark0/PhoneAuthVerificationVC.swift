@@ -61,18 +61,7 @@ class PhoneAuthVerificationVC: UIViewController, UITextFieldDelegate {
                 }
                 UserDefaults.standard.set(verificationID, forKey: "authVID")
             }
-        
         }
-        
-//        PhoneAuthProvider.provider().verifyPhoneNumber(UserDefaults.standard.string(forKey: "PhoneNum")!) { (verificationID, error) in
-//            if error != nil {
-//                print("Error: \(error.debugDescription)")
-//            } else {
-//                UserDefaults.standard.set(verificationID, forKey: "authVID")
-//                Toast(text: "OTP Resent successfully", delay: Delay.short, duration: Delay.long).show()
-//                print("FS: Code Sent Successfully")
-//            }
-//        }
     }
     
     
@@ -110,18 +99,10 @@ class PhoneAuthVerificationVC: UIViewController, UITextFieldDelegate {
             } else {
                 UserDefaults.standard.set(user?.phoneNumber, forKey: "phoneNum")
                 UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                let currentUser = Auth.auth().currentUser
-                print("FS: Current User: \(String(describing: currentUser)) in Phone Auth")
                 
                 let userData = ["phoneNo":user?.phoneNumber]
                 DataService.ds.updateFirebaseDBUserWithUserData(userData: [userData as! Dictionary<String, String> as Dictionary<String, AnyObject>])
-//                DataService.ds.updateFirebaseDBPhone(uID: (Auth.auth().currentUser?.uid)!, phoneNo: userData as! Dictionary<String, String>)
-                print("Phone Number: \(String(describing: user?.phoneNumber))")
-                _ = user?.providerData[0]
-                print("FS: ProviderID: \(String(describing: user?.providerID))")
                 
-//                self.dismiss(animated: true, completion: nil)
-//                NotificationCenter.default.post(name: Notifications.phoneAuthVCNotification.name, object: nil)
                 self.performSegue(withIdentifier: "toDOB", sender: nil)
 
             }

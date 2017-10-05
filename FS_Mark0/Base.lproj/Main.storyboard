@@ -160,7 +160,7 @@
                                     <constraint firstItem="vaU-rg-3qD" firstAttribute="top" secondItem="BLW-ul-M2D" secondAttribute="bottom" constant="40" id="x5T-s0-8Hz"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoFreeStand" translatesAutoresizingMaskIntoConstraints="NO" id="YqJ-9v-EhB">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="freestandLogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="YqJ-9v-EhB">
                                 <rect key="frame" x="87.5" y="70" width="200" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Wya-ym-qfH"/>
@@ -168,7 +168,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.91907191276550293" green="0.93019121885299683" blue="0.94789630174636841" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="YqJ-9v-EhB" firstAttribute="top" secondItem="lk1-1B-QWQ" secondAttribute="bottom" constant="50" id="BA7-MM-7Hh"/>
                             <constraint firstItem="s6O-zb-t3x" firstAttribute="leading" secondItem="MLE-AB-l6D" secondAttribute="leading" id="Ghd-Y6-MWx"/>
@@ -201,7 +201,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoFreeStand" translatesAutoresizingMaskIntoConstraints="NO" id="T7K-Kc-ls4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="freestandLogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="T7K-Kc-ls4">
                                 <rect key="frame" x="87.5" y="70" width="200" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="C6Z-G9-aRb"/>
@@ -293,7 +293,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.91907191276550293" green="0.93019121885299683" blue="0.94789630174636841" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="S9Q-YJ-wsz" firstAttribute="leading" secondItem="B7T-cj-txD" secondAttribute="leading" id="45I-s9-ML6"/>
                             <constraint firstItem="T7K-Kc-ls4" firstAttribute="top" secondItem="maE-2c-pas" secondAttribute="bottom" constant="50" id="M5A-AC-XLp"/>
@@ -1932,7 +1932,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoFreeStand" translatesAutoresizingMaskIntoConstraints="NO" id="PeM-Fy-xO3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="freestandLogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="PeM-Fy-xO3">
                                 <rect key="frame" x="87.5" y="70" width="200" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="7aS-dv-4mj"/>
@@ -1949,7 +1949,7 @@
                                             <constraint firstAttribute="width" constant="24" id="kB4-Pg-iEb"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of birth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zO-0Y-JwM">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your age Group.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zO-0Y-JwM">
                                         <rect key="frame" x="64" y="30" width="299" height="25"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
                                         <color key="textColor" red="0.12156862745098039" green="0.1803921568627451" blue="0.24313725490196078" alpha="1" colorSpace="deviceRGB"/>
@@ -1982,7 +1982,7 @@
                                         </constraints>
                                         <state key="normal" image="radioOff"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Men" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkw-aM-IT9">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Male" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkw-aM-IT9">
                                         <rect key="frame" x="96" y="154" width="259" height="21"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
                                         <color key="textColor" red="0.12156862745098039" green="0.1803921568627451" blue="0.24313725490196078" alpha="1" colorSpace="deviceRGB"/>
@@ -1996,7 +1996,7 @@
                                         </constraints>
                                         <state key="normal" image="radioOff"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Women" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yym-D3-HBR">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Female" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yym-D3-HBR">
                                         <rect key="frame" x="96" y="185" width="259" height="21"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
                                         <color key="textColor" red="0.12156862745098039" green="0.1803921568627451" blue="0.24313725490196078" alpha="1" colorSpace="deviceRGB"/>
@@ -2084,7 +2084,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.9190719128" green="0.93019121890000001" blue="0.94789630170000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="PeM-Fy-xO3" firstAttribute="centerX" secondItem="5fz-SN-iU4" secondAttribute="centerX" id="L4x-7D-fjx"/>
                             <constraint firstItem="PeM-Fy-xO3" firstAttribute="top" secondItem="YQu-9R-dau" secondAttribute="bottom" constant="50" id="SvE-gK-hI7"/>
@@ -2095,7 +2095,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dobField" destination="qym-fo-8ot" id="2sE-CN-Ytb"/>
+                        <outlet property="ageTextField" destination="qym-fo-8ot" id="WDt-PC-wHS"/>
                         <outlet property="female" destination="JPl-bj-rU3" id="JvJ-vj-4Uz"/>
                         <outlet property="male" destination="PJj-hQ-3fy" id="WGN-yt-zXv"/>
                         <segue destination="9fF-c4-nFw" kind="unwind" identifier="unwindToPhoneAuth" unwindAction="unwindToMainWithSegue:" id="Wab-Dq-4uk"/>
