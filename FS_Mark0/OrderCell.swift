@@ -18,7 +18,7 @@ class OrderCell: UITableViewCell {
     
     func configureCell(order: Order) {
         self.order = order
-        timeLabel.text = "Collected on " + order.time! + " from " + order.partnerID!
+        timeLabel.text = "Collected from " + order.partnerID!
         campaignLabel.text = order.campaignID
     }
 

@@ -57,7 +57,9 @@ class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
         
         reader.startScanning()
         reader.didFindCode = { result in
-            self.checkForDuplicateScan(code: result.value)
+            self.checkValidCode(qrCode: result.value)
+            print(result.value)
+//            self.checkForDuplicateScan(code: result.value)
         }
     }
     
@@ -76,7 +78,8 @@ class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
                 self.present(alert, animated: true, completion: nil)
 
             } else {
-                self.checkValidCode(qrCode: code)
+                self.updateQRCode(qrCode: code)
+//                self.checkValidCode(qrCode: code)
             }
         }) { (error) in
             print("Error: \(error.localizedDescription)")
@@ -88,7 +91,8 @@ class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
         DataService.ds.REF_COLLEGES.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.hasChild(qrCode) {
                 print("Valid Code")
-                self.updateQRCode(qrCode: qrCode)
+//                self.updateQRCode(qrCode: qrCode)
+                self.checkForDuplicateScan(code: qrCode)
             } else {
                 self.activityIndicator.stopAnimating()
                 print("Invalid Code")

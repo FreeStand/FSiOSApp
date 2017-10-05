@@ -60,7 +60,6 @@ class PhoneAuthVerificationVC: UIViewController, UITextFieldDelegate {
                     return
                 }
                 UserDefaults.standard.set(verificationID, forKey: "authVID")
-                self.performSegue(withIdentifier: "code", sender: nil)
             }
         
         }

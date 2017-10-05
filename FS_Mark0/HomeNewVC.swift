@@ -14,6 +14,8 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var topImgView: UIImageView!
+    
     var brandList = [Brand]()
     var selectedBrand: Brand!
     var isBarHidden = true
@@ -93,6 +95,8 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "BrandCell", for: indexPath) as? BrandCell {
             cell.contentView.addBottomBorderWithColor(color: UIColor().HexToColor(hexString: "#393939", alpha: 1.0), width: 8.0)
+            cell.clipsToBounds = true
+//            cell.layer.cornerRadius = 15.0
             
             let brand: Brand!
             brand = brandList[indexPath.row]

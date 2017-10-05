@@ -16,15 +16,14 @@ class MoreVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.barTintColor = UIColor.fiBlack
+        let attrs = [
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17)!
+        ]
+        navigationController?.navigationBar.titleTextAttributes = attrs
         self.tableView.tableFooterView = UIView()
-
-        DataService.ds.REF_USER_CURRENT.observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            if let phoneNumber = value?["phoneNumber"] as? String {
-                UserDefaults.standard.set(phoneNumber, forKey: "phoneNumber")
-            }
-        })
-
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,27 +40,23 @@ class MoreVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 7
+        return 6
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 1:
-            performSegue(withIdentifier: "moreToSettings", sender: nil)
-            break
-        case 2:
             performSegue(withIdentifier: "moreToProfile", sender: nil)
             break
-        case 3:
+        case 2:
             performSegue(withIdentifier: "moreToOrders", sender: nil)
             break
-        case 4:
+        case 3:
             performSegue(withIdentifier: "moreToFAQs", sender: nil)
-
+            break
+        case 4:
             break
         case 5:
-            break
-        case 6:
             logOut()
             break
         default:

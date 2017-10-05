@@ -29,7 +29,7 @@ class OrderTVC: UITableViewController {
     }
     
     func getSamplesInfoFromSamplesDB(key: String) {
-        DataService.ds.REF_SAMPLES.child(key).observe(.value, with: { (snapshot) in
+        DataService.ds.REF_COLLEGES.child(key).observe(.value, with: { (snapshot) in
             if let dict = snapshot.value as? [String: AnyObject] {
                 let order = Order()
 
@@ -43,22 +43,17 @@ class OrderTVC: UITableViewController {
                 } else {
                     print("Error: Can't retrieve partnerID")
                 }
-                if let time = dict["time"] as? String {
-                    order.time = time
-                } else {
-                    print("Error: Can't retrieve time")
-                }
-                if let uID = dict["uID"] as? String {
-                    order.uID = uID
-                } else {
-                    print("Error: Can't retrieve uID")
-                }
+//                if let time = dict["time"] as? String {
+//                    order.time = time
+//                } else {
+//                    print("Error: Can't retrieve time")
+//                }
+//                if let uID = dict["uID"] as? String {
+//                    order.uID = uID
+//                } else {
+//                    print("Error: Can't retrieve uID")
+//                }
 
-//                order.campaignID = dict["campaignID"] as? String
-//                order.partnerID = dict["partnerID"] as? String
-//                order.time = dict["time"] as? String
-//                order.uID = dict["uID"] as? String
-                
                 self.orderList.append(order)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -91,14 +86,14 @@ class OrderTVC: UITableViewController {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as? OrderCell{
 
             cell.clipsToBounds = true
-            cell.layer.cornerRadius = 5.0
+            cell.layer.cornerRadius = 15.0
             
             cell.contentView.layer.borderWidth = 0.5
-            cell.contentView.layer.borderColor = UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0).cgColor
-            cell.contentView.addTopBorderWithColor(color: UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0), width: 8.0)
-            cell.contentView.addLeftBorderWithColor(color: UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0), width: 8.0)
-            cell.contentView.addRightBorderWithColor(color: UIColor().HexToColor(hexString: "#E2E8F4", alpha: 1.0), width: 8.0)
-            
+            cell.contentView.layer.borderColor = UIColor().HexToColor(hexString: "#393939", alpha: 1.0).cgColor
+//            cell.contentView.addTopBorderWithColor(color: UIColor().HexToColor(hexString: "#393939", alpha: 1.0), width: 8.0)
+//            cell.contentView.addLeftBorderWithColor(color: UIColor().HexToColor(hexString: "#393939", alpha: 1.0), width: 8.0)
+//            cell.contentView.addRightBorderWithColor(color: UIColor().HexToColor(hexString: "#393939", alpha: 1.0), width: 8.0)
+//
             let order: Order!
             order = orderList[indexPath.row]
             cell.configureCell(order: order)
@@ -111,50 +106,4 @@ class OrderTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 276
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

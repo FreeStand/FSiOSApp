@@ -23,6 +23,8 @@
 		9220FE7F1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */; };
 		922785621F476C450066F700 /* OrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922785611F476C450066F700 /* OrderTVC.swift */; };
 		922785681F4921A20066F700 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922785671F4921A20066F700 /* Coupon.swift */; };
+		92680D321F84D2CB007E3C50 /* CouponDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92680D311F84D2CB007E3C50 /* CouponDetailVC.swift */; };
+		92680D3C1F862A39007E3C50 /* Int+degreesToRadians.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92680D3B1F862A39007E3C50 /* Int+degreesToRadians.swift */; };
 		92984C1F1F62C2C6000FF983 /* DobVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92984C1E1F62C2C6000FF983 /* DobVC.swift */; };
 		92984C211F645372000FF983 /* HomeNewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92984C201F645372000FF983 /* HomeNewVC.swift */; };
 		9298BD461F7A63360048ABFA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9298BD451F7A63360048ABFA /* GoogleService-Info.plist */; };
@@ -69,6 +71,10 @@
 		9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneAuthVerificationVC.swift; sourceTree = "<group>"; };
 		922785611F476C450066F700 /* OrderTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTVC.swift; sourceTree = "<group>"; };
 		922785671F4921A20066F700 /* Coupon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coupon.swift; sourceTree = "<group>"; };
+		92680D031F82A2F2007E3C50 /* Animation.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Animation.mp4; sourceTree = "<group>"; };
+		92680D311F84D2CB007E3C50 /* CouponDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponDetailVC.swift; sourceTree = "<group>"; };
+		92680D3A1F862990007E3C50 /* anim.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = anim.gif; sourceTree = "<group>"; };
+		92680D3B1F862A39007E3C50 /* Int+degreesToRadians.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+degreesToRadians.swift"; sourceTree = "<group>"; };
 		92984C1E1F62C2C6000FF983 /* DobVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DobVC.swift; sourceTree = "<group>"; };
 		92984C201F645372000FF983 /* HomeNewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNewVC.swift; sourceTree = "<group>"; };
 		9298BD451F7A63360048ABFA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -142,6 +148,8 @@
 		92125DC11F010BAC00826AC1 /* FS_Mark0 */ = {
 			isa = PBXGroup;
 			children = (
+				92680D3A1F862990007E3C50 /* anim.gif */,
+				92680D011F82A2E1007E3C50 /* Resources */,
 				9298BD451F7A63360048ABFA /* GoogleService-Info.plist */,
 				922785641F48B0B70066F700 /* Model */,
 				922785631F48B0710066F700 /* View */,
@@ -161,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				9298BD4D1F7AFA490048ABFA /* CouponVC.swift */,
+				92680D311F84D2CB007E3C50 /* CouponDetailVC.swift */,
 				922785651F48B0D10066F700 /* Login/SignUp */,
 				92AF006F1F3734410061E243 /* TabBarTBC.swift */,
 				922785661F48B0EF0066F700 /* MainTabBar */,
@@ -230,6 +239,14 @@
 			name = MainTabBar;
 			sourceTree = "<group>";
 		};
+		92680D011F82A2E1007E3C50 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				92680D031F82A2F2007E3C50 /* Animation.mp4 */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		92AB4E631F2CF8DD00CB0DAA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +257,7 @@
 				92B14B411F34880A005C45FE /* TabBar.swift */,
 				92AF00691F35B4880061E243 /* Notification.swift */,
 				92BCD5411F55620900284E3B /* RadioCheck.swift */,
+				92680D3B1F862A39007E3C50 /* Int+degreesToRadians.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -369,6 +387,7 @@
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyGif/SwiftyGif.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -384,6 +403,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyGif.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -424,6 +444,7 @@
 				9220FE7F1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift in Sources */,
 				92125DC31F010BAC00826AC1 /* AppDelegate.swift in Sources */,
 				92AA3DFC1F2D32C800A6613E /* ProfileVC.swift in Sources */,
+				92680D3C1F862A39007E3C50 /* Int+degreesToRadians.swift in Sources */,
 				9220FE7D1F0C4FE600B0D402 /* PhoneAuthVC.swift in Sources */,
 				92AA3DF81F2D247D00A6613E /* MoreVC.swift in Sources */,
 				92B14B421F34880A005C45FE /* TabBar.swift in Sources */,
@@ -448,6 +469,7 @@
 				92BCF4E71F30BF470047EB74 /* AlertVC.swift in Sources */,
 				920BF1CF1F3F6F46007E6DC8 /* OrderCell.swift in Sources */,
 				92AF006A1F35B4880061E243 /* Notification.swift in Sources */,
+				92680D321F84D2CB007E3C50 /* CouponDetailVC.swift in Sources */,
 				92BCD5361F4E0A4C00284E3B /* Alert.swift in Sources */,
 				92ABFF191F1C9F00004A797C /* WebViewVC.swift in Sources */,
 				92C2F1F91F11818E004C79DC /* UIColor.swift in Sources */,
@@ -607,6 +629,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -630,6 +653,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = Freestand_bf_dist;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

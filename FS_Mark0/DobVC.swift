@@ -10,8 +10,18 @@ import UIKit
 
 class DobVC: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var male: RadioButton!
+    @IBOutlet weak var female: RadioButton!
+    var gender: String!
+    
     enum Notifications: String, NotificationName {
         case phoneAuthVCNotification
+    }
+    
+    override func awakeFromNib() {
+        self.view.layoutIfNeeded()
+        male.isSelected = true
+        female.isSelected = false
     }
     
     @IBOutlet weak var dobField: UITextField!
@@ -19,7 +29,11 @@ class DobVC: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        gender = "Male"
         dobField.delegate = self
+        male.alternateButton = [female!]
+        female.alternateButton = [male!]
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,14 +75,22 @@ class DobVC: UIViewController, UITextFieldDelegate {
         dobField.resignFirstResponder()
     }
     
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.pickUpDate(self.dobField)
     }
     
+    @IBAction func maleRadioPressed(_ sender: Any) {
+        gender = "Male"
+    }
+    
+    @IBAction func femaleRadioPressed(_ sender: Any) {
+        gender = "Female"
+    }
+    
     @IBAction func submitPressed(sender: Any) {
         
-        let userData = ["dob":dobField.text]
+        
+        let userData = ["dob":dobField.text, "gender":gender]
         DataService.ds.updateFirebaseDBUserWithUserData(userData: [userData as! Dictionary<String, String> as Dictionary<String, AnyObject>])
         
         

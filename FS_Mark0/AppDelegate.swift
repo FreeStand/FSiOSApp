@@ -62,10 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print("FCM token: \(token ?? "")")
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification(notification:)), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
-        print("yahan")
         FirebaseApp.configure()
-        print("here")
-
         return true
     }
     
@@ -108,6 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
     }
+    
 
     @objc func tokenRefreshNotification(notification: NSNotification ) {
         let refreshedToken = InstanceID.instanceID().token()

@@ -14,7 +14,8 @@ class CouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var brandImg: UIImageView!
     @IBOutlet weak var brandLbl: UILabel!
     @IBOutlet weak var infoView: UIView!
-
+    @IBOutlet weak var barCodeView: UIView!
+    
     
     var brand: Brand!
     var couponList = [Coupon]()
@@ -58,6 +59,16 @@ class CouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.infoView.isHidden = true
             }, completion: nil)
             view.sendSubview(toBack: infoView)
+        }
+    }
+    
+    
+    @IBAction func clodeCodeBtn(_ sender: Any) {
+        if barCodeView.isHidden == false {
+            UIView.transition(with: self.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                self.barCodeView.isHidden = true
+            }, completion: nil)
+            view.sendSubview(toBack: barCodeView)
         }
     }
     
@@ -129,8 +140,23 @@ class CouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     
+    @objc func showBarCode() {
+        if barCodeView.isHidden == true {
+            view.bringSubview(toFront: barCodeView)
+            UIView.transition(with: self.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                self.barCodeView.isHidden = false
+            }, completion: nil)
+        }
+    }
+    
     @objc func makeSegue(button:UIButton) {
-        performSegue(withIdentifier: "couponsToWebView", sender: button)
+        let alert = UIAlertController(title: "Warning", message: "This Coupon will disappear in 2 minutes, only proceed when sure", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
+            self.performSegue(withIdentifier: "toBarcode", sender: button)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
     }
 
     // MARK: - Navigation

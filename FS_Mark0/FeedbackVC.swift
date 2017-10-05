@@ -14,12 +14,12 @@ class FeedbackVC: UIViewController {
     var selectedAnswers = [String]()
     var iterator = 2
     var quesDict = ["question1":
-                        ["question": "This is question 1",
-                         "option1": "This is option 1 of question 1",
-                         "option2": "This is option 2 of question 1",
-                         "option3": "This is option 3 of question 1",
-                         "option4": "This is option 4 of question 1",
-                         "option5": "This is option 5 of question 1"
+                        ["question": "Which of these do you prefer?",
+                         "option1": "Protien Chips",
+                         "option2": "Protien Bars",
+                         "option3": "Protien Cookies",
+                         "option4": "Protien Shakes",
+                         "option5": "I'm not into healthy stuff"
                         ],
                     "question2":
                         ["question": "This is question 2",

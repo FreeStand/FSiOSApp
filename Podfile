@@ -15,8 +15,9 @@ pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'Firebase/Auth'
 pod 'Firebase/Messaging'
-pod 'GoogleMobileVision/BarcodeDetector'
 pod 'SwiftKeychainWrapper'
 pod 'Toaster'
+pod 'Firebase/RemoteConfig'
+pod 'SwiftyGif', '~> 3.1.0'
 
 end

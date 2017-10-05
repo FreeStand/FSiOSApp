@@ -9,32 +9,24 @@
 import UIKit
 
 class ThankYouVC: UIViewController {
-    
+    @IBOutlet weak var doneBtn: UIButton!
+    @IBOutlet weak var imgView: UIImageView!
    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        imgView.clipsToBounds = true
+        imgView.layer.cornerRadius = 8
+        doneBtn.layer.cornerRadius = 18
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidAppear(_ animated: Bool) {
+//        let url = "https://media.giphy.com/media/l1J9OZpaWVfmDs27S/giphy.gif"
+//        let gif = UIImage.gifImageWithURL(gifUrl: url)
+//        imgView.image = gif
     }
-    
 
     @IBAction func tyBtnPressed(_ sender: Any?) {
         print("pressed")
         performSegue(withIdentifier: "ThankYouUnwind", sender: self)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

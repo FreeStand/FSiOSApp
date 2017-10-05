@@ -14,7 +14,15 @@ class AlertVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.shared.applicationIconBadgeNumber = 0
+
         self.tableView.tableFooterView = UIView()
+        navigationController?.navigationBar.barTintColor = UIColor.fiBlack
+        let attrs = [
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17)!
+        ]
+        navigationController?.navigationBar.titleTextAttributes = attrs
 
         getAlertsFromNotificationDB()
     }
