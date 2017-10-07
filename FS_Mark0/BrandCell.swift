@@ -18,7 +18,13 @@ class BrandCell: UITableViewCell {
     func configureCell(brand: Brand){
         self.brand = brand
         img.downloadedFrom(link: brand.imgUrl!)
-        totalDealsLabel.text = "\(brand.totalDeals!) DEALS AVAILABLE"
+        if brand.totalDeals! > 1{
+            totalDealsLabel.text = "\(brand.totalDeals!) DEALS AVAILABLE"
+        } else if brand.totalDeals == 0 {
+            totalDealsLabel.text = "NO DEAL AVAILABLE"
+        } else {
+            totalDealsLabel.text = "\(brand.totalDeals!) DEAL AVAILABLE"
+        }
     }
 
 }

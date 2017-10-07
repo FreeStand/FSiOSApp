@@ -17,13 +17,14 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var topImgView: UIImageView!
     
     var brandList = [Brand]()
+    var imgList = [String]()
     var selectedBrand: Brand!
     var isBarHidden = true
     var questions: NSDictionary!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.bringSubview(toFront: loadingView)
         self.navigationController?.navigationBar.layer.zPosition = -1
         self.tabBarController?.tabBar.layer.zPosition = -1
@@ -68,14 +69,9 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
                 if let imgURL = dict["imgURL"] as? String {
                     brand.imgUrl = imgURL
+                    self.imgList.append(imgURL)
                 } else {
                     print("Error: Can't find/cast URL in \(brand.name ?? "Brand")")
-                }
-                
-                if let totalDeals = dict["totalDeals"] as? Int {
-                    brand.totalDeals = totalDeals
-                } else {
-                    print("Error: Can't find/cast totalDeals in \(brand.name ?? "Brand")")
                 }
                 
                 if let questions = dict["questions"] as? NSDictionary {
@@ -86,6 +82,7 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 if let coupons = dict["coupons"] as? [String: [String: Any]] {
                     brand.coupons = coupons
+                    brand.totalDeals = coupons.count
                 } else {
                     print("Error: Can't find/cast coupons in \(brand.name ?? "Brand")")
                 }
@@ -95,6 +92,8 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     print("reload")
                     self.tableView.reloadData()
                     if self.isBarHidden {
+                        self.topImgView.downloadedFrom(link: self.imgList[0])
+                        _ = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(HomeNewVC.animateImg), userInfo: nil, repeats: true)
                         self.isBarHidden = false
                         self.showBars()
                     }
@@ -104,6 +103,22 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }) { (error) in
             print("Error: Can't load Brands from Brands DB")
+        }
+    }
+    
+    var iterator = 1
+
+    @objc func animateImg() {
+        if iterator < brandList.count {
+            UIView.transition(with: self.topImgView, duration: 0.2, options: .transitionFlipFromLeft, animations: {
+                self.topImgView.downloadedFrom(link: self.imgList[self.iterator])
+            }, completion: nil)
+            iterator = iterator + 1
+        } else if iterator == brandList.count {
+            UIView.transition(with: self.topImgView, duration: 0.2, options: .transitionFlipFromLeft, animations: {
+                self.topImgView.downloadedFrom(link: self.imgList[0])
+            }, completion: nil)
+            iterator = 1
         }
     }
     
@@ -127,7 +142,6 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "BrandCell", for: indexPath) as? BrandCell {
             cell.contentView.addBottomBorderWithColor(color: UIColor().HexToColor(hexString: "#393939", alpha: 1.0), width: 8.0)
             cell.clipsToBounds = true
-//            cell.layer.cornerRadius = 15.0
             
             let brand: Brand!
             brand = brandList[indexPath.row]
