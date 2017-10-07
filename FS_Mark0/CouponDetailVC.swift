@@ -11,9 +11,10 @@ import SwiftyGif
 
 class CouponDetailVC: UIViewController {
     
+    
     let timeLeftShapeLayer = CAShapeLayer()
     let bgShapeLayer = CAShapeLayer()
-    var timeLeft: TimeInterval = 60
+    var timeLeft: TimeInterval = 10
     var endTime: Date?
     var timeLabel =  UILabel()
     var timer = Timer()
@@ -21,7 +22,7 @@ class CouponDetailVC: UIViewController {
     let strokeIt = CABasicAnimation(keyPath: "strokeEnd")
     
     func drawBgShape() {
-        bgShapeLayer.path = UIBezierPath(arcCenter: CGPoint(x: view.frame.midX , y: view.frame.midY), radius:
+        bgShapeLayer.path = UIBezierPath(arcCenter: CGPoint(x: view.frame.midX , y: view.frame.midY - 100), radius:
             100, startAngle: -90.degreesToRadians, endAngle: 270.degreesToRadians, clockwise: true).cgPath
         bgShapeLayer.strokeColor = UIColor.white.cgColor
         bgShapeLayer.fillColor = UIColor.clear.cgColor
@@ -29,7 +30,7 @@ class CouponDetailVC: UIViewController {
         view.layer.addSublayer(bgShapeLayer)
     }
     func drawTimeLeftShape() {
-        timeLeftShapeLayer.path = UIBezierPath(arcCenter: CGPoint(x: view.frame.midX , y: view.frame.midY), radius:
+        timeLeftShapeLayer.path = UIBezierPath(arcCenter: CGPoint(x: view.frame.midX , y: view.frame.midY - 100), radius:
             100, startAngle: -90.degreesToRadians, endAngle: 270.degreesToRadians, clockwise: true).cgPath
         timeLeftShapeLayer.strokeColor = UIColor.red.cgColor
         timeLeftShapeLayer.fillColor = UIColor.clear.cgColor
@@ -38,7 +39,7 @@ class CouponDetailVC: UIViewController {
     }
     
     func addTimeLabel() {
-        timeLabel = UILabel(frame: CGRect(x: view.frame.midX-50 ,y: view.frame.midY-25, width: 100, height: 50))
+        timeLabel = UILabel(frame: CGRect(x: view.frame.midX-50 ,y: view.frame.midY-125, width: 100, height: 50))
         timeLabel.textAlignment = .center
         timeLabel.text = timeLeft.time
         view.addSubview(timeLabel)
@@ -51,7 +52,9 @@ class CouponDetailVC: UIViewController {
         } else {
             timeLabel.text = "00:00"
             timer.invalidate()
-            self.navigationController?.popViewController(animated: true)
+           
+            let  vc =  self.navigationController?.viewControllers[0]
+            navigationController?.popToViewController(vc!, animated: true)
         }
     }
     
@@ -66,16 +69,13 @@ class CouponDetailVC: UIViewController {
         // here you define the fromValue, toValue and duration of your animation
         strokeIt.fromValue = 0
         strokeIt.toValue = 1
-        strokeIt.duration = 60
+        strokeIt.duration = 10
         // add the animation to your timeLeftShapeLayer
         timeLeftShapeLayer.add(strokeIt, forKey: nil)
         // define the future end time by adding the timeLeft to now Date()
         endTime = Date().addingTimeInterval(timeLeft)
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
-        
-        
-        
-        
+                
         self.navigationItem.title = "Coupon"
         self.navigationController?.navigationBar.tintColor = UIColor.white
         let attrs = [
@@ -85,24 +85,17 @@ class CouponDetailVC: UIViewController {
         
         navigationController?.navigationBar.titleTextAttributes = attrs
         
-    }
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "< Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(back(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    @objc func back(sender: UIBarButtonItem) {
+        let  vc =  self.navigationController?.viewControllers[0]
+        navigationController?.popToViewController(vc!, animated: true)
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
-
 }
 
 

@@ -13,4 +13,6 @@ class Coupon: NSObject{
     var redirectURL: String?
     var uID: String?
     var imgURL: String?
+    var isDigital: Bool?
+    var couponCode: String?
 }

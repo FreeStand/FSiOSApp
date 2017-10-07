@@ -1,46 +1,48 @@
 //
-//  CouponVC.swift
+//  NewCouponVC.swift
 //  FS_Mark0
 //
-//  Created by Aryan Sharma on 27/09/17.
+//  Created by Aryan Sharma on 07/10/17.
 //  Copyright © 2017 Aryan Sharma. All rights reserved.
 //
 
 import UIKit
 
-class CouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var brandImg: UIImageView!
     @IBOutlet weak var brandLbl: UILabel!
     @IBOutlet weak var infoView: UIView!
-    @IBOutlet weak var barCodeView: UIView!
-    
     
     var brand: Brand!
+    var brandName: String!
     var couponList = [Coupon]()
+    var selectedCouponCode: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         brandImg.downloadedFrom(link: brand.imgUrl!)
         brandLbl.text = brand.name
+        brandName = brand.name
         tableView.dataSource = self
         tableView.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(infoBtnPressed), name: Notification.Name("myNotification"), object: nil)
-        getCoupons()
-        
+
         self.navigationItem.title = brand.name
         self.navigationController?.navigationBar.tintColor = UIColor.white
         let attrs = [
             NSAttributedStringKey.foregroundColor: UIColor.white,
             NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17)!
         ]
-        
-        navigationController?.navigationBar.titleTextAttributes = attrs
+        self.tableView.tableFooterView = UIView()
 
+        navigationController?.navigationBar.titleTextAttributes = attrs
+        
+        getCoupons()
     }
-    
+
     @objc func infoBtnPressed() {
         print("Notification Received")
         
@@ -62,115 +64,116 @@ class CouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    
-    @IBAction func clodeCodeBtn(_ sender: Any) {
-        if barCodeView.isHidden == false {
-            UIView.transition(with: self.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
-                self.barCodeView.isHidden = true
-            }, completion: nil)
-            view.sendSubview(toBack: barCodeView)
-        }
-    }
-    
     func getCoupons() {
         DataService.ds.REF_BRANDS.child(brand.name!).child("coupons").observe(.childAdded, with: { (snapshot) in
             if let dict = snapshot.value as? NSDictionary {
                 let coupon = Coupon()
-                
                 if let title = dict["title"] as? String {
                     coupon.title = title
-                } else {
-                    print("Error: Can't find/cast title in the coupon.")
                 }
-                
                 if let subtitle = dict["subtitle"] as? String {
                     coupon.subtitle = subtitle
-                } else {
-                    print("Error: Can't find/cast subtitle in the coupon.")
                 }
-                
+                if let redeemURL = dict["redeemURL"] as? String {
+                    coupon.redirectURL = redeemURL
+                }
                 if let imgURL = dict["imgURL"] as? String {
                     coupon.imgURL = imgURL
-                } else {
-                    print("Error: Can't find/cast imgURL in the coupon.")
                 }
-                
-                if let redirectURL = dict["redeemURL"] as? String {
-                    coupon.redirectURL = redirectURL
-                } else {
-                    print("Error: Can't find/cast redirectURL in the coupon.")
+                if let isDigital = dict["isDigital"] as? Bool {
+                    coupon.isDigital = isDigital
+                }
+                if let couponCode = dict["couponCode"] as? String {
+                    coupon.couponCode = couponCode
                 }
                 
                 self.couponList.append(coupon)
                 DispatchQueue.main.async {
-                    print("reload")
                     self.tableView.reloadData()
                 }
-            } else {
-                print("Error: Can't cast dict in brand")
             }
-        }) { (error) in
-            print("Error: Can't load Brands from Brands DB")
+        })
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected")
+        let coupon = couponList[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        if coupon.isDigital == true {
+            selectedCouponCode = coupon.couponCode
+            print("digital")
+            makeDigitalSegue()
+        } else {
+            print("offline")
+            makeSegue()
         }
     }
-
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return couponList.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return couponList.count
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "couponCell", for: indexPath) as? CouponCell {
+            cell.contentView.addBottomBorderWithColor(color: UIColor().HexToColor(hexString: "#393939", alpha: 1.0), width: 8.0)
+            cell.clipsToBounds = true
+
+            
+            let coupon: Coupon!
+            coupon = couponList[indexPath.row]
+            cell.configureCell(coupon: coupon)
+            cell.layoutIfNeeded()
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 260
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "couponCell", for: indexPath) as? CouponCell {
-            
-            let coupon: Coupon!
-            coupon = couponList[indexPath.row]
-            cell.configureCell(coupon: coupon)
-            cell.redeemBtn.addTarget(self, action: #selector(makeSegue), for: .touchUpInside)
+ func makeDigitalSegue() {
+        self.performSegue(withIdentifier: "couponToDigitalDetail", sender: nil)
+    }
+    
+    func makeSegue() {
+        self.performSegue(withIdentifier: "couponToFeedBack", sender: nil)
 
-            return cell
-        }
-        
-        return UITableViewCell()
-    }
-    
-    @objc func showBarCode() {
-        if barCodeView.isHidden == true {
-            view.bringSubview(toFront: barCodeView)
-            UIView.transition(with: self.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
-                self.barCodeView.isHidden = false
-            }, completion: nil)
-        }
-    }
-    
-    @objc func makeSegue(button:UIButton) {
         let alert = UIAlertController(title: "Warning", message: "This Coupon will disappear in 2 minutes, only proceed when sure", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
-            self.performSegue(withIdentifier: "toBarcode", sender: button)
+            self.performSegue(withIdentifier: "couponToFeedBack", sender: nil)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+//        self.present(alert, animated: true, completion: nil)
         
     }
 
-    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "couponsToWebView" {
-            if let vc = segue.destination as? WebViewVC {
-                if let button = sender as? UIButton {
-                    let cell = button.superview?.superview as! CouponCell
-                    vc.url = NSURL(string: cell.redirectURL)! as URL
-                } else {
-                    print("Error: Can't cast button in prepareForSegue")
-                }
-                
+        if segue.identifier == "couponToDigitalDetail" {
+            if let vc = segue.destination as? CouponDigitalVC {
+                vc.couponCode = selectedCouponCode
             }
         }
     }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

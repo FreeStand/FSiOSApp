@@ -79,6 +79,7 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 self.brandList.append(brand)
                 DispatchQueue.main.async {
+                    print("reload")
                     self.tableView.reloadData()
                     if self.isBarHidden {
                         self.isBarHidden = false
@@ -134,9 +135,11 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return 186
     }
     
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "homeToCoupon" {
-            if let vc = segue.destination as? CouponVC {
+            if let vc = segue.destination as? NewCouponVC {
                 vc.brand = selectedBrand
             }
         }
