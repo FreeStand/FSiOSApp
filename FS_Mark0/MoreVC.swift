@@ -26,11 +26,6 @@ class MoreVC: UITableViewController {
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -55,6 +50,14 @@ class MoreVC: UITableViewController {
             performSegue(withIdentifier: "moreToFAQs", sender: nil)
             break
         case 4:
+            var nsObject = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
+            let version = nsObject as! String
+            nsObject = Bundle.main.infoDictionary!["CFBundleVersion"]
+            let build = nsObject as! String
+            
+            if let url = URL(string: "mailto:aryan@freestand.in?subject=issue%20raised%20[iOS]&body=App%20version:%20\(version)%20(\(build))") {
+                UIApplication.shared.open(url)
+            }
             break
         case 5:
             logOut()
@@ -74,24 +77,4 @@ class MoreVC: UITableViewController {
         UserDefaults.standard.set(false, forKey: "isLoggedIn")
         UIApplication.shared.delegate?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
     }
-    
-    @IBAction func unwindToMain(segue:UIStoryboardSegue) {
-    }
-    
-    
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-//        if let vc = segue.destination as? ProfileVC {
-//            let backItem = UIBarButtonItem()
-//            backItem.title = "Back"
-//            navigationItem.backBarButtonItem = backItem
-//            navigationItem.title = "Profile"
-//        }
-        
-    }
-
 }

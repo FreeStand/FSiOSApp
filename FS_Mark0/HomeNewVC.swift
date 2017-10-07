@@ -19,6 +19,7 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var brandList = [Brand]()
     var selectedBrand: Brand!
     var isBarHidden = true
+    var questions: NSDictionary!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,13 +69,25 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 if let imgURL = dict["imgURL"] as? String {
                     brand.imgUrl = imgURL
                 } else {
-                    print("Error: Can't find/cast URL in Brand")
+                    print("Error: Can't find/cast URL in \(brand.name ?? "Brand")")
                 }
                 
                 if let totalDeals = dict["totalDeals"] as? Int {
                     brand.totalDeals = totalDeals
                 } else {
-                    print("Error: Can't find/cast totalDeals in Brand")
+                    print("Error: Can't find/cast totalDeals in \(brand.name ?? "Brand")")
+                }
+                
+                if let questions = dict["questions"] as? NSDictionary {
+                    brand.questions = questions
+                } else {
+                    print("Error: Can't find/cast questions in \(brand.name ?? "Brand")")
+                }
+                
+                if let coupons = dict["coupons"] as? [String: [String: Any]] {
+                    brand.coupons = coupons
+                } else {
+                    print("Error: Can't find/cast coupons in \(brand.name ?? "Brand")")
                 }
                 
                 self.brandList.append(brand)
@@ -140,7 +153,7 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "homeToCoupon" {
             if let vc = segue.destination as? NewCouponVC {
-                vc.brand = selectedBrand
+                vc.brand = self.selectedBrand
             }
         }
     }

@@ -2313,10 +2313,10 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
             </objects>
             <point key="canvasLocation" x="-2735.1999999999998" y="2477.8110944527739"/>
         </scene>
-        <!--Coupon FeedbackVC-->
+        <!--Coupon Feedback OnlineVC-->
         <scene sceneID="7mD-Cs-ARB">
             <objects>
-                <viewController id="oa9-K0-byY" customClass="CouponFeedbackVC" customModule="FS_Mark0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="oa9-K0-byY" customClass="CouponFeedbackOnlineVC" customModule="FS_Mark0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0an-cl-m3m"/>
                         <viewControllerLayoutGuide type="bottom" id="7Ou-fp-3xU"/>

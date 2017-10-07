@@ -11,4 +11,6 @@ class Brand: NSObject {
     var name: String?
     var imgUrl: String?
     var totalDeals: Int?
+    var questions: NSDictionary?
+    var coupons: [String: [String:Any]]?
 }

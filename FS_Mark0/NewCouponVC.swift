@@ -19,6 +19,7 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var brandName: String!
     var couponList = [Coupon]()
     var selectedCouponCode: String!
+    var coupons: [String:[String:Any]]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         brandImg.downloadedFrom(link: brand.imgUrl!)
         brandLbl.text = brand.name
         brandName = brand.name
+        coupons = brand.coupons
         tableView.dataSource = self
         tableView.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(infoBtnPressed), name: Notification.Name("myNotification"), object: nil)
@@ -39,8 +41,7 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         self.tableView.tableFooterView = UIView()
 
         navigationController?.navigationBar.titleTextAttributes = attrs
-        
-        getCoupons()
+        parseCoupons()
     }
 
     @objc func infoBtnPressed() {
@@ -64,36 +65,35 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         }
     }
     
-    func getCoupons() {
-        DataService.ds.REF_BRANDS.child(brand.name!).child("coupons").observe(.childAdded, with: { (snapshot) in
-            if let dict = snapshot.value as? NSDictionary {
-                let coupon = Coupon()
-                if let title = dict["title"] as? String {
-                    coupon.title = title
-                }
-                if let subtitle = dict["subtitle"] as? String {
-                    coupon.subtitle = subtitle
-                }
-                if let redeemURL = dict["redeemURL"] as? String {
-                    coupon.redirectURL = redeemURL
-                }
-                if let imgURL = dict["imgURL"] as? String {
-                    coupon.imgURL = imgURL
-                }
-                if let isDigital = dict["isDigital"] as? Bool {
-                    coupon.isDigital = isDigital
-                }
-                if let couponCode = dict["couponCode"] as? String {
-                    coupon.couponCode = couponCode
-                }
-                
-                self.couponList.append(coupon)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+    func parseCoupons() {
+        for (_ ,dict) in coupons {
+            let coupon = Coupon()
+            if let title = dict["title"] as? String {
+                coupon.title = title
             }
-        })
+            if let subtitle = dict["subtitle"] as? String {
+                coupon.subtitle = subtitle
+            }
+            if let redeemURL = dict["redeemURL"] as? String {
+                coupon.redirectURL = redeemURL
+            }
+            if let imgURL = dict["imgURL"] as? String {
+                coupon.imgURL = imgURL
+            }
+            if let isDigital = dict["isDigital"] as? Bool {
+                coupon.isDigital = isDigital
+            }
+            if let couponCode = dict["couponCode"] as? String {
+                coupon.couponCode = couponCode
+            }
+            
+            self.couponList.append(coupon)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected")
@@ -143,37 +143,28 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     func makeSegue() {
-        self.performSegue(withIdentifier: "couponToFeedBack", sender: nil)
-
         let alert = UIAlertController(title: "Warning", message: "This Coupon will disappear in 2 minutes, only proceed when sure", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
             self.performSegue(withIdentifier: "couponToFeedBack", sender: nil)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
-//        self.present(alert, animated: true, completion: nil)
-        
+        self.present(alert, animated: true, completion: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepareForSegue")
+        
         if segue.identifier == "couponToDigitalDetail" {
             if let vc = segue.destination as? CouponDigitalVC {
                 vc.couponCode = selectedCouponCode
             }
         }
+        
+        if segue.identifier == "couponToFeedBack" {
+            if let vc = segue.destination as? CouponFeedbackOnlineVC {
+                vc.brand = self.brand
+            }
+        }
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
