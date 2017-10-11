@@ -155,7 +155,9 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("BrandCell")
         selectedBrand = brandList[indexPath.row]
-        performSegue(withIdentifier: "homeToCoupon", sender: nil)
+        if selectedBrand.coupons != nil {
+            performSegue(withIdentifier: "homeToCoupon", sender: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

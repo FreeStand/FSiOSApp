@@ -10,8 +10,10 @@ import UIKit
 import SwiftyGif
 
 class CouponDetailVC: UIViewController {
+    @IBOutlet weak var codeImg: UIImageView!
     
-    
+    var couponCode: String!
+
     let timeLeftShapeLayer = CAShapeLayer()
     let bgShapeLayer = CAShapeLayer()
     var timeLeft: TimeInterval = 10
@@ -61,7 +63,7 @@ class CouponDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        codeImg.downloadedFrom(link: couponCode)
         view.backgroundColor = UIColor(white: 0.94, alpha: 1.0)
         drawBgShape()
         drawTimeLeftShape()

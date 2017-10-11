@@ -16,6 +16,7 @@ class CouponFeedbackOnlineVC: UIViewController {
     var brand: Brand!
     var quesDict: NSDictionary!
     var totalQuestions: Int!
+    var couponCode: String!
     
     
     @IBOutlet weak var countView: UIView!
@@ -57,6 +58,8 @@ class CouponFeedbackOnlineVC: UIViewController {
         totalQuestions = quesDict.count
 
         countViewLabel.text = "1/\(totalQuestions!)"
+        print(totalQuestions)
+        progressView.progress = 1.0 / Float(totalQuestions)
         
         selectedAnswer = "1"
         option1?.alternateButton = [option2!, option3!, option4!, option5!]
@@ -92,6 +95,7 @@ class CouponFeedbackOnlineVC: UIViewController {
         option4Label.text = dict?["option4"]
         option5Label.text = dict?["option5"]
         countViewLabel.text = "\(iterator - 1)/\(totalQuestions!)"
+        progressView.progress = Float(iterator - 1) / Float(totalQuestions)
     }
     
     func changeQuestion() {
@@ -107,6 +111,7 @@ class CouponFeedbackOnlineVC: UIViewController {
                 self.updateQuestion(ques: ques)
             }, completion: nil)
             countViewLabel.text = "\(totalQuestions!)/\(totalQuestions!)"
+            progressView.progress = 1.0
             self.nextBtn.setTitle("SUBMIT", for: .normal)
         }
     }
@@ -148,6 +153,14 @@ class CouponFeedbackOnlineVC: UIViewController {
     @IBAction func button5pressed(_ sender: Any) {
         selectedAnswer = "5"
         option5.unselectAlternateButtons()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toBarCode" {
+            if let vc = segue.destination as? CouponDetailVC {
+                vc.couponCode = self.couponCode
+            }
+        }
     }
     
 }

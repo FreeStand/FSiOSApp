@@ -86,6 +86,8 @@ class FeedbackVC: UIViewController {
         option4Label.text = dict["option4"]
         option5Label.text = dict["option5"]
         countViewLabel.text = "1/\(totalQuestions!)"
+        progressView.progress = 1 / Float(totalQuestions)
+
     }
     
     override func viewDidLoad() {
@@ -129,6 +131,8 @@ class FeedbackVC: UIViewController {
         option4Label.text = dict["option4"]
         option5Label.text = dict["option5"]
         countViewLabel.text = "\(iterator - 1)/\(totalQuestions!)"
+        progressView.progress = Float(iterator - 1) / Float(totalQuestions)
+
     }
     
     func changeQuestion() {
@@ -144,6 +148,7 @@ class FeedbackVC: UIViewController {
                 self.updateQuestion(ques: ques)
             }, completion: nil)
             countViewLabel.text = "\(totalQuestions!)/\(totalQuestions!)"
+            progressView.progress = 1.0
             self.nextBtn.setTitle("SUBMIT", for: .normal)
         }
     }

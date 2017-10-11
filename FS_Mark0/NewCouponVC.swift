@@ -105,6 +105,7 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             print("digital")
             makeDigitalSegue()
         } else {
+            selectedCouponCode = coupon.couponCode
             print("offline")
             makeSegue()
         }
@@ -163,6 +164,7 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         if segue.identifier == "couponToFeedBack" {
             if let vc = segue.destination as? CouponFeedbackOnlineVC {
                 vc.brand = self.brand
+                vc.couponCode = selectedCouponCode
             }
         }
     }
