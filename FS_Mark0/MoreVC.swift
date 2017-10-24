@@ -24,6 +24,13 @@ class MoreVC: UITableViewController {
         navigationController?.navigationBar.titleTextAttributes = attrs
         self.tableView.tableFooterView = UIView()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissNotif), name: Notification.Name("GoogleSignInVCNotification"), object: nil)
+        
+    }
+    
+    @objc func dismissNotif() {
+        performSegue(withIdentifier: "moreToInvite", sender: nil)
+        UserDefaults.standard.set("true", forKey: "isGoogleSignedIn")
     }
 
     // MARK: - Table view data source
@@ -35,7 +42,7 @@ class MoreVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 6
+        return 7
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -46,10 +53,13 @@ class MoreVC: UITableViewController {
         case 2:
             performSegue(withIdentifier: "moreToOrders", sender: nil)
             break
-        case 3:
+        case 4:
             performSegue(withIdentifier: "moreToFAQs", sender: nil)
             break
-        case 4:
+        case 3:
+            performSegue(withIdentifier: "moreToInvite", sender: nil)
+            break
+        case 5:
             var nsObject = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
             let version = nsObject as! String
             nsObject = Bundle.main.infoDictionary!["CFBundleVersion"]
@@ -59,7 +69,7 @@ class MoreVC: UITableViewController {
                 UIApplication.shared.open(url)
             }
             break
-        case 5:
+        case 6:
             logOut()
             break
         default:
@@ -77,4 +87,5 @@ class MoreVC: UITableViewController {
         UserDefaults.standard.set(false, forKey: "isLoggedIn")
         UIApplication.shared.delegate?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
     }
+    
 }

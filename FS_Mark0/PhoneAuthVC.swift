@@ -28,10 +28,11 @@ class PhoneAuthVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         activityIndicator.isHidden = true
-        let border = CALayer()
-        let width = CGFloat(2.0)
         textField.becomeFirstResponder()
         SendCodeBtn.alpha = 0.5
+
+        let border = CALayer()
+        let width = CGFloat(2.0)
         border.borderColor = UIColor().HexToColor(hexString: "#3A7CFF", alpha: 1.0).cgColor
         border.frame = CGRect(x: 0, y: textField.frame.size.height - width, width:  textField.frame.size.width, height: textField.frame.size.height)
         
@@ -75,19 +76,6 @@ class PhoneAuthVC: UIViewController, UITextFieldDelegate {
                 self.performSegue(withIdentifier: "code", sender: nil)
             }
         }
-        
-//        PhoneAuthProvider.provider().verifyPhoneNumber(self.phoneNumber) { (verificationID, error) in
-//            self.activityIndicator.stopAnimating()
-//            self.activityIndicator.isHidden = true
-//
-//            if error != nil {
-//                print("Error: \(error.debugDescription)")
-//            } else {
-//                UserDefaults.standard.set(verificationID, forKey: "authVID")
-//                self.performSegue(withIdentifier: "code", sender: nil)
-//            }
-//        }
-        
     }
     
     // MARK: TextField Delegates

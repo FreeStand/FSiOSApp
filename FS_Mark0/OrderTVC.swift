@@ -43,16 +43,7 @@ class OrderTVC: UITableViewController {
                 } else {
                     print("Error: Can't retrieve partnerID")
                 }
-//                if let time = dict["time"] as? String {
-//                    order.time = time
-//                } else {
-//                    print("Error: Can't retrieve time")
-//                }
-//                if let uID = dict["uID"] as? String {
-//                    order.uID = uID
-//                } else {
-//                    print("Error: Can't retrieve uID")
-//                }
+
 
                 self.orderList.append(order)
                 DispatchQueue.main.async {

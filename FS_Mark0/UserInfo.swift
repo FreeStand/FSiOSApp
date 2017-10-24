@@ -19,7 +19,11 @@ class UserInfo {
     private var _PHONE = Auth.auth().currentUser?.phoneNumber ?? "9876543210"
     private var _GENDER = UserDefaults.standard.string(forKey: "userGender") ?? "Unknown"
     private var _DOB = UserDefaults.standard.string(forKey: "userDob") ?? "Below 18"
-
+    private var _ISGOOGLESIGNEDIN = UserDefaults.standard.string(forKey: "isGoogleSignedIn") ?? "false"
+    
+    var isGoogleSignedIn: String {
+        return _ISGOOGLESIGNEDIN
+    }
 
     var name: String {
         return _NAME

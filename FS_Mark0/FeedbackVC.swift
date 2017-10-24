@@ -162,7 +162,7 @@ class FeedbackVC: UIViewController {
         if sender.title(for: .normal) == "NEXT" {
             changeQuestion()
         } else if sender.title(for: .normal) == "SUBMIT" {
-            performSegue(withIdentifier: "FeedbackToThankyou", sender: self)
+            performSegue(withIdentifier: "initialFeedbackToQR", sender: self)
             print(selectedAnswers)
         }
     }

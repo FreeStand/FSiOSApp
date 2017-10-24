@@ -7,10 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import SwiftKeychainWrapper
-import FBSDKLoginKit
-
 
 class ProfileVC: UIViewController {
     

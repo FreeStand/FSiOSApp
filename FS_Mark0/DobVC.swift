@@ -15,9 +15,6 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
     @IBOutlet weak var ageTextField: UITextField!
     var gender: String!
     
-    enum Notifications: String, NotificationName {
-        case phoneAuthVCNotification
-    }
     
     override func awakeFromNib() {
         self.view.layoutIfNeeded()
@@ -104,11 +101,12 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
         DataService.ds.updateFirebaseDBUserWithUserData(userData: [userData as! Dictionary<String, String> as Dictionary<String, AnyObject>])
         
         
-        let delegateTemp = UIApplication.shared.delegate
-        self.dismiss(animated: true, completion: nil)
-        NotificationCenter.default.post(name: Notifications.phoneAuthVCNotification.name, object: nil)
-        delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-
+//        let delegateTemp = UIApplication.shared.delegate
+//        self.dismiss(animated: true, completion: nil)
+//        NotificationCenter.default.post(name: Notifications.phoneAuthVCNotification.name, object: nil)
+//        delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+        self.performSegue(withIdentifier: "dobToFeedback", sender: nil)
+        
     }
     
 }

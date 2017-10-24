@@ -21,7 +21,8 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var selectedBrand: Brand!
     var isBarHidden = true
     var questions: NSDictionary!
-    
+    var iterator = 1
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,8 +44,9 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         genderAgeCheck()
     }
     
+    
     func genderAgeCheck() {
-        if let _ = UserDefaults.standard.string(forKey: "userGender") {
+        if let _ = UserDefaults.standard.string(forKey: "userGender"), let _ = UserDefaults.standard.string(forKey: "userDob"), let _ = UserDefaults.standard.string(forKey: "isGoogleSignedIn") {
         } else {
             DataService.ds.REF_USER_CURRENT.observe(.value, with: { (snapshot) in
                 if let dict = snapshot.value as? NSDictionary {
@@ -53,6 +55,9 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     }
                     if let ageGroup = dict["dob"] as? String {
                         UserDefaults.standard.set(ageGroup, forKey: "userDob")
+                    }
+                    if let isGoogleSignedIn = dict["isGoogleSignedIn"] as? String {
+                        UserDefaults.standard.set(isGoogleSignedIn, forKey: "isGoogleSignedIn")
                     }
                 }
             })
@@ -89,7 +94,6 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 self.brandList.append(brand)
                 DispatchQueue.main.async {
-                    print("reload")
                     self.tableView.reloadData()
                     if self.isBarHidden {
                         self.topImgView.downloadedFrom(link: self.imgList[0])
@@ -106,7 +110,9 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    var iterator = 1
+    @IBAction func moreSamplesBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: "homeToMoreSamples", sender: nil)
+    }
 
     @objc func animateImg() {
         if iterator < brandList.count {
@@ -170,6 +176,10 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if segue.identifier == "homeToCoupon" {
             if let vc = segue.destination as? NewCouponVC {
                 vc.brand = self.selectedBrand
+            }
+        } else if segue.identifier == "homeToMoreSamples" {
+            if let vc = segue.destination as? MoreSamplesVC {
+                vc.brandList = self.brandList
             }
         }
     }

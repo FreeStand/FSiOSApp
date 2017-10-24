@@ -23,6 +23,11 @@
 		9220FE7F1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */; };
 		922785621F476C450066F700 /* OrderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922785611F476C450066F700 /* OrderTVC.swift */; };
 		922785681F4921A20066F700 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922785671F4921A20066F700 /* Coupon.swift */; };
+		92390BA11F94A01C00CE0B78 /* GoogleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92390BA01F94A01C00CE0B78 /* GoogleVC.swift */; };
+		92390BA31F94A41100CE0B78 /* InviteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92390BA21F94A41100CE0B78 /* InviteVC.swift */; };
+		923D7CA41F9D8CCE0081F3C2 /* InitialQRVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923D7CA31F9D8CCE0081F3C2 /* InitialQRVC.swift */; };
+		923D7CA61F9F10250081F3C2 /* AddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923D7CA51F9F10250081F3C2 /* AddressVC.swift */; };
+		923D7CA81F9F23FD0081F3C2 /* BottomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923D7CA71F9F23FD0081F3C2 /* BottomTextField.swift */; };
 		92642CA61F88C2B7002FCF6E /* NewCouponVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92642CA51F88C2B7002FCF6E /* NewCouponVC.swift */; };
 		92642CA81F88CB70002FCF6E /* CouponDigitalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92642CA71F88CB70002FCF6E /* CouponDigitalVC.swift */; };
 		92642CAA1F892E1B002FCF6E /* CouponFeedbackOnlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92642CA91F892E1B002FCF6E /* CouponFeedbackOnlineVC.swift */; };
@@ -34,11 +39,9 @@
 		9298BD481F7ADFA50048ABFA /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9298BD471F7ADFA50048ABFA /* Brand.swift */; };
 		9298BD4A1F7AE0430048ABFA /* BrandCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9298BD491F7AE0430048ABFA /* BrandCell.swift */; };
 		92AA3DF81F2D247D00A6613E /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DF71F2D247D00A6613E /* MoreVC.swift */; };
-		92AA3DFA1F2D2BFC00A6613E /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DF91F2D2BFC00A6613E /* SettingsVC.swift */; };
 		92AA3DFC1F2D32C800A6613E /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */; };
 		92ABFF191F1C9F00004A797C /* WebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ABFF181F1C9F00004A797C /* WebViewVC.swift */; };
 		92AF006A1F35B4880061E243 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF00691F35B4880061E243 /* Notification.swift */; };
-		92AF006C1F35ED0C0061E243 /* FAQVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF006B1F35ED0C0061E243 /* FAQVC.swift */; };
 		92AF00701F3734420061E243 /* TabBarTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF006F1F3734410061E243 /* TabBarTBC.swift */; };
 		92B14B421F34880A005C45FE /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B14B411F34880A005C45FE /* TabBar.swift */; };
 		92B14B441F349134005C45FE /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B14B431F349134005C45FE /* CouponCell.swift */; };
@@ -52,6 +55,10 @@
 		92DE41C11F16920A00535ACE /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE41C01F16920A00535ACE /* UserInfo.swift */; };
 		92EA3E211F2CB71F00060424 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EA3E201F2CB71F00060424 /* UIView.swift */; };
 		92F490B61F38ECB10096521D /* ThankYouVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F490B51F38ECB10096521D /* ThankYouVC.swift */; };
+		92FD4CE01F93D2D400F4F1FD /* MoreSamplesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CDF1F93D2D400F4F1FD /* MoreSamplesVC.swift */; };
+		92FD4CE21F93D50A00F4F1FD /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE11F93D50A00F4F1FD /* FAQ.swift */; };
+		92FD4CE41F93D54900F4F1FD /* FAQCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE31F93D54900F4F1FD /* FAQCell.swift */; };
+		92FD4CE61F93DBF800F4F1FD /* FaqTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +80,11 @@
 		9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneAuthVerificationVC.swift; sourceTree = "<group>"; };
 		922785611F476C450066F700 /* OrderTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTVC.swift; sourceTree = "<group>"; };
 		922785671F4921A20066F700 /* Coupon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coupon.swift; sourceTree = "<group>"; };
+		92390BA01F94A01C00CE0B78 /* GoogleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleVC.swift; sourceTree = "<group>"; };
+		92390BA21F94A41100CE0B78 /* InviteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteVC.swift; sourceTree = "<group>"; };
+		923D7CA31F9D8CCE0081F3C2 /* InitialQRVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialQRVC.swift; sourceTree = "<group>"; };
+		923D7CA51F9F10250081F3C2 /* AddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressVC.swift; sourceTree = "<group>"; };
+		923D7CA71F9F23FD0081F3C2 /* BottomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTextField.swift; sourceTree = "<group>"; };
 		92642CA51F88C2B7002FCF6E /* NewCouponVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCouponVC.swift; sourceTree = "<group>"; };
 		92642CA71F88CB70002FCF6E /* CouponDigitalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponDigitalVC.swift; sourceTree = "<group>"; };
 		92642CA91F892E1B002FCF6E /* CouponFeedbackOnlineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponFeedbackOnlineVC.swift; sourceTree = "<group>"; };
@@ -86,12 +98,10 @@
 		9298BD471F7ADFA50048ABFA /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		9298BD491F7AE0430048ABFA /* BrandCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCell.swift; sourceTree = "<group>"; };
 		92AA3DF71F2D247D00A6613E /* MoreVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
-		92AA3DF91F2D2BFC00A6613E /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		92ABFF0A1F1B7E79004A797C /* SurveyMonkeyiOSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SurveyMonkeyiOSSDK.framework; path = "Pods/surveymonkey-ios-sdk/SurveyMonkeyiOSSDK.framework"; sourceTree = "<group>"; };
 		92ABFF181F1C9F00004A797C /* WebViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
 		92AF00691F35B4880061E243 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		92AF006B1F35ED0C0061E243 /* FAQVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQVC.swift; sourceTree = "<group>"; };
 		92AF006F1F3734410061E243 /* TabBarTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarTBC.swift; sourceTree = "<group>"; };
 		92B14B411F34880A005C45FE /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		92B14B431F349134005C45FE /* CouponCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponCell.swift; sourceTree = "<group>"; };
@@ -105,6 +115,10 @@
 		92DE41C01F16920A00535ACE /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		92EA3E201F2CB71F00060424 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		92F490B51F38ECB10096521D /* ThankYouVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouVC.swift; sourceTree = "<group>"; };
+		92FD4CDF1F93D2D400F4F1FD /* MoreSamplesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreSamplesVC.swift; sourceTree = "<group>"; };
+		92FD4CE11F93D50A00F4F1FD /* FAQ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
+		92FD4CE31F93D54900F4F1FD /* FAQCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQCell.swift; sourceTree = "<group>"; };
+		92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqTVC.swift; sourceTree = "<group>"; };
 		A6577A906A0B1F3A3F3C222B /* Pods-FS_Mark0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FS_Mark0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0.debug.xcconfig"; sourceTree = "<group>"; };
 		A6655B9E9A9DB8CC9CECBCA7 /* Pods-FS_Mark0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FS_Mark0.release.xcconfig"; path = "Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0.release.xcconfig"; sourceTree = "<group>"; };
 		F49F4495C781C9155B379118 /* Pods_FS_Mark0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FS_Mark0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,17 +186,19 @@
 		92125DDF1F03CD1800826AC1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9215537A1F87642700B85434 /* Coupon */,
 				922785651F48B0D10066F700 /* Login/SignUp */,
-				92AF006F1F3734410061E243 /* TabBarTBC.swift */,
 				922785661F48B0EF0066F700 /* MainTabBar */,
-				92AA3DF91F2D2BFC00A6613E /* SettingsVC.swift */,
+				9215537A1F87642700B85434 /* Coupon */,
+				92AF006F1F3734410061E243 /* TabBarTBC.swift */,
 				92BCD53F1F554EEA00284E3B /* FeedbackVC.swift */,
 				92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */,
-				92AF006B1F35ED0C0061E243 /* FAQVC.swift */,
 				92ABFF181F1C9F00004A797C /* WebViewVC.swift */,
 				92F490B51F38ECB10096521D /* ThankYouVC.swift */,
 				922785611F476C450066F700 /* OrderTVC.swift */,
+				92FD4CDF1F93D2D400F4F1FD /* MoreSamplesVC.swift */,
+				92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */,
+				92390BA21F94A41100CE0B78 /* InviteVC.swift */,
+				923D7CA51F9F10250081F3C2 /* AddressVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -216,6 +232,8 @@
 				920BF1CE1F3F6F46007E6DC8 /* OrderCell.swift */,
 				92BCD5371F4E0A8A00284E3B /* AlertCell.swift */,
 				9298BD491F7AE0430048ABFA /* BrandCell.swift */,
+				92FD4CE31F93D54900F4F1FD /* FAQCell.swift */,
+				923D7CA71F9F23FD0081F3C2 /* BottomTextField.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -227,6 +245,7 @@
 				920BF1CC1F3F641A007E6DC8 /* Order.swift */,
 				92BCD5351F4E0A4C00284E3B /* Alert.swift */,
 				9298BD471F7ADFA50048ABFA /* Brand.swift */,
+				92FD4CE11F93D50A00F4F1FD /* FAQ.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -238,6 +257,8 @@
 				9220FE7C1F0C4FE600B0D402 /* PhoneAuthVC.swift */,
 				9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */,
 				92984C1E1F62C2C6000FF983 /* DobVC.swift */,
+				92390BA01F94A01C00CE0B78 /* GoogleVC.swift */,
+				923D7CA31F9D8CCE0081F3C2 /* InitialQRVC.swift */,
 			);
 			name = Login/SignUp;
 			sourceTree = "<group>";
@@ -376,9 +397,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0-resources.sh",
+				"${PODS_ROOT}/FirebaseInvites/Resources/GINInviteResources.bundle",
+				"${PODS_ROOT}/FirebaseInvites/Resources/GPPACLPickerResources.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -396,7 +422,9 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
@@ -412,7 +440,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
@@ -452,6 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92FD4CE01F93D2D400F4F1FD /* MoreSamplesVC.swift in Sources */,
 				92BCD53E1F5544C400284E3B /* UIColor+FIAdditions.swift in Sources */,
 				9298BD481F7ADFA50048ABFA /* Brand.swift in Sources */,
 				92EA3E211F2CB71F00060424 /* UIView.swift in Sources */,
@@ -459,6 +490,8 @@
 				9220FE7F1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift in Sources */,
 				92125DC31F010BAC00826AC1 /* AppDelegate.swift in Sources */,
 				92AA3DFC1F2D32C800A6613E /* ProfileVC.swift in Sources */,
+				923D7CA41F9D8CCE0081F3C2 /* InitialQRVC.swift in Sources */,
+				92FD4CE41F93D54900F4F1FD /* FAQCell.swift in Sources */,
 				92680D3C1F862A39007E3C50 /* Int+degreesToRadians.swift in Sources */,
 				9220FE7D1F0C4FE600B0D402 /* PhoneAuthVC.swift in Sources */,
 				92AA3DF81F2D247D00A6613E /* MoreVC.swift in Sources */,
@@ -472,7 +505,7 @@
 				92BCD5421F55620900284E3B /* RadioCheck.swift in Sources */,
 				92125DE21F03CD5600826AC1 /* DataService.swift in Sources */,
 				9298BD4A1F7AE0430048ABFA /* BrandCell.swift in Sources */,
-				92AF006C1F35ED0C0061E243 /* FAQVC.swift in Sources */,
+				923D7CA81F9F23FD0081F3C2 /* BottomTextField.swift in Sources */,
 				92984C211F645372000FF983 /* HomeNewVC.swift in Sources */,
 				92125DDE1F026C1000826AC1 /* UserData.swift in Sources */,
 				92B14B441F349134005C45FE /* CouponCell.swift in Sources */,
@@ -481,15 +514,19 @@
 				92AF00701F3734420061E243 /* TabBarTBC.swift in Sources */,
 				92125DD51F012A9700826AC1 /* QRCodeVC.swift in Sources */,
 				92BCF4E71F30BF470047EB74 /* AlertVC.swift in Sources */,
+				92FD4CE61F93DBF800F4F1FD /* FaqTVC.swift in Sources */,
 				920BF1CF1F3F6F46007E6DC8 /* OrderCell.swift in Sources */,
+				92390BA31F94A41100CE0B78 /* InviteVC.swift in Sources */,
+				92FD4CE21F93D50A00F4F1FD /* FAQ.swift in Sources */,
 				92AF006A1F35B4880061E243 /* Notification.swift in Sources */,
+				92390BA11F94A01C00CE0B78 /* GoogleVC.swift in Sources */,
+				923D7CA61F9F10250081F3C2 /* AddressVC.swift in Sources */,
 				92680D321F84D2CB007E3C50 /* CouponDetailVC.swift in Sources */,
 				92BCD5361F4E0A4C00284E3B /* Alert.swift in Sources */,
 				92ABFF191F1C9F00004A797C /* WebViewVC.swift in Sources */,
 				92642CA81F88CB70002FCF6E /* CouponDigitalVC.swift in Sources */,
 				92C2F1F91F11818E004C79DC /* UIColor.swift in Sources */,
 				92642CAA1F892E1B002FCF6E /* CouponFeedbackOnlineVC.swift in Sources */,
-				92AA3DFA1F2D2BFC00A6613E /* SettingsVC.swift in Sources */,
 				920BF1CD1F3F641A007E6DC8 /* Order.swift in Sources */,
 				922785681F4921A20066F700 /* Coupon.swift in Sources */,
 			);

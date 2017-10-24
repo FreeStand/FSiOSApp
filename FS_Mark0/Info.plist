@@ -88,5 +88,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSContactsUsageDescription</key>
+	<string>This enables FreeStand to share the app with friends.</string>
 </dict>
 </plist>

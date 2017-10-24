@@ -9,6 +9,12 @@
 import UIKit
 
 class ThankYouVC: UIViewController {
+    
+    enum Notifications: String, NotificationName {
+        case phoneAuthVCNotification
+    }
+    
+    
     @IBOutlet weak var doneBtn: UIButton!
     @IBOutlet weak var imgView: UIImageView!
    
@@ -27,6 +33,12 @@ class ThankYouVC: UIViewController {
 
     @IBAction func tyBtnPressed(_ sender: Any?) {
         print("pressed")
-        performSegue(withIdentifier: "ThankYouUnwind", sender: self)
+        
+        let delegateTemp = UIApplication.shared.delegate
+        self.dismiss(animated: true, completion: nil)
+        NotificationCenter.default.post(name: Notifications.phoneAuthVCNotification.name, object: nil)
+        delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+//        self.performSegue(withIdentifier: "dobToFeedback", sender: nil)
+
     }
 }

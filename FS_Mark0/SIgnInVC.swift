@@ -27,6 +27,7 @@ class SIgnInVC: UIViewController {
     @objc func dismissNotifReceived() {
         self.dismiss(animated: true, completion: nil)
     }
+
     
     @IBAction func facebookBtnTapped(_ sender: Any) {
         fbBtn.isHidden = true
