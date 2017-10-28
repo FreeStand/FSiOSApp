@@ -15,6 +15,7 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var topImgView: UIImageView!
+    @IBOutlet weak var moreSamplesBtn: UIButton!
     
     var brandList = [Brand]()
     var imgList = [String]()
@@ -42,11 +43,17 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.tableView.tableFooterView = UIView()
         getBrands()
         genderAgeCheck()
+        let hasAdress = UserDefaults.standard.bool(forKey: "hasAdress")
+        if hasAdress{
+            moreSamplesBtn.isEnabled = false
+            moreSamplesBtn.alpha = 0.5
+            
+        }
     }
     
     
     func genderAgeCheck() {
-        if let _ = UserDefaults.standard.string(forKey: "userGender"), let _ = UserDefaults.standard.string(forKey: "userDob"), let _ = UserDefaults.standard.string(forKey: "isGoogleSignedIn") {
+        if let _ = UserDefaults.standard.string(forKey: "userGender"), let _ = UserDefaults.standard.string(forKey: "userDob"), let _ = UserDefaults.standard.string(forKey: "hasAddress"){
         } else {
             DataService.ds.REF_USER_CURRENT.observe(.value, with: { (snapshot) in
                 if let dict = snapshot.value as? NSDictionary {
@@ -56,8 +63,10 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     if let ageGroup = dict["dob"] as? String {
                         UserDefaults.standard.set(ageGroup, forKey: "userDob")
                     }
-                    if let isGoogleSignedIn = dict["isGoogleSignedIn"] as? String {
-                        UserDefaults.standard.set(isGoogleSignedIn, forKey: "isGoogleSignedIn")
+                    if let _ = dict["address"] as? String {
+                        UserDefaults.standard.set(true, forKey: "hasAdress")
+                        self.moreSamplesBtn.isEnabled = false
+                        self.moreSamplesBtn.alpha = 0.5
                     }
                 }
             })

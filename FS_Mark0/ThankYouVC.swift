@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class ThankYouVC: UIViewController {
     
@@ -14,22 +16,48 @@ class ThankYouVC: UIViewController {
         case phoneAuthVCNotification
     }
     
-    
+    @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var doneBtn: UIButton!
-    @IBOutlet weak var imgView: UIImageView!
+    var player : AVPlayer!
+    var avPlayerLayer : AVPlayerLayer!
+
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        imgView.clipsToBounds = true
-        imgView.layer.cornerRadius = 8
+        videoView.layer.cornerRadius = 8
         doneBtn.layer.cornerRadius = 18
+        
+        
+        playVideo()
+//        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying),name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: nil, using: { (_) in
+            DispatchQueue.main.async {
+                self.player?.seek(to: CMTimeMake(5, 10))
+                self.player?.play()
+            }
+        })
+
+    }
+    
+    override func viewDidLayoutSubviews() {
+        avPlayerLayer.frame = videoView.layer.bounds
+    }
+    
+    func playVideo() {
+        print("here")
+        guard let path = Bundle.main.path(forResource: "Animation", ofType:"mp4") else {
+            debugPrint("Animation.mp4 not found")
+            return
+        }
+        player = AVPlayer(url: URL(fileURLWithPath: path))
+        avPlayerLayer = AVPlayerLayer(player: player)
+        avPlayerLayer.videoGravity = AVLayerVideoGravity.resize
+        
+        videoView.layer.addSublayer(avPlayerLayer)
+        player.play()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-//        let url = "https://media.giphy.com/media/l1J9OZpaWVfmDs27S/giphy.gif"
-//        let gif = UIImage.gifImageWithURL(gifUrl: url)
-//        imgView.image = gif
-    }
 
     @IBAction func tyBtnPressed(_ sender: Any?) {
         print("pressed")

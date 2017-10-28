@@ -95,6 +95,6 @@ class OrderTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 276
+        return 240
     }
 }

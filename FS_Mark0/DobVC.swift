@@ -15,7 +15,6 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
     @IBOutlet weak var ageTextField: UITextField!
     var gender: String!
     
-    
     override func awakeFromNib() {
         self.view.layoutIfNeeded()
         male.isSelected = true
@@ -57,7 +56,6 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
         toolBar.isUserInteractionEnabled = true
         ageTextField.inputAccessoryView = toolBar
 
-        
     }
 
     @objc func doneClick() {
@@ -82,7 +80,6 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         ageTextField.text = agePickerValues[row]
-//        self.view.endEditing(true)
     }
     @IBAction func maleRadioPressed(_ sender: Any) {
         gender = "Male"
@@ -100,13 +97,7 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
         let userData = ["dob":ageTextField.text, "gender":gender]
         DataService.ds.updateFirebaseDBUserWithUserData(userData: [userData as! Dictionary<String, String> as Dictionary<String, AnyObject>])
         
-        
-//        let delegateTemp = UIApplication.shared.delegate
-//        self.dismiss(animated: true, completion: nil)
-//        NotificationCenter.default.post(name: Notifications.phoneAuthVCNotification.name, object: nil)
-//        delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         self.performSegue(withIdentifier: "dobToFeedback", sender: nil)
         
     }
-    
 }

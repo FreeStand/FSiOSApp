@@ -117,7 +117,8 @@ class CouponFeedbackOnlineVC: UIViewController {
     }
     
     func updateDB() {
-        
+        DataService.ds.REF_USER_CURRENT.child("feedback").child("brands").child(brand.name!).child("coupon1").setValue(selectedAnswers)
+
     }
     
     @IBAction func nextBtnpressed(_ sender: UIButton) {
@@ -125,7 +126,8 @@ class CouponFeedbackOnlineVC: UIViewController {
         if sender.title(for: .normal) == "NEXT" {
             changeQuestion()
         } else if sender.title(for: .normal) == "SUBMIT" {
-            performSegue(withIdentifier: "toBarCode", sender: self)
+            updateDB()
+            performSegue(withIdentifier: "toCouponCode", sender: self)
             print(selectedAnswers)
         }
     }
@@ -156,8 +158,8 @@ class CouponFeedbackOnlineVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toBarCode" {
-            if let vc = segue.destination as? CouponDetailVC {
+        if segue.identifier == "toCouponCode" {
+            if let vc = segue.destination as? CouponDigitalVC {
                 vc.couponCode = self.couponCode
             }
         }

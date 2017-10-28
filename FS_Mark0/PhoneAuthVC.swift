@@ -44,8 +44,14 @@ class PhoneAuthVC: UIViewController, UITextFieldDelegate {
         
         textField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         textField.delegate = self
-        
-//        NotificationCenter.default.addObserver(self, selector: #selector(dismissNotifReceived), name: Notification.Name("phoneAuthVCNotification"), object: nil)
+        DispatchQueue.main.async {
+            DataService.ds.REF_QUESTIONS.observeSingleEvent(of: .value, with: { (snapshot) in
+                if let dict = snapshot.value as? NSDictionary {
+                    UserDefaults.standard.set(dict, forKey: "quesDict")
+                }
+            })
+
+        }
         
     }
     

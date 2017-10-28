@@ -14,7 +14,6 @@ class CouponCell: UITableViewCell {
         case myNotification
     }
 
-    @IBOutlet weak var redeemBtn: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var img: UIImageView!
@@ -30,11 +29,6 @@ class CouponCell: UITableViewCell {
         redirectURL = coupon.redirectURL
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        redeemBtn.layer.cornerRadius = 3.0
-    }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

@@ -103,7 +103,7 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         if coupon.isDigital == true {
             selectedCouponCode = coupon.couponCode
             print("digital")
-            makeDigitalSegue()
+            makeSegue()
         } else {
             selectedCouponCode = coupon.couponCode
             print("offline")
@@ -144,12 +144,13 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     func makeSegue() {
-        let alert = UIAlertController(title: "Warning", message: "This Coupon will disappear in 2 minutes, only proceed when sure", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
-            self.performSegue(withIdentifier: "couponToFeedBack", sender: nil)
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "couponToFeedBack", sender: nil)
+//
+//        let alert = UIAlertController(title: "Warning", message: "This Coupon will disappear in 2 minutes, only proceed when sure", preferredStyle: UIAlertControllerStyle.alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
+//        }))
+//        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+//        self.present(alert, animated: true, completion: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

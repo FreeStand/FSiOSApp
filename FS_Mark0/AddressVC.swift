@@ -57,11 +57,11 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         pincode.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
 
         
-        al1.delegate = self
-        al2.delegate = self
-        city.delegate = self
+//        al1.delegate = self
+//        al2.delegate = self
+//        city.delegate = self
         pincode.delegate = self
-        state.delegate = self
+//        state.delegate = self
 
         statePicker = UIPickerView()
         statePicker.delegate = self
@@ -139,10 +139,9 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     }
     
     @IBAction func submitBtnPressed(_ sender: Any) {
-        print(al1.text ?? " ")
-        print(al2.text ?? " ")
-        print(city.text ?? " ")
-        print(pincode.text ?? " ")
-        print(state.text ?? " ")
+        DataService.ds.REF_USER_CURRENT.updateChildValues(["address": "\(al1.text!), \(al2.text!), \(city.text!), \(pincode.text!), \(state.text!) "])
+        performSegue(withIdentifier: "addressToThankYou", sender: nil)
+        UserDefaults.standard.set(true, forKey: "hasAddress")
+        
     }
 }

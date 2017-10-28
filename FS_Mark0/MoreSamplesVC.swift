@@ -95,10 +95,13 @@ class MoreSamplesVC: UIViewController {
     }
     
     func updateDB() {
-        
+        DataService.ds.REF_USER_CURRENT.child("feedback").child("brands").child(brandList[i].name!).updateChildValues(["liked":selectedAnswer])
+
     }
     
     @IBAction func nextBtnpressed(_ sender: UIButton) {
+        updateDB()
+
         selectedAnswers.append(selectedAnswer)
         if sender.title(for: .normal) == "NEXT" {
             changeQuestion()
