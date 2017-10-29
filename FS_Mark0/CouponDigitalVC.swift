@@ -23,7 +23,7 @@ class CouponDigitalVC: UIViewController {
     }
 
     @IBAction func doneBtnPressed(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
 }

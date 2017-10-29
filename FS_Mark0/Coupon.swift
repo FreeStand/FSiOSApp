@@ -15,4 +15,5 @@ class Coupon: NSObject{
     var imgURL: String?
     var isDigital: Bool?
     var couponCode: String?
+    var isCouponUnique: Bool?
 }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyGif
 
 class CouponDetailVC: UIViewController {
     @IBOutlet weak var codeImg: UIImageView!

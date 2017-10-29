@@ -20,6 +20,6 @@ pod 'Firebase/Invites'
 pod 'SwiftKeychainWrapper'
 pod 'Toaster'
 pod 'Firebase/RemoteConfig'
-pod 'SwiftyGif', '~> 3.1.0'
+pod 'Alamofire', '~> 4.5'
 
 end

@@ -867,46 +867,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="52" id="Y14-Sy-liF">
-                                        <rect key="frame" x="0.0" y="304" width="375" height="52"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y14-Sy-liF" id="qSe-Ff-Uk0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icWatch" translatesAutoresizingMaskIntoConstraints="NO" id="mTW-dy-iea">
-                                                    <rect key="frame" x="8" y="17" width="18" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="18" id="u5w-nI-S2g"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVITE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Icd-ff-LAs">
-                                                    <rect key="frame" x="34" y="8" width="333" height="20.5"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Your Friends and Unlock more boxes." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlr-qD-kyy">
-                                                    <rect key="frame" x="34" y="30.5" width="217" height="16"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="11"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Icd-ff-LAs" secondAttribute="trailing" constant="8" id="2n9-m6-0Q0"/>
-                                                <constraint firstItem="Icd-ff-LAs" firstAttribute="top" secondItem="qSe-Ff-Uk0" secondAttribute="topMargin" id="JtC-H0-j0a"/>
-                                                <constraint firstItem="Icd-ff-LAs" firstAttribute="leading" secondItem="mTW-dy-iea" secondAttribute="trailing" constant="8" id="K30-nr-uIj"/>
-                                                <constraint firstItem="mTW-dy-iea" firstAttribute="top" secondItem="qSe-Ff-Uk0" secondAttribute="top" constant="17" id="jCb-6s-PD8"/>
-                                                <constraint firstItem="dlr-qD-kyy" firstAttribute="leading" secondItem="mTW-dy-iea" secondAttribute="trailing" constant="8" id="oBA-g4-OUC"/>
-                                                <constraint firstItem="mTW-dy-iea" firstAttribute="leading" secondItem="qSe-Ff-Uk0" secondAttribute="leading" constant="8" id="s0Q-mF-1vL"/>
-                                                <constraint firstItem="dlr-qD-kyy" firstAttribute="top" secondItem="Icd-ff-LAs" secondAttribute="bottom" constant="2" id="wkX-iT-7FG"/>
-                                                <constraint firstAttribute="bottom" secondItem="mTW-dy-iea" secondAttribute="bottom" constant="17" id="z1R-Q7-gc8"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="52" id="N0P-tt-Fuu">
-                                        <rect key="frame" x="0.0" y="356" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="304" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N0P-tt-Fuu" id="NHO-44-c2m">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
@@ -943,7 +905,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="52" id="ZJE-j0-lTC">
-                                        <rect key="frame" x="0.0" y="408" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="356" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZJE-j0-lTC" id="mv0-Uq-1lR">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
@@ -980,7 +942,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="52" id="0KD-y8-U0X">
-                                        <rect key="frame" x="0.0" y="460" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="408" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0KD-y8-U0X" id="Tdq-EN-baa">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
@@ -3799,7 +3761,6 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
         <image name="icPhone" width="24" height="24"/>
         <image name="icQrCode" width="65" height="65"/>
         <image name="icUser" width="24" height="24"/>
-        <image name="icWatch" width="24" height="24"/>
         <image name="ic_cake" width="24" height="24"/>
         <image name="ic_face" width="24" height="24"/>
         <image name="ic_smartphone_black_24px" width="14" height="22"/>

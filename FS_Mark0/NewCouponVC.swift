@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -83,8 +84,25 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             if let isDigital = dict["isDigital"] as? Bool {
                 coupon.isDigital = isDigital
             }
-            if let couponCode = dict["couponCode"] as? String {
-                coupon.couponCode = couponCode
+            if let isCouponUnique = dict["isCouponUnique"] as? Bool {
+                if isCouponUnique {
+                    if let OlaCoupon = UserDefaults.standard.string(forKey: "OlaCoupon") {
+                        print("here")
+                        coupon.couponCode = OlaCoupon
+                    } else {
+                        print("here now")
+                        Alamofire.request("https://us-central1-fsmark0-c03e0.cloudfunctions.net/getOlaCoupons").responseString { response in
+                            coupon.couponCode = response.result.value
+                            UserDefaults.standard.set(response.result.value, forKey: "OlaCoupon")
+                            DataService.ds.updateFirebaseDBUserWithUserData(userData: [["OlaCoupon": response.result.value as AnyObject]])
+                        }
+                    }
+                } else {
+                    if let couponCode = dict["couponCode"] as? String {
+                        coupon.couponCode = couponCode
+                    }
+
+                }
             }
             
             self.couponList.append(coupon)
@@ -94,6 +112,16 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         }
     }
     
+    func handleUniqueCoupon() {
+        var request = URLRequest(url: URL(string: "https://us-central1-fsmark0-c03e0.cloudfunctions.net/getOlaCoupons")!)
+        request.httpMethod = "GET"
+        let session = URLSession.shared
+        
+        session.dataTask(with: request) {data, response, err in
+            print("Entered the completionHandler")
+            }.resume()
+    }
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected")

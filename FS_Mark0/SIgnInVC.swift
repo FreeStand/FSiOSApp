@@ -66,7 +66,6 @@ class SIgnInVC: UIViewController {
                     print(user_gender)
                     let userData = ["gender":user_gender]
                     DataService.ds.updateFirebaseDBUserWithUserData( userData: [userData as Dictionary<String, AnyObject>] )
-//                    DataService.ds.updateFirebaseDBUserGender(uID: (user?.uid)!, gender: userData)
                 }
                 
                 

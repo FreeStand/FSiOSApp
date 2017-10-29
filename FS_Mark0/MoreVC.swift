@@ -42,7 +42,7 @@ class MoreVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 7
+        return 6
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -53,13 +53,11 @@ class MoreVC: UITableViewController {
         case 2:
             performSegue(withIdentifier: "moreToOrders", sender: nil)
             break
-        case 4:
+        case 3:
             performSegue(withIdentifier: "moreToFAQs", sender: nil)
             break
-        case 3:
-            performSegue(withIdentifier: "moreToInvite", sender: nil)
-            break
-        case 5:
+        
+        case 4:
             var nsObject = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
             let version = nsObject as! String
             nsObject = Bundle.main.infoDictionary!["CFBundleVersion"]
@@ -69,7 +67,7 @@ class MoreVC: UITableViewController {
                 UIApplication.shared.open(url)
             }
             break
-        case 6:
+        case 5:
             logOut()
             break
         default:

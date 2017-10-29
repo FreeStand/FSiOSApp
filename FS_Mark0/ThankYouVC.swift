@@ -46,7 +46,7 @@ class ThankYouVC: UIViewController {
     
     func playVideo() {
         print("here")
-        guard let path = Bundle.main.path(forResource: "Animation", ofType:"mp4") else {
+        guard let path = Bundle.main.path(forResource: "Animation_2x", ofType:"mp4") else {
             debugPrint("Animation.mp4 not found")
             return
         }
