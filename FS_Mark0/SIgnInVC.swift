@@ -12,15 +12,26 @@ import FBSDKLoginKit
 import Firebase
 import FirebaseAuth
 import SwiftKeychainWrapper
+import Crashlytics
+
 
 class SIgnInVC: UIViewController {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     @IBOutlet weak var fbBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        Analytics.logEvent("HomeScreen", parameters: nil)
+        
+        DispatchQueue.global(qos: .background).async {
+            DataService.ds.REF_QUESTIONS.observeSingleEvent(of: .value, with: { (snapshot) in
+                if let dict = snapshot.value as? NSDictionary {
+                    UserDefaults.standard.set(dict, forKey: "quesDict")
+                }
+            })
+        }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(dismissNotifReceived), name: Notification.Name("phoneAuthVCNotification"), object: nil)
     }
 
@@ -30,6 +41,9 @@ class SIgnInVC: UIViewController {
 
     
     @IBAction func facebookBtnTapped(_ sender: Any) {
+//        Crashlytics.sharedInstance().crash()
+
+        Analytics.logEvent("fbBtnTapped", parameters: nil)
         fbBtn.isHidden = true
         activityIndicator.startAnimating()
         let facebookLogin = FBSDKLoginManager()
@@ -47,9 +61,6 @@ class SIgnInVC: UIViewController {
     }
     
     func firebaseAuth(_ credential: AuthCredential) {
-        
-        
-        
         Auth.auth().signIn(with: credential) { (user, error) in
             if error != nil {
                 print("FS: Unable to authenticate with Firebase")
@@ -68,7 +79,6 @@ class SIgnInVC: UIViewController {
                     DataService.ds.updateFirebaseDBUserWithUserData( userData: [userData as Dictionary<String, AnyObject>] )
                 }
                 
-                
                 if let user = user {
                     let userData = [["email":user.email],["name":user.displayName],["fcmToken":InstanceID.instanceID().token()]]
                     DispatchQueue.global(qos: .background).async {
@@ -86,18 +96,33 @@ class SIgnInVC: UIViewController {
         DataService.ds.createFirebaseUserWithUID(uID: (Auth.auth().currentUser?.uid)!, userData: userData)
         let keychainResult = KeychainWrapper.standard.set(id, forKey: "KEY_UID")
         print("FS: Data saved to keychain with result: \(keychainResult)")
-
         
-        let user = Auth.auth().currentUser
-        if user?.phoneNumber != nil {
-            UserDefaults.standard.set(true, forKey: "isLoggedIn")
-            let delegateTemp = UIApplication.shared.delegate
-            delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+        if let dob = UserDefaults.standard.string(forKey: "userDob"){
+            if dob != "" {
+                UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                let delegateTemp = UIApplication.shared.delegate
+                delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+            } else {
+                print("go to dob auth")
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let DobVC = storyBoard.instantiateViewController(withIdentifier: "DobVC") as! DobVC
+                self.present(DobVC, animated: true, completion: nil)
+            }
         } else {
-            print("go to phone auth")
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let PhoneAuthVC = storyBoard.instantiateViewController(withIdentifier: "PhoneAuthVC") as! PhoneAuthVC
-            self.present(PhoneAuthVC, animated: true, completion: nil)
+            DataService.ds.REF_USER_CURRENT.observeSingleEvent(of: .value, with: { (snapshot) in
+                if let dict = snapshot.value as? NSDictionary {
+                    if let _ = dict["dob"] as? String {
+                        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                        let delegateTemp = UIApplication.shared.delegate
+                        delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                    } else {
+                        print("go to dob auth")
+                        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let DobVC = storyBoard.instantiateViewController(withIdentifier: "DobVC") as! DobVC
+                        self.present(DobVC, animated: true, completion: nil)
+                    }
+                }
+            })
         }
     }
     
@@ -111,7 +136,4 @@ class SIgnInVC: UIViewController {
             UserDefaults.standard.set(imageData, forKey: "profImageData")
         }
     }
-    
-
-
 }

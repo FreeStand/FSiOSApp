@@ -71,7 +71,7 @@ final public class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
     return ttb
   }()
 
-  private weak var reader: QRCodeReader?
+  private var reader: QRCodeReader?
 
   public func setupComponents(showCancelButton: Bool, showSwitchCameraButton: Bool, showTorchButton: Bool, showOverlayView: Bool, reader: QRCodeReader?) {
     self.reader = reader
@@ -115,7 +115,7 @@ final public class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
   public override func layoutSubviews() {
     super.layoutSubviews()
 
-    reader?.previewLayer.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
+    reader?.previewLayer.frame = bounds
   }
 
   // MARK: - Scan Result Indication

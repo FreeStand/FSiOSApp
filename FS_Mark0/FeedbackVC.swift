@@ -6,7 +6,9 @@
 //  Copyright © 2017 Aryan Sharma. All rights reserved.
 //
 
+import FirebaseAnalytics
 import UIKit
+import FirebaseAuth
 
 class FeedbackVC: UIViewController {
 
@@ -15,6 +17,7 @@ class FeedbackVC: UIViewController {
     var iterator = 2
     var quesDict: NSDictionary!
     var totalQuestions: Int!
+    var ques = "question1"
 
     
     @IBOutlet weak var countView: UIView!
@@ -40,12 +43,46 @@ class FeedbackVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let dict = UserDefaults.standard.dictionary(forKey: "quesDict") as? NSDictionary {
-            self.quesDict = dict
-        } else {
-            print("Error")
-        }
+        DataService.ds.REF_QUESTIONS.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dict = snapshot.value as? NSDictionary {
+                self.quesDict = dict
+                self.callback()
+            }
+        })
+
         
+//        if let dict = UserDefaults.standard.dictionary(forKey: "quesDict") as NSDictionary? {
+//            print("upar")
+//            self.quesDict = dict
+//        } else {
+//            print("niche")
+//            DataService.ds.REF_QUESTIONS.observeSingleEvent(of: .value, with: { (snapshot) in
+//                if let dict = snapshot.value as? NSDictionary {
+//                    self.quesDict = dict
+//                }
+//            })
+//        }
+        
+        
+        
+        superView.layer.cornerRadius = 7
+        countView.layer.cornerRadius = 15
+        nextBtn.layer.cornerRadius = 25
+        
+        let attrs = [
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17)!
+        ]
+        
+        navigationController?.navigationBar.titleTextAttributes = attrs
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        
+        self.navigationItem.title = "FeedBack"
+        self.nextBtn.setTitle("NEXT", for: .normal)
+    }
+    
+    func callback() {
         option1.isSelected = true
         option2.isSelected = false
         option3.isSelected = false
@@ -71,22 +108,6 @@ class FeedbackVC: UIViewController {
         option3?.alternateButton = [option2!, option1!, option4!, option5!]
         option4?.alternateButton = [option2!, option3!, option1!, option5!]
         option5?.alternateButton = [option2!, option3!, option4!, option1!]
-        
-        superView.layer.cornerRadius = 7
-        countView.layer.cornerRadius = 15
-        nextBtn.layer.cornerRadius = 25
-        
-        let attrs = [
-            NSAttributedStringKey.foregroundColor: UIColor.white,
-            NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17)!
-        ]
-        
-        navigationController?.navigationBar.titleTextAttributes = attrs
-        navigationController?.navigationBar.tintColor = UIColor.white
-        
-        
-        self.navigationItem.title = "FeedBack"
-        self.nextBtn.setTitle("NEXT", for: .normal)
     }
     
     func updateQuestion(ques: String) {
@@ -103,16 +124,15 @@ class FeedbackVC: UIViewController {
     }
     
     func changeQuestion() {
-        var ques: String!
         ques = "question"+"\(iterator)"
         if(iterator < totalQuestions) {
             iterator = iterator + 1
             UIView.transition(with: self.superView, duration: 0.3, options: .transitionFlipFromRight, animations: {
-                self.updateQuestion(ques: ques)
+                self.updateQuestion(ques: self.ques)
             }, completion: nil)
         } else if iterator == totalQuestions {
             UIView.transition(with: self.superView, duration: 0.3, options: .transitionFlipFromRight, animations: {
-                self.updateQuestion(ques: ques)
+                self.updateQuestion(ques: self.ques)
             }, completion: nil)
             countViewLabel.text = "\(totalQuestions!)/\(totalQuestions!)"
             progressView.progress = 1.0
@@ -126,6 +146,9 @@ class FeedbackVC: UIViewController {
     
     @IBAction func nextBtnpressed(_ sender: UIButton) {
         selectedAnswers.append(selectedAnswer)
+        Analytics.logEvent("\(ques)_\(selectedAnswer!)",
+            parameters: ["uid":Auth.auth().currentUser?.uid])
+        
         if sender.title(for: .normal) == "NEXT" {
             changeQuestion()
         } else if sender.title(for: .normal) == "SUBMIT" {

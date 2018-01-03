@@ -13,6 +13,8 @@ import GoogleSignIn
 import FirebaseInstanceID
 import FirebaseMessaging
 import UserNotifications
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate, GIDSignInDelegate {
@@ -71,6 +73,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
+        
+        Fabric.with([Crashlytics.self])
+        
         return true
     }
     
@@ -97,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         let appID = FBSDKSettings.appID()
-        if url.scheme != nil && url.scheme!.hasPrefix("fb\(appID)") && url.host ==  "authorize" {
+        if url.scheme != nil && url.scheme!.hasPrefix("fb\(appID!)") && url.host ==  "authorize" {
             return FBSDKApplicationDelegate.sharedInstance().application(app, open: url,sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
         } else if url.scheme != nil && url.scheme!.hasPrefix("com.googleusercontent.apps.225537858800-4happep34rf0tsiusi30vr0jh92c0ijn") && url.host ==  "authorize" {
             print("here now")

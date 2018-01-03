@@ -114,7 +114,6 @@ class QRCodeVC: UIViewController, QRCodeReaderViewControllerDelegate {
         DataService.ds.REF_COLLEGES.child(qrCode).child("users").updateChildValues([(Auth.auth().currentUser?.uid)!:true])
         self.activityIndicator.stopAnimating()
         performSegue(withIdentifier: "QRToFeedback", sender: nil)
-
     }
     
     // MARK: - Actions

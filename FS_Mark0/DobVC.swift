@@ -12,6 +12,7 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
     
     @IBOutlet weak var male: RadioButton!
     @IBOutlet weak var female: RadioButton!
+    @IBOutlet weak var others: RadioButton!
     @IBOutlet weak var ageTextField: UITextField!
     var gender: String!
     
@@ -34,8 +35,9 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
         ageTextField.delegate = self
         agePicker.delegate = self
         agePicker.dataSource = self
-        male.alternateButton = [female!]
-        female.alternateButton = [male!]
+        male.alternateButton = [female!, others!]
+        female.alternateButton = [male!, others!]
+        others.alternateButton = [male!, female!]
         
         ageTextField.inputView = agePicker
         ageTextField.text = agePickerValues[0]
@@ -83,10 +85,20 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
     }
     @IBAction func maleRadioPressed(_ sender: Any) {
         gender = "Male"
+        male.unselectAlternateButtons()
+        print(gender)
     }
     
     @IBAction func femaleRadioPressed(_ sender: Any) {
         gender = "Female"
+        female.unselectAlternateButtons()
+        print(gender)
+    }
+    
+    @IBAction func otherRadioPressed(_ sender: Any) {
+        gender = "others"
+        others.unselectAlternateButtons()
+        print(gender)
     }
     
     @IBAction func submitPressed(sender: Any) {
@@ -98,6 +110,6 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
         DataService.ds.updateFirebaseDBUserWithUserData(userData: [userData as! Dictionary<String, String> as Dictionary<String, AnyObject>])
         
         self.performSegue(withIdentifier: "dobToFeedback", sender: nil)
-        
+        UserDefaults.standard.set(true, forKey: "isLoggedIn")
     }
 }

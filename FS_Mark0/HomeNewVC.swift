@@ -53,7 +53,7 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     func genderAgeCheck() {
-        if let _ = UserDefaults.standard.string(forKey: "userGender"), let _ = UserDefaults.standard.string(forKey: "userDob"), let _ = UserDefaults.standard.string(forKey: "hasAddress"), let _ = UserDefaults.standard.string(forKey: "OlaCoupon"){
+        if let _ = UserDefaults.standard.string(forKey: "userGender"), let _ = UserDefaults.standard.string(forKey: "userDob"), let _ = UserDefaults.standard.string(forKey: "hasAddress"), let _ = UserDefaults.standard.string(forKey: "OlaCoupon"), let _ = UserDefaults.standard.string(forKey: "ChaayosCoupon"){
         } else {
             DataService.ds.REF_USER_CURRENT.observe(.value, with: { (snapshot) in
                 if let dict = snapshot.value as? NSDictionary {
@@ -65,6 +65,9 @@ class HomeNewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     }
                     if let OlaCoupon = dict["OlaCoupon"] as? String {
                         UserDefaults.standard.set(OlaCoupon, forKey: "OlaCoupon")
+                    }
+                    if let ChaayosCoupon = dict["ChaayosCoupon"] as? String {
+                        UserDefaults.standard.set(ChaayosCoupon, forKey: "ChaayosCoupon")
                     }
                     if let _ = dict["address"] as? String {
                         UserDefaults.standard.set(true, forKey: "hasAdress")

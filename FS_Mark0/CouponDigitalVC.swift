@@ -12,14 +12,19 @@ class CouponDigitalVC: UIViewController {
 
     var couponCode: String!
     @IBOutlet weak var couponLbl: UILabel!
-    @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var doneBtn: UIButton!
+    @IBOutlet weak var copyBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imgView.layer.cornerRadius = 8
-        doneBtn.layer.cornerRadius = 8
+
+        doneBtn.layer.cornerRadius = 4
+        copyBtn.layer.cornerRadius = 2
         couponLbl.text = couponCode
+    }
+    
+    @IBAction func copyBtnPressed(_ sender: Any) {
+        UIPasteboard.general.string = couponCode
     }
 
     @IBAction func doneBtnPressed(_ sender: Any) {

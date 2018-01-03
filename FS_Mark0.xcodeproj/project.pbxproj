@@ -18,6 +18,7 @@
 		92125DDB1F02553B00826AC1 /* SIgnInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92125DDA1F02553B00826AC1 /* SIgnInVC.swift */; };
 		92125DDE1F026C1000826AC1 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92125DDD1F026C1000826AC1 /* UserData.swift */; };
 		92125DE21F03CD5600826AC1 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92125DE11F03CD5600826AC1 /* DataService.swift */; };
+		9213D40C1FB176C800CE26EB /* FeedbackAferQRVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9213D40B1FB176C800CE26EB /* FeedbackAferQRVC.swift */; };
 		9220FE7B1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220FE7A1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift */; };
 		9220FE7D1F0C4FE600B0D402 /* PhoneAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220FE7C1F0C4FE600B0D402 /* PhoneAuthVC.swift */; };
 		9220FE7F1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */; };
@@ -63,6 +64,7 @@
 		92FD4CE21F93D50A00F4F1FD /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE11F93D50A00F4F1FD /* FAQ.swift */; };
 		92FD4CE41F93D54900F4F1FD /* FAQCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE31F93D54900F4F1FD /* FAQCell.swift */; };
 		92FD4CE61F93DBF800F4F1FD /* FaqTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */; };
+		E7EDEA5B1FFCDB700092F1A4 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EDEA5A1FFCDB700092F1A4 /* Events.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +81,7 @@
 		92125DDC1F025D2600826AC1 /* FS_Mark0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FS_Mark0.entitlements; sourceTree = "<group>"; };
 		92125DDD1F026C1000826AC1 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		92125DE11F03CD5600826AC1 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		9213D40B1FB176C800CE26EB /* FeedbackAferQRVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackAferQRVC.swift; sourceTree = "<group>"; };
 		9220FE7A1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+isFirstLaunch.swift"; sourceTree = "<group>"; };
 		9220FE7C1F0C4FE600B0D402 /* PhoneAuthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneAuthVC.swift; sourceTree = "<group>"; };
 		9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneAuthVerificationVC.swift; sourceTree = "<group>"; };
@@ -129,6 +132,7 @@
 		92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqTVC.swift; sourceTree = "<group>"; };
 		A6577A906A0B1F3A3F3C222B /* Pods-FS_Mark0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FS_Mark0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0.debug.xcconfig"; sourceTree = "<group>"; };
 		A6655B9E9A9DB8CC9CECBCA7 /* Pods-FS_Mark0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FS_Mark0.release.xcconfig"; path = "Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0.release.xcconfig"; sourceTree = "<group>"; };
+		E7EDEA5A1FFCDB700092F1A4 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		F49F4495C781C9155B379118 /* Pods_FS_Mark0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FS_Mark0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -208,6 +212,7 @@
 				92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */,
 				92390BA21F94A41100CE0B78 /* InviteVC.swift */,
 				923D7CA51F9F10250081F3C2 /* AddressVC.swift */,
+				9213D40B1FB176C800CE26EB /* FeedbackAferQRVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				92125DE11F03CD5600826AC1 /* DataService.swift */,
 				92C2F1F81F11818E004C79DC /* UIColor.swift */,
 				92DE41C01F16920A00535ACE /* UserInfo.swift */,
+				E7EDEA5A1FFCDB700092F1A4 /* Events.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -331,6 +337,7 @@
 				92125DBD1F010BAC00826AC1 /* Resources */,
 				96EEA6F92B596B23CED4EB54 /* [CP] Embed Pods Frameworks */,
 				89FB8C0D5473231BF7D74E17 /* [CP] Copy Pods Resources */,
+				E7EDEA591FFC97D40092F1A4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -490,6 +497,19 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E7EDEA591FFC97D40092F1A4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 1f4cd86ae7da290cdee8a14a0dfc72d87c3f65a6 c00278389eb0b3f09e3e8d6efcb0307e03e5dfb3ba5f4277bf12eb97ca438eb3";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -501,6 +521,7 @@
 				92BCD53E1F5544C400284E3B /* UIColor+FIAdditions.swift in Sources */,
 				9298BD481F7ADFA50048ABFA /* Brand.swift in Sources */,
 				92EA3E211F2CB71F00060424 /* UIView.swift in Sources */,
+				E7EDEA5B1FFCDB700092F1A4 /* Events.swift in Sources */,
 				92642CA61F88C2B7002FCF6E /* NewCouponVC.swift in Sources */,
 				9220FE7F1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift in Sources */,
 				92125DC31F010BAC00826AC1 /* AppDelegate.swift in Sources */,
@@ -511,6 +532,7 @@
 				9220FE7D1F0C4FE600B0D402 /* PhoneAuthVC.swift in Sources */,
 				92AA3DF81F2D247D00A6613E /* MoreVC.swift in Sources */,
 				92B14B421F34880A005C45FE /* TabBar.swift in Sources */,
+				9213D40C1FB176C800CE26EB /* FeedbackAferQRVC.swift in Sources */,
 				92F490B61F38ECB10096521D /* ThankYouVC.swift in Sources */,
 				92BCD5401F554EEA00284E3B /* FeedbackVC.swift in Sources */,
 				92125DDB1F02553B00826AC1 /* SIgnInVC.swift in Sources */,
@@ -686,14 +708,15 @@
 				CODE_SIGN_ENTITLEMENTS = FS_Mark0/FS_Mark0.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 468S6LB8MD;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = FS_Mark0/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "buildFlash.FS-Mark0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b9ffc3ea-cd30-4b1b-9681-2ddfdf1d6bdc";
+				PROVISIONING_PROFILE = "11e2e415-6056-48e9-a041-60c82c7d18f7";
 				PROVISIONING_PROFILE_SPECIFIER = Freestand_bf_dev;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -714,7 +737,7 @@
 				DEVELOPMENT_TEAM = 468S6LB8MD;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = FS_Mark0/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "buildFlash.FS-Mark0";
 				PRODUCT_NAME = "$(TARGET_NAME)";

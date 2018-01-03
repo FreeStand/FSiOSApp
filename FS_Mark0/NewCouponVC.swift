@@ -86,15 +86,21 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             }
             if let isCouponUnique = dict["isCouponUnique"] as? Bool {
                 if isCouponUnique {
-                    if let OlaCoupon = UserDefaults.standard.string(forKey: "OlaCoupon") {
+                    if let Coupon = UserDefaults.standard.string(forKey: "\(self.brand.name!)Coupon") {
                         print("here")
-                        coupon.couponCode = OlaCoupon
+                        coupon.couponCode = Coupon
                     } else {
                         print("here now")
-                        Alamofire.request("https://us-central1-fsmark0-c03e0.cloudfunctions.net/getOlaCoupons").responseString { response in
-                            coupon.couponCode = response.result.value
-                            UserDefaults.standard.set(response.result.value, forKey: "OlaCoupon")
-                            DataService.ds.updateFirebaseDBUserWithUserData(userData: [["OlaCoupon": response.result.value as AnyObject]])
+                        let url = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/\(coupon.redirectURL!)"
+                        print(url)
+                        Alamofire.request(url).responseJSON { response in
+                            if let json = response.result.value as? NSDictionary {
+                                if let code = json["firstCoupon"] as? String {
+                                    coupon.couponCode = code
+                                    UserDefaults.standard.set(code, forKey: "\(self.brand.name!)Coupon")
+                                    DataService.ds.updateFirebaseDBUserWithUserData(userData: [["\(self.brand.name!)Coupon": code as AnyObject]])
+                                }
+                            }
                         }
                     }
                 } else {
@@ -128,14 +134,21 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         let coupon = couponList[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
 
-        if coupon.isDigital == true {
-            selectedCouponCode = coupon.couponCode
-            print("digital")
-            makeSegue()
+        if let feed = UserDefaults.standard.string(forKey: "\(brand.name!)fb") {
+            if feed == "true" {
+                selectedCouponCode = coupon.couponCode
+                performSegue(withIdentifier: "couponToDetail", sender: nil)
+            }
         } else {
-            selectedCouponCode = coupon.couponCode
-            print("offline")
-            makeSegue()
+            if coupon.isDigital == true {
+                selectedCouponCode = coupon.couponCode
+                print("digital")
+                makeSegue()
+            } else {
+                selectedCouponCode = coupon.couponCode
+                print("offline")
+                makeSegue()
+            }
         }
     }
     
@@ -167,24 +180,24 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         return 260
     }
     
- func makeDigitalSegue() {
+    func makeDigitalSegue() {
         self.performSegue(withIdentifier: "couponToDigitalDetail", sender: nil)
     }
     
     func makeSegue() {
         self.performSegue(withIdentifier: "couponToFeedBack", sender: nil)
-//
-//        let alert = UIAlertController(title: "Warning", message: "This Coupon will disappear in 2 minutes, only proceed when sure", preferredStyle: UIAlertControllerStyle.alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
-//        }))
-//        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
-//        self.present(alert, animated: true, completion: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("prepareForSegue")
         
         if segue.identifier == "couponToDigitalDetail" {
+            if let vc = segue.destination as? CouponDigitalVC {
+                vc.couponCode = selectedCouponCode
+            }
+        }
+        
+        if segue.identifier == "couponToDetail" {
             if let vc = segue.destination as? CouponDigitalVC {
                 vc.couponCode = selectedCouponCode
             }

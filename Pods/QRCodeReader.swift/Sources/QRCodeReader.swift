@@ -154,7 +154,11 @@ public final class QRCodeReader: NSObject, AVCaptureMetadataOutputObjectsDelegat
     // Add metadata output
     session.addOutput(metadataOutput)
     metadataOutput.setMetadataObjectsDelegate(self, queue: metadataObjectsQueue)
-    metadataOutput.metadataObjectTypes = metadataOutput.availableMetadataObjectTypes//metadataObjectTypes
+    let allTypes = Set(metadataOutput.availableMetadataObjectTypes)
+    let filtered = metadataObjectTypes.filter { (mediaType) -> Bool in
+        allTypes.contains(mediaType)
+    }
+    metadataOutput.metadataObjectTypes = filtered
     previewLayer.videoGravity          = .resizeAspectFill
 
     session.commitConfiguration()
@@ -187,19 +191,19 @@ public final class QRCodeReader: NSObject, AVCaptureMetadataOutputObjectsDelegat
    *Notes: if `stopScanningWhenCodeIsFound` is sets to true (default behaviour), each time the scanner found a code it calls the `stopScanning` method.*
    */
   public func startScanning() {
-    if !session.isRunning {
-      sessionQueue.async {
-        self.session.startRunning()
-      }
+    sessionQueue.async {
+      guard !self.session.isRunning else { return }
+
+      self.session.startRunning()
     }
   }
 
   /// Stops scanning the codes.
   public func stopScanning() {
-    if session.isRunning {
-      sessionQueue.async {
-        self.session.stopRunning()
-      }
+    sessionQueue.async {
+      guard self.session.isRunning else { return }
+
+      self.session.stopRunning()
     }
   }
 

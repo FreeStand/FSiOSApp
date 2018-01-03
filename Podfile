@@ -2,6 +2,7 @@
 # platform :ios, '9.0'
 
 target 'FS_Mark0' do
+    project 'FS_Mark0'
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
@@ -21,5 +22,8 @@ pod 'SwiftKeychainWrapper'
 pod 'Toaster'
 pod 'Firebase/RemoteConfig'
 pod 'Alamofire', '~> 4.5'
+pod 'Fabric', '~> 1.7.2'
+pod 'Crashlytics', '~> 3.9.3'
+
 
 end

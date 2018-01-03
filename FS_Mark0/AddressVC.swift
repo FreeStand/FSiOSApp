@@ -116,7 +116,7 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
-        let newLength = text.characters.count + string.characters.count - range.length
+        let newLength = text.count + string.count - range.length
         return newLength <= 6
     }
 
@@ -129,7 +129,7 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     }
     
     @objc func editingChanged() {
-        if pincode.text?.characters.count == 6 && al1.text?.characters.count != 0 && al2.text?.characters.count != 0 && city.text?.characters.count != 0 {
+        if pincode.text?.count == 6 && al1.text?.count != 0 && al2.text?.count != 0 && city.text?.count != 0 {
             submitBtn.alpha = 1.0
             submitBtn.isEnabled = true
         } else {

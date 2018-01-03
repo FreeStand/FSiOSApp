@@ -16,6 +16,7 @@ class ThankYouVC: UIViewController {
         case phoneAuthVCNotification
     }
     
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var doneBtn: UIButton!
     var player : AVPlayer!
@@ -27,10 +28,7 @@ class ThankYouVC: UIViewController {
         videoView.layer.cornerRadius = 8
         doneBtn.layer.cornerRadius = 18
         
-        
         playVideo()
-//        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying),name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
-
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: nil, using: { (_) in
             DispatchQueue.main.async {
                 self.player?.seek(to: CMTimeMake(5, 10))
@@ -39,6 +37,8 @@ class ThankYouVC: UIViewController {
         })
 
     }
+    
+    
     
     override func viewDidLayoutSubviews() {
         avPlayerLayer.frame = videoView.layer.bounds

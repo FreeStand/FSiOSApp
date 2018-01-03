@@ -25,7 +25,7 @@ class ProfileVC: UIViewController {
         profImgView.maskCircle(anyImage: UIImage(data: imageData as Data)!)
  
         self.navigationItem.title = "Profile"
-        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         
         emailLabel.text = UserInfo.ui.email
         nameLabel.text = UserInfo.ui.name

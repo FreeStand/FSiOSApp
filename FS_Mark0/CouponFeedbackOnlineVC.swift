@@ -118,6 +118,7 @@ class CouponFeedbackOnlineVC: UIViewController {
     
     func updateDB() {
         DataService.ds.REF_USER_CURRENT.child("feedback").child("brands").child(brand.name!).child("coupon1").setValue(selectedAnswers)
+        UserDefaults.standard.set("true", forKey: "\(brand.name!)fb")
 
     }
     
@@ -126,6 +127,7 @@ class CouponFeedbackOnlineVC: UIViewController {
         if sender.title(for: .normal) == "NEXT" {
             changeQuestion()
         } else if sender.title(for: .normal) == "SUBMIT" {
+            
             updateDB()
             performSegue(withIdentifier: "toCouponCode", sender: self)
             print(selectedAnswers)

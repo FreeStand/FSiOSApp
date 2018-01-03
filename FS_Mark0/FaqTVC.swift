@@ -17,7 +17,7 @@ class FaqTVC: UITableViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = "FAQs"
-        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.tableView.tableFooterView = UIView()
         
         getFAQs()

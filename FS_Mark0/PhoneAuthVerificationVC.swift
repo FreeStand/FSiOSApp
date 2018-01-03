@@ -118,14 +118,12 @@ class PhoneAuthVerificationVC: UIViewController, UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
-        let newLength = text.characters.count + string.characters.count - range.length
+        let newLength = text.count + string.count - range.length
         return newLength <= limitLength
     }
     
-
-    
     @objc func editingChanged() {
-        if verificationCode.text?.characters.count == 6 {
+        if verificationCode.text?.count == 6 {
             verifyBtn.alpha = 1.0
             verifyBtn.isEnabled = true
         }else {

@@ -44,14 +44,7 @@ class PhoneAuthVC: UIViewController, UITextFieldDelegate {
         
         textField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         textField.delegate = self
-        DispatchQueue.main.async {
-            DataService.ds.REF_QUESTIONS.observeSingleEvent(of: .value, with: { (snapshot) in
-                if let dict = snapshot.value as? NSDictionary {
-                    UserDefaults.standard.set(dict, forKey: "quesDict")
-                }
-            })
-
-        }
+        
         
     }
     
@@ -89,7 +82,7 @@ class PhoneAuthVC: UIViewController, UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
-        let newLength = text.characters.count + string.characters.count - range.length
+        let newLength = text.count + string.count - range.length
         return newLength <= limitLength
     
     }
@@ -101,7 +94,7 @@ class PhoneAuthVC: UIViewController, UITextFieldDelegate {
     }
 
     @objc func editingChanged() {
-        if textField.text?.characters.count == 10 {
+        if textField.text?.count == 10 {
             SendCodeBtn.alpha = 1.0
             SendCodeBtn.isEnabled = true
             phoneNumber = phonePrefix + textField.text!
