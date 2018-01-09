@@ -18,9 +18,14 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
     
     override func awakeFromNib() {
         self.view.layoutIfNeeded()
-        male.isSelected = true
+        male.isSelected = false
         female.isSelected = false
     }
+    
+    enum Notifications: String, NotificationName {
+        case phoneAuthVCNotification
+    }
+
     
     var agePicker: UIPickerView!
     
@@ -83,6 +88,7 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         ageTextField.text = agePickerValues[row]
     }
+    
     @IBAction func maleRadioPressed(_ sender: Any) {
         gender = "Male"
         male.unselectAlternateButtons()
@@ -109,7 +115,13 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
         let userData = ["dob":ageTextField.text, "gender":gender]
         DataService.ds.updateFirebaseDBUserWithUserData(userData: [userData as! Dictionary<String, String> as Dictionary<String, AnyObject>])
         
-        self.performSegue(withIdentifier: "dobToFeedback", sender: nil)
-        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+//        self.performSegue(withIdentifier: "dobToFeedback", sender: nil)
+//        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+        let delegateTemp = UIApplication.shared.delegate
+        self.dismiss(animated: true, completion: nil)
+        NotificationCenter.default.post(name: Notifications.phoneAuthVCNotification.name, object: nil)
+        delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+
+        
     }
 }

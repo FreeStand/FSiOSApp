@@ -31,19 +31,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         
         let userDefaults = UserDefaults.standard
-        if let isLogin = userDefaults.value(forKey: "isLoggedIn") as! Bool? {
-            if (isLogin == false) {
-                print("1")
-                self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
-            } else {
-                print("2")
-                self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-            }
-        } else {
-            print("3")
-
-            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
-        }
+//        if let isLogin = userDefaults.value(forKey: "isLoggedIn") as! Bool? {
+//            if (isLogin == false) {
+//                print("1")
+//                self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
+//            } else {
+//                print("2")
+//                self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+//            }
+//        } else {
+//            print("3")
+//
+//            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
+//        }
         
         
 

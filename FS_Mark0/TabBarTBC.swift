@@ -9,6 +9,9 @@
 import UIKit
 
 class TabBarTBC: UITabBarController, UITabBarControllerDelegate, UIGestureRecognizerDelegate {
+    
+    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()

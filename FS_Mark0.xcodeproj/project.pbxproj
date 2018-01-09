@@ -64,6 +64,10 @@
 		92FD4CE21F93D50A00F4F1FD /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE11F93D50A00F4F1FD /* FAQ.swift */; };
 		92FD4CE41F93D54900F4F1FD /* FAQCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE31F93D54900F4F1FD /* FAQCell.swift */; };
 		92FD4CE61F93DBF800F4F1FD /* FaqTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */; };
+		E7A7D25A1FFE3B2C001C9CFD /* CVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A7D2581FFE3B2C001C9CFD /* CVCell.swift */; };
+		E7A7D25B1FFE3B2C001C9CFD /* CVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7A7D2591FFE3B2C001C9CFD /* CVCell.xib */; };
+		E7A7D25F1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A7D25E1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift */; };
+		E7B31BBC20037388008EBFE3 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B31BBB20037388008EBFE3 /* HomeVC.swift */; };
 		E7EDEA5B1FFCDB700092F1A4 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EDEA5A1FFCDB700092F1A4 /* Events.swift */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +136,10 @@
 		92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqTVC.swift; sourceTree = "<group>"; };
 		A6577A906A0B1F3A3F3C222B /* Pods-FS_Mark0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FS_Mark0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0.debug.xcconfig"; sourceTree = "<group>"; };
 		A6655B9E9A9DB8CC9CECBCA7 /* Pods-FS_Mark0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FS_Mark0.release.xcconfig"; path = "Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0.release.xcconfig"; sourceTree = "<group>"; };
+		E7A7D2581FFE3B2C001C9CFD /* CVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVCell.swift; sourceTree = "<group>"; };
+		E7A7D2591FFE3B2C001C9CFD /* CVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CVCell.xib; sourceTree = "<group>"; };
+		E7A7D25E1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+multiplier.swift"; sourceTree = "<group>"; };
+		E7B31BBB20037388008EBFE3 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		E7EDEA5A1FFCDB700092F1A4 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		F49F4495C781C9155B379118 /* Pods_FS_Mark0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FS_Mark0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -189,10 +197,12 @@
 				92125DE01F03CD3800826AC1 /* Services */,
 				92AB4E631F2CF8DD00CB0DAA /* Helpers */,
 				92125DC61F010BAC00826AC1 /* Main.storyboard */,
+				E7A7D2591FFE3B2C001C9CFD /* CVCell.xib */,
 				92125DCB1F010BAC00826AC1 /* LaunchScreen.storyboard */,
 				92125DC91F010BAC00826AC1 /* Assets.xcassets */,
 				92125DCE1F010BAC00826AC1 /* Info.plist */,
 				92125DDC1F025D2600826AC1 /* FS_Mark0.entitlements */,
+				E7A7D2581FFE3B2C001C9CFD /* CVCell.swift */,
 			);
 			path = FS_Mark0;
 			sourceTree = "<group>";
@@ -282,6 +292,7 @@
 		922785661F48B0EF0066F700 /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
+				E7B31BBB20037388008EBFE3 /* HomeVC.swift */,
 				92125DD41F012A9700826AC1 /* QRCodeVC.swift */,
 				92BCF4E61F30BF470047EB74 /* AlertVC.swift */,
 				92AA3DF71F2D247D00A6613E /* MoreVC.swift */,
@@ -311,6 +322,7 @@
 				92BCD5411F55620900284E3B /* RadioCheck.swift */,
 				92680D3B1F862A39007E3C50 /* Int+degreesToRadians.swift */,
 				9283CA6B1F9FB89A00FD41B7 /* AIImage.swift */,
+				E7A7D25E1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -362,7 +374,7 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 468S6LB8MD;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -404,6 +416,7 @@
 				9283CA791FA6458D00FD41B7 /* Animation_2x.mp4 in Resources */,
 				9283CA731F9FBD2D00FD41B7 /* animation.gif in Resources */,
 				92125DCD1F010BAC00826AC1 /* LaunchScreen.storyboard in Resources */,
+				E7A7D25B1FFE3B2C001C9CFD /* CVCell.xib in Resources */,
 				9298BD461F7A63360048ABFA /* GoogleService-Info.plist in Resources */,
 				92125DCA1F010BAC00826AC1 /* Assets.xcassets in Resources */,
 				92125DC81F010BAC00826AC1 /* Main.storyboard in Resources */,
@@ -520,6 +533,7 @@
 				92FD4CE01F93D2D400F4F1FD /* MoreSamplesVC.swift in Sources */,
 				92BCD53E1F5544C400284E3B /* UIColor+FIAdditions.swift in Sources */,
 				9298BD481F7ADFA50048ABFA /* Brand.swift in Sources */,
+				E7B31BBC20037388008EBFE3 /* HomeVC.swift in Sources */,
 				92EA3E211F2CB71F00060424 /* UIView.swift in Sources */,
 				E7EDEA5B1FFCDB700092F1A4 /* Events.swift in Sources */,
 				92642CA61F88C2B7002FCF6E /* NewCouponVC.swift in Sources */,
@@ -552,6 +566,8 @@
 				92125DD51F012A9700826AC1 /* QRCodeVC.swift in Sources */,
 				92BCF4E71F30BF470047EB74 /* AlertVC.swift in Sources */,
 				92FD4CE61F93DBF800F4F1FD /* FaqTVC.swift in Sources */,
+				E7A7D25A1FFE3B2C001C9CFD /* CVCell.swift in Sources */,
+				E7A7D25F1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift in Sources */,
 				920BF1CF1F3F6F46007E6DC8 /* OrderCell.swift in Sources */,
 				92390BA31F94A41100CE0B78 /* InviteVC.swift in Sources */,
 				92FD4CE21F93D50A00F4F1FD /* FAQ.swift in Sources */,
@@ -707,17 +723,17 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FS_Mark0/FS_Mark0.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 468S6LB8MD;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = FS_Mark0/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "buildFlash.FS-Mark0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "11e2e415-6056-48e9-a041-60c82c7d18f7";
-				PROVISIONING_PROFILE_SPECIFIER = Freestand_bf_dev;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -732,17 +748,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FS_Mark0/FS_Mark0.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 468S6LB8MD;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = FS_Mark0/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "buildFlash.FS-Mark0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a981f0c2-c3e0-48a4-ad25-e71f311b413b";
-				PROVISIONING_PROFILE_SPECIFIER = Freestand_bf_dist;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
