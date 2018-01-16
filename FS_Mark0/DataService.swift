@@ -26,7 +26,11 @@ class DataService {
     private var _REF_QUESTIONS = DB_BASE.child("questions")
     private var _REF_BRANDS = DB_BASE.child("brands")
     private var _REF_FAQ = DB_BASE.child("faqs")
-
+    private var _REF_SURVEYS = DB_BASE.child("surveys")
+    
+    var REF_SURVEYS: DatabaseReference {
+        return _REF_SURVEYS
+    }
     
     var REF_FAQ: DatabaseReference{
         return _REF_FAQ

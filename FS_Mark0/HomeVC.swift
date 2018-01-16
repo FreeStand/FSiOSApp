@@ -22,6 +22,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet weak var questionView: UIView!
     @IBOutlet weak var questionTransitionView: UIView!
+    @IBOutlet weak var gettingStartedView: UIView!
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var noInternetView: UIView!
+    @IBOutlet weak var noSurveyView: UIView!
     
     @IBOutlet weak var option1: RadioButton!
     @IBOutlet weak var option2: RadioButton!
@@ -47,7 +51,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 128, height: 28))
         imageView.contentMode = .scaleAspectFit
         let image = UIImage(named: "freestandLogoWhite.png")
@@ -72,6 +76,11 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 self.questionsLoadedCallback()
             }
         }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        print("Memory warning aai")
     }
     
     func questionsLoadedCallback() {

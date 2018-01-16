@@ -8,11 +8,11 @@
 
 import Foundation
 import FirebaseAuth
-import FirebaseDatabase
 
 class UserInfo {
     
     static let ui = UserInfo()
+    public static var uid = Auth.auth().currentUser?.uid
     
     private var _NAME = Auth.auth().currentUser?.displayName ?? "John Doe"
     private var _EMAIL = Auth.auth().currentUser?.email ?? "email@example.com"

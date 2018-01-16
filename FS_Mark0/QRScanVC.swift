@@ -1,0 +1,196 @@
+//
+//  QRScanVC.swift
+//  FS_Mark0
+//
+//  Created by Aryan Sharma on 11/01/18.
+//  Copyright © 2018 Aryan Sharma. All rights reserved.
+//
+
+import AVFoundation
+import UIKit
+import QRCodeReader
+import FirebaseDatabase
+import FirebaseAnalytics
+import SwiftKeychainWrapper
+import FirebaseAuth
+import Alamofire
+
+class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
+    
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var previewView: UIView!
+    
+    var qrcodeRef: DatabaseReference!
+    var surveyID: String!
+    var locationID: String!
+    var quesDict: NSDictionary!
+    
+    lazy var reader: QRCodeReader = QRCodeReader()
+    lazy var readerVC: QRCodeReaderViewController = {
+        let builder = QRCodeReaderViewControllerBuilder {
+            $0.reader = QRCodeReader(metadataObjectTypes: [AVMetadataObject.ObjectType.qr], captureDevicePosition: .back)
+            $0.showTorchButton = true
+        }
+        
+        return QRCodeReaderViewController(builder: builder)
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        previewView.layer.cornerRadius = 10
+        Analytics.logEvent(Events.SCREEN_QR, parameters: nil)
+        
+        scanInPreviewAction()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        scanInPreviewAction()
+    }
+    
+    
+    func scanInPreviewAction() {
+        guard checkScanPermissions(), !reader.isRunning else { return }
+        
+        reader.previewLayer.frame = previewView.bounds
+        previewView.layer.addSublayer(reader.previewLayer)
+        
+        reader.startScanning()
+        reader.didFindCode = { result in
+            let res = result.value
+            let index = res.index(res.startIndex, offsetBy: 6)
+            self.surveyID = String(res[..<index])
+            self.locationID = String(res[index...])
+            self.checkQR()
+        }
+    }
+    
+    let timestamp = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: .medium, timeStyle: .short)
+    
+    
+    func checkQR() {
+        let url = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/CheckQR?uid=\(UserInfo.uid!)&lid=\(locationID!)&sid=\(surveyID!)"
+        
+        // 600: valid non duplicate
+        // 601: invalid location non duplicate
+        // 602: invalid survey non duplicate
+        // 603: duplicate
+
+        Alamofire.request(url).responseJSON { (res) in
+            if res.response?.statusCode == 600 {
+                self.quesDict = res.result.value! as! NSDictionary
+                Analytics.logEvent(Events.QR_SUCC, parameters: nil)
+                self.performSegue(withIdentifier: "QRScanTOFeedBack", sender: nil)
+            } else if res.response?.statusCode == 601 {
+                print("601")
+                Analytics.logEvent(Events.QR_INVALID, parameters: nil)
+                self.makeAlert("Invalid Code Scanned", message: "The code scanned by you is invalid.")
+                
+            } else if res.response?.statusCode == 602 {
+                print("602")
+                Analytics.logEvent(Events.QR_INVALID, parameters: nil)
+                self.makeAlert("Invalid Code Scanned", message: "The code scanned by you is invalid.")
+            } else if res.response?.statusCode == 603 {
+                print("603")
+                self.makeAlert("Already Redeemed", message: "You have already redeemed this offer. Stay tuned for more")
+                Analytics.logEvent(Events.QR_DUPL, parameters: nil)
+            } else {
+                print("Err: \(res)")
+                Analytics.logEvent(Events.QR_ERR, parameters: nil)
+                self.makeAlert("Error", message: "Please try again after some time.")
+            }
+        }
+    }
+    
+    func updateQRCode(qrCode: String) {
+        DataService.ds.updateFirebaseDBUserWithQR(userData: [["\(qrCode)": "true" as AnyObject]])
+        DataService.ds.REF_COLLEGES.child(qrCode).child("users").updateChildValues([(Auth.auth().currentUser?.uid)!:true])
+        self.activityIndicator.stopAnimating()
+        
+        performSegue(withIdentifier: "initialQrToThankYou", sender: nil)
+    }
+    
+    // MARK: - Actions
+    private func checkScanPermissions() -> Bool {
+        do {
+            return try QRCodeReader.supportsMetadataObjectTypes()
+        } catch let error as NSError {
+            let alert: UIAlertController?
+            
+            switch error.code {
+            case -11852:
+                alert = UIAlertController(title: "Error", message: "This app is not authorized to use Back Camera.", preferredStyle: .alert)
+                
+                alert?.addAction(UIAlertAction(title: "Setting", style: .default, handler: { (_) in
+                    DispatchQueue.main.async {
+                        if let settingsURL = URL(string: UIApplicationOpenSettingsURLString) {
+                            if #available(iOS 10.0, *) {
+                                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+                            } else {
+                                UIApplication.shared.openURL(settingsURL)
+                            }
+                        }
+                    }
+                }))
+                
+                alert?.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            case -11814:
+                alert = UIAlertController(title: "Error", message: "Reader not supported by the current device", preferredStyle: .alert)
+                alert?.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            default:
+                alert = nil
+            }
+            
+            guard let vc = alert else { return false }
+            
+            present(vc, animated: true, completion: nil)
+            
+            return false
+        }
+    }
+    
+    
+    // MARK: - QRCodeReader Delegate Methods
+    func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
+        reader.stopScanning()
+        
+        
+        print("reader called")
+        dismiss(animated: true) { [weak self] in
+            let alert = UIAlertController(
+                title: "QRCodeReader",
+                message: String (format:"%@ (of type %@)", result.value, result.metadataType),
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            
+            self?.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    
+    func readerDidCancel(_ reader: QRCodeReaderViewController) {
+        reader.stopScanning()
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func makeAlert(_ title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alert) in
+            self.scanInPreviewAction()
+        }))
+        self.present(alert, animated: true, completion: nil)
+
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? FeedbackVC {
+            vc.quesDict = self.quesDict
+            vc.surveyID = self.surveyID
+        }
+    }
+}
+
+

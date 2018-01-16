@@ -13,8 +13,7 @@ import GoogleSignIn
 import FirebaseInstanceID
 import FirebaseMessaging
 import UserNotifications
-import Fabric
-import Crashlytics
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate, GIDSignInDelegate {
@@ -30,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UIApplication.shared.statusBarStyle = .lightContent
 
         
-        let userDefaults = UserDefaults.standard
+//        let userDefaults = UserDefaults.standard
 //        if let isLogin = userDefaults.value(forKey: "isLoggedIn") as! Bool? {
 //            if (isLogin == false) {
 //                print("1")
@@ -69,12 +68,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print("FCM token: \(token ?? "")")
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification(notification:)), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
+
         FirebaseApp.configure()
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
-        Fabric.with([Crashlytics.self])
         
         return true
     }

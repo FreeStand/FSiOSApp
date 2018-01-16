@@ -12,7 +12,6 @@ import FBSDKLoginKit
 import Firebase
 import FirebaseAuth
 import SwiftKeychainWrapper
-import Crashlytics
 
 
 class SIgnInVC: UIViewController {
@@ -22,15 +21,8 @@ class SIgnInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Analytics.logEvent("HomeScreen", parameters: nil)
+        Analytics.logEvent(Events.SCREEN_LOGIN , parameters: nil)
         
-        DispatchQueue.global(qos: .background).async {
-            DataService.ds.REF_QUESTIONS.observeSingleEvent(of: .value, with: { (snapshot) in
-                if let dict = snapshot.value as? NSDictionary {
-                    UserDefaults.standard.set(dict, forKey: "quesDict")
-                }
-            })
-        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(dismissNotifReceived), name: Notification.Name("phoneAuthVCNotification"), object: nil)
     }
@@ -41,14 +33,18 @@ class SIgnInVC: UIViewController {
 
     
     @IBAction func facebookBtnTapped(_ sender: Any) {
-//        Crashlytics.sharedInstance().crash()
-
-        Analytics.logEvent("fbBtnTapped", parameters: nil)
+        Analytics.logEvent(Events.FB_LOGIN, parameters: nil)
         fbBtn.isHidden = true
         activityIndicator.startAnimating()
         let facebookLogin = FBSDKLoginManager()
         facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
             if error != nil {
+                self.activityIndicator.stopAnimating()
+                self.fbBtn.isHidden = false
+                let alert = UIAlertController(title: "Error", message: "Error while logging in: \(error?.localizedDescription ?? "")", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+
                 print("FS: Unable to Authenticate with facebook -\(String(describing: error))")
             } else if result?.isCancelled == true {
                 print("FS: User cancelled FB Auth")
@@ -64,6 +60,14 @@ class SIgnInVC: UIViewController {
         Auth.auth().signIn(with: credential) { (user, error) in
             if error != nil {
                 print("FS: Unable to authenticate with Firebase")
+                
+                self.activityIndicator.stopAnimating()
+                self.fbBtn.isHidden = false
+                let alert = UIAlertController(title: "Error", message: "Error while logging in: \(error?.localizedDescription ?? "")", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+
+                
             } else {
                 print("FS: Successfully authenticated with Firebase")
                 print("Current User: \(String(describing: user)) in FB Auth")
@@ -100,10 +104,12 @@ class SIgnInVC: UIViewController {
         if let dob = UserDefaults.standard.string(forKey: "userDob"){
             if dob != "" {
                 UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                self.dismiss(animated: true, completion: nil)
                 let delegateTemp = UIApplication.shared.delegate
                 delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
             } else {
                 print("go to dob auth")
+                self.dismiss(animated: true, completion: nil)
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let DobVC = storyBoard.instantiateViewController(withIdentifier: "DobVC") as! DobVC
                 self.present(DobVC, animated: true, completion: nil)
@@ -113,10 +119,12 @@ class SIgnInVC: UIViewController {
                 if let dict = snapshot.value as? NSDictionary {
                     if let _ = dict["dob"] as? String {
                         UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                        self.dismiss(animated: true, completion: nil)
                         let delegateTemp = UIApplication.shared.delegate
                         delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
                     } else {
                         print("go to dob auth")
+                        self.dismiss(animated: true, completion: nil)
                         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                         let DobVC = storyBoard.instantiateViewController(withIdentifier: "DobVC") as! DobVC
                         self.present(DobVC, animated: true, completion: nil)

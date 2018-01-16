@@ -22,8 +22,5 @@ pod 'SwiftKeychainWrapper'
 pod 'Toaster'
 pod 'Firebase/RemoteConfig'
 pod 'Alamofire'
-pod 'Fabric', '~> 1.7.2'
-pod 'Crashlytics', '~> 3.9.3'
-
 
 end

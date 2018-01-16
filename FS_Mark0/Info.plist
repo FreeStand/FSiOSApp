@@ -54,13 +54,13 @@
 	<key>FacebookAppID</key>
 	<string>231194260726376</string>
 	<key>FacebookDisplayName</key>
-	<string>FreeStnd</string>
+	<string>FreeStand</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
-		<string>fb-messenger-api</string>
+		<string>fb-messenger-share-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
 	</array>

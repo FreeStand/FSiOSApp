@@ -21,6 +21,7 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var couponList = [Coupon]()
     var selectedCouponCode: String!
     var coupons: [String:[String:Any]]!
+    var feedbackQuestionsDict: NSDictionary!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,7 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17)!
         ]
         self.tableView.tableFooterView = UIView()
-
+        brandImg.addTopBorderWithColor(color: UIColor.white, width: 1)
         navigationController?.navigationBar.titleTextAttributes = attrs
         parseCoupons()
     }
@@ -84,30 +85,41 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             if let isDigital = dict["isDigital"] as? Bool {
                 coupon.isDigital = isDigital
             }
+            
+            if let isCouponUnique = dict["isCouponUnique"] as? Bool {
+                coupon.isCouponUnique = isCouponUnique
+            }
+            
             if let isCouponUnique = dict["isCouponUnique"] as? Bool {
                 if isCouponUnique {
-                    if let Coupon = UserDefaults.standard.string(forKey: "\(self.brand.name!)Coupon") {
-                        print("here")
-                        coupon.couponCode = Coupon
-                    } else {
-                        print("here now")
-                        let url = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/\(coupon.redirectURL!)"
-                        print(url)
-                        Alamofire.request(url).responseJSON { response in
-                            if let json = response.result.value as? NSDictionary {
-                                if let code = json["firstCoupon"] as? String {
-                                    coupon.couponCode = code
-                                    UserDefaults.standard.set(code, forKey: "\(self.brand.name!)Coupon")
-                                    DataService.ds.updateFirebaseDBUserWithUserData(userData: [["\(self.brand.name!)Coupon": code as AnyObject]])
+                    let url = "\(APIEndpoints.couponEndpoint)?uid=\(UserInfo.uid!)&brand=\(brand.name!)"
+                    Alamofire.request(url).responseJSON(completionHandler: { (response) in
+                        if let responseDict = response.result.value as? NSDictionary {
+                            if let containsFeedback = responseDict["containsFeedback"] as? Bool {
+                                if containsFeedback == true {
+                                    // show feedback survey
+                                    if let couponCode = responseDict["couponCode"] as? String {
+                                        // pass coupon code to next VC
+                                        coupon.couponCode = couponCode
+                                    }
+                                    if let questionDict = responseDict["questions"] as? NSDictionary {
+                                        self.feedbackQuestionsDict = questionDict
+                                    }
+
+                                } else {
+                                    // show couponCode
+                                    if let couponCode = responseDict["couponCode"] as? String {
+                                        // pass coupon code to next VC
+                                        coupon.couponCode = couponCode
+                                    }
                                 }
                             }
                         }
-                    }
+                    })
                 } else {
                     if let couponCode = dict["couponCode"] as? String {
                         coupon.couponCode = couponCode
                     }
-
                 }
             }
             
@@ -117,38 +129,55 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             }
         }
     }
-    
-    func handleUniqueCoupon() {
-        var request = URLRequest(url: URL(string: "https://us-central1-fsmark0-c03e0.cloudfunctions.net/getOlaCoupons")!)
-        request.httpMethod = "GET"
-        let session = URLSession.shared
-        
-        session.dataTask(with: request) {data, response, err in
-            print("Entered the completionHandler")
-            }.resume()
-    }
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected")
         let coupon = couponList[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
+        if coupon.isCouponUnique! {
+            let url = "\(APIEndpoints.couponEndpoint)?uid=\(UserInfo.uid!)&brand=\(brand.name!)&couponID=coupon1"
+            Alamofire.request(url).responseJSON(completionHandler: { (response) in
+                if let responseDict = response.result.value as? NSDictionary {
+                    print("Coupons: \(responseDict)")
+                    if let containsFeedback = responseDict["containsFeedBack"] as? Bool {
+                        if containsFeedback == true {
+                            // show feedback survey
+                            if let couponCode = responseDict["couponCode"] as? String {
+                                // pass coupon code to next VC
+                                self.selectedCouponCode = couponCode
+                            } else {
+                                print("Can't cast couponCode")
+                            }
+                            if let questionDict = responseDict["questions"] as? NSDictionary {
+                                self.feedbackQuestionsDict = questionDict
+                            } else {
+                                print("Can't cast questionDict")
+                            }
+                            // perform segue to feedback
+                            
+                            self.performSegue(withIdentifier: "couponToFeedback", sender: nil)
+                            print("Coupon: segue to feedback")
+                            
+                        } else {
+                            // show couponCode
+                            if let couponCode = responseDict["couponCode"] as? String {
+                                // pass coupon code to next VC
+                                self.selectedCouponCode = couponCode
+                                print("Coupon: segue to coupon code  \(couponCode)")
+                                self.performSegue(withIdentifier: "couponToDetail", sender: nil)
+                            }
+                        }
+                    } else {
+                        print("Coupons: Can't cast containsFeedback")
+                    }
+                } else {
+                    print("Coupons: Can't cast responseDict")
+                }
+            })
 
-        if let feed = UserDefaults.standard.string(forKey: "\(brand.name!)fb") {
-            if feed == "true" {
-                selectedCouponCode = coupon.couponCode
-                performSegue(withIdentifier: "couponToDetail", sender: nil)
-            }
         } else {
-            if coupon.isDigital == true {
-                selectedCouponCode = coupon.couponCode
-                print("digital")
-                makeSegue()
-            } else {
-                selectedCouponCode = coupon.couponCode
-                print("offline")
-                makeSegue()
-            }
+            selectedCouponCode = coupon.couponCode
         }
     }
     
@@ -164,7 +193,7 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "couponCell", for: indexPath) as? CouponCell {
-            cell.contentView.addBottomBorderWithColor(color: UIColor().HexToColor(hexString: "#393939", alpha: 1.0), width: 8.0)
+            cell.contentView.addBottomBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 2.0)
             cell.clipsToBounds = true
 
             
@@ -179,23 +208,9 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 260
     }
-    
-    func makeDigitalSegue() {
-        self.performSegue(withIdentifier: "couponToDigitalDetail", sender: nil)
-    }
-    
-    func makeSegue() {
-        self.performSegue(withIdentifier: "couponToFeedBack", sender: nil)
-    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("prepareForSegue")
-        
-        if segue.identifier == "couponToDigitalDetail" {
-            if let vc = segue.destination as? CouponDigitalVC {
-                vc.couponCode = selectedCouponCode
-            }
-        }
         
         if segue.identifier == "couponToDetail" {
             if let vc = segue.destination as? CouponDigitalVC {
@@ -203,9 +218,10 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             }
         }
         
-        if segue.identifier == "couponToFeedBack" {
+        if segue.identifier == "couponToFeedback" {
             if let vc = segue.destination as? CouponFeedbackOnlineVC {
-                vc.brand = self.brand
+                vc.surveyID = self.brand.name
+                vc.quesDict = self.feedbackQuestionsDict
                 vc.couponCode = selectedCouponCode
             }
         }
