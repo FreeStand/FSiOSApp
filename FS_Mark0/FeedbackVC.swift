@@ -12,82 +12,49 @@ import FirebaseAuth
 
 class FeedbackVC: UIViewController {
 
+    // MARK: Variables
     var selectedAnswer: String!
-    var selectedAnswers = [String]()
-    var iterator = 2
     var quesDict: NSDictionary!
     var totalQuestions: Int!
-    var ques = "question1"
-
+    var quesIterator = 0
+    var surveyID: String!
+    // MARK: Outlets
     
     @IBOutlet weak var countView: UIView!
     @IBOutlet weak var nextBtn: UIButton!
-    @IBOutlet weak var superView: UIView!
+    @IBOutlet weak var questionTransitionView: UIView!
     
     @IBOutlet weak var option1: RadioButton!
     @IBOutlet weak var option2: RadioButton!
     @IBOutlet weak var option3: RadioButton!
     @IBOutlet weak var option4: RadioButton!
-    @IBOutlet weak var option5: RadioButton!
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var option1Label: UILabel!
     @IBOutlet weak var option2Label: UILabel!
     @IBOutlet weak var option3Label: UILabel!
     @IBOutlet weak var option4Label: UILabel!
-    @IBOutlet weak var option5Label: UILabel!
+
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var countViewLabel: UILabel!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        DataService.ds.REF_QUESTIONS.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dict = snapshot.value as? NSDictionary {
-                self.quesDict = dict
-                self.callback()
-            }
-        })
-
-        
-//        if let dict = UserDefaults.standard.dictionary(forKey: "quesDict") as NSDictionary? {
-//            print("upar")
-//            self.quesDict = dict
-//        } else {
-//            print("niche")
-//            DataService.ds.REF_QUESTIONS.observeSingleEvent(of: .value, with: { (snapshot) in
-//                if let dict = snapshot.value as? NSDictionary {
-//                    self.quesDict = dict
-//                }
-//            })
-//        }
-        
-        
-        
-        superView.layer.cornerRadius = 7
+        Analytics.logEvent(Events.SCREEN_QR_FEED, parameters: nil)
+        if quesDict != nil {
+            questionsLoadedCallback()
+        }
+        questionTransitionView.layer.cornerRadius = 7
         countView.layer.cornerRadius = 15
         nextBtn.layer.cornerRadius = 25
-        
-        let attrs = [
-            NSAttributedStringKey.foregroundColor: UIColor.white,
-            NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17)!
-        ]
-        
-        navigationController?.navigationBar.titleTextAttributes = attrs
-        navigationController?.navigationBar.tintColor = UIColor.white
-        
-        
-        self.navigationItem.title = "FeedBack"
         self.nextBtn.setTitle("NEXT", for: .normal)
     }
     
-    func callback() {
-        option1.isSelected = true
+    func questionsLoadedCallback() {
+        option1.isSelected = false
         option2.isSelected = false
         option3.isSelected = false
         option4.isSelected = false
-        option5.isSelected = false
         
         let dict = quesDict["question1"] as? [String:String]
         questionLabel.text = dict?["question"]
@@ -95,92 +62,115 @@ class FeedbackVC: UIViewController {
         option2Label.text = dict?["option2"]
         option3Label.text = dict?["option3"]
         option4Label.text = dict?["option4"]
-        option5Label.text = dict?["option5"]
+        
         totalQuestions = quesDict.count
-        
         countViewLabel.text = "1/\(totalQuestions!)"
-        print(totalQuestions)
-        progressView.progress = 1.0 / Float(totalQuestions)
         
-        selectedAnswer = "1"
-        option1?.alternateButton = [option2!, option3!, option4!, option5!]
-        option2?.alternateButton = [option1!, option3!, option4!, option5!]
-        option3?.alternateButton = [option2!, option1!, option4!, option5!]
-        option4?.alternateButton = [option2!, option3!, option1!, option5!]
-        option5?.alternateButton = [option2!, option3!, option4!, option1!]
+        option1?.alternateButton = [option2!, option3!, option4!]
+        option2?.alternateButton = [option1!, option3!, option4!]
+        option3?.alternateButton = [option2!, option1!, option4!]
+        option4?.alternateButton = [option2!, option3!, option1!]
+        
+        self.nextBtn.setTitle("NEXT", for: .normal)
+        self.nextBtn.isEnabled = false
+        self.nextBtn.alpha = 0.5
+        self.questionTransitionView.isHidden = false
+        
     }
-    
-    func updateQuestion(ques: String) {
-        print(ques)
-        let dict = quesDict[ques] as? [String: String]
-        questionLabel.text = dict?["question"]
-        option1Label.text = dict?["option1"]
-        option2Label.text = dict?["option2"]
-        option3Label.text = dict?["option3"]
-        option4Label.text = dict?["option4"]
-        option5Label.text = dict?["option5"]
-        countViewLabel.text = "\(iterator - 1)/\(totalQuestions!)"
-        progressView.progress = Float(iterator - 1) / Float(totalQuestions)
-    }
+
+    //MARK: Questions Algo
     
     func changeQuestion() {
-        ques = "question"+"\(iterator)"
-        if(iterator < totalQuestions) {
-            iterator = iterator + 1
-            UIView.transition(with: self.superView, duration: 0.3, options: .transitionFlipFromRight, animations: {
-                self.updateQuestion(ques: self.ques)
+        quesIterator += 1
+        if quesIterator < totalQuestions - 1 {
+            UIView.transition(with: self.questionTransitionView, duration: 0.3, options: .transitionFlipFromRight, animations: {
+                self.updateQuestion()
             }, completion: nil)
-        } else if iterator == totalQuestions {
-            UIView.transition(with: self.superView, duration: 0.3, options: .transitionFlipFromRight, animations: {
-                self.updateQuestion(ques: self.ques)
+        } else if quesIterator == totalQuestions - 1 {
+            UIView.transition(with: self.questionTransitionView, duration: 0.3, options: .transitionFlipFromRight, animations: {
+                self.updateQuestion()
+                self.nextBtn.setTitle("SUBMIT", for: .normal)
             }, completion: nil)
-            countViewLabel.text = "\(totalQuestions!)/\(totalQuestions!)"
-            progressView.progress = 1.0
-            self.nextBtn.setTitle("SUBMIT", for: .normal)
+        } else {
+            print("Error: HomeVC changeQuestion quesIterator >= totalQuestions")
         }
     }
     
-    func updateDB() {
-            DataService.ds.REF_USER_CURRENT.child("feedback").child("initialFeedback").setValue(selectedAnswers)
+    func updateQuestion() {
+        let quesData = quesDict.allValues[quesIterator] as? [String:String]
+        questionLabel.text = quesData?["question"]
+        option1Label.text = quesData?["option1"]
+        option2Label.text = quesData?["option2"]
+        option3Label.text = quesData?["option3"]
+        option4Label.text = quesData?["option4"]
+        countViewLabel.text = "\(quesIterator+1)/\(totalQuestions!)"
+        disableNextBtn()
+        resetRadioButtons()
     }
     
     @IBAction func nextBtnpressed(_ sender: UIButton) {
-        selectedAnswers.append(selectedAnswer)
-        Analytics.logEvent("\(ques)_\(selectedAnswer!)",
-            parameters: ["uid":Auth.auth().currentUser?.uid])
+        Analytics.logEvent("\(surveyID!)_ques\(quesIterator)_\(selectedAnswer!)",
+            parameters: ["uid":Auth.auth().currentUser?.uid as Any])
         
         if sender.title(for: .normal) == "NEXT" {
             changeQuestion()
         } else if sender.title(for: .normal) == "SUBMIT" {
-            performSegue(withIdentifier: "initialFeedbackToQR", sender: self)
-            print(selectedAnswers)
             updateDB()
         }
     }
     
+    func updateDB() {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
+        self.present(ThankYouVC, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func button1pressed(_ sender: Any) {
         selectedAnswer = "1"
         option1.unselectAlternateButtons()
+        enableNextBtn()
     }
     
     @IBAction func button2pressed(_ sender: Any) {
         selectedAnswer = "2"
         option2.unselectAlternateButtons()
+        enableNextBtn()
     }
     
     @IBAction func button3pressed(_ sender: Any) {
         selectedAnswer = "3"
         option3.unselectAlternateButtons()
+        enableNextBtn()
     }
     
     @IBAction func button4pressed(_ sender: Any) {
         selectedAnswer = "4"
         option4.unselectAlternateButtons()
+        enableNextBtn()
     }
     
-    @IBAction func button5pressed(_ sender: Any) {
-        selectedAnswer = "5"
-        option5.unselectAlternateButtons()
+    //MARK: Miscellaneous
+    
+    func enableNextBtn() {
+        if !nextBtn.isEnabled {
+            nextBtn.isEnabled = true
+            nextBtn.alpha = 1.0
+        }
+    }
+    
+    func disableNextBtn() {
+        if nextBtn.isEnabled {
+            nextBtn.isEnabled = false
+            nextBtn.alpha = 0.5
+        }
+    }
+    
+    func resetRadioButtons() {
+        option1.setImage(UIImage(named: "radioOff"), for: .normal)
+        option2.setImage(UIImage(named: "radioOff"), for: .normal)
+        option3.setImage(UIImage(named: "radioOff"), for: .normal)
+        option4.setImage(UIImage(named: "radioOff"), for: .normal)
     }
 }
 

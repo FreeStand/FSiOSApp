@@ -196,7 +196,6 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             cell.contentView.addBottomBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 2.0)
             cell.clipsToBounds = true
 
-            
             let coupon: Coupon!
             coupon = couponList[indexPath.row]
             cell.configureCell(coupon: coupon)

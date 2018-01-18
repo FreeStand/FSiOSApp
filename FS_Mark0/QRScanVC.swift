@@ -24,6 +24,7 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
     var qrcodeRef: DatabaseReference!
     var surveyID: String!
     var locationID: String!
+    var category: String!
     var quesDict: NSDictionary!
     
     lazy var reader: QRCodeReader = QRCodeReader()
@@ -58,8 +59,9 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
         reader.startScanning()
         reader.didFindCode = { result in
             let res = result.value
-            let index = res.index(res.startIndex, offsetBy: 6)
+            let index = res.index(res.startIndex, offsetBy: 5)
             self.surveyID = String(res[..<index])
+            self.category = String(res[index])
             self.locationID = String(res[index...])
             self.checkQR()
         }
@@ -69,35 +71,30 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
     
     
     func checkQR() {
-        let url = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/CheckQR?uid=\(UserInfo.uid!)&lid=\(locationID!)&sid=\(surveyID!)"
+        if category == "G" {
+            category = "General"
+        } else if category == "S"{
+            category = UserInfo.gender
+        }
+        let url = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/CheckQR?uid=\(UserInfo.uid!)&lid=\(locationID!)&sid=\(surveyID!)&category=\(category)"
         
-        // 600: valid non duplicate
-        // 601: invalid location non duplicate
-        // 602: invalid survey non duplicate
-        // 603: duplicate
-
         Alamofire.request(url).responseJSON { (res) in
-            if res.response?.statusCode == 600 {
-                self.quesDict = res.result.value! as! NSDictionary
-                Analytics.logEvent(Events.QR_SUCC, parameters: nil)
-                self.performSegue(withIdentifier: "QRScanTOFeedBack", sender: nil)
-            } else if res.response?.statusCode == 601 {
-                print("601")
-                Analytics.logEvent(Events.QR_INVALID, parameters: nil)
-                self.makeAlert("Invalid Code Scanned", message: "The code scanned by you is invalid.")
+            
+            let response = res.result.value as? NSDictionary
+            
+            if let status = response!["status"] as? String {
                 
-            } else if res.response?.statusCode == 602 {
-                print("602")
-                Analytics.logEvent(Events.QR_INVALID, parameters: nil)
-                self.makeAlert("Invalid Code Scanned", message: "The code scanned by you is invalid.")
-            } else if res.response?.statusCode == 603 {
-                print("603")
-                self.makeAlert("Already Redeemed", message: "You have already redeemed this offer. Stay tuned for more")
-                Analytics.logEvent(Events.QR_DUPL, parameters: nil)
-            } else {
-                print("Err: \(res)")
-                Analytics.logEvent(Events.QR_ERR, parameters: nil)
-                self.makeAlert("Error", message: "Please try again after some time.")
+                if status == "Valid" {
+                    self.quesDict = response!["dict"] as! NSDictionary
+                    Analytics.logEvent(Events.QR_SUCC, parameters: nil)
+                    self.performSegue(withIdentifier: "QRScanTOFeedBack", sender: nil)
+                } else if status == "Invalid" {
+                    Analytics.logEvent(Events.QR_INVALID, parameters: nil)
+                    self.makeAlert("Invalid Code Scanned", message: "The code scanned by you is invalid.")
+                } else if status == "duplicate" {
+                    self.makeAlert("Already Redeemed", message: "You have already redeemed this offer. Stay tuned for more")
+                    Analytics.logEvent(Events.QR_DUPL, parameters: nil)
+                }
             }
         }
     }
