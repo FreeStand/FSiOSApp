@@ -59,9 +59,10 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
         reader.startScanning()
         reader.didFindCode = { result in
             let res = result.value
-            let index = res.index(res.startIndex, offsetBy: 5)
+            var index = res.index(res.startIndex, offsetBy: 5)
             self.surveyID = String(res[..<index])
             self.category = String(res[index])
+            index = res.index(res.startIndex, offsetBy: 6)
             self.locationID = String(res[index...])
             self.checkQR()
         }
@@ -76,19 +77,23 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
         } else if category == "S"{
             category = UserInfo.gender
         }
-        let url = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/CheckQR?uid=\(UserInfo.uid!)&lid=\(locationID!)&sid=\(surveyID!)&category=\(category)"
-        
+        let url = "\(APIEndpoints.checkQREndpoint)?uid=\(UserInfo.uid!)&lid=\(self.locationID!)&sid=\(self.surveyID!)&category=\(self.category!)"
+        print(url)
         Alamofire.request(url).responseJSON { (res) in
-            
             let response = res.result.value as? NSDictionary
-            
+//            print(response)
             if let status = response!["status"] as? String {
                 
-                if status == "Valid" {
-                    self.quesDict = response!["dict"] as! NSDictionary
+                if status == "valid" {
+                    let dict = response!["dict"] as! NSDictionary
+                    
                     Analytics.logEvent(Events.QR_SUCC, parameters: nil)
-                    self.performSegue(withIdentifier: "QRScanTOFeedBack", sender: nil)
-                } else if status == "Invalid" {
+                    let FeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
+                    FeedbackVC?.sender = "InitialQR"
+                    FeedbackVC?.quesDict = dict["questions"] as? NSDictionary
+                    FeedbackVC?.surveyID = dict["surveyID"] as? String
+                    self.present(FeedbackVC!, animated: true, completion: nil)
+                } else if status == "invalid" {
                     Analytics.logEvent(Events.QR_INVALID, parameters: nil)
                     self.makeAlert("Invalid Code Scanned", message: "The code scanned by you is invalid.")
                 } else if status == "duplicate" {
@@ -104,7 +109,11 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
         DataService.ds.REF_COLLEGES.child(qrCode).child("users").updateChildValues([(Auth.auth().currentUser?.uid)!:true])
         self.activityIndicator.stopAnimating()
         
-        performSegue(withIdentifier: "initialQrToThankYou", sender: nil)
+        let FeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
+        FeedbackVC?.sender = "InitialQR"
+        FeedbackVC?.surveyID = self.surveyID
+        FeedbackVC?.quesDict = self.quesDict
+        self.present(FeedbackVC!, animated: true, completion: nil)
     }
     
     // MARK: - Actions

@@ -75,16 +75,10 @@ class OrderTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as? OrderCell{
-
-//            cell.clipsToBounds = true
-//            cell.layer.cornerRadius = 15.0
             
             cell.contentView.layer.borderWidth = 0.5
             cell.contentView.layer.borderColor = UIColor().HexToColor(hexString: "#393939", alpha: 1.0).cgColor
-//            cell.contentView.addTopBorderWithColor(color: UIColor().HexToColor(hexString: "#393939", alpha: 1.0), width: 8.0)
-//            cell.contentView.addLeftBorderWithColor(color: UIColor().HexToColor(hexString: "#393939", alpha: 1.0), width: 8.0)
-//            cell.contentView.addRightBorderWithColor(color: UIColor().HexToColor(hexString: "#393939", alpha: 1.0), width: 8.0)
-//
+
             let order: Order!
             order = orderList[indexPath.row]
             cell.configureCell(order: order)

@@ -18,6 +18,8 @@ class FeedbackVC: UIViewController {
     var totalQuestions: Int!
     var quesIterator = 0
     var surveyID: String!
+    var sender: String!
+    var couponCode: String!
     // MARK: Outlets
     
     @IBOutlet weak var countView: UIView!
@@ -115,14 +117,31 @@ class FeedbackVC: UIViewController {
         if sender.title(for: .normal) == "NEXT" {
             changeQuestion()
         } else if sender.title(for: .normal) == "SUBMIT" {
-            updateDB()
+            handleSubmit()
         }
     }
     
-    func updateDB() {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
-        self.present(ThankYouVC, animated: true, completion: nil)
+    func handleSubmit() {
+        
+        if sender == "Coupon" {
+            // push couponDetailVC
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let CouponDigitalVC = storyBoard.instantiateViewController(withIdentifier: "CouponDigitalVC") as! CouponDigitalVC
+            CouponDigitalVC.couponCode = self.couponCode
+            self.navigationController?.pushViewController(CouponDigitalVC, animated: true)
+        } else if sender == "InitialQR" {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
+            self.present(ThankYouVC, animated: true, completion: nil)
+        } else if sender == "QR" {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
+            self.present(ThankYouVC, animated: true, completion: nil)
+
+        } else {
+            
+        }
+        
     }
     
     

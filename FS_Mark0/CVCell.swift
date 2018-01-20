@@ -41,5 +41,10 @@ class CVCell: UICollectionViewCell {
         imgView.maskCircle(anyImage: UIImage(named: "beerproducts")!)
 
     }
+    
+    func configureCell(brand: BrandCV) {
+        self.priceLabel.text = brand.name!
+        imgView.downloadedFrom(link: brand.imgURL!)
+    }
 
 }

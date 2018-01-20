@@ -48,6 +48,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     // MARK: Variables
     
+    var brandList = [BrandCV]()
     var selectedAnswer: String!
     var quesDict: NSDictionary!
     var totalQuestions: Int!
@@ -76,6 +77,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
 
         self.ThankYouView.isHidden = true
         self.greetingActivityIndicator.isHidden = true
+        
+        getBrands()
     }
     
     override func didReceiveMemoryWarning() {
@@ -119,13 +122,53 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             cell.contentView.layer.borderColor = UIColor.white.cgColor
             cell.contentView.layer.borderWidth = 2
             
+            let brand: BrandCV!
+            brand = brandList[indexPath.row]
+            cell.configureCell(brand: brand)
             return cell
         }
         return UICollectionViewCell()
     }
     
+    func getBrands() {
+        Alamofire.request(APIEndpoints.getBrands).responseJSON { (response) in
+            if let response = response.result.value as? [String: NSDictionary] {
+                for (_, dict) in response {
+                    let brand = BrandCV()
+                    if let imgURL = dict["imgURL"] as? String {
+                        brand.imgURL = imgURL
+                    } else {
+                        print("Error: Can't cast imgURL in CollectionView")
+                    }
+                    
+                    if let name = dict["name"] as? String {
+                        brand.name = name
+                    } else {
+                        print("Error: Can't cast name in CollectionView")
+                    }
+                    
+                    if let redirectURL = dict["redirectURL"] as? String {
+                        brand.redirectURL = redirectURL
+                    } else {
+                        print("Error: Can't cast redirectURL in CollectionView")
+                    }
+                    
+                    self.brandList.append(brand)
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let brand = brandList[indexPath.row]
+        UIApplication.shared.open(URL(string: brand.redirectURL!)!, options: [:], completionHandler: nil)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return brandList.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

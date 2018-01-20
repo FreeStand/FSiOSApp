@@ -18,6 +18,7 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     var brand: Brand!
     var brandName: String!
+    var surveyID: String!
     var couponList = [Coupon]()
     var selectedCouponCode: String!
     var coupons: [String:[String:Any]]!
@@ -68,8 +69,9 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     func parseCoupons() {
-        for (_ ,dict) in coupons {
+        for (key ,dict) in coupons {
             let coupon = Coupon()
+            coupon.couponID = key
             if let title = dict["title"] as? String {
                 coupon.title = title
             }
@@ -90,37 +92,8 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 coupon.isCouponUnique = isCouponUnique
             }
             
-            if let isCouponUnique = dict["isCouponUnique"] as? Bool {
-                if isCouponUnique {
-                    let url = "\(APIEndpoints.couponEndpoint)?uid=\(UserInfo.uid!)&brand=\(brand.name!)"
-                    Alamofire.request(url).responseJSON(completionHandler: { (response) in
-                        if let responseDict = response.result.value as? NSDictionary {
-                            if let containsFeedback = responseDict["containsFeedback"] as? Bool {
-                                if containsFeedback == true {
-                                    // show feedback survey
-                                    if let couponCode = responseDict["couponCode"] as? String {
-                                        // pass coupon code to next VC
-                                        coupon.couponCode = couponCode
-                                    }
-                                    if let questionDict = responseDict["questions"] as? NSDictionary {
-                                        self.feedbackQuestionsDict = questionDict
-                                    }
-
-                                } else {
-                                    // show couponCode
-                                    if let couponCode = responseDict["couponCode"] as? String {
-                                        // pass coupon code to next VC
-                                        coupon.couponCode = couponCode
-                                    }
-                                }
-                            }
-                        }
-                    })
-                } else {
-                    if let couponCode = dict["couponCode"] as? String {
-                        coupon.couponCode = couponCode
-                    }
-                }
+            if let couponCode = dict["couponCode"] as? String {
+                coupon.couponCode = couponCode
             }
             
             self.couponList.append(coupon)
@@ -136,7 +109,8 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         let coupon = couponList[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
         if coupon.isCouponUnique! {
-            let url = "\(APIEndpoints.couponEndpoint)?uid=\(UserInfo.uid!)&brand=\(brand.name!)&couponID=coupon1"
+            let url = "\(APIEndpoints.couponEndpoint)?uid=\(UserInfo.uid!)&brand=\(brand.name!)&couponID=\(coupon.couponID!)"
+            self.surveyID = "\(brand.name!)_\(coupon.couponID!)"
             Alamofire.request(url).responseJSON(completionHandler: { (response) in
                 if let responseDict = response.result.value as? NSDictionary {
                     print("Coupons: \(responseDict)")
@@ -156,7 +130,14 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                             }
                             // perform segue to feedback
                             
-                            self.performSegue(withIdentifier: "couponToFeedback", sender: nil)
+                            let FeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
+                            FeedbackVC?.quesDict = self.feedbackQuestionsDict
+                            FeedbackVC?.surveyID = self.surveyID
+                            FeedbackVC?.sender = "Coupon"
+                            FeedbackVC?.couponCode = self.selectedCouponCode
+                            self.navigationController?.pushViewController(FeedbackVC!, animated: true)
+                            
+//                            self.performSegue(withIdentifier: "couponToFeedback", sender: nil)
                             print("Coupon: segue to feedback")
                             
                         } else {
@@ -178,6 +159,7 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
         } else {
             selectedCouponCode = coupon.couponCode
+            self.performSegue(withIdentifier: "couponToDetail", sender: nil)
         }
     }
     
@@ -219,7 +201,7 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         
         if segue.identifier == "couponToFeedback" {
             if let vc = segue.destination as? CouponFeedbackOnlineVC {
-                vc.surveyID = self.brand.name
+//                vc.surveyID = "\(self.brand.name)"
                 vc.quesDict = self.feedbackQuestionsDict
                 vc.couponCode = selectedCouponCode
             }

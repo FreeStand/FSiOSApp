@@ -16,4 +16,5 @@ class Coupon: NSObject{
     var isDigital: Bool?
     var couponCode: String?
     var isCouponUnique: Bool?
+    var couponID: String?
 }
