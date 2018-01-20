@@ -38,6 +38,9 @@ class Events {
     public static var SCREEN_ADDRESS = "Screen_Address"
     public static var ADDRESS_SUBMIT = "Address_Submit_Button"
     public static var SCREEN_HOME = "Screen_Home"
+    public static var SCREEN_COUPON = "Screen_Coupon"
+    public static var SCREEN_ALERTS = "Screen_Alerts"
+    public static var SCREEN_MORE = "Screen_More"
     
 }
 

@@ -122,8 +122,9 @@ class CouponFeedbackOnlineVC: UIViewController {
     
     func updateDB() {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
-        self.present(ThankYouVC, animated: true, completion: nil)
+        let CouponDigitalVC = storyBoard.instantiateViewController(withIdentifier: "CouponDigitalVC") as! CouponDigitalVC
+        CouponDigitalVC.couponCode = self.couponCode
+        self.navigationController?.pushViewController(CouponDigitalVC, animated: true)
     }
     
     

@@ -1232,21 +1232,21 @@
                     </tabBar>
                     <connections>
                         <segue destination="o26-Nf-JYS" kind="relationship" relationship="viewControllers" id="Xqb-I3-v8S"/>
+                        <segue destination="zg4-lx-Qli" kind="relationship" relationship="viewControllers" id="F5r-CM-Hnl"/>
                         <segue destination="BWt-FP-pa5" kind="relationship" relationship="viewControllers" id="TPY-yq-n10"/>
                         <segue destination="ePs-1O-ziA" kind="relationship" relationship="viewControllers" id="Fzm-W3-ja7"/>
                         <segue destination="NuE-wi-XOc" kind="relationship" relationship="viewControllers" id="hgn-95-t9L"/>
-                        <segue destination="zg4-lx-Qli" kind="relationship" relationship="viewControllers" id="F5r-CM-Hnl"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mWv-It-DzC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3410" y="956"/>
         </scene>
-        <!--Alert-->
+        <!--Alerts-->
         <scene sceneID="Uem-qr-w9u">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ePs-1O-ziA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Alert" image="icAlertsInactive" selectedImage="icAlertsInactive" id="kbJ-Jb-M02"/>
+                    <tabBarItem key="tabBarItem" title="Alerts" image="icAlertsInactive" selectedImage="icAlertsInactive" id="kbJ-Jb-M02"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="mJ5-5Q-miH">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -1259,7 +1259,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5VF-BD-5MV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-785.50724637681162" y="1727.4456521739132"/>
+            <point key="canvasLocation" x="-786" y="1738"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="d6p-Y1-vQ1">
@@ -2067,7 +2067,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZv-Of-C5s" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9fF-c4-nFw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2735" y="159"/>
+            <point key="canvasLocation" x="-2447" y="159"/>
         </scene>
         <!--LocationVC-->
         <scene sceneID="D9x-i3-l4s">
@@ -2094,7 +2094,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BnL-zz-Af7">
                                 <rect key="frame" x="67.5" y="143" width="240" height="170"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yvw-Kr-cRe">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="store" translatesAutoresizingMaskIntoConstraints="NO" id="Yvw-Kr-cRe">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="128" id="3ld-l3-5vq"/>
@@ -2133,7 +2133,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0cC-e1-TZB">
                                 <rect key="frame" x="67.5" y="353" width="240" height="170"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wap-Ep-9Bs">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="elsewhere" translatesAutoresizingMaskIntoConstraints="NO" id="Wap-Ep-9Bs">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="128" id="h9b-Lq-v65"/>
@@ -2187,7 +2187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AbI-3F-AJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2079.1999999999998" y="157.87106446776613"/>
+            <point key="canvasLocation" x="-1455" y="159"/>
         </scene>
         <!--New CouponVC-->
         <scene sceneID="xSW-Ac-7eW">
@@ -2835,7 +2835,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
         <!--Coupon DigitalVC-->
         <scene sceneID="psB-hV-hYp">
             <objects>
-                <viewController id="iT5-8V-RmZ" customClass="CouponDigitalVC" customModule="FS_Mark0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CouponDigitalVC" id="iT5-8V-RmZ" customClass="CouponDigitalVC" customModule="FS_Mark0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B4e-db-ffl"/>
                         <viewControllerLayoutGuide type="bottom" id="LR7-oO-lBC"/>
@@ -2921,7 +2921,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4j-sh-JKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="L5d-gv-e0k" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-3446" y="3970"/>
+            <point key="canvasLocation" x="-3180" y="3970"/>
         </scene>
         <!--Scan QR-->
         <scene sceneID="6hi-P2-mO4">
@@ -3004,7 +3004,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UmK-EG-pnF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1269.375" y="135.21126760563379"/>
+            <point key="canvasLocation" x="-786" y="159"/>
         </scene>
         <!--FeedbackVC-->
         <scene sceneID="4mI-25-UfV">
@@ -3297,7 +3297,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JlW-vT-rNV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-443" y="135"/>
+            <point key="canvasLocation" x="-63" y="158"/>
         </scene>
         <!--Thank YouVC-->
         <scene sceneID="vp9-Yn-QcU">
@@ -3458,7 +3458,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
         <scene sceneID="qK4-Ah-zPE">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="o26-Nf-JYS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" selectedImage="icHomeInactive" id="paV-5s-WBF"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="icHomeInactive" selectedImage="icHomeInactive" id="paV-5s-WBF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="maD-7X-OUT">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -3865,7 +3865,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
         <scene sceneID="H8n-y3-ehE">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zg4-lx-Qli" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Coupons" selectedImage="icCouponInactive" id="oNU-zJ-fBg"/>
+                    <tabBarItem key="tabBarItem" title="Coupons" image="icCouponInactive" selectedImage="icCouponInactive" id="oNU-zJ-fBg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="oS8-3E-3wu">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -3884,6 +3884,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
     </scenes>
     <resources>
         <image name="Dooodle-Login" width="1366" height="1056"/>
+        <image name="elsewhere" width="240" height="112"/>
         <image name="fb" width="207" height="36"/>
         <image name="icAlertsInactive" width="24" height="24"/>
         <image name="icCalendar" width="24" height="24"/>
@@ -3909,5 +3910,6 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
         <image name="radioOff" width="24" height="24"/>
         <image name="radioOn" width="24" height="24"/>
         <image name="scanOverlay" width="375" height="667"/>
+        <image name="store" width="240" height="112"/>
     </resources>
 </document>

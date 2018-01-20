@@ -298,6 +298,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                             self.quesDict = survey["questions"] as? NSDictionary
                             self.questionsLoadedCallback()
                             self.hideThankYouShowQuestions()
+                            sender.isHidden = false
                             self.thankYouActivityIndicator.stopAnimating()
                         } else {
                             print("Error: can't cast survey")

@@ -51,14 +51,18 @@ class BrandsTVC: UITableViewController {
                     brand.coupons = coupons
                     brand.totalDeals = coupons.count
                 } else {
+                    brand.totalDeals = 0
                     print("Error: Can't find/cast coupons in \(brand.name ?? "Brand")")
                 }
                 
-                self.brandList.append(brand)
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                if brand.totalDeals != 0 {
+                    self.brandList.append(brand)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 }
+                
+                
             } else {
                 print("Error: Can't cast dict from snapshot in Brands")
             }
