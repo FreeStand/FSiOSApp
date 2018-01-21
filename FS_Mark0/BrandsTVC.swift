@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Alamofire
 
 class BrandsTVC: UITableViewController {
     
     var brandList = [Brand]()
+    var couponList = [Coupon]()
     var selectedBrand: Brand!
     
 
@@ -24,8 +26,55 @@ class BrandsTVC: UITableViewController {
             NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17)!
         ]
         navigationController?.navigationBar.titleTextAttributes = attrs
-        
-        getBrands()
+        getCoupons()
+        self.tableView.tableFooterView = UIView()
+    }
+    
+    func getCoupons() {
+        DataService.ds.REF_COUPONS.observe(.childAdded) { (snapshot) in
+            if let dict = snapshot.value as? NSDictionary {
+                let coupon = Coupon()
+                coupon.couponID = snapshot.key
+                if let imgURL = dict["imgURL"] as? String {
+                    coupon.imgURL = imgURL
+                } else {
+                    print("Error: Can't cast imgURL in coupon")
+                }
+                
+                if let title = dict["title"] as? String {
+                    coupon.title = title
+                } else {
+                    print("Error: Can't cast title in coupon")
+                }
+                
+                if let subtitle = dict["subtitle"] as? String {
+                    coupon.subtitle = subtitle
+                } else {
+                    print("Error: Can't cast subtitle in coupon")
+                }
+                
+                if let brandName = dict["brandName"] as? String {
+                    coupon.brandName = brandName
+                } else {
+                    print("Error: Can't cast brandName in coupon")
+                }
+                
+                if let generalCouponCode = dict["generalCouponCode"] as? String {
+                    coupon.generalCouponCode = generalCouponCode
+                } else {
+                    print("Error: Can't cast generalCouponCode in coupon")
+                }
+
+                
+                self.couponList.append(coupon)
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } else {
+                print("Can't cast dict in Coupons")
+            }
+        }
     }
 
     func getBrands() {
@@ -85,18 +134,18 @@ class BrandsTVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return brandList.count
+        return couponList.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "BrandCell", for: indexPath) as? BrandCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "couponCell", for: indexPath) as? CouponCell {
             cell.contentView.addBottomBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 2.0)
             cell.clipsToBounds = true
             
-            let brand: Brand!
-            brand = brandList[indexPath.row]
-            cell.configureCell(brand: brand)
+            let coupon: Coupon!
+            coupon = couponList[indexPath.row]
+            cell.configureCell(coupon: coupon)
             
             return cell
         }
@@ -105,15 +154,81 @@ class BrandsTVC: UITableViewController {
     
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 186
+        return 260
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("BrandCell")
-        selectedBrand = brandList[indexPath.row]
-        if selectedBrand.coupons != nil {
-            performSegue(withIdentifier: "BrandToCoupon", sender: nil)
+        if let cell = tableView.cellForRow(at: indexPath) as? CouponCell {
+            cell.activityIndicator.startAnimating()
+            let coupon = couponList[indexPath.row]
+            if coupon.generalCouponCode != nil {
+                let url = "\(APIEndpoints.generalCouponEndpoint)?uid=\(UserInfo.uid!)&brand=\(coupon.brandName!)&couponID=\(coupon.couponID!)"
+                Alamofire.request(url).responseJSON(completionHandler: { (response) in
+                    if let dict = response.result.value as? NSDictionary {
+                        if let containsFeedBack = dict["containsFeedBack"] as? Bool {
+                            if containsFeedBack {
+                                let feedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
+                                feedbackVC?.couponCode = coupon.generalCouponCode
+                                feedbackVC?.quesArray = dict["questions"] as? NSArray
+                                feedbackVC?.sender = "Coupon"
+                                feedbackVC?.surveyID = coupon.couponID
+                                cell.activityIndicator.stopAnimating()
+                                self.navigationController?.pushViewController(feedbackVC!, animated: true)
+                                
+                            } else {
+                                // no feedback
+                                // show coupon
+                                let couponDigitalVC = self.storyboard?.instantiateViewController(withIdentifier: "CouponDigitalVC") as? CouponDigitalVC
+                                couponDigitalVC?.couponCode = coupon.generalCouponCode
+                                cell.activityIndicator.stopAnimating()
+                                self.navigationController?.pushViewController(couponDigitalVC!, animated: true)
+                                
+                            }
+                        } else {
+                            print("Can't cast containsFeedBack in generalCoupon")
+                        }
+                    } else {
+                        print("Can't cast dict in generalCoupon")
+                    }
+                })
+                
+            } else {
+                let url = "\(APIEndpoints.couponEndpoint)?uid=\(UserInfo.uid!)&brand=\(coupon.brandName!)&couponID=\(coupon.couponID!)"
+                Alamofire.request(url).responseJSON { (response) in
+                    if let dict = response.result.value as? NSDictionary {
+                        if let containsFeedBack = dict["containsFeedBack"] as? Bool {
+                            if !containsFeedBack {
+                                //does not contain feedback
+                                //show couponcode directly
+                                let couponDigitalVC = self.storyboard?.instantiateViewController(withIdentifier: "CouponDigitalVC") as? CouponDigitalVC
+                                couponDigitalVC?.couponCode = dict["couponCode"] as? String
+                                cell.activityIndicator.stopAnimating()
+                                self.navigationController?.pushViewController(couponDigitalVC!, animated: true)
+                            } else {
+                                //contains feedback
+                                //show feedback
+                                //then couponCode
+                                let feedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
+                                feedbackVC?.couponCode = dict["couponCode"] as? String
+                                feedbackVC?.quesArray = dict["questions"] as? NSArray
+                                feedbackVC?.sender = "Coupon"
+                                feedbackVC?.surveyID = coupon.couponID
+                                cell.activityIndicator.stopAnimating()
+                                self.navigationController?.pushViewController(feedbackVC!, animated: true)
+                            }
+                        }
+                    }
+                }
+            }
+            
+
         }
+        
+//        print("BrandCell")
+//        selectedBrand = brandList[indexPath.row]
+//        if selectedBrand.coupons != nil {
+//            performSegue(withIdentifier: "BrandToCoupon", sender: nil)
+//        }
     }
     
     

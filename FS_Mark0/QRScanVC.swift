@@ -25,7 +25,7 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
     var surveyID: String!
     var locationID: String!
     var category: String!
-    var quesDict: NSDictionary!
+    var quesArray: NSArray!
     
     lazy var reader: QRCodeReader = QRCodeReader()
     lazy var readerVC: QRCodeReaderViewController = {
@@ -90,7 +90,7 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
                     Analytics.logEvent(Events.QR_SUCC, parameters: nil)
                     let FeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
                     FeedbackVC?.sender = "InitialQR"
-                    FeedbackVC?.quesDict = dict["questions"] as? NSDictionary
+                    FeedbackVC?.quesArray = dict["questions"] as? NSArray
                     FeedbackVC?.surveyID = dict["surveyID"] as? String
                     self.present(FeedbackVC!, animated: true, completion: nil)
                 } else if status == "invalid" {
@@ -112,7 +112,7 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
         let FeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
         FeedbackVC?.sender = "InitialQR"
         FeedbackVC?.surveyID = self.surveyID
-        FeedbackVC?.quesDict = self.quesDict
+        FeedbackVC?.quesArray = self.quesArray
         self.present(FeedbackVC!, animated: true, completion: nil)
     }
     
@@ -189,13 +189,6 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
         }))
         self.present(alert, animated: true, completion: nil)
 
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? FeedbackVC {
-            vc.quesDict = self.quesDict
-            vc.surveyID = self.surveyID
-        }
     }
 }
 

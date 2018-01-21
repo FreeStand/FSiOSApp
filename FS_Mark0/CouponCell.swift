@@ -17,6 +17,7 @@ class CouponCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var coupon: Coupon!
     var redirectURL: String!
@@ -26,7 +27,7 @@ class CouponCell: UITableViewCell {
         titleLabel.text = coupon.title
         subtitleLabel.text = coupon.subtitle
         img.downloadedFrom(link: coupon.imgURL!)
-        redirectURL = coupon.redirectURL
+//        redirectURL = coupon.redirectURL
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

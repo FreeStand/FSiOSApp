@@ -15,6 +15,7 @@ class FeedbackVC: UIViewController {
     // MARK: Variables
     var selectedAnswer: String!
     var quesDict: NSDictionary!
+    var quesArray: NSArray!
     var totalQuestions: Int!
     var quesIterator = 0
     var surveyID: String!
@@ -43,7 +44,7 @@ class FeedbackVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Analytics.logEvent(Events.SCREEN_QR_FEED, parameters: nil)
-        if quesDict != nil {
+        if quesArray != nil {
             questionsLoadedCallback()
         }
         questionTransitionView.layer.cornerRadius = 7
@@ -58,14 +59,14 @@ class FeedbackVC: UIViewController {
         option3.isSelected = false
         option4.isSelected = false
         
-        let dict = quesDict["question1"] as? [String:String]
+        let dict = quesArray[0] as? [String:String]
         questionLabel.text = dict?["question"]
         option1Label.text = dict?["option1"]
         option2Label.text = dict?["option2"]
         option3Label.text = dict?["option3"]
         option4Label.text = dict?["option4"]
         
-        totalQuestions = quesDict.count
+        totalQuestions = quesArray.count
         countViewLabel.text = "1/\(totalQuestions!)"
         
         option1?.alternateButton = [option2!, option3!, option4!]
@@ -99,7 +100,7 @@ class FeedbackVC: UIViewController {
     }
     
     func updateQuestion() {
-        let quesData = quesDict.allValues[quesIterator] as? [String:String]
+        let quesData = quesArray[quesIterator] as? [String:String]
         questionLabel.text = quesData?["question"]
         option1Label.text = quesData?["option1"]
         option2Label.text = quesData?["option2"]

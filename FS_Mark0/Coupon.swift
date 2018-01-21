@@ -11,6 +11,8 @@ class Coupon: NSObject{
     var title: String?
     var subtitle: String?
     var redirectURL: String?
+    var brandName: String?
+    var generalCouponCode: String?
     var uID: String?
     var imgURL: String?
     var isDigital: Bool?

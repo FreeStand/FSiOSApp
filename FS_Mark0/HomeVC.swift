@@ -50,7 +50,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     var brandList = [BrandCV]()
     var selectedAnswer: String!
-    var quesDict: NSDictionary!
+    var quesArray: NSArray!
     var totalQuestions: Int!
     var quesIterator = 0
     
@@ -93,14 +93,14 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         option3.isSelected = false
         option4.isSelected = false
         
-        let dict = quesDict["question1"] as? [String:String]
+        let dict = quesArray[0] as? [String:String]
         questionLabel.text = dict?["question"]
         option1Label.text = dict?["option1"]
         option2Label.text = dict?["option2"]
         option3Label.text = dict?["option3"]
         option4Label.text = dict?["option4"]
 
-        totalQuestions = quesDict.count
+        totalQuestions = quesArray.count
         countViewLabel.text = "1/\(totalQuestions!)"
 
         option1?.alternateButton = [option2!, option3!, option4!]
@@ -243,7 +243,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
     
     func updateQuestion() {
-        let quesData = quesDict.allValues[quesIterator] as? [String:String]
+        let quesData = quesArray[quesIterator] as? [String:String]
         questionLabel.text = quesData?["question"]
         option1Label.text = quesData?["option1"]
         option2Label.text = quesData?["option2"]
@@ -293,7 +293,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 if let containsFeedback = dict["containsSurvey"] as? Bool {
                     if containsFeedback {
                         if let survey = dict["survey"] as? NSDictionary {
-                            self.quesDict = survey["questions"] as? NSDictionary
+                            self.quesArray = survey["questions"] as? NSArray
                             self.questionsLoadedCallback()
                             self.hideGreetingShowQuestions()
                             self.greetingActivityIndicator.stopAnimating()
@@ -338,7 +338,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 if let containsFeedback = dict["containsSurvey"] as? Bool {
                     if containsFeedback {
                         if let survey = dict["survey"] as? NSDictionary {
-                            self.quesDict = survey["questions"] as? NSDictionary
+                            self.quesArray = survey["questions"] as? NSArray
                             self.questionsLoadedCallback()
                             self.hideThankYouShowQuestions()
                             sender.isHidden = false
