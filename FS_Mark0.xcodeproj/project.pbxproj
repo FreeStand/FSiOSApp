@@ -103,7 +103,6 @@
 		9298BD491F7AE0430048ABFA /* BrandCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCell.swift; sourceTree = "<group>"; };
 		92AA3DF71F2D247D00A6613E /* MoreVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
 		92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
-		92ABFF0A1F1B7E79004A797C /* SurveyMonkeyiOSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SurveyMonkeyiOSSDK.framework; path = "Pods/surveymonkey-ios-sdk/SurveyMonkeyiOSSDK.framework"; sourceTree = "<group>"; };
 		92AF00691F35B4880061E243 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		92AF006F1F3734410061E243 /* TabBarTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarTBC.swift; sourceTree = "<group>"; };
 		92B14B411F34880A005C45FE /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -318,7 +317,6 @@
 		CAA2D091FEA8D6C9A00858B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				92ABFF0A1F1B7E79004A797C /* SurveyMonkeyiOSSDK.framework */,
 				F49F4495C781C9155B379118 /* Pods_FS_Mark0.framework */,
 			);
 			name = Frameworks;

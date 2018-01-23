@@ -447,39 +447,59 @@
                                             <color key="textColor" red="0.23921568630000001" green="0.28627450980000002" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZG-Gn-6WE">
-                                            <rect key="frame" x="42" y="208" width="24" height="24"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="24" id="fGd-fo-qJ1"/>
-                                                <constraint firstAttribute="height" constant="24" id="qzn-o0-oMX"/>
-                                            </constraints>
-                                            <state key="normal" image="icInfo"/>
-                                            <connections>
-                                                <action selector="infoBtnPressed:" destination="bEg-T9-IZ8" eventType="touchUpInside" id="oA8-0Y-k6a"/>
-                                            </connections>
-                                        </button>
                                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Lel-Qn-dYJ">
                                             <rect key="frame" x="339" y="138" width="20" height="20"/>
                                         </activityIndicatorView>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CouponCode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3a-Kj-m5e">
+                                            <rect key="frame" x="48" y="208.5" width="270" height="23.5"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJk-ly-pSB">
+                                            <rect key="frame" x="0.0" y="229" width="375" height="30"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coupon Copied Successfully!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtm-2c-DOD">
+                                                    <rect key="frame" x="0.0" y="5" width="375" height="20.5"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.066666666669999999" green="0.070588235289999995" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="jtm-2c-DOD" firstAttribute="leading" secondItem="XJk-ly-pSB" secondAttribute="leading" id="SJF-2l-AB1"/>
+                                                <constraint firstAttribute="height" constant="30" id="Ucr-r6-9CW"/>
+                                                <constraint firstItem="jtm-2c-DOD" firstAttribute="centerY" secondItem="XJk-ly-pSB" secondAttribute="centerY" id="dPS-gD-Opk"/>
+                                                <constraint firstAttribute="trailing" secondItem="jtm-2c-DOD" secondAttribute="trailing" id="rVf-G6-MAZ"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="XJk-ly-pSB" firstAttribute="leading" secondItem="icY-gw-6Wm" secondAttribute="leading" id="3kg-tD-AA8"/>
                                         <constraint firstItem="9Ur-0u-6Gx" firstAttribute="top" secondItem="YvJ-su-nne" secondAttribute="bottom" constant="14.199999999999999" id="9VS-Lb-aA2"/>
                                         <constraint firstItem="9Ur-0u-6Gx" firstAttribute="leading" secondItem="icY-gw-6Wm" secondAttribute="leadingMargin" constant="26" id="I9U-vb-rYX"/>
                                         <constraint firstAttribute="trailing" secondItem="9Ur-0u-6Gx" secondAttribute="trailing" constant="34" id="Jrf-xd-fDd"/>
+                                        <constraint firstAttribute="bottom" secondItem="XJk-ly-pSB" secondAttribute="bottom" id="PRv-Tt-aR9"/>
+                                        <constraint firstItem="x3a-Kj-m5e" firstAttribute="leading" secondItem="icY-gw-6Wm" secondAttribute="leadingMargin" constant="32" id="Qmd-gs-hkS"/>
                                         <constraint firstItem="YvJ-su-nne" firstAttribute="leading" secondItem="icY-gw-6Wm" secondAttribute="leading" id="REN-m6-Sdq"/>
                                         <constraint firstItem="YvJ-su-nne" firstAttribute="top" secondItem="icY-gw-6Wm" secondAttribute="top" id="VD2-0f-Uee"/>
-                                        <constraint firstItem="dZG-Gn-6WE" firstAttribute="leading" secondItem="icY-gw-6Wm" secondAttribute="leadingMargin" constant="26" id="XB5-O7-SMT"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="dZG-Gn-6WE" secondAttribute="bottom" constant="17" id="baA-BP-A0z"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="IWM-OB-zip" secondAttribute="trailing" constant="41" id="kDt-PH-UeQ"/>
                                         <constraint firstItem="IWM-OB-zip" firstAttribute="top" secondItem="9Ur-0u-6Gx" secondAttribute="bottom" constant="6" id="kQg-aA-F2V"/>
                                         <constraint firstItem="Lel-Qn-dYJ" firstAttribute="top" secondItem="YvJ-su-nne" secondAttribute="bottom" constant="14" id="kkH-F1-qJW"/>
                                         <constraint firstItem="Lel-Qn-dYJ" firstAttribute="trailing" secondItem="icY-gw-6Wm" secondAttribute="trailingMargin" id="kwS-C6-j6z"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="x3a-Kj-m5e" secondAttribute="trailing" constant="41" id="pDR-P9-9Oo"/>
                                         <constraint firstAttribute="trailing" secondItem="YvJ-su-nne" secondAttribute="trailing" id="rLk-hM-a2R"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="x3a-Kj-m5e" secondAttribute="bottom" constant="17" id="sJQ-SC-y8m"/>
                                         <constraint firstItem="IWM-OB-zip" firstAttribute="leading" secondItem="icY-gw-6Wm" secondAttribute="leadingMargin" constant="26" id="wT1-qp-fZ4"/>
+                                        <constraint firstAttribute="trailing" secondItem="XJk-ly-pSB" secondAttribute="trailing" id="wUL-f5-YvH"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="activityIndicator" destination="Lel-Qn-dYJ" id="swl-pC-fhe"/>
+                                    <outlet property="copyView" destination="XJk-ly-pSB" id="aiL-nS-qM9"/>
+                                    <outlet property="couponLabel" destination="x3a-Kj-m5e" id="BH5-9F-wEA"/>
                                     <outlet property="img" destination="DBX-AU-Rep" id="2wt-sq-ava"/>
                                     <outlet property="subtitleLabel" destination="IWM-OB-zip" id="JXy-qe-npx"/>
                                     <outlet property="titleLabel" destination="9Ur-0u-6Gx" id="AGP-YR-qww"/>
@@ -2914,7 +2934,6 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
         <image name="icHandcrafted" width="185" height="15"/>
         <image name="icHelp" width="24" height="24"/>
         <image name="icHomeInactive" width="24" height="24"/>
-        <image name="icInfo" width="24" height="25"/>
         <image name="icLogOut" width="24" height="24"/>
         <image name="icPhone" width="24" height="24"/>
         <image name="icQrCode" width="65" height="65"/>

@@ -33,7 +33,7 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         coupons = brand.coupons
         tableView.dataSource = self
         tableView.delegate = self
-        NotificationCenter.default.addObserver(self, selector: #selector(infoBtnPressed), name: Notification.Name("myNotification"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(infoBtnPressed), name: Notification.Name("myNotification"), object: nil)
 
         self.navigationItem.title = brand.name
         self.navigationController?.navigationBar.tintColor = UIColor.white

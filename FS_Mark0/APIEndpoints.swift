@@ -14,5 +14,5 @@ class APIEndpoints {
     public static var checkQREndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/CheckQR"
     public static var getBrands = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/getBrands"
     public static var generalCouponEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/sendGeneralCouponSurvey"
-
+    public static var showCouponsEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/showCoupons"
 }

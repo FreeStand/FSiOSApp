@@ -19,4 +19,5 @@ class Coupon: NSObject{
     var couponCode: String?
     var isCouponUnique: Bool?
     var couponID: String?
+    var showCouponOnScreen: String?
 }
