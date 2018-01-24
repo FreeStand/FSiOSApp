@@ -20,7 +20,6 @@ class LocationVC: UIViewController {
     @IBAction func partnerBtnPressed(_ sender: UIButton) {
         Analytics.logEvent(Events.USER_CAMPAIGN, parameters: nil)
         // Present QR Screen here
-//        self.dismiss(animated: true, completion: nil)
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let EventFeedbackVC = storyBoard.instantiateViewController(withIdentifier: "QRScanVC") as! QRScanVC
         self.present(EventFeedbackVC, animated: true, completion: nil)
@@ -30,7 +29,6 @@ class LocationVC: UIViewController {
         Analytics.logEvent(Events.USER_ONLINE, parameters: nil)
         // Present Home Screen here
         let delegateTemp = UIApplication.shared.delegate
-//        self.dismiss(animated: true, completion: nil)
         delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
 
     }

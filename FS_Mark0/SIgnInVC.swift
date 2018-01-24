@@ -110,7 +110,7 @@ class SIgnInVC: UIViewController {
             } else {
                 print("go to dob auth")
                 self.dismiss(animated: true, completion: nil)
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let storyBoard: UIStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
                 let DobVC = storyBoard.instantiateViewController(withIdentifier: "DobVC") as! DobVC
                 self.present(DobVC, animated: true, completion: nil)
             }
@@ -125,7 +125,7 @@ class SIgnInVC: UIViewController {
                     } else {
                         print("go to dob auth")
                         self.dismiss(animated: true, completion: nil)
-                        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let storyBoard: UIStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
                         let DobVC = storyBoard.instantiateViewController(withIdentifier: "DobVC") as! DobVC
                         self.present(DobVC, animated: true, completion: nil)
                     }

@@ -18,6 +18,7 @@ class BrandsTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.barTintColor = UIColor.fiBlack
         self.navigationItem.title = "Coupons"
         
         let attrs = [
@@ -215,7 +216,7 @@ class BrandsTVC: UITableViewController {
     
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 260
+        return 228
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -83,7 +83,7 @@ class MoreVC: UITableViewController {
         let loginManager = FBSDKLoginManager()
         loginManager.logOut()
         UserDefaults.standard.set(false, forKey: "isLoggedIn")
-        UIApplication.shared.delegate?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
+        UIApplication.shared.delegate?.window!?.rootViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
     }
     
 }

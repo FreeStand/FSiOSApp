@@ -21,7 +21,6 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
         self.view.layoutIfNeeded()
         male.isSelected = false
         female.isSelected = false
-        others.isSelected = false
     }
     
     enum Notifications: String, NotificationName {
@@ -43,9 +42,8 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
         ageTextField.delegate = self
         agePicker.delegate = self
         agePicker.dataSource = self
-        male.alternateButton = [female!, others!]
-        female.alternateButton = [male!, others!]
-        others.alternateButton = [male!, female!]
+        male.alternateButton = [female!]
+        female.alternateButton = [male!]
         
         ageTextField.inputView = agePicker
         ageTextField.text = agePickerValues[0]
@@ -93,23 +91,14 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
     }
     
     @IBAction func maleRadioPressed(_ sender: Any) {
-        Analytics.logEvent(Events.GENDER_MALE_TAPPED, parameters: nil)
         gender = "Male"
         male.unselectAlternateButtons()
         print(gender)
     }
     
     @IBAction func femaleRadioPressed(_ sender: Any) {
-        Analytics.logEvent(Events.GENDER_FEMALE_TAPPED, parameters: nil)
         gender = "Female"
         female.unselectAlternateButtons()
-        print(gender)
-    }
-    
-    @IBAction func otherRadioPressed(_ sender: Any) {
-        Analytics.logEvent(Events.GENDER_OTHERS_TAPPED, parameters: nil)
-        gender = "Other"
-        others.unselectAlternateButtons()
         print(gender)
     }
     
@@ -120,8 +109,6 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
             Analytics.logEvent(Events.GENDER_MALE_SEL, parameters: nil)
         case "Female":
             Analytics.logEvent(Events.GENDER_FEMALE_SEL, parameters: nil)
-        case "Other":
-            Analytics.logEvent(Events.GENDER_OTHERS_SEL, parameters: nil)
         default:
             print("Error: No Gender Selected")
         }
@@ -131,16 +118,9 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
         
         let userData = ["dob":ageTextField.text, "gender":gender]
         DataService.ds.updateFirebaseDBUserWithUserData(userData: [userData as! Dictionary<String, String> as Dictionary<String, AnyObject>])
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
         let LocationVC = storyBoard.instantiateViewController(withIdentifier: "LocationVC") as! LocationVC
-//        self.dismiss(animated: true, completion: nil)
         self.present(LocationVC, animated: true, completion: nil)
-        
-//        let delegateTemp = UIApplication.shared.delegate
-//        self.dismiss(animated: true, completion: nil)
-//        NotificationCenter.default.post(name: Notifications.phoneAuthVCNotification.name, object: nil)
-//        delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-
         
     }
 }

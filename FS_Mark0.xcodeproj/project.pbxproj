@@ -56,6 +56,7 @@
 		92FD4CE41F93D54900F4F1FD /* FAQCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE31F93D54900F4F1FD /* FAQCell.swift */; };
 		92FD4CE61F93DBF800F4F1FD /* FaqTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */; };
 		E788BD9E201382AE00829FA0 /* BrandCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = E788BD9D201382AE00829FA0 /* BrandCV.swift */; };
+		E78AD39E2017B4C2006B44D2 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E78AD39D2017B4C2006B44D2 /* SignIn.storyboard */; };
 		E7A7D25A1FFE3B2C001C9CFD /* CVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A7D2581FFE3B2C001C9CFD /* CVCell.swift */; };
 		E7A7D25B1FFE3B2C001C9CFD /* CVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7A7D2591FFE3B2C001C9CFD /* CVCell.xib */; };
 		E7A7D25F1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A7D25E1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift */; };
@@ -123,6 +124,7 @@
 		A6577A906A0B1F3A3F3C222B /* Pods-FS_Mark0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FS_Mark0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0.debug.xcconfig"; sourceTree = "<group>"; };
 		A6655B9E9A9DB8CC9CECBCA7 /* Pods-FS_Mark0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FS_Mark0.release.xcconfig"; path = "Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0.release.xcconfig"; sourceTree = "<group>"; };
 		E788BD9D201382AE00829FA0 /* BrandCV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCV.swift; sourceTree = "<group>"; };
+		E78AD39D2017B4C2006B44D2 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		E7A7D2581FFE3B2C001C9CFD /* CVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVCell.swift; sourceTree = "<group>"; };
 		E7A7D2591FFE3B2C001C9CFD /* CVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CVCell.xib; sourceTree = "<group>"; };
 		E7A7D25E1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+multiplier.swift"; sourceTree = "<group>"; };
@@ -188,8 +190,9 @@
 				92125DE01F03CD3800826AC1 /* Services */,
 				92AB4E631F2CF8DD00CB0DAA /* Helpers */,
 				92125DC61F010BAC00826AC1 /* Main.storyboard */,
-				E7A7D2591FFE3B2C001C9CFD /* CVCell.xib */,
+				E78AD39D2017B4C2006B44D2 /* SignIn.storyboard */,
 				92125DCB1F010BAC00826AC1 /* LaunchScreen.storyboard */,
+				E7A7D2591FFE3B2C001C9CFD /* CVCell.xib */,
 				92125DC91F010BAC00826AC1 /* Assets.xcassets */,
 				92125DCE1F010BAC00826AC1 /* Info.plist */,
 				92125DDC1F025D2600826AC1 /* FS_Mark0.entitlements */,
@@ -401,6 +404,7 @@
 				9283CA791FA6458D00FD41B7 /* Animation_2x.mp4 in Resources */,
 				9283CA731F9FBD2D00FD41B7 /* animation.gif in Resources */,
 				92125DCD1F010BAC00826AC1 /* LaunchScreen.storyboard in Resources */,
+				E78AD39E2017B4C2006B44D2 /* SignIn.storyboard in Resources */,
 				E7A7D25B1FFE3B2C001C9CFD /* CVCell.xib in Resources */,
 				9298BD461F7A63360048ABFA /* GoogleService-Info.plist in Resources */,
 				92125DCA1F010BAC00826AC1 /* Assets.xcassets in Resources */,

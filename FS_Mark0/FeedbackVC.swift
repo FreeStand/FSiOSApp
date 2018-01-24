@@ -78,6 +78,7 @@ class FeedbackVC: UIViewController {
         self.nextBtn.isEnabled = false
         self.nextBtn.alpha = 0.5
         self.questionTransitionView.isHidden = false
+        progressView.progress = 1.0 / Float(totalQuestions)
         
     }
 
@@ -107,13 +108,14 @@ class FeedbackVC: UIViewController {
         option3Label.text = quesData?["option3"]
         option4Label.text = quesData?["option4"]
         countViewLabel.text = "\(quesIterator+1)/\(totalQuestions!)"
+        progressView.progress = Float(quesIterator+1) / Float(totalQuestions)
         disableNextBtn()
         resetRadioButtons()
     }
     
     @IBAction func nextBtnpressed(_ sender: UIButton) {
-        Analytics.logEvent("\(surveyID!)_ques\(quesIterator)_\(selectedAnswer!)",
-            parameters: ["uid":Auth.auth().currentUser?.uid as Any])
+        Analytics.logEvent("\(surveyID!)_ques\(quesIterator)",
+            parameters: ["answer": selectedAnswer])
         
         if sender.title(for: .normal) == "NEXT" {
             changeQuestion()
