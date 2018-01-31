@@ -55,6 +55,9 @@
 		92FD4CE21F93D50A00F4F1FD /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE11F93D50A00F4F1FD /* FAQ.swift */; };
 		92FD4CE41F93D54900F4F1FD /* FAQCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE31F93D54900F4F1FD /* FAQCell.swift */; };
 		92FD4CE61F93DBF800F4F1FD /* FaqTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */; };
+		E720E8812021F59F00F3B495 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720E8802021F59F00F3B495 /* Survey.swift */; };
+		E720E8832021F62A00F3B495 /* SurveyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720E8822021F62A00F3B495 /* SurveyCell.swift */; };
+		E720E8852021F76200F3B495 /* HomeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720E8842021F76200F3B495 /* HomeTVC.swift */; };
 		E788BD9E201382AE00829FA0 /* BrandCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = E788BD9D201382AE00829FA0 /* BrandCV.swift */; };
 		E78AD39E2017B4C2006B44D2 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E78AD39D2017B4C2006B44D2 /* SignIn.storyboard */; };
 		E7A7D25A1FFE3B2C001C9CFD /* CVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A7D2581FFE3B2C001C9CFD /* CVCell.swift */; };
@@ -123,6 +126,9 @@
 		92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqTVC.swift; sourceTree = "<group>"; };
 		A6577A906A0B1F3A3F3C222B /* Pods-FS_Mark0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FS_Mark0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0.debug.xcconfig"; sourceTree = "<group>"; };
 		A6655B9E9A9DB8CC9CECBCA7 /* Pods-FS_Mark0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FS_Mark0.release.xcconfig"; path = "Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0.release.xcconfig"; sourceTree = "<group>"; };
+		E720E8802021F59F00F3B495 /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
+		E720E8822021F62A00F3B495 /* SurveyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCell.swift; sourceTree = "<group>"; };
+		E720E8842021F76200F3B495 /* HomeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTVC.swift; sourceTree = "<group>"; };
 		E788BD9D201382AE00829FA0 /* BrandCV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCV.swift; sourceTree = "<group>"; };
 		E78AD39D2017B4C2006B44D2 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		E7A7D2581FFE3B2C001C9CFD /* CVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVCell.swift; sourceTree = "<group>"; };
@@ -249,6 +255,7 @@
 				9298BD491F7AE0430048ABFA /* BrandCell.swift */,
 				92FD4CE31F93D54900F4F1FD /* FAQCell.swift */,
 				923D7CA71F9F23FD0081F3C2 /* BottomTextField.swift */,
+				E720E8822021F62A00F3B495 /* SurveyCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -262,6 +269,7 @@
 				9298BD471F7ADFA50048ABFA /* Brand.swift */,
 				92FD4CE11F93D50A00F4F1FD /* FAQ.swift */,
 				E788BD9D201382AE00829FA0 /* BrandCV.swift */,
+				E720E8802021F59F00F3B495 /* Survey.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -287,6 +295,7 @@
 				E7D61D6C20077F8700897895 /* QRScanVC.swift */,
 				92BCF4E61F30BF470047EB74 /* AlertVC.swift */,
 				92AA3DF71F2D247D00A6613E /* MoreVC.swift */,
+				E720E8842021F76200F3B495 /* HomeTVC.swift */,
 			);
 			name = MainTabBar;
 			sourceTree = "<group>";
@@ -528,6 +537,7 @@
 				92DE41C11F16920A00535ACE /* UserInfo.swift in Sources */,
 				922785621F476C450066F700 /* OrderTVC.swift in Sources */,
 				9220FE7B1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift in Sources */,
+				E720E8852021F76200F3B495 /* HomeTVC.swift in Sources */,
 				92BCD5421F55620900284E3B /* RadioCheck.swift in Sources */,
 				92125DE21F03CD5600826AC1 /* DataService.swift in Sources */,
 				9298BD4A1F7AE0430048ABFA /* BrandCell.swift in Sources */,
@@ -539,10 +549,12 @@
 				92984C1F1F62C2C6000FF983 /* DobVC.swift in Sources */,
 				92AF00701F3734420061E243 /* TabBarTBC.swift in Sources */,
 				92BCF4E71F30BF470047EB74 /* AlertVC.swift in Sources */,
+				E720E8832021F62A00F3B495 /* SurveyCell.swift in Sources */,
 				92FD4CE61F93DBF800F4F1FD /* FaqTVC.swift in Sources */,
 				E788BD9E201382AE00829FA0 /* BrandCV.swift in Sources */,
 				E7A7D25A1FFE3B2C001C9CFD /* CVCell.swift in Sources */,
 				E7A7D25F1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift in Sources */,
+				E720E8812021F59F00F3B495 /* Survey.swift in Sources */,
 				920BF1CF1F3F6F46007E6DC8 /* OrderCell.swift in Sources */,
 				92FD4CE21F93D50A00F4F1FD /* FAQ.swift in Sources */,
 				92AF006A1F35B4880061E243 /* Notification.swift in Sources */,

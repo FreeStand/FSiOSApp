@@ -110,6 +110,7 @@ class FeedbackVC: UIViewController {
 //        questionTransitionView.isHidden = true
         checkBoxView.layer.cornerRadius = 7
         self.nextBtn.setTitle("NEXT", for: .normal)
+        self.nextBtn.isEnabled = false
         
         option1?.alternateButton = [option2!, option3!, option4!, option5!, option6!, option7!, option8!]
         option2?.alternateButton = [option1!, option3!, option4!, option5!, option6!, option7!, option8!]
@@ -373,8 +374,10 @@ class FeedbackVC: UIViewController {
             let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
             self.present(ThankYouVC, animated: true, completion: nil)
 
-        } else {
-            
+        } else if sender == "HomeTVC"{
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
+            self.present(ThankYouVC, animated: true, completion: nil)
         }
         
     }
