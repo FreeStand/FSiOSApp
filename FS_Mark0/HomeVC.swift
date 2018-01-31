@@ -28,6 +28,12 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     @IBOutlet weak var noInternetView: UIView!
     @IBOutlet weak var noSurveyView: UIView!
     
+    @IBOutlet weak var option1View: UIView!
+    @IBOutlet weak var option2View: UIView!
+    @IBOutlet weak var option3View: UIView!
+    @IBOutlet weak var option4View: UIView!
+
+    
     @IBOutlet weak var option1: RadioButton!
     @IBOutlet weak var option2: RadioButton!
     @IBOutlet weak var option3: RadioButton!
@@ -83,7 +89,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        print("Memory warning aai")
     }
     
     func questionsLoadedCallback() {
@@ -93,13 +98,31 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         option3.isSelected = false
         option4.isSelected = false
         
-        let dict = quesArray[0] as? [String:String]
-        questionLabel.text = dict?["question"]
-        option1Label.text = dict?["option1"]
-        option2Label.text = dict?["option2"]
-        option3Label.text = dict?["option3"]
-        option4Label.text = dict?["option4"]
-
+        hideOptions()
+        let quesData = quesArray[0] as? [String:String]
+        if let question = quesData?["question"] {
+            questionLabel.text = question
+        }
+        
+        if let option1 = quesData?["option1"] {
+            option1View.isHidden = false
+            option1Label.text = option1
+        }
+        
+        if let option2 = quesData?["option2"] {
+            option2View.isHidden = false
+            option2Label.text = option2
+        }
+        
+        if let option3 = quesData?["option3"] {
+            option3View.isHidden = false
+            option3Label.text = option3
+        }
+        
+        if let option4 = quesData?["option4"] {
+            option4View.isHidden = false
+            option4Label.text = option4
+        }
         totalQuestions = quesArray.count
         countViewLabel.text = "1/\(totalQuestions!)"
 
@@ -224,6 +247,13 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
 
     
+    func hideOptions() {
+        option1View.isHidden = true
+        option2View.isHidden = true
+        option3View.isHidden = true
+        option4View.isHidden = true
+    }
+    
     //MARK: Questions Algo
     
     func changeQuestion() {
@@ -243,12 +273,33 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
     
     func updateQuestion() {
+        hideOptions()
         let quesData = quesArray[quesIterator] as? [String:String]
-        questionLabel.text = quesData?["question"]
-        option1Label.text = quesData?["option1"]
-        option2Label.text = quesData?["option2"]
-        option3Label.text = quesData?["option3"]
-        option4Label.text = quesData?["option4"]
+        
+        if let question = quesData?["question"] {
+            questionLabel.text = question
+        }
+        
+        if let option1 = quesData?["option1"] {
+            option1View.isHidden = false
+            option1Label.text = option1
+        }
+        
+        if let option2 = quesData?["option2"] {
+            option2View.isHidden = false
+            option2Label.text = option2
+        }
+        
+        if let option3 = quesData?["option3"] {
+            option3View.isHidden = false
+            option3Label.text = option3
+        }
+        
+        if let option4 = quesData?["option4"] {
+            option4View.isHidden = false
+            option4Label.text = option4
+        }
+        
         countViewLabel.text = "\(quesIterator+1)/\(totalQuestions!)"
         disableNextBtn()
         resetRadioButtons()
