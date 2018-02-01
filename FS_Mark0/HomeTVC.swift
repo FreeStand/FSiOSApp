@@ -129,7 +129,7 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 158
+        return 165
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

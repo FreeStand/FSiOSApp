@@ -13,6 +13,7 @@ class SurveyCell: UITableViewCell {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var totalQuesLabel: UILabel!
     
     var survey: Survey!
 
@@ -21,6 +22,7 @@ class SurveyCell: UITableViewCell {
         self.imgView.downloadedFrom(link: survey.imgURL!)
         self.titleLabel.text = survey.title
         self.subtitleLabel.text = survey.subtitle
+        self.totalQuesLabel.text = "Total Questions: \(String(describing: (survey.quesArray?.count)!))"
     }
 
 }
