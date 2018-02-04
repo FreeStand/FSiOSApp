@@ -40,6 +40,8 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         
         tableView.delegate = self
         tableView.dataSource = self
+
+        collectionView.contentInset = UIEdgeInsetsMake(0, 2, 0, 2)
         
         collectionView.register(UINib.init(nibName: "CVCell", bundle: nil), forCellWithReuseIdentifier: "CVCell")
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -59,8 +61,9 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVCell", for: indexPath) as? CVCell {
-            cell.contentView.layer.borderColor = UIColor.white.cgColor
-            cell.contentView.layer.borderWidth = 2
+//            cell.contentView.layer.borderColor = UIColor.black.cgColor
+//            cell.contentView.layer.borderWidth = 1
+//            cell.contentView.dropShadow()
             
             let brand: BrandCV!
             brand = brandList[indexPath.row]
@@ -122,7 +125,11 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
             let survey: Survey!
             survey = surveyList[indexPath.row]
             cell.configureCell(survey: survey)
-            cell.contentView.addBottomBorderWithColor(color: UIColor.white, width: 4)
+//            cell.contentView.addBottomBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 3.0)
+//            cell.contentView.addLeftBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 6.0)
+//            cell.contentView.addRightBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 6.0)
+//            cell.contentView.addTopBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 3.0)
+
             return cell
         }
         return UITableViewCell()

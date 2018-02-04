@@ -9,14 +9,13 @@
 import UIKit
 import FBSDKCoreKit
 import Firebase
-import GoogleSignIn
 import FirebaseInstanceID
 import FirebaseMessaging
 import UserNotifications
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
     
     
     var window: UIWindow?
@@ -43,12 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
             self.window?.rootViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
         }
-        
-        
 
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
@@ -68,12 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print("FCM token: \(token ?? "")")
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification(notification:)), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
-
+        
         FirebaseApp.configure()
-        
-        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
-        
         
         return true
     }
@@ -100,30 +92,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        let appID = FBSDKSettings.appID()
-        if url.scheme != nil && url.scheme!.hasPrefix("fb\(appID!)") && url.host ==  "authorize" {
-            return FBSDKApplicationDelegate.sharedInstance().application(app, open: url,sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
-        } else if url.scheme != nil && url.scheme!.hasPrefix("com.googleusercontent.apps.225537858800-4happep34rf0tsiusi30vr0jh92c0ijn") && url.host ==  "authorize" {
-            print("here now")
-            return GIDSignIn.sharedInstance().handle(url,
-                                                     sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
-                                                     annotation: [:])
-        }
         
-        return self.application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: "" )
+        let handled: Bool = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+        return handled
     }
     
     func application(_ application: UIApplication,
                      open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        if let invite = Invites.handle(url, sourceApplication:sourceApplication, annotation:annotation) as? ReceivedInvite {
-            let matchType =
-                (invite.matchType == .weak) ? "Weak" : "Strong"
-            print("Invite received from: \(sourceApplication ?? "") Deeplink: \(invite.deepLink)," +
-                "Id: \(invite.inviteId), Type: \(matchType)")
-            return true
-        }
-        
-        return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
+        return true
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -175,34 +151,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-        // ...
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
-        
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
-        
-        Auth.auth().currentUser?.link(with: credential, completion: { (user, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                self.window?.rootViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
-            } else {
-                UserDefaults.standard.set("true", forKey: "isGoogleSignedIn")
-                print("Google Auth successful in Firebase")
-                DataService.ds.updateFirebaseDBUserWithUserData(userData: [[ "isGoogleSignedIn" : "true" as AnyObject]])
-                self.window?.rootViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
-            }
-        })
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        // Perform any operations when the user disconnects from app here.
-        // ...
-    }
-    
+   
 }
 

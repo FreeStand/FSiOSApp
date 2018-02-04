@@ -28,6 +28,8 @@ class BrandsTVC: UITableViewController {
         navigationController?.navigationBar.titleTextAttributes = attrs
 //        showCoupons()
         self.tableView.tableFooterView = UIView()
+//        tableView.backgroundColor = UIColor().HexToColor(hexString: "#111218", alpha: 1.0)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -202,7 +204,12 @@ class BrandsTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "couponCell", for: indexPath) as? CouponCell {
-            cell.contentView.addBottomBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 2.0)
+//            cell.contentView.addBottomBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 4.0)
+//            cell.contentView.addLeftBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 8.0)
+//            cell.contentView.addRightBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 8.0)
+//            cell.contentView.addTopBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 4.0)
+//
+            
             cell.clipsToBounds = true
             
             let coupon: Coupon!
@@ -216,7 +223,7 @@ class BrandsTVC: UITableViewController {
     
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 228
+        return 170
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

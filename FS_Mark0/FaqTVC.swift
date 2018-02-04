@@ -25,7 +25,6 @@ class FaqTVC: UITableViewController {
     }
     
     func getFAQs() {
-        
         DataService.ds.REF_FAQ.observe(.childAdded, with: { (snapshot) in
             if let dict = snapshot.value as? NSDictionary {
                 let faq = FAQ()
@@ -43,7 +42,6 @@ class FaqTVC: UITableViewController {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                
             } else {
                 print("Error: Can't cast FAQs")
             }

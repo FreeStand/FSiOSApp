@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class AlertVC: UITableViewController {
     
@@ -24,39 +25,49 @@ class AlertVC: UITableViewController {
         ]
         navigationController?.navigationBar.titleTextAttributes = attrs
 
+        getAlerts()
         getAlertsFromNotificationDB()
     }
     
-    func getAlertsFromNotificationDB() {
-        DataService.ds.REF_NOTIFICATIONS.observe(.childAdded, with: { (snapshot) in
-            if let dict = snapshot.value as? [String: AnyObject] {
-                let alert = Alert()
-                if let title = dict["title"] as? String {
-                    alert.title = title
-                } else {
-                    print("Error: Can't cast title in Alert")
+    func getAlerts() {
+        Alamofire.request(APIEndpoints.alertsEndpoint).responseJSON { (res) in
+            if let alertArray = res.result.value as? [[String: String]] {
+                for dict in alertArray {
+                    let alert = Alert()
+                    if let title = dict["title"] {
+                        alert.title = title
+                    } else {
+                        print("Error: Can't cast title in Alert")
+                    }
+                    if let body = dict["body"] {
+                        alert.body = body
+                    } else {
+                        print("Error: Can't cast body in Alert")
+                    }
+                    if let date = dict["date"] {
+                        alert.time = date
+                    } else {
+                        print("Error: Can't cast time in Alert")
+                    }
+                    
+                    self.alertList.append(alert)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 }
-                if let body = dict["body"] as? String {
-                    alert.body = body
-                } else {
-                    print("Error: Can't cast body in Alert")
-                }
-                if let date = dict["date"] as? String {
-                    alert.time = date
-                } else {
-                    print("Error: Can't cast time in Alert")
-                }
-                
-                self.alertList.append(alert)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-                
             } else {
-                print("Error: Can't cast notification")
+                print("Can't cast alerts in AlertVC")
             }
-        }) { (error) in
-            print("Error loading Alerts: \(error.localizedDescription)")
+        }
+    }
+    
+    func getAlertsFromNotificationDB() {
+        DataService.ds.REF_USER_CURRENT.child("array").observeSingleEvent(of: .value) { (snapshot) in
+            if let array = snapshot.value as? [String] {
+                for string in array {
+                    print("SO:" + string)
+                }
+            }
         }
     }
 

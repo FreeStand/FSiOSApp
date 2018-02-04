@@ -47,25 +47,33 @@
                                     <constraint firstAttribute="width" constant="240" id="xa8-HW-Q9O"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dooodle-Login" translatesAutoresizingMaskIntoConstraints="NO" id="kTg-Xl-i3K">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.91764705882352937" green="0.92941176470588238" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="uCp-fs-RcY" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="JLE-KN-2Ua"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LOy-Zs-VMW" secondAttribute="trailing" id="WDU-uP-cCY"/>
                             <constraint firstItem="v8i-3J-Dtq" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="aXh-gh-5OG"/>
+                            <constraint firstAttribute="trailing" secondItem="kTg-Xl-i3K" secondAttribute="trailing" id="dBQ-YL-rIj"/>
                             <constraint firstItem="v8i-3J-Dtq" firstAttribute="top" secondItem="uCp-fs-RcY" secondAttribute="bottom" constant="37" id="dJ4-gw-3je"/>
                             <constraint firstItem="uCp-fs-RcY" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="78" id="fiv-dz-X3J"/>
+                            <constraint firstItem="kTg-Xl-i3K" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="hID-MU-lFS"/>
                             <constraint firstItem="LOy-Zs-VMW" firstAttribute="top" secondItem="v8i-3J-Dtq" secondAttribute="bottom" constant="19" id="jBs-IV-0V6"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="kTg-Xl-i3K" secondAttribute="bottom" id="kgD-Hq-fDO"/>
+                            <constraint firstItem="kTg-Xl-i3K" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="rML-gz-mR3"/>
                             <constraint firstItem="LOy-Zs-VMW" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="y9Q-aR-ZMq"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Dooodle-Login" width="1366" height="1056"/>
         <image name="login3" width="241" height="240"/>
         <image name="logoFreeStand" width="200" height="44"/>
     </resources>

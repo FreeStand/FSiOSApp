@@ -16,4 +16,5 @@ class APIEndpoints {
     public static var generalCouponEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/sendGeneralCouponSurvey"
     public static var showCouponsEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/showCoupons"
     public static var sendSurveysEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/SendSurveys"
+    public static var alertsEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/getAlerts"
 }

@@ -48,6 +48,12 @@ class SIgnInVC: UIViewController {
                 print("FS: Unable to Authenticate with facebook -\(String(describing: error))")
             } else if result?.isCancelled == true {
                 print("FS: User cancelled FB Auth")
+                self.activityIndicator.stopAnimating()
+                self.fbBtn.isHidden = false
+                let alert = UIAlertController(title: "Error", message: "User Cancelled login", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+
             } else {
                 print("FS: successfully authenticated with Facebook")
                 let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)

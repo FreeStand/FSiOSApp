@@ -14,6 +14,7 @@ class SurveyCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var totalQuesLabel: UILabel!
+    @IBOutlet weak var shadowView: UIView!
     
     var survey: Survey!
 
@@ -23,6 +24,20 @@ class SurveyCell: UITableViewCell {
         self.titleLabel.text = survey.title
         self.subtitleLabel.text = survey.subtitle
         self.totalQuesLabel.text = "Total Questions: \(String(describing: (survey.quesArray?.count)!))"
+        
+        self.shadowView.layer.cornerRadius = 2.0
+        self.shadowView.layer.borderWidth = 1.0
+        self.shadowView.layer.borderColor = UIColor.clear.cgColor
+        self.shadowView.layer.masksToBounds = true
+        
+        self.shadowView.layer.shadowColor = UIColor.black.cgColor
+        self.shadowView.layer.shadowOffset = CGSize.zero
+        self.shadowView.layer.shadowRadius = 1.0
+        self.shadowView.layer.shadowOpacity = 1.0
+        self.shadowView.layer.masksToBounds = false
+        self.shadowView.layer.shadowPath = UIBezierPath(rect: self.shadowView.bounds).cgPath
+        self.shadowView.layer.shouldRasterize = true
+
     }
 
 }

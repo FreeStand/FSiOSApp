@@ -19,7 +19,10 @@ class CouponCell: UITableViewCell {
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var couponLabel: UILabel!
+    @IBOutlet weak var getCouponLabel: UILabel!
     @IBOutlet weak var copyView: UIView!
+    @IBOutlet weak var shadowView: UIView!
+
     
     var coupon: Coupon!
     var redirectURL: String!
@@ -28,15 +31,31 @@ class CouponCell: UITableViewCell {
         self.coupon = coupon
         titleLabel.text = coupon.title
         subtitleLabel.text = coupon.subtitle
+//        subtitleTextView.text = coupon.subtitle
         img.downloadedFrom(link: coupon.imgURL!)
         if coupon.showCouponOnScreen != nil {
-            couponLabel.isHidden = false
-            couponLabel.text = "Coupon  Code: \(coupon.showCouponOnScreen!)"
+//            couponLabel.isHidden = false
+            couponLabel.text = coupon.showCouponOnScreen
         } else {
-            couponLabel.isHidden = false
-            couponLabel.text = "Click here to get your coupon"
+            couponLabel.isHidden = true
+            getCouponLabel.text = "Click here to get your coupon"
         }
 //        redirectURL = coupon.redirectURL
+        
+        self.shadowView.layer.cornerRadius = 2.0
+        self.shadowView.layer.borderWidth = 1.0
+        self.shadowView.layer.borderColor = UIColor.clear.cgColor
+        self.shadowView.layer.masksToBounds = true
+        
+        self.shadowView.layer.shadowColor = UIColor.black.cgColor
+        self.shadowView.layer.shadowOffset = CGSize.zero
+        self.shadowView.layer.shadowRadius = 1.0
+        self.shadowView.layer.shadowOpacity = 1.0
+        self.shadowView.layer.masksToBounds = false
+        self.shadowView.layer.shadowPath = UIBezierPath(rect: self.shadowView.bounds).cgPath
+        self.shadowView.layer.shouldRasterize = true
+
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

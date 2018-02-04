@@ -536,7 +536,7 @@
         <!--Phone Auth VerificationVC-->
         <scene sceneID="7kJ-02-saT">
             <objects>
-                <viewController id="kTO-Nz-wnT" customClass="PhoneAuthVerificationVC" customModule="FS_Mark0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="phoneAuthVerificationVC" id="kTO-Nz-wnT" customClass="PhoneAuthVerificationVC" customModule="FS_Mark0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AqI-s9-zmm"/>
                         <viewControllerLayoutGuide type="bottom" id="Wya-Ek-ON8"/>

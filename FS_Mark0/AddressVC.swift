@@ -16,10 +16,11 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     @IBOutlet weak var pincode: UITextField!
     @IBOutlet weak var state: UITextField!
     @IBOutlet weak var submitBtn: UIButton!
+    @IBOutlet weak var backView: UIView!
     
     var statePicker: UIPickerView!
     
-    let statePickerValues = ["Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu & Kashmir", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttarakhand", "Uttar Pradesh", "West Bengal", "Andaman and Nicobar Islands", "Chandigarh", "Delhi", "Dadra & Nagar Haveli", "Daman & Diu", "Lakshadweep", "Puducherry"]
+    let statePickerValues = ["Delhi", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu & Kashmir", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttarakhand", "Uttar Pradesh", "West Bengal", "Andaman and Nicobar Islands", "Chandigarh", "Dadra & Nagar Haveli", "Daman & Diu", "Lakshadweep", "Puducherry"]
 
 
 
@@ -40,28 +41,16 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
             }
         }
         
-//        al1.layer.addSublayer(border)
-//        al1.layer.masksToBounds = true
-//        al2.layer.addSublayer(border)
-//        al2.layer.masksToBounds = true
-//        city.layer.addSublayer(border)
-//        city.layer.masksToBounds = true
-//        pincode.layer.addSublayer(border)
-//        pincode.layer.masksToBounds = true
-//        state.layer.addSublayer(border)
-//        state.layer.masksToBounds = true
         
         al1.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         al2.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         city.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         pincode.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-
         
-//        al1.delegate = self
-//        al2.delegate = self
-//        city.delegate = self
+        backView.layer.cornerRadius = 7
+        submitBtn.layer.cornerRadius = 7
+        
         pincode.delegate = self
-//        state.delegate = self
 
         statePicker = UIPickerView()
         statePicker.delegate = self
@@ -107,7 +96,6 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         state.text = statePickerValues[row]
-        //        self.view.endEditing(true)
     }
     
     
