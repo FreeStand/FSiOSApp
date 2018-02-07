@@ -2387,7 +2387,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                                 </constraints>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.84999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="CWp-TZ-Jq3">
-                                <rect key="frame" x="8" y="42" width="32" height="19.5"/>
+                                <rect key="frame" x="8" y="47.5" width="32" height="19.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="2yS-mY-gJX"/>
                                 </constraints>
@@ -2406,6 +2406,7 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                             <constraint firstItem="PqZ-Bi-1HW" firstAttribute="top" secondItem="auN-yE-eT6" secondAttribute="bottom" constant="9" id="GRz-4M-nuG"/>
                             <constraint firstItem="l61-eo-JSw" firstAttribute="leading" secondItem="Tws-J1-xHS" secondAttribute="leading" constant="8" id="Jnu-3a-108"/>
                             <constraint firstItem="CWp-TZ-Jq3" firstAttribute="leading" secondItem="Tws-J1-xHS" secondAttribute="leading" constant="8" id="QgI-IK-wDs"/>
+                            <constraint firstItem="PqZ-Bi-1HW" firstAttribute="centerY" secondItem="CWp-TZ-Jq3" secondAttribute="centerY" id="QhK-rV-cSW"/>
                             <constraint firstItem="PqZ-Bi-1HW" firstAttribute="trailing" secondItem="Tws-J1-xHS" secondAttribute="trailingMargin" id="SNZ-4p-boW"/>
                             <constraint firstAttribute="trailing" secondItem="3Ui-OS-YyM" secondAttribute="trailing" constant="8" id="VJL-Cs-zzA"/>
                             <constraint firstItem="CsQ-fS-Chq" firstAttribute="top" secondItem="Tws-J1-xHS" secondAttribute="top" id="YOW-wL-hmU"/>
@@ -2415,7 +2416,6 @@ Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, s
                             <constraint firstAttribute="trailing" secondItem="auN-yE-eT6" secondAttribute="trailing" id="eyD-uD-Ob7"/>
                             <constraint firstItem="auN-yE-eT6" firstAttribute="top" secondItem="bCv-lU-GZP" secondAttribute="bottom" constant="2" id="gln-O0-dSJ"/>
                             <constraint firstItem="3Ui-OS-YyM" firstAttribute="top" secondItem="qFV-7D-eQ6" secondAttribute="bottom" constant="8" id="hHh-Jm-BiW"/>
-                            <constraint firstItem="CWp-TZ-Jq3" firstAttribute="top" secondItem="auN-yE-eT6" secondAttribute="bottom" constant="14" id="mvw-hX-kaQ"/>
                             <constraint firstItem="qFV-7D-eQ6" firstAttribute="leading" secondItem="Tws-J1-xHS" secondAttribute="leading" constant="8" id="qIg-EJ-ZsJ"/>
                             <constraint firstItem="clT-Ts-eH4" firstAttribute="top" secondItem="CsQ-fS-Chq" secondAttribute="bottom" id="rx6-5w-NVB"/>
                             <constraint firstItem="3Ui-OS-YyM" firstAttribute="top" secondItem="l61-eo-JSw" secondAttribute="bottom" constant="8" id="t7d-39-VZ0"/>

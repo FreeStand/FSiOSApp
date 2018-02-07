@@ -13,5 +13,5 @@ class Survey: NSObject {
     var title: String?
     var subtitle: String?
     var quesArray: NSArray?
-    var taken: Bool?
+    var empty: Bool?
 }

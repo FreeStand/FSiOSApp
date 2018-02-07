@@ -23,7 +23,11 @@ class SurveyCell: UITableViewCell {
         self.imgView.downloadedFrom(link: survey.imgURL!)
         self.titleLabel.text = survey.title
         self.subtitleLabel.text = survey.subtitle
-        self.totalQuesLabel.text = "Total Questions: \(String(describing: (survey.quesArray?.count)!))"
+        if survey.quesArray != nil {
+            self.totalQuesLabel.text = "Total Questions: \(String(describing: (survey.quesArray?.count)!))"
+        } else {
+            self.totalQuesLabel.text = ""
+        }
         
         self.shadowView.layer.cornerRadius = 2.0
         self.shadowView.layer.borderWidth = 1.0

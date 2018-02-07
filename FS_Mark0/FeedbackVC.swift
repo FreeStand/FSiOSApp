@@ -111,6 +111,10 @@ class FeedbackVC: UIViewController {
         checkBoxView.layer.cornerRadius = 7
         self.nextBtn.setTitle("NEXT", for: .normal)
         self.nextBtn.isEnabled = false
+        checkBoxView.dropShadow()
+        questionTransitionView.dropShadow()
+        nextBtn.dropShadow()
+//        countViewLabel.dropShadow()
         
         option1?.alternateButton = [option2!, option3!, option4!, option5!, option6!, option7!, option8!]
         option2?.alternateButton = [option1!, option3!, option4!, option5!, option6!, option7!, option8!]

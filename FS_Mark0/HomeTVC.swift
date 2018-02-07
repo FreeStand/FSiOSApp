@@ -142,10 +142,13 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected")
         let survey = surveyList[indexPath.row]
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
-        vc?.quesArray = survey.quesArray
-        vc?.sender = "HomeTVC"
-        self.present(vc!, animated: true, completion: nil)
+        if !survey.empty! {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
+            vc?.quesArray = survey.quesArray
+            vc?.sender = "HomeTVC"
+            self.present(vc!, animated: true, completion: nil)
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -157,42 +160,83 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func getSurveys() {
-        Alamofire.request("\(APIEndpoints.sendSurveysEndpoint)?uid=\(UserInfo.uid!)&gender=\(UserInfo.gender!)").responseJSON { (response) in
-            if let responseArray = response.result.value as? [NSDictionary] {
-                for card in responseArray {
+        Alamofire.request("\(APIEndpoints.homeSurveyEndpoint)?uid=\(UserInfo.uid!)&gender=\(UserInfo.gender!)").responseJSON { (response) in
+            if let response = response.result.value as? NSDictionary {
+                if let isEmpty = response["isEmpty"] as? Bool {
                     let survey = Survey()
-                    if let imgURL = card["imgURL"] as? String {
-                        survey.imgURL = imgURL
+                    if isEmpty {
+                        survey.title = "No Samples available"
+                        survey.subtitle = "Come back after some time to get more Free Products"
+                        survey.empty = true
+                        survey.imgURL = "http://l.thumbs.canstockphoto.com/canstock4354989.jpg"
                     } else {
-                        print("Can't cast imgURL in HomeTVC getSurveys")
+                        if let responseArray = response["surveyList"] as? [NSDictionary] {
+                            for card in responseArray {
+                                survey.empty = false
+                                if let imgURL = card["imgURL"] as? String {
+                                    survey.imgURL = imgURL
+                                } else {
+                                    print("Can't cast imgURL in HomeTVC getSurveys")
+                                }
+                                if let title = card["title"] as? String {
+                                    survey.title = title
+                                } else {
+                                    print("Can't cast title in HomeTVC getSurveys")
+                                }
+                                if let subtitle = card["subtitle"] as? String {
+                                    survey.subtitle = subtitle
+                                } else {
+                                    print("Can't cast subtitle in HomeTVC getSurveys")
+                                }
+                                if let questions = card["questions"] as? NSArray {
+                                    survey.quesArray = questions
+                                } else {
+                                    print("Can't cast questions in HomeTVC getSurveys")
+                                }
+                            }
+                        }
                     }
-                    if let title = card["title"] as? String {
-                        survey.title = title
-                    } else {
-                        print("Can't cast title in HomeTVC getSurveys")
-                    }
-                    if let subtitle = card["subtitle"] as? String {
-                        survey.subtitle = subtitle
-                    } else {
-                        print("Can't cast subtitle in HomeTVC getSurveys")
-                    }
-                    if let taken = card["taken"] as? Bool {
-                        survey.taken = taken
-                    } else {
-                        print("Can't cast taken in HomeTVC getSurveys")
-                    }
-                    if let questions = card["questions"] as? NSArray {
-                        survey.quesArray = questions
-                    } else {
-                        print("Can't cast questions in HomeTVC getSurveys")
-                    }
-                    
                     self.surveyList.append(survey)
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
-
                 }
+                
+//            if let responseArray = response.result.value as? [NSDictionary] {
+//                for card in responseArray {
+//                    let survey = Survey()
+//                    if let imgURL = card["imgURL"] as? String {
+//                        survey.imgURL = imgURL
+//                    } else {
+//                        print("Can't cast imgURL in HomeTVC getSurveys")
+//                    }
+//                    if let title = card["title"] as? String {
+//                        survey.title = title
+//                    } else {
+//                        print("Can't cast title in HomeTVC getSurveys")
+//                    }
+//                    if let subtitle = card["subtitle"] as? String {
+//                        survey.subtitle = subtitle
+//                    } else {
+//                        print("Can't cast subtitle in HomeTVC getSurveys")
+//                    }
+//                    if let taken = card["taken"] as? Bool {
+//                        survey.taken = taken
+//                    } else {
+//                        print("Can't cast taken in HomeTVC getSurveys")
+//                    }
+//                    if let questions = card["questions"] as? NSArray {
+//                        survey.quesArray = questions
+//                    } else {
+//                        print("Can't cast questions in HomeTVC getSurveys")
+//                    }
+//
+//                    self.surveyList.append(survey)
+//                    DispatchQueue.main.async {
+//                        self.tableView.reloadData()
+//                    }
+//
+//                }
             } else {
                 print("Can't cast Array in HomeTVC getSurveys")
             }
