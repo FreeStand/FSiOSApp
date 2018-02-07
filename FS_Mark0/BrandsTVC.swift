@@ -9,7 +9,9 @@
 import UIKit
 import Alamofire
 
-class BrandsTVC: UITableViewController {
+class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
     
     var brandList = [Brand]()
     var couponList = [Coupon]()
@@ -17,6 +19,9 @@ class BrandsTVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         
         navigationController?.navigationBar.barTintColor = UIColor.fiBlack
         self.navigationItem.title = "Coupons"
@@ -26,10 +31,8 @@ class BrandsTVC: UITableViewController {
             NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17)!
         ]
         navigationController?.navigationBar.titleTextAttributes = attrs
-//        showCoupons()
         self.tableView.tableFooterView = UIView()
-//        tableView.backgroundColor = UIColor().HexToColor(hexString: "#111218", alpha: 1.0)
-
+        tableView.backgroundView = UIImageView(image: UIImage(named: "Doodle-Login.png"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -191,24 +194,19 @@ class BrandsTVC: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return couponList.count
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "couponCell", for: indexPath) as? CouponCell {
-//            cell.contentView.addBottomBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 4.0)
-//            cell.contentView.addLeftBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 8.0)
-//            cell.contentView.addRightBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 8.0)
-//            cell.contentView.addTopBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 4.0)
-//
             
             cell.clipsToBounds = true
             
@@ -222,11 +220,11 @@ class BrandsTVC: UITableViewController {
     }
     
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 170
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? CouponCell {
             let coupon = couponList[indexPath.row]
             
@@ -306,25 +304,6 @@ class BrandsTVC: UITableViewController {
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    
-    
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
     // MARK: - Navigation
 

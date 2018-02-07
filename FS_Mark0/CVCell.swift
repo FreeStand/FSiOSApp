@@ -29,12 +29,10 @@ class CVCell: UICollectionViewCell {
         
         self.imgView.translatesAutoresizingMaskIntoConstraints = false
         self.topView.translatesAutoresizingMaskIntoConstraints = false
-//        self.topView.dropShadow()
-//        self.contentView.dropShadow()
         print("Aryan: \(self.contentView.frame.height)")
         
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
-        heightConstraint.constant = screenHeight - screenHeight*0.6 - (heights.navBarHeight + heights.tabBarHeight + statusBarHeight + gapBwViews + 2*8)
+        heightConstraint.constant = screenHeight - screenHeight*0.6 - (heights.navBarHeight + heights.tabBarHeight + statusBarHeight + gapBwViews)
         widthConstraint.constant = heightConstraint.constant
         
         imgHeightConstraint.constant = heightConstraint.constant*4/5 - 2*8

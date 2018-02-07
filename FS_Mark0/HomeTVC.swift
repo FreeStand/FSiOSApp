@@ -163,15 +163,21 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         Alamofire.request("\(APIEndpoints.homeSurveyEndpoint)?uid=\(UserInfo.uid!)&gender=\(UserInfo.gender!)").responseJSON { (response) in
             if let response = response.result.value as? NSDictionary {
                 if let isEmpty = response["isEmpty"] as? Bool {
-                    let survey = Survey()
                     if isEmpty {
+                        let survey = Survey()
                         survey.title = "No Samples available"
                         survey.subtitle = "Come back after some time to get more Free Products"
                         survey.empty = true
                         survey.imgURL = "http://l.thumbs.canstockphoto.com/canstock4354989.jpg"
+                        self.surveyList.append(survey)
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+
                     } else {
                         if let responseArray = response["surveyList"] as? [NSDictionary] {
                             for card in responseArray {
+                                let survey = Survey()
                                 survey.empty = false
                                 if let imgURL = card["imgURL"] as? String {
                                     survey.imgURL = imgURL
@@ -193,12 +199,13 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
                                 } else {
                                     print("Can't cast questions in HomeTVC getSurveys")
                                 }
+                                self.surveyList.append(survey)
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadData()
+                                }
+
                             }
                         }
-                    }
-                    self.surveyList.append(survey)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
                     }
                 }
                 

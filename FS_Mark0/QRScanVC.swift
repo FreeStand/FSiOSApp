@@ -41,7 +41,14 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
         super.viewDidLoad()
         previewView.layer.cornerRadius = 10
         Analytics.logEvent(Events.SCREEN_QR, parameters: nil)
-        
+        self.navigationItem.title = "Scan QR Here"
+        navigationController?.navigationBar.barTintColor = UIColor.fiBlack
+        let attrs = [
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17)!
+        ]
+        navigationController?.navigationBar.titleTextAttributes = attrs
+
         scanInPreviewAction()
     }
     

@@ -9,15 +9,21 @@
 import UIKit
 import Alamofire
 
-class AlertVC: UITableViewController {
+class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
     
     var alertList = [Alert]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         UIApplication.shared.applicationIconBadgeNumber = 0
 
         self.tableView.tableFooterView = UIView()
+        self.navigationItem.title = "Alerts"
         navigationController?.navigationBar.barTintColor = UIColor.fiBlack
         let attrs = [
             NSAttributedStringKey.foregroundColor: UIColor.white,
@@ -74,16 +80,16 @@ class AlertVC: UITableViewController {
     
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return alertList.count
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "alertCell", for: indexPath) as? AlertCell {
             
             let alert: Alert!
@@ -98,28 +104,8 @@ class AlertVC: UITableViewController {
         return UITableViewCell()
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 118
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//    }
-
- 
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let vc = segue.destination as? WebViewVC {
-//            vc.url = NSURL(string: "https://google.com")! as URL
-//        }
-    
-        
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-//    }
-
 }
