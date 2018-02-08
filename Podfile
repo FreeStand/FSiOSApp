@@ -20,5 +20,6 @@ pod 'SwiftKeychainWrapper'
 pod 'Toaster'
 pod 'Firebase/RemoteConfig'
 pod 'Alamofire'
+pod 'SideMenu'
 
 end

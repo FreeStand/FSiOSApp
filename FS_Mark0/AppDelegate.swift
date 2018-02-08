@@ -65,6 +65,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification(notification:)), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
         
+        let customBannerView = StatusBarView.init()
+    UIApplication.shared.statusBarView?.addSubview(customBannerView)
+
+        
         FirebaseApp.configure()
         
         return true

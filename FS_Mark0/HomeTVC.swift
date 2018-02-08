@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-//import SwiftyJSON
+import SideMenu
 
 class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -22,8 +22,25 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     var brandList = [BrandCV]()
     var surveyList = [Survey]()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! UISideMenuNavigationController
+        SideMenuManager.default.menuLeftNavigationController = sideMenuNC
+        SideMenuManager.default.menuPresentMode = .menuSlideIn
+        SideMenuManager.default.menuAnimationFadeStrength = 0.35
+        SideMenuManager.default.menuAnimationTransformScaleFactor = 0.90
+        SideMenuManager.default.menuAnimationBackgroundColor = UIColor.fiBlack
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
+        SideMenuManager.defaultManager.menuAllowPushOfSameClassTwice = false
+        
+        let attrs = [
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17)!
+        ]
+        navigationController?.navigationBar.titleTextAttributes = attrs
+
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 128, height: 28))
         imageView.contentMode = .scaleAspectFit
@@ -51,11 +68,6 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         getBrands()
         getSurveys()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     
     //MARK: CollectionView
     
@@ -125,11 +137,6 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
             let survey: Survey!
             survey = surveyList[indexPath.row]
             cell.configureCell(survey: survey)
-//            cell.contentView.addBottomBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 3.0)
-//            cell.contentView.addLeftBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 6.0)
-//            cell.contentView.addRightBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 6.0)
-//            cell.contentView.addTopBorderWithColor(color: UIColor().HexToColor(hexString: "#111218", alpha: 1.0), width: 3.0)
-
             return cell
         }
         return UITableViewCell()
@@ -160,7 +167,7 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func getSurveys() {
-        Alamofire.request("\(APIEndpoints.homeSurveyEndpoint)?uid=\(UserInfo.uid!)&gender=\(UserInfo.gender!)").responseJSON { (response) in
+        Alamofire.request("\(APIEndpoints.homeSurveyEndpoint)?uid=\(UserInfo.uid!)&gender=Female").responseJSON { (response) in
             if let response = response.result.value as? NSDictionary {
                 if let isEmpty = response["isEmpty"] as? Bool {
                     if isEmpty {
@@ -249,6 +256,11 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
             }
         }
     }
+    
+    @IBAction func sideMenuPressed(_ sender: Any) {
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+    }
+    
     
 }
 

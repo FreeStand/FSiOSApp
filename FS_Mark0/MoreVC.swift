@@ -12,9 +12,39 @@ import SwiftKeychainWrapper
 import FBSDKLoginKit
 
 class MoreVC: UITableViewController {
+    
+    private weak var screenshot: UIView?
+    @IBOutlet weak var profImgView: UIImageView!
+    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var emailLbl: UILabel!
+
+    
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let screenshot = presentingViewController?.view.snapshotView(afterScreenUpdates: false) {
+            presentingViewController?.view.addSubview(screenshot)
+            self.screenshot = screenshot
+        }
+    }
+    
+    override open func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        screenshot?.removeFromSuperview()
+    }
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nameLbl.text = Auth.auth().currentUser?.displayName!
+        emailLbl.text = Auth.auth().currentUser?.email!
+
+        let imageData = UserDefaults.standard.object(forKey: "profImageData") as! NSData
+        profImgView.maskCircle(anyImage: UIImage(data: imageData as Data)!)
+
         
         navigationController?.navigationBar.barTintColor = UIColor.fiBlack
         let attrs = [
@@ -42,22 +72,21 @@ class MoreVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 6
+        return 5
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 1:
-            performSegue(withIdentifier: "moreToProfile", sender: nil)
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderTVC") as? OrderTVC
+            self.navigationController?.pushViewController(vc!, animated: true)
             break
         case 2:
-            performSegue(withIdentifier: "moreToOrders", sender: nil)
-            break
-        case 3:
-            performSegue(withIdentifier: "moreToFAQs", sender: nil)
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FaqTVC") as? FaqTVC
+            self.navigationController?.pushViewController(vc!, animated: true)
             break
         
-        case 4:
+        case 3:
             var nsObject = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
             let version = nsObject as! String
             nsObject = Bundle.main.infoDictionary!["CFBundleVersion"]
@@ -67,7 +96,7 @@ class MoreVC: UITableViewController {
                 UIApplication.shared.open(url)
             }
             break
-        case 5:
+        case 4:
             logOut()
             break
         default:
@@ -85,5 +114,12 @@ class MoreVC: UITableViewController {
         UserDefaults.standard.set(false, forKey: "isLoggedIn")
         UIApplication.shared.delegate?.window!?.rootViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
     }
+    
+    @IBAction func editBtnPressed(_ sender: UIButton) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as? ProfileVC
+            self.navigationController?.pushViewController(vc!, animated: true)
+//        performSegue(withIdentifier: "moreToProfile", sender: nil)
+    }
+    
     
 }

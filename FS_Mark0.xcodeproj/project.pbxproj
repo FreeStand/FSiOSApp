@@ -64,6 +64,8 @@
 		E7816CD020246665000AD36A /* AddressCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7816CCF20246665000AD36A /* AddressCVC.swift */; };
 		E788BD9E201382AE00829FA0 /* BrandCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = E788BD9D201382AE00829FA0 /* BrandCV.swift */; };
 		E78AD39E2017B4C2006B44D2 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E78AD39D2017B4C2006B44D2 /* SignIn.storyboard */; };
+		E78C5212202B989C005F3AD4 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78C5211202B989C005F3AD4 /* StatusBarView.swift */; };
+		E78C5214202BA227005F3AD4 /* MarqueeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78C5213202BA227005F3AD4 /* MarqueeLabel.swift */; };
 		E7A7D25A1FFE3B2C001C9CFD /* CVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A7D2581FFE3B2C001C9CFD /* CVCell.swift */; };
 		E7A7D25B1FFE3B2C001C9CFD /* CVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7A7D2591FFE3B2C001C9CFD /* CVCell.xib */; };
 		E7A7D25F1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A7D25E1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift */; };
@@ -139,6 +141,8 @@
 		E7816CCF20246665000AD36A /* AddressCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCVC.swift; sourceTree = "<group>"; };
 		E788BD9D201382AE00829FA0 /* BrandCV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCV.swift; sourceTree = "<group>"; };
 		E78AD39D2017B4C2006B44D2 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
+		E78C5211202B989C005F3AD4 /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
+		E78C5213202BA227005F3AD4 /* MarqueeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeLabel.swift; sourceTree = "<group>"; };
 		E7A7D2581FFE3B2C001C9CFD /* CVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVCell.swift; sourceTree = "<group>"; };
 		E7A7D2591FFE3B2C001C9CFD /* CVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CVCell.xib; sourceTree = "<group>"; };
 		E7A7D25E1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+multiplier.swift"; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 				92FD4CE31F93D54900F4F1FD /* FAQCell.swift */,
 				923D7CA71F9F23FD0081F3C2 /* BottomTextField.swift */,
 				E720E8822021F62A00F3B495 /* SurveyCell.swift */,
+				E78C5211202B989C005F3AD4 /* StatusBarView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				92680D3B1F862A39007E3C50 /* Int+degreesToRadians.swift */,
 				9283CA6B1F9FB89A00FD41B7 /* AIImage.swift */,
 				E7A7D25E1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift */,
+				E78C5213202BA227005F3AD4 /* MarqueeLabel.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -471,6 +477,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -487,6 +494,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -532,6 +540,7 @@
 				9220FE7F1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift in Sources */,
 				E7816CCB20245F93000AD36A /* AddressCell.swift in Sources */,
 				92125DC31F010BAC00826AC1 /* AppDelegate.swift in Sources */,
+				E78C5212202B989C005F3AD4 /* StatusBarView.swift in Sources */,
 				92AA3DFC1F2D32C800A6613E /* ProfileVC.swift in Sources */,
 				92FD4CE41F93D54900F4F1FD /* FAQCell.swift in Sources */,
 				92680D3C1F862A39007E3C50 /* Int+degreesToRadians.swift in Sources */,
@@ -545,6 +554,7 @@
 				92125DDB1F02553B00826AC1 /* SIgnInVC.swift in Sources */,
 				92DE41C11F16920A00535ACE /* UserInfo.swift in Sources */,
 				922785621F476C450066F700 /* OrderTVC.swift in Sources */,
+				E78C5214202BA227005F3AD4 /* MarqueeLabel.swift in Sources */,
 				9220FE7B1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift in Sources */,
 				E720E8852021F76200F3B495 /* HomeTVC.swift in Sources */,
 				92BCD5421F55620900284E3B /* RadioCheck.swift in Sources */,

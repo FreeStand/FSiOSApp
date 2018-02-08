@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension UserDefaults {
     // check for is first launch - only true on first invocation after app install, false on all further invocations
@@ -19,4 +20,13 @@ extension UserDefaults {
         }
         return isFirstLaunch
     }
+}
+
+extension UIApplication {
+    
+    /// Returns the status bar UIView
+    var statusBarView: UIView? {
+        return value(forKey: "statusBar") as? UIView
+    }
+    
 }
