@@ -91,7 +91,15 @@
                             <constraint firstItem="eXX-3b-08p" firstAttribute="leading" secondItem="dzD-nE-6Io" secondAttribute="leading" id="z1Q-AW-EWg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="DSR-f4-2kz"/>
+                    <navigationItem key="navigationItem" id="DSR-f4-2kz">
+                        <barButtonItem key="leftBarButtonItem" image="icMoreActive" id="nyb-5B-XAM">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="sideMenuPressed:" destination="BWt-FP-pa5" id="p0k-O3-wCX"/>
+                                <segue destination="o26-Nf-JYS" kind="presentation" id="9CG-yo-FfQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="JHI-VJ-rcL" id="r0T-Vq-RPy"/>
                         <outlet property="previewView" destination="dzD-nE-6Io" id="L1H-dF-mqS"/>
@@ -437,7 +445,15 @@
                             <constraint firstItem="Dnu-Ii-442" firstAttribute="leading" secondItem="NcM-a3-dTq" secondAttribute="leading" id="zo7-im-GR8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="GHx-QU-R2q"/>
+                    <navigationItem key="navigationItem" id="GHx-QU-R2q">
+                        <barButtonItem key="leftBarButtonItem" image="icMoreActive" id="Grw-6V-GxW">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="sideMenuPressed:" destination="Wbr-MW-qXq" id="csN-vg-mUy"/>
+                                <segue destination="o26-Nf-JYS" kind="show" id="Euu-sD-khR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Dnu-Ii-442" id="P4M-1l-HGb"/>
                     </connections>
@@ -773,7 +789,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mWv-It-DzC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1986" y="946"/>
+            <point key="canvasLocation" x="-2034" y="853"/>
         </scene>
         <!--Alerts-->
         <scene sceneID="Uem-qr-w9u">
@@ -949,7 +965,15 @@
                             <constraint firstItem="VaK-pi-QCU" firstAttribute="leading" secondItem="LyL-HX-yoG" secondAttribute="leading" id="xed-Xv-VrY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rAu-GN-QKg"/>
+                    <navigationItem key="navigationItem" id="rAu-GN-QKg">
+                        <barButtonItem key="leftBarButtonItem" image="icMoreActive" id="Awd-qH-5iA">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="sideMenuPressed:" destination="PD0-q8-RUJ" id="8C6-Yz-vYJ"/>
+                                <segue destination="o26-Nf-JYS" kind="presentation" id="nfb-ep-uEk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="VaK-pi-QCU" id="VBg-hj-pcw"/>
                     </connections>
@@ -1242,7 +1266,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4j-sh-JKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="L5d-gv-e0k" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2448" y="3260"/>
+            <point key="canvasLocation" x="-1591" y="3260"/>
         </scene>
         <!--AddressCVC-->
         <scene sceneID="XKt-Gm-B3C">
@@ -2587,6 +2611,7 @@
         <!--Scan QR-->
         <scene sceneID="Ihl-ra-NLU">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="07E-Ux-BlS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="La2-Xc-XxM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Scan QR" image="icCameraInactive" selectedImage="icCameraInactive" id="v3m-K9-8EN"/>
                     <toolbarItems/>
@@ -2599,7 +2624,6 @@
                         <segue destination="BWt-FP-pa5" kind="relationship" relationship="rootViewController" id="csZ-bf-13V"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="07E-Ux-BlS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1591" y="1737"/>
         </scene>
@@ -2647,4 +2671,7 @@
         <image name="radioOn" width="24" height="24"/>
         <image name="scanOverlay" width="375" height="667"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Euu-sD-khR"/>
+    </inferredMetricsTieBreakers>
 </document>

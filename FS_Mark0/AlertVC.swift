@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SideMenu
 
 class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,6 +18,17 @@ class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! UISideMenuNavigationController
+        SideMenuManager.default.menuLeftNavigationController = sideMenuNC
+        SideMenuManager.default.menuPresentMode = .menuSlideIn
+        SideMenuManager.default.menuAnimationFadeStrength = 0.35
+        SideMenuManager.default.menuAnimationTransformScaleFactor = 0.90
+        SideMenuManager.default.menuAnimationBackgroundColor = UIColor.fiBlack
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
+        SideMenuManager.defaultManager.menuAllowPushOfSameClassTwice = false
+
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -107,5 +119,10 @@ class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 118
     }
+    
+    @IBAction func sideMenuPressed(_ sender: Any) {
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+    }
+
     
 }

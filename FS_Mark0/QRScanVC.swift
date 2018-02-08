@@ -14,6 +14,7 @@ import FirebaseAnalytics
 import SwiftKeychainWrapper
 import FirebaseAuth
 import Alamofire
+import SideMenu
 
 class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
     
@@ -39,6 +40,17 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! UISideMenuNavigationController
+        SideMenuManager.default.menuLeftNavigationController = sideMenuNC
+        SideMenuManager.default.menuPresentMode = .menuSlideIn
+        SideMenuManager.default.menuAnimationFadeStrength = 0.35
+        SideMenuManager.default.menuAnimationTransformScaleFactor = 0.90
+        SideMenuManager.default.menuAnimationBackgroundColor = UIColor.fiBlack
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
+        SideMenuManager.defaultManager.menuAllowPushOfSameClassTwice = false
+
+        
         previewView.layer.cornerRadius = 10
         Analytics.logEvent(Events.SCREEN_QR, parameters: nil)
         self.navigationItem.title = "Scan QR Here"
@@ -197,6 +209,12 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
         self.present(alert, animated: true, completion: nil)
 
     }
+    
+    @IBAction func sideMenuPressed(_ sender: Any) {
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+    }
+
+    
 }
 
 
