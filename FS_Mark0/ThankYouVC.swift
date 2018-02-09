@@ -12,13 +12,10 @@ import AVFoundation
 
 class ThankYouVC: UIViewController {
     
-    enum Notifications: String, NotificationName {
-        case phoneAuthVCNotification
-    }
-    
-    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var doneBtn: UIButton!
+    @IBOutlet weak var backgroundImg: UIImageView!
+
     var player : AVPlayer!
     var avPlayerLayer : AVPlayerLayer!
 
@@ -27,6 +24,7 @@ class ThankYouVC: UIViewController {
         super.viewDidLoad()
         videoView.layer.cornerRadius = 8
         doneBtn.layer.cornerRadius = 18
+        backgroundImg.clipsToBounds = true
         
         playVideo()
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: nil, using: { (_) in
@@ -64,9 +62,7 @@ class ThankYouVC: UIViewController {
         
         let delegateTemp = UIApplication.shared.delegate
         self.dismiss(animated: true, completion: nil)
-        NotificationCenter.default.post(name: Notifications.phoneAuthVCNotification.name, object: nil)
         delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-//        self.performSegue(withIdentifier: "dobToFeedback", sender: nil)
 
     }
 }

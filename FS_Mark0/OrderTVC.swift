@@ -15,8 +15,7 @@ class OrderTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Orders"
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-
+        
         getSamplesFromUserDB()
     }
     

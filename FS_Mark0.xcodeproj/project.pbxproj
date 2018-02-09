@@ -58,10 +58,9 @@
 		E720E8812021F59F00F3B495 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720E8802021F59F00F3B495 /* Survey.swift */; };
 		E720E8832021F62A00F3B495 /* SurveyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720E8822021F62A00F3B495 /* SurveyCell.swift */; };
 		E720E8852021F76200F3B495 /* HomeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720E8842021F76200F3B495 /* HomeTVC.swift */; };
-		E7816CCB20245F93000AD36A /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7816CC920245F93000AD36A /* AddressCell.swift */; };
-		E7816CCC20245F93000AD36A /* AddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7816CCA20245F93000AD36A /* AddressCell.xib */; };
-		E7816CCE202464BF000AD36A /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7816CCD202464BF000AD36A /* Address.swift */; };
-		E7816CD020246665000AD36A /* AddressCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7816CCF20246665000AD36A /* AddressCVC.swift */; };
+		E75338C8202DA4100004911C /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75338C7202DA4100004911C /* AddressCell.swift */; };
+		E75338CA202DA4D90004911C /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75338C9202DA4D90004911C /* Address.swift */; };
+		E75338CC202DA6150004911C /* AddressTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75338CB202DA6150004911C /* AddressTVC.swift */; };
 		E788BD9E201382AE00829FA0 /* BrandCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = E788BD9D201382AE00829FA0 /* BrandCV.swift */; };
 		E78AD39E2017B4C2006B44D2 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E78AD39D2017B4C2006B44D2 /* SignIn.storyboard */; };
 		E78C5212202B989C005F3AD4 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78C5211202B989C005F3AD4 /* StatusBarView.swift */; };
@@ -135,10 +134,9 @@
 		E720E8802021F59F00F3B495 /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		E720E8822021F62A00F3B495 /* SurveyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCell.swift; sourceTree = "<group>"; };
 		E720E8842021F76200F3B495 /* HomeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTVC.swift; sourceTree = "<group>"; };
-		E7816CC920245F93000AD36A /* AddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCell.swift; sourceTree = "<group>"; };
-		E7816CCA20245F93000AD36A /* AddressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressCell.xib; sourceTree = "<group>"; };
-		E7816CCD202464BF000AD36A /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
-		E7816CCF20246665000AD36A /* AddressCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCVC.swift; sourceTree = "<group>"; };
+		E75338C7202DA4100004911C /* AddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCell.swift; sourceTree = "<group>"; };
+		E75338C9202DA4D90004911C /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		E75338CB202DA6150004911C /* AddressTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTVC.swift; sourceTree = "<group>"; };
 		E788BD9D201382AE00829FA0 /* BrandCV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCV.swift; sourceTree = "<group>"; };
 		E78AD39D2017B4C2006B44D2 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		E78C5211202B989C005F3AD4 /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
@@ -214,7 +212,6 @@
 				92125DC91F010BAC00826AC1 /* Assets.xcassets */,
 				92125DCE1F010BAC00826AC1 /* Info.plist */,
 				92125DDC1F025D2600826AC1 /* FS_Mark0.entitlements */,
-				E7816CCA20245F93000AD36A /* AddressCell.xib */,
 			);
 			path = FS_Mark0;
 			sourceTree = "<group>";
@@ -222,16 +219,11 @@
 		92125DDF1F03CD1800826AC1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E75338CD202DECAA0004911C /* Sidebar */,
 				922785651F48B0D10066F700 /* Login/SignUp */,
 				922785661F48B0EF0066F700 /* MainTabBar */,
 				9215537A1F87642700B85434 /* Coupon */,
-				92AF006F1F3734410061E243 /* TabBarTBC.swift */,
-				92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */,
-				92F490B51F38ECB10096521D /* ThankYouVC.swift */,
-				922785611F476C450066F700 /* OrderTVC.swift */,
-				92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */,
-				923D7CA51F9F10250081F3C2 /* AddressVC.swift */,
-				E7816CCF20246665000AD36A /* AddressCVC.swift */,
+				E75338CE202DECE80004911C /* Misc */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -262,8 +254,8 @@
 		922785631F48B0710066F700 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E75338C7202DA4100004911C /* AddressCell.swift */,
 				E7A7D2581FFE3B2C001C9CFD /* CVCell.swift */,
-				E7816CC920245F93000AD36A /* AddressCell.swift */,
 				92B14B431F349134005C45FE /* CouponCell.swift */,
 				920BF1CE1F3F6F46007E6DC8 /* OrderCell.swift */,
 				92BCD5371F4E0A8A00284E3B /* AlertCell.swift */,
@@ -286,7 +278,7 @@
 				92FD4CE11F93D50A00F4F1FD /* FAQ.swift */,
 				E788BD9D201382AE00829FA0 /* BrandCV.swift */,
 				E720E8802021F59F00F3B495 /* Survey.swift */,
-				E7816CCD202464BF000AD36A /* Address.swift */,
+				E75338C9202DA4D90004911C /* Address.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -298,7 +290,6 @@
 				9220FE7C1F0C4FE600B0D402 /* PhoneAuthVC.swift */,
 				9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */,
 				92984C1E1F62C2C6000FF983 /* DobVC.swift */,
-				92BCD53F1F554EEA00284E3B /* FeedbackVC.swift */,
 				E7D61D6A20074FE200897895 /* LocationVC.swift */,
 			);
 			name = Login/SignUp;
@@ -311,7 +302,6 @@
 				E7D65733200CAC6E009A1C0A /* BrandsTVC.swift */,
 				E7D61D6C20077F8700897895 /* QRScanVC.swift */,
 				92BCF4E61F30BF470047EB74 /* AlertVC.swift */,
-				92AA3DF71F2D247D00A6613E /* MoreVC.swift */,
 				E720E8842021F76200F3B495 /* HomeTVC.swift */,
 			);
 			name = MainTabBar;
@@ -350,6 +340,29 @@
 				F49F4495C781C9155B379118 /* Pods_FS_Mark0.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E75338CD202DECAA0004911C /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */,
+				E75338CB202DA6150004911C /* AddressTVC.swift */,
+				923D7CA51F9F10250081F3C2 /* AddressVC.swift */,
+				922785611F476C450066F700 /* OrderTVC.swift */,
+				92AA3DFB1F2D32C800A6613E /* ProfileVC.swift */,
+			);
+			name = Sidebar;
+			sourceTree = "<group>";
+		};
+		E75338CE202DECE80004911C /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				92AF006F1F3734410061E243 /* TabBarTBC.swift */,
+				92AA3DF71F2D247D00A6613E /* MoreVC.swift */,
+				92BCD53F1F554EEA00284E3B /* FeedbackVC.swift */,
+				92F490B51F38ECB10096521D /* ThankYouVC.swift */,
+			);
+			name = Misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -433,7 +446,6 @@
 				92125DCD1F010BAC00826AC1 /* LaunchScreen.storyboard in Resources */,
 				E78AD39E2017B4C2006B44D2 /* SignIn.storyboard in Resources */,
 				E7A7D25B1FFE3B2C001C9CFD /* CVCell.xib in Resources */,
-				E7816CCC20245F93000AD36A /* AddressCell.xib in Resources */,
 				9298BD461F7A63360048ABFA /* GoogleService-Info.plist in Resources */,
 				92125DCA1F010BAC00826AC1 /* Assets.xcassets in Resources */,
 				92125DC81F010BAC00826AC1 /* Main.storyboard in Resources */,
@@ -536,12 +548,13 @@
 				E7D61D6D20077F8700897895 /* QRScanVC.swift in Sources */,
 				92EA3E211F2CB71F00060424 /* UIView.swift in Sources */,
 				E7EDEA5B1FFCDB700092F1A4 /* Events.swift in Sources */,
+				E75338CA202DA4D90004911C /* Address.swift in Sources */,
 				92642CA61F88C2B7002FCF6E /* NewCouponVC.swift in Sources */,
 				9220FE7F1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift in Sources */,
-				E7816CCB20245F93000AD36A /* AddressCell.swift in Sources */,
 				92125DC31F010BAC00826AC1 /* AppDelegate.swift in Sources */,
 				E78C5212202B989C005F3AD4 /* StatusBarView.swift in Sources */,
 				92AA3DFC1F2D32C800A6613E /* ProfileVC.swift in Sources */,
+				E75338C8202DA4100004911C /* AddressCell.swift in Sources */,
 				92FD4CE41F93D54900F4F1FD /* FAQCell.swift in Sources */,
 				92680D3C1F862A39007E3C50 /* Int+degreesToRadians.swift in Sources */,
 				9220FE7D1F0C4FE600B0D402 /* PhoneAuthVC.swift in Sources */,
@@ -549,11 +562,11 @@
 				92B14B421F34880A005C45FE /* TabBar.swift in Sources */,
 				E7D65734200CAC6E009A1C0A /* BrandsTVC.swift in Sources */,
 				92F490B61F38ECB10096521D /* ThankYouVC.swift in Sources */,
-				E7816CCE202464BF000AD36A /* Address.swift in Sources */,
 				92BCD5401F554EEA00284E3B /* FeedbackVC.swift in Sources */,
 				92125DDB1F02553B00826AC1 /* SIgnInVC.swift in Sources */,
 				92DE41C11F16920A00535ACE /* UserInfo.swift in Sources */,
 				922785621F476C450066F700 /* OrderTVC.swift in Sources */,
+				E75338CC202DA6150004911C /* AddressTVC.swift in Sources */,
 				E78C5214202BA227005F3AD4 /* MarqueeLabel.swift in Sources */,
 				9220FE7B1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift in Sources */,
 				E720E8852021F76200F3B495 /* HomeTVC.swift in Sources */,
@@ -573,7 +586,6 @@
 				E788BD9E201382AE00829FA0 /* BrandCV.swift in Sources */,
 				E7A7D25A1FFE3B2C001C9CFD /* CVCell.swift in Sources */,
 				E7A7D25F1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift in Sources */,
-				E7816CD020246665000AD36A /* AddressCVC.swift in Sources */,
 				E720E8812021F59F00F3B495 /* Survey.swift in Sources */,
 				920BF1CF1F3F6F46007E6DC8 /* OrderCell.swift in Sources */,
 				92FD4CE21F93D50A00F4F1FD /* FAQ.swift in Sources */,

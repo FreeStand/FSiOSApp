@@ -16,6 +16,8 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var backgroundImg: UIImageView!
+
     
     // MARK: Variables
     
@@ -25,6 +27,7 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        backgroundImg.clipsToBounds = true
         
         let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = sideMenuNC
@@ -32,8 +35,13 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         SideMenuManager.default.menuAnimationFadeStrength = 0.35
         SideMenuManager.default.menuAnimationTransformScaleFactor = 0.90
         SideMenuManager.default.menuAnimationBackgroundColor = UIColor.fiBlack
-        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
-        SideMenuManager.defaultManager.menuAllowPushOfSameClassTwice = false
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view, forMenu: .left)
+        SideMenuManager.default.menuWidth = 220
+        
+        let rc = UIRefreshControl()
+        tableView.refreshControl = rc
+
+        rc.addTarget(self, action: #selector(refresh(refreshControl:)), for: UIControlEvents.valueChanged)
         
         let attrs = [
             NSAttributedStringKey.foregroundColor: UIColor.white,
@@ -69,13 +77,17 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         getSurveys()
     }
     
+    @objc func refresh(refreshControl: UIRefreshControl) {
+        getSurveys()
+        tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+
+    
     //MARK: CollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVCell", for: indexPath) as? CVCell {
-//            cell.contentView.layer.borderColor = UIColor.black.cgColor
-//            cell.contentView.layer.borderWidth = 1
-//            cell.contentView.dropShadow()
             
             let brand: BrandCV!
             brand = brandList[indexPath.row]
@@ -168,6 +180,7 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     func getSurveys() {
         Alamofire.request("\(APIEndpoints.homeSurveyEndpoint)?uid=\(UserInfo.uid!)&gender=Female").responseJSON { (response) in
+            self.surveyList.removeAll()
             if let response = response.result.value as? NSDictionary {
                 if let isEmpty = response["isEmpty"] as? Bool {
                     if isEmpty {
@@ -215,42 +228,6 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
                         }
                     }
                 }
-                
-//            if let responseArray = response.result.value as? [NSDictionary] {
-//                for card in responseArray {
-//                    let survey = Survey()
-//                    if let imgURL = card["imgURL"] as? String {
-//                        survey.imgURL = imgURL
-//                    } else {
-//                        print("Can't cast imgURL in HomeTVC getSurveys")
-//                    }
-//                    if let title = card["title"] as? String {
-//                        survey.title = title
-//                    } else {
-//                        print("Can't cast title in HomeTVC getSurveys")
-//                    }
-//                    if let subtitle = card["subtitle"] as? String {
-//                        survey.subtitle = subtitle
-//                    } else {
-//                        print("Can't cast subtitle in HomeTVC getSurveys")
-//                    }
-//                    if let taken = card["taken"] as? Bool {
-//                        survey.taken = taken
-//                    } else {
-//                        print("Can't cast taken in HomeTVC getSurveys")
-//                    }
-//                    if let questions = card["questions"] as? NSArray {
-//                        survey.quesArray = questions
-//                    } else {
-//                        print("Can't cast questions in HomeTVC getSurveys")
-//                    }
-//
-//                    self.surveyList.append(survey)
-//                    DispatchQueue.main.async {
-//                        self.tableView.reloadData()
-//                    }
-//
-//                }
             } else {
                 print("Can't cast Array in HomeTVC getSurveys")
             }

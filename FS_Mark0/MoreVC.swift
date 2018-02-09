@@ -82,11 +82,15 @@ class MoreVC: UITableViewController {
             self.navigationController?.pushViewController(vc!, animated: true)
             break
         case 2:
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddressTVC") as? AddressTVC
+            self.navigationController?.pushViewController(vc!, animated: true)
+            break
+        case 3:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "FaqTVC") as? FaqTVC
             self.navigationController?.pushViewController(vc!, animated: true)
             break
         
-        case 3:
+        case 4:
             var nsObject = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
             let version = nsObject as! String
             nsObject = Bundle.main.infoDictionary!["CFBundleVersion"]
@@ -96,7 +100,7 @@ class MoreVC: UITableViewController {
                 UIApplication.shared.open(url)
             }
             break
-        case 4:
+        case 5:
             logOut()
             break
         default:

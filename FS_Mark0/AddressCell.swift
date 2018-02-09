@@ -2,41 +2,45 @@
 //  AddressCell.swift
 //  FS_Mark0
 //
-//  Created by Aryan Sharma on 02/02/18.
+//  Created by Aryan Sharma on 09/02/18.
 //  Copyright © 2018 Aryan Sharma. All rights reserved.
 //
 
 import UIKit
 
-class AddressCell: UICollectionViewCell {
+class AddressCell: UITableViewCell {
     
-    @IBOutlet weak var nickNameLabel: UILabel!
-    @IBOutlet weak var address1Label: UILabel!
-    @IBOutlet weak var address2Label: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var pincodeLabel: UILabel!
-    @IBOutlet weak var stateLabel: UILabel!
-    
-    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
-    
-    let screenWidth = UIScreen.main.bounds.size.width
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        self.contentView.translatesAutoresizingMaskIntoConstraints = false
-        widthConstraint.constant = (screenWidth - 4*8)/2
-        heightConstraint.constant = widthConstraint.constant
-    }
+    @IBOutlet weak var nicknameLabel: UILabel!
+    @IBOutlet weak var AddressLine1label: UILabel!
+    @IBOutlet weak var AddressLine2label: UILabel!
+    @IBOutlet weak var Citylabel: UILabel!
+    @IBOutlet weak var Statelabel: UILabel!
+    @IBOutlet weak var Pincodelabel: UILabel!
+    @IBOutlet weak var shadowView: UIView!
+    var address: Address!
     
     func configureCell(address: Address) {
-        self.nickNameLabel.text = address.nickName
-        self.address1Label.text = address.address1
-        self.address2Label.text = address.address2!
-        self.cityLabel.text = address.city
-        self.pincodeLabel.text = address.pincode
-        self.stateLabel.text = address.state
+        self.address = address
+        nicknameLabel.text = address.nickname
+        AddressLine1label.text = address.addressLine1
+        AddressLine2label.text = address.addressLine2!
+        Citylabel.text = address.city
+        Statelabel.text = address.state
+        Pincodelabel.text = address.pincode
+        
+        self.shadowView.layer.cornerRadius = 2.0
+        self.shadowView.layer.borderWidth = 1.0
+        self.shadowView.layer.borderColor = UIColor.clear.cgColor
+        self.shadowView.layer.masksToBounds = true
+        
+        self.shadowView.layer.shadowColor = UIColor.black.cgColor
+        self.shadowView.layer.shadowOffset = CGSize.zero
+        self.shadowView.layer.shadowRadius = 1.0
+        self.shadowView.layer.shadowOpacity = 1.0
+        self.shadowView.layer.masksToBounds = false
+        self.shadowView.layer.shadowPath = UIBezierPath(rect: self.shadowView.bounds).cgPath
+        self.shadowView.layer.shouldRasterize = true
+
     }
 
 }

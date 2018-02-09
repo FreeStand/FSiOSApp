@@ -54,7 +54,6 @@ class CouponCell: UITableViewCell {
         self.shadowView.layer.masksToBounds = false
         self.shadowView.layer.shadowPath = UIBezierPath(rect: self.shadowView.bounds).cgPath
         self.shadowView.layer.shouldRasterize = true
-
         
     }
     

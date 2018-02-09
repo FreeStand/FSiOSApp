@@ -14,13 +14,16 @@ import SideMenu
 class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var backgroundImg: UIImageView!
+
     var brandList = [Brand]()
     var couponList = [Coupon]()
     var selectedBrand: Brand!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        backgroundImg.clipsToBounds = true
         
         let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = sideMenuNC
@@ -30,6 +33,11 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         SideMenuManager.default.menuAnimationBackgroundColor = UIColor.fiBlack
         SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
         SideMenuManager.defaultManager.menuAllowPushOfSameClassTwice = false
+
+        let rc = UIRefreshControl()
+        tableView.refreshControl = rc
+        
+        rc.addTarget(self, action: #selector(refresh(refreshControl:)), for: UIControlEvents.valueChanged)
 
         
         tableView.delegate = self
@@ -51,10 +59,18 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         showCoupons()
     }
     
+    @objc func refresh(refreshControl: UIRefreshControl) {
+        showCoupons()
+        tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+
+    
     func showCoupons() {
         let url = "\(APIEndpoints.showCouponsEndpoint)?uid=\(UserInfo.uid!)"
         print(url)
         Alamofire.request(url).responseJSON { (response) in
+            self.couponList.removeAll()
             if let couponsDict = response.result.value as? [String:[String:String]] {
                 self.couponList.removeAll()
                 for (couponID, dict) in couponsDict {

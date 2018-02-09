@@ -13,12 +13,15 @@ import SideMenu
 class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var backgroundImg: UIImageView!
+
     
     var alertList = [Alert]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        backgroundImg.clipsToBounds = true
         
         let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = sideMenuNC
@@ -28,6 +31,12 @@ class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         SideMenuManager.default.menuAnimationBackgroundColor = UIColor.fiBlack
         SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
         SideMenuManager.defaultManager.menuAllowPushOfSameClassTwice = false
+
+        
+        let rc = UIRefreshControl()
+        tableView.refreshControl = rc
+        
+        rc.addTarget(self, action: #selector(refresh(refreshControl:)), for: UIControlEvents.valueChanged)
 
         
         tableView.delegate = self
@@ -44,11 +53,18 @@ class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         navigationController?.navigationBar.titleTextAttributes = attrs
 
         getAlerts()
-        getAlertsFromNotificationDB()
     }
+    
+    @objc func refresh(refreshControl: UIRefreshControl) {
+        getAlerts()
+        tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+
     
     func getAlerts() {
         Alamofire.request(APIEndpoints.alertsEndpoint).responseJSON { (res) in
+            self.alertList.removeAll()
             if let alertArray = res.result.value as? [[String: String]] {
                 for dict in alertArray {
                     let alert = Alert()
@@ -75,16 +91,6 @@ class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
             } else {
                 print("Can't cast alerts in AlertVC")
-            }
-        }
-    }
-    
-    func getAlertsFromNotificationDB() {
-        DataService.ds.REF_USER_CURRENT.child("array").observeSingleEvent(of: .value) { (snapshot) in
-            if let array = snapshot.value as? [String] {
-                for string in array {
-                    print("SO:" + string)
-                }
             }
         }
     }

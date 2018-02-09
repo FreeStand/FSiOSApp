@@ -20,6 +20,7 @@ class OrderCell: UITableViewCell {
         self.order = order
         timeLabel.text = "Collected from " + order.partnerID!
         campaignLabel.text = order.campaignID
+        productImgView.clipsToBounds = true
     }
 
 }

@@ -13,6 +13,7 @@ import FirebaseAuth
 class FeedbackVC: UIViewController {
 
     // MARK: Variables
+    var answersArray = [Any]()
     var selectedAnswer: String!
     var quesDict: NSDictionary!
     var quesArray: NSArray!
@@ -35,6 +36,8 @@ class FeedbackVC: UIViewController {
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var questionTransitionView: UIView!
     @IBOutlet weak var checkBoxView: UIView!
+    @IBOutlet weak var backgroundImg: UIImageView!
+
     
     @IBOutlet weak var option1: RadioButton!
     @IBOutlet weak var option2: RadioButton!
@@ -99,22 +102,23 @@ class FeedbackVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Analytics.logEvent(Events.SCREEN_QR_FEED, parameters: nil)
+        
         if quesArray != nil {
             questionsLoadedCallback()
         }
+        
+        backgroundImg.clipsToBounds = true
         totalQuestions = quesArray.count
         questionTransitionView.layer.cornerRadius = 7
         nextBtn.layer.cornerRadius = 7
         checkBoxView.isHidden = true
-//        questionTransitionView.isHidden = true
+
         checkBoxView.layer.cornerRadius = 7
         self.nextBtn.setTitle("NEXT", for: .normal)
-        self.nextBtn.isEnabled = false
-        checkBoxView.dropShadow()
-        questionTransitionView.dropShadow()
+        disableNextBtn()
+//        checkBoxView.dropShadow()
+//        questionTransitionView.dropShadow()
         nextBtn.dropShadow()
-//        countViewLabel.dropShadow()
         
         option1?.alternateButton = [option2!, option3!, option4!, option5!, option6!, option7!, option8!]
         option2?.alternateButton = [option1!, option3!, option4!, option5!, option6!, option7!, option8!]
@@ -343,11 +347,10 @@ class FeedbackVC: UIViewController {
     }
     
     @IBAction func nextBtnpressed(_ sender: UIButton) {
-//        Analytics.logEvent("\(surveyID!)_ques\(quesIterator)",
-//            parameters: ["answer": selectedAnswer])
         disableNextBtn()
         
         if selectedState == QuestionType.radio {
+            answersArray.append(selectedAnswer)
             print(selectedAnswer)
         } else {
             checkBoxAnswer()
@@ -363,6 +366,7 @@ class FeedbackVC: UIViewController {
     func handleSubmit() {
         stopTimer()
         print("Aryan: Total Time taken = \(counter) seconds.")
+        print("Answers: \(answersArray)")
         if sender == "Coupon" {
             // push couponDetailVC
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -387,48 +391,51 @@ class FeedbackVC: UIViewController {
     }
     
     @IBAction func check1pressed(_ sender: UIButton) {
-        print("Aryan: CheckPressed")
         checkbox1.sendActions(for: .touchUpInside)
-        enableNextBtn()
+        checkDisable()
     }
  
     @IBAction func check2pressed(_ sender: UIButton) {
-        print("Aryan: CheckPressed")
         checkbox2.sendActions(for: .touchUpInside)
-        enableNextBtn()
+        checkDisable()
     }
     
     @IBAction func check3pressed(_ sender: UIButton) {
-        print("Aryan: CheckPressed")
         checkbox3.sendActions(for: .touchUpInside)
-        enableNextBtn()
+        checkDisable()
     }
     
     @IBAction func check4pressed(_ sender: UIButton) {
-        print("Aryan: CheckPressed")
         checkbox4.sendActions(for: .touchUpInside)
-        enableNextBtn()
+        checkDisable()
     }
     
     @IBAction func check5pressed(_ sender: UIButton) {
-        print("Aryan: CheckPressed")
         checkbox5.sendActions(for: .touchUpInside)
-        enableNextBtn()
+        checkDisable()
     }
     
     @IBAction func check6pressed(_ sender: UIButton) {
         checkbox6.sendActions(for: .touchUpInside)
-        enableNextBtn()
+        checkDisable()
     }
     
     @IBAction func check7pressed(_ sender: UIButton) {
         checkbox7.sendActions(for: .touchUpInside)
-        enableNextBtn()
+        checkDisable()
     }
     
     @IBAction func check8pressed(_ sender: UIButton) {
         checkbox8.sendActions(for: .touchUpInside)
-        enableNextBtn()
+        checkDisable()
+    }
+    
+    func checkDisable() {
+        if (checkbox1.isChecked || checkbox2.isChecked || checkbox3.isChecked || checkbox4.isChecked || checkbox8.isChecked || checkbox7.isChecked || checkbox6.isChecked || checkbox5.isChecked) {
+            enableNextBtn()
+        } else {
+            disableNextBtn()
+        }
     }
     
     
@@ -563,6 +570,7 @@ class FeedbackVC: UIViewController {
     }
     
     func checkBoxAnswer() {
+        selectedCheckBoxes.removeAll()
         if checkbox1.isChecked {
             selectedCheckBoxes.append("1")
         }
@@ -595,6 +603,7 @@ class FeedbackVC: UIViewController {
             selectedCheckBoxes.append("8")
         }
         
+        answersArray.append(selectedCheckBoxes)
         print(selectedCheckBoxes)
     }
     

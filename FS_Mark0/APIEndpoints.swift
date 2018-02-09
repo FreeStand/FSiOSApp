@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class APIEndpoints {
     public static var couponEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/sendCoupon"
@@ -18,4 +19,7 @@ class APIEndpoints {
     public static var sendSurveysEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/SendSurveys"
     public static var alertsEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/getAlerts"
     public static var homeSurveyEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/homeSurveys"
+    public static var faqEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/getFAQs"
+    public static var addressEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/getAddresses?uid=" + (Auth.auth().currentUser?.uid)!
+
 }

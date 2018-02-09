@@ -14,6 +14,8 @@ class CouponDigitalVC: UIViewController {
     @IBOutlet weak var couponLbl: UILabel!
     @IBOutlet weak var doneBtn: UIButton!
     @IBOutlet weak var copyBtn: UIButton!
+    @IBOutlet weak var backgroundImg: UIImageView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,7 @@ class CouponDigitalVC: UIViewController {
         doneBtn.layer.cornerRadius = 4
         copyBtn.layer.cornerRadius = 2
         couponLbl.text = couponCode
+        backgroundImg.clipsToBounds = true
     }
     
     @IBAction func copyBtnPressed(_ sender: Any) {

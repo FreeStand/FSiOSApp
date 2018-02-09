@@ -23,6 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        let attrs = [
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17)!
+        ]
+        UIBarButtonItem.appearance().setTitleTextAttributes(attrs, for: .normal)
+        UINavigationBar.appearance().titleTextAttributes = attrs
+        UINavigationBar.appearance().barTintColor = UIColor.fiBlack
+        UINavigationBar.appearance().tintColor = UIColor.white
         UITabBar.appearance().barTintColor = UIColor().HexToColor(hexString: "#000000", alpha: 1.0)
         UITabBar.appearance().tintColor = UIColor.white
         UIApplication.shared.statusBarStyle = .lightContent

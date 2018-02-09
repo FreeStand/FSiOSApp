@@ -8,16 +8,23 @@
 
 import UIKit
 
+protocol AddressViewControllerDelegate {
+    func addressViewControllerResponse(address: Address)
+}
+
 class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    @IBOutlet weak var nickName: UITextField!
     @IBOutlet weak var al1: UITextField!
     @IBOutlet weak var al2: UITextField!
     @IBOutlet weak var city: UITextField!
     @IBOutlet weak var pincode: UITextField!
     @IBOutlet weak var state: UITextField!
     @IBOutlet weak var submitBtn: UIButton!
-    @IBOutlet weak var backView: UIView!
-    
+    @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var backgroundImg: UIImageView!
+
+    var delegate: AddressViewControllerDelegate?
     var statePicker: UIPickerView!
     
     let statePickerValues = ["Delhi", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu & Kashmir", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttarakhand", "Uttar Pradesh", "West Bengal", "Andaman and Nicobar Islands", "Chandigarh", "Dadra & Nagar Haveli", "Daman & Diu", "Lakshadweep", "Puducherry"]
@@ -27,29 +34,29 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let border = CALayer()
-        let width = CGFloat(2.0)
-        border.borderColor = UIColor().HexToColor(hexString: "#FF644B", alpha: 1.0).cgColor
-        border.frame = CGRect(x: 0, y: al1.frame.size.height - width, width:  al1.frame.size.width, height: al1.frame.size.height)
-        
-        border.borderWidth = width
-        
-        for view in self.view.subviews {
-            if let textField = view as? UITextField {
-                textField.layer.addSublayer(border)
-                textField.layer.masksToBounds = true
-            }
-        }
-        
-        
+        backgroundImg.clipsToBounds = true
+        nickName.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         al1.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         al2.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         city.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         pincode.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         
-        backView.layer.cornerRadius = 7
-        submitBtn.layer.cornerRadius = 7
+        self.submitBtn.layer.cornerRadius = 2.0
+
+        self.shadowView.layer.cornerRadius = 2.0
+        self.shadowView.layer.borderWidth = 1.0
+        self.shadowView.layer.borderColor = UIColor.clear.cgColor
+        self.shadowView.layer.masksToBounds = true
         
+        self.shadowView.layer.shadowColor = UIColor.black.cgColor
+        self.shadowView.layer.shadowOffset = CGSize.zero
+        self.shadowView.layer.shadowRadius = 1.0
+        self.shadowView.layer.shadowOpacity = 1.0
+        self.shadowView.layer.masksToBounds = false
+//        self.shadowView.layer.shadowPath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: self.shadowView.bounds.width, height: self.shadowView.bounds.height)).cgPath
+        self.shadowView.layer.shouldRasterize = true
+
+        print("Shadow: \(self.shadowView.bounds)")
         pincode.delegate = self
 
         statePicker = UIPickerView()
@@ -114,10 +121,11 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         city.resignFirstResponder()
         pincode.resignFirstResponder()
         state.resignFirstResponder()
+        nickName.resignFirstResponder()
     }
     
     @objc func editingChanged() {
-        if pincode.text?.count == 6 && al1.text?.count != 0 && al2.text?.count != 0 && city.text?.count != 0 {
+        if pincode.text?.count == 6 && al1.text?.count != 0 && al2.text?.count != 0 && city.text?.count != 0 && nickName.text?.count != 0 {
             submitBtn.alpha = 1.0
             submitBtn.isEnabled = true
         } else {
@@ -127,9 +135,15 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     }
     
     @IBAction func submitBtnPressed(_ sender: Any) {
-        DataService.ds.REF_USER_CURRENT.updateChildValues(["address": "\(al1.text!), \(al2.text!), \(city.text!), \(pincode.text!), \(state.text!) "])
-        performSegue(withIdentifier: "addressToThankYou", sender: nil)
-        UserDefaults.standard.set(true, forKey: "hasAddress")
-        
+        let address = Address()
+        address.addressLine1 = al1.text!
+        address.addressLine2 = al2.text!
+        address.city = city.text!
+        address.pincode = pincode.text!
+        address.state = state.text!
+        address.nickname = nickName.text!
+        self.navigationController?.popViewController(animated: true)
+        self.delegate?.addressViewControllerResponse(address: address)
     }
+    
 }
