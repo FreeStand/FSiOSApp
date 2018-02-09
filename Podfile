@@ -21,5 +21,6 @@ pod 'Toaster'
 pod 'Firebase/RemoteConfig'
 pod 'Alamofire'
 pod 'SideMenu'
+pod 'IQKeyboardManager'
 
 end

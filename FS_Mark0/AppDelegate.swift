@@ -12,7 +12,7 @@ import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
 import UserNotifications
-
+import IQKeyboardManager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -34,8 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UITabBar.appearance().barTintColor = UIColor().HexToColor(hexString: "#000000", alpha: 1.0)
         UITabBar.appearance().tintColor = UIColor.white
         UIApplication.shared.statusBarStyle = .lightContent
+        IQKeyboardManager.shared().isEnabled = true
 
-        
         let userDefaults = UserDefaults.standard
         if let isLogin = userDefaults.value(forKey: "isLoggedIn") as! Bool? {
             if (isLogin == false) {
