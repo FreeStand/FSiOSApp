@@ -83,6 +83,9 @@ PODS:
   - Protobuf (3.5.0)
   - QRCodeReader.swift (8.0.4)
   - SideMenu (3.1.5)
+  - SQLite.swift (0.11.4):
+    - SQLite.swift/standard (= 0.11.4)
+  - SQLite.swift/standard (0.11.4)
   - SwiftKeychainWrapper (3.0.1)
   - Toaster (2.1.1)
 
@@ -99,6 +102,7 @@ DEPENDENCIES:
   - IQKeyboardManager
   - QRCodeReader.swift (~> 8.0.1)
   - SideMenu
+  - SQLite.swift (~> 0.11.4)
   - SwiftKeychainWrapper
   - Toaster
 
@@ -125,9 +129,10 @@ SPEC CHECKSUMS:
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   QRCodeReader.swift: 9730cfa7ed5f0dd839765df8cf18d41db20e4081
   SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
+  SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
 
-PODFILE CHECKSUM: d24590d32cf62f4bdbbea88b38e89b1bd83ddfba
+PODFILE CHECKSUM: 6e089bbefe67c16da228c9bfcc68a2c2cbec5c4a
 
 COCOAPODS: 1.3.1

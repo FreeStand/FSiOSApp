@@ -69,156 +69,23 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func showCoupons() {
         let url = "\(APIEndpoints.showCouponsEndpoint)?uid=\(UserInfo.uid!)"
         print(url)
-        Alamofire.request(url).responseJSON { (response) in
+        Alamofire.request(url).responseJSON { (res) in
             self.couponList.removeAll()
-            if let couponsDict = response.result.value as? [String:[String:String]] {
-                self.couponList.removeAll()
-                for (couponID, dict) in couponsDict {
-                    let coupon = Coupon()
-                    coupon.couponID = couponID
-                    if let imgURL = dict["imgURL"] {
-                        coupon.imgURL = imgURL
-                    } else {
-                        print("Error: Can't cast imgURL in coupon")
-                    }
-                    
-                    if let title = dict["title"] {
-                        coupon.title = title
-                    } else {
-                        print("Error: Can't cast title in coupon")
-                    }
-                    
-                    if let subtitle = dict["subtitle"] {
-                        coupon.subtitle = subtitle
-                    } else {
-                        print("Error: Can't cast subtitle in coupon")
-                    }
-                    
-                    if let brandName = dict["brandName"] {
-                        coupon.brandName = brandName
-                    } else {
-                        print("Error: Can't cast brandName in coupon")
-                    }
-                    
-                    if let generalCouponCode = dict["generalCouponCode"] {
-                        coupon.generalCouponCode = generalCouponCode
-                    } else {
-                        print("Error: Can't cast generalCouponCode in coupon")
-                    }
-                    
-                    if let showCouponOnScreen = dict["showCouponOnScreen"] {
-                        coupon.showCouponOnScreen = showCouponOnScreen
-                    } else {
-                        print("Error: Can't cast showCouponOnScreen in coupon")
-                    }
-                    
-                    self.couponList.append(coupon)
-                    
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-
-                }
-            } else {
-                print("Error: Can't cast couponsDict in BrandsTVC")
-            }
-        }
-    }
-    
-    func getCoupons() {
-        DataService.ds.REF_COUPONS.observe(.childAdded) { (snapshot) in
-            if let dict = snapshot.value as? NSDictionary {
-                let coupon = Coupon()
-                coupon.couponID = snapshot.key
-                if let imgURL = dict["imgURL"] as? String {
-                    coupon.imgURL = imgURL
-                } else {
-                    print("Error: Can't cast imgURL in coupon")
-                }
-                
-                if let title = dict["title"] as? String {
-                    coupon.title = title
-                } else {
-                    print("Error: Can't cast title in coupon")
-                }
-                
-                if let subtitle = dict["subtitle"] as? String {
-                    coupon.subtitle = subtitle
-                } else {
-                    print("Error: Can't cast subtitle in coupon")
-                }
-                
-                if let brandName = dict["brandName"] as? String {
-                    coupon.brandName = brandName
-                } else {
-                    print("Error: Can't cast brandName in coupon")
-                }
-                
-                if let generalCouponCode = dict["generalCouponCode"] as? String {
-                    coupon.generalCouponCode = generalCouponCode
-                } else {
-                    print("Error: Can't cast generalCouponCode in coupon")
-                }
-
-                
-                self.couponList.append(coupon)
-                
+            
+            guard let data = res.data else { return }
+            do {
+                let coupons = try JSONDecoder().decode([Coupon].self, from: data)
+                self.couponList = coupons
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-            } else {
-                print("Can't cast dict in Coupons")
+            } catch {
+                print(error)
             }
-        }
-    }
-
-    func getBrands() {
-        print("called")
-        DataService.ds.REF_BRANDS.observe(.childAdded, with:  { (snapshot) in
-            if let dict = snapshot.value as? NSDictionary {
-                let brand = Brand()
-                brand.name = snapshot.key
-                
-                if let imgURL = dict["imgURL"] as? String {
-                    brand.imgUrl = imgURL
-                } else {
-                    print("Error: Can't find/cast URL in \(brand.name ?? "Brand")")
-                }
-                
-                if let questions = dict["questions"] as? NSDictionary {
-                    brand.questions = questions
-                } else {
-                    print("Error: Can't find/cast questions in \(brand.name ?? "Brand")")
-                }
-                
-                if let coupons = dict["coupons"] as? [String: [String: Any]] {
-                    brand.coupons = coupons
-                    brand.totalDeals = coupons.count
-                } else {
-                    brand.totalDeals = 0
-                    print("Error: Can't find/cast coupons in \(brand.name ?? "Brand")")
-                }
-                
-                if brand.totalDeals != 0 {
-                    self.brandList.append(brand)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                }
-                
-                
-            } else {
-                print("Error: Can't cast dict from snapshot in Brands")
-            }
-        }) { (error) in
-            print("Error: Can't load Brands from Brands DB")
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
 
     // MARK: - Table view data source
 
@@ -237,7 +104,6 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "couponCell", for: indexPath) as? CouponCell {
             
             cell.clipsToBounds = true
-            
             let coupon: Coupon!
             coupon = couponList[indexPath.row]
             cell.configureCell(coupon: coupon)
@@ -261,9 +127,8 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 cell.activityIndicator.startAnimating()
 
-            
                 if coupon.generalCouponCode != nil {
-                    let url = "\(APIEndpoints.generalCouponEndpoint)?uid=\(UserInfo.uid!)&brand=\(coupon.brandName!)&couponID=\(coupon.couponID!)"
+                    let url = "\(APIEndpoints.generalCouponEndpoint)?uid=\(UserInfo.uid!)&brand=\(coupon.brandName)&couponID=\(coupon.couponID)"
                     Alamofire.request(url).responseJSON(completionHandler: { (response) in
                         if let dict = response.result.value as? NSDictionary {
                             if let containsFeedBack = dict["containsFeedBack"] as? Bool {
@@ -271,7 +136,7 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                                     let feedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
                                     feedbackVC?.couponCode = coupon.generalCouponCode
                                     feedbackVC?.quesArray = dict["questions"] as? NSArray
-                                    feedbackVC?.sender = "Coupon"
+                                    feedbackVC?.sender = FeedbackSender.couponVC
                                     feedbackVC?.surveyID = coupon.couponID
                                     cell.activityIndicator.stopAnimating()
                                     self.navigationController?.pushViewController(feedbackVC!, animated: true)
@@ -294,7 +159,7 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     })
                     
                 } else {
-                    let url = "\(APIEndpoints.couponEndpoint)?uid=\(UserInfo.uid!)&brand=\(coupon.brandName!)&couponID=\(coupon.couponID!)"
+                    let url = "\(APIEndpoints.couponEndpoint)?uid=\(UserInfo.uid!)&brand=\(coupon.brandName)&couponID=\(coupon.couponID)"
                     Alamofire.request(url).responseJSON { (response) in
                         if let dict = response.result.value as? NSDictionary {
                             if let containsFeedBack = dict["containsFeedBack"] as? Bool {
@@ -312,7 +177,7 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                                     let feedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
                                     feedbackVC?.couponCode = dict["couponCode"] as? String
                                     feedbackVC?.quesArray = dict["questions"] as? NSArray
-                                    feedbackVC?.sender = "Coupon"
+                                    feedbackVC?.sender = FeedbackSender.couponVC
                                     feedbackVC?.surveyID = coupon.couponID
                                     cell.activityIndicator.stopAnimating()
                                     self.navigationController?.pushViewController(feedbackVC!, animated: true)
@@ -333,15 +198,7 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    // MARK: - Navigation
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "BrandToCoupon" {
-            if let vc = segue.destination as? NewCouponVC {
-                vc.brand = self.selectedBrand
-            }
-        }
-    }
     
     @IBAction func sideMenuPressed(_ sender: Any) {
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)

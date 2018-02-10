@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class FAQ: NSObject {
+class FAQ: Decodable {
     var question: String?
     var answer: String?
 }

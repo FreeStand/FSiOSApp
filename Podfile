@@ -22,5 +22,6 @@ pod 'Firebase/RemoteConfig'
 pod 'Alamofire'
 pod 'SideMenu'
 pod 'IQKeyboardManager'
+pod 'SQLite.swift', '~> 0.11.4'
 
 end

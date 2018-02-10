@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class BrandCV: NSObject {
+class BrandCV: Decodable {
     var name: String?
     var imgURL: String?
     var redirectURL: String?

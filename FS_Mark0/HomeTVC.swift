@@ -98,33 +98,16 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func getBrands() {
-        Alamofire.request(APIEndpoints.getBrands).responseJSON { (response) in
-            if let response = response.result.value as? [String: NSDictionary] {
-                for (_, dict) in response {
-                    let brand = BrandCV()
-                    if let imgURL = dict["imgURL"] as? String {
-                        brand.imgURL = imgURL
-                    } else {
-                        print("Error: Can't cast imgURL in CollectionView")
-                    }
-                    
-                    if let name = dict["name"] as? String {
-                        brand.name = name
-                    } else {
-                        print("Error: Can't cast name in CollectionView")
-                    }
-                    
-                    if let redirectURL = dict["redirectURL"] as? String {
-                        brand.redirectURL = redirectURL
-                    } else {
-                        print("Error: Can't cast redirectURL in CollectionView")
-                    }
-                    
-                    self.brandList.append(brand)
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
+        Alamofire.request(APIEndpoints.getBrands).responseJSON { (res) in
+            guard let data = res.data else { return }
+            do {
+                let brands = try JSONDecoder().decode([BrandCV].self, from: data)
+                self.brandList = brands
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
                 }
+            } catch {
+                print(error)
             }
         }
     }

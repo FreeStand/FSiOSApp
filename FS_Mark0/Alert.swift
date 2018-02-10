@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class Alert: NSObject{
+class Alert: Decodable{
     var time: String?
     var title: String?
     var body: String?

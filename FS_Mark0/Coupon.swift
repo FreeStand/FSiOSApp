@@ -7,17 +7,12 @@
 //
 
 import Foundation
-class Coupon: NSObject{
-    var title: String?
-    var subtitle: String?
-    var redirectURL: String?
-    var brandName: String?
-    var generalCouponCode: String?
-    var uID: String?
-    var imgURL: String?
-    var isDigital: Bool?
-    var couponCode: String?
-    var isCouponUnique: Bool?
-    var couponID: String?
+class Coupon: Decodable{
+    var brandName: String
+    var imgURL: String
+    var subtitle: String
+    var title: String
+    var couponID: String
     var showCouponOnScreen: String?
+    var generalCouponCode: String?
 }

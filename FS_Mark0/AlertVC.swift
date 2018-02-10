@@ -65,32 +65,16 @@ class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func getAlerts() {
         Alamofire.request(APIEndpoints.alertsEndpoint).responseJSON { (res) in
             self.alertList.removeAll()
-            if let alertArray = res.result.value as? [[String: String]] {
-                for dict in alertArray {
-                    let alert = Alert()
-                    if let title = dict["title"] {
-                        alert.title = title
-                    } else {
-                        print("Error: Can't cast title in Alert")
-                    }
-                    if let body = dict["body"] {
-                        alert.body = body
-                    } else {
-                        print("Error: Can't cast body in Alert")
-                    }
-                    if let date = dict["date"] {
-                        alert.time = date
-                    } else {
-                        print("Error: Can't cast time in Alert")
-                    }
-                    
-                    self.alertList.append(alert)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
+            
+            guard let data = res.data else { return }
+            do {
+                let alerts = try JSONDecoder().decode([Alert].self, from: data)
+                self.alertList = alerts
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
                 }
-            } else {
-                print("Can't cast alerts in AlertVC")
+            } catch {
+                print(error)
             }
         }
     }

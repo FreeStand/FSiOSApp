@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let customBannerView = StatusBarView.init()
     UIApplication.shared.statusBarView?.addSubview(customBannerView)
 
-        
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
         FirebaseApp.configure()
         
         return true

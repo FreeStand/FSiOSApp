@@ -32,7 +32,7 @@ class CouponCell: UITableViewCell {
         titleLabel.text = coupon.title
         subtitleLabel.text = coupon.subtitle
 //        subtitleTextView.text = coupon.subtitle
-        img.downloadedFrom(link: coupon.imgURL!)
+        img.downloadedFrom(link: coupon.imgURL)
         if coupon.showCouponOnScreen != nil {
 //            couponLabel.isHidden = false
             couponLabel.text = coupon.showCouponOnScreen

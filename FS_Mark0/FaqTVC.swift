@@ -48,27 +48,15 @@ class FaqTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func getFAQs() {
         Alamofire.request(APIEndpoints.faqEndpoint).responseJSON { (res) in
             self.faqList.removeAll()
-            if let alertArray = res.result.value as? [[String: String]] {
-                for dict in alertArray {
-                    let alert = FAQ()
-                    if let answer = dict["answer"] {
-                        alert.answer = answer
-                    } else {
-                        print("Error: Can't cast answer in FAQs")
-                    }
-                    if let question = dict["question"] {
-                        alert.question = question
-                    } else {
-                        print("Error: Can't cast question in FAQs")
-                    }
-                    
-                    self.faqList.append(alert)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
+            guard let data = res.data else { return }
+            do {
+                let faqs = try JSONDecoder().decode([FAQ].self, from: data)
+                self.faqList = faqs
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
                 }
-            } else {
-                print("Can't cast alerts in FAQs")
+            } catch {
+                print(error)
             }
         }
     }

@@ -24,7 +24,6 @@
 		922785681F4921A20066F700 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922785671F4921A20066F700 /* Coupon.swift */; };
 		923D7CA61F9F10250081F3C2 /* AddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923D7CA51F9F10250081F3C2 /* AddressVC.swift */; };
 		923D7CA81F9F23FD0081F3C2 /* BottomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923D7CA71F9F23FD0081F3C2 /* BottomTextField.swift */; };
-		92642CA61F88C2B7002FCF6E /* NewCouponVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92642CA51F88C2B7002FCF6E /* NewCouponVC.swift */; };
 		92642CA81F88CB70002FCF6E /* CouponDigitalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92642CA71F88CB70002FCF6E /* CouponDigitalVC.swift */; };
 		92642CAA1F892E1B002FCF6E /* CouponFeedbackOnlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92642CA91F892E1B002FCF6E /* CouponFeedbackOnlineVC.swift */; };
 		92680D3C1F862A39007E3C50 /* Int+degreesToRadians.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92680D3B1F862A39007E3C50 /* Int+degreesToRadians.swift */; };
@@ -96,7 +95,6 @@
 		922785671F4921A20066F700 /* Coupon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coupon.swift; sourceTree = "<group>"; };
 		923D7CA51F9F10250081F3C2 /* AddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressVC.swift; sourceTree = "<group>"; };
 		923D7CA71F9F23FD0081F3C2 /* BottomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTextField.swift; sourceTree = "<group>"; };
-		92642CA51F88C2B7002FCF6E /* NewCouponVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCouponVC.swift; sourceTree = "<group>"; };
 		92642CA71F88CB70002FCF6E /* CouponDigitalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponDigitalVC.swift; sourceTree = "<group>"; };
 		92642CA91F892E1B002FCF6E /* CouponFeedbackOnlineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponFeedbackOnlineVC.swift; sourceTree = "<group>"; };
 		92680D031F82A2F2007E3C50 /* Animation.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Animation.mp4; sourceTree = "<group>"; };
@@ -244,7 +242,6 @@
 		9215537A1F87642700B85434 /* Coupon */ = {
 			isa = PBXGroup;
 			children = (
-				92642CA51F88C2B7002FCF6E /* NewCouponVC.swift */,
 				92642CA91F892E1B002FCF6E /* CouponFeedbackOnlineVC.swift */,
 				92642CA71F88CB70002FCF6E /* CouponDigitalVC.swift */,
 			);
@@ -490,6 +487,7 @@
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
@@ -508,6 +506,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
@@ -551,7 +550,6 @@
 				92EA3E211F2CB71F00060424 /* UIView.swift in Sources */,
 				E7EDEA5B1FFCDB700092F1A4 /* Events.swift in Sources */,
 				E75338CA202DA4D90004911C /* Address.swift in Sources */,
-				92642CA61F88C2B7002FCF6E /* NewCouponVC.swift in Sources */,
 				9220FE7F1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift in Sources */,
 				92125DC31F010BAC00826AC1 /* AppDelegate.swift in Sources */,
 				E78C5212202B989C005F3AD4 /* StatusBarView.swift in Sources */,
