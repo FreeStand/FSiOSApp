@@ -108,7 +108,7 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
                     
                     Analytics.logEvent(Events.QR_SUCC, parameters: nil)
                     let FeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
-                    FeedbackVC?.sender = "InitialQR"
+                    FeedbackVC?.sender = FeedbackSender.eventQR
                     FeedbackVC?.quesArray = dict["questions"] as? NSArray
                     FeedbackVC?.surveyID = dict["surveyID"] as? String
                     self.present(FeedbackVC!, animated: true, completion: nil)

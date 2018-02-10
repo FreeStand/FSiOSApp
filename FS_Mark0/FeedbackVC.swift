@@ -10,6 +10,13 @@ import FirebaseAnalytics
 import UIKit
 import FirebaseAuth
 
+class FeedbackSender {
+    public static var eventQR = "eventQR"
+    public static var couponVC = "couponVC"
+    public static var homeTVC = "homeTVC"
+    public static var qrScanVC = "qrScanVC"
+}
+
 class FeedbackVC: UIViewController {
 
     // MARK: Variables
@@ -367,27 +374,25 @@ class FeedbackVC: UIViewController {
         stopTimer()
         print("Aryan: Total Time taken = \(counter) seconds.")
         print("Answers: \(answersArray)")
-        if sender == "Coupon" {
+        if sender == FeedbackSender.couponVC {
             // push couponDetailVC
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let CouponDigitalVC = storyBoard.instantiateViewController(withIdentifier: "CouponDigitalVC") as! CouponDigitalVC
             CouponDigitalVC.couponCode = self.couponCode
             self.navigationController?.pushViewController(CouponDigitalVC, animated: true)
-        } else if sender == "InitialQR" {
+        } else if sender == FeedbackSender.eventQR {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
             self.present(ThankYouVC, animated: true, completion: nil)
-        } else if sender == "QR" {
+        } else if sender == FeedbackSender.qrScanVC {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
             self.present(ThankYouVC, animated: true, completion: nil)
-
-        } else if sender == "HomeTVC"{
+        } else if sender == FeedbackSender.homeTVC{
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
             self.present(ThankYouVC, animated: true, completion: nil)
         }
-        
     }
     
     @IBAction func check1pressed(_ sender: UIButton) {

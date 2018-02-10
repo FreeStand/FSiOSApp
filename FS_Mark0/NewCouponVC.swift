@@ -33,7 +33,6 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         coupons = brand.coupons
         tableView.dataSource = self
         tableView.delegate = self
-//        NotificationCenter.default.addObserver(self, selector: #selector(infoBtnPressed), name: Notification.Name("myNotification"), object: nil)
 
         self.navigationItem.title = brand.name
         self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -133,11 +132,9 @@ class NewCouponVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                             let FeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
                             FeedbackVC?.quesDict = self.feedbackQuestionsDict
                             FeedbackVC?.surveyID = self.surveyID
-                            FeedbackVC?.sender = "Coupon"
+                            FeedbackVC?.sender = FeedbackSender.couponVC
                             FeedbackVC?.couponCode = self.selectedCouponCode
                             self.navigationController?.pushViewController(FeedbackVC!, animated: true)
-                            
-//                            self.performSegue(withIdentifier: "couponToFeedback", sender: nil)
                             print("Coupon: segue to feedback")
                             
                         } else {

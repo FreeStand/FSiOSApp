@@ -116,8 +116,6 @@ class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             return cell
         }
-
-
         
         return UITableViewCell()
     }
@@ -128,6 +126,10 @@ class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func sideMenuPressed(_ sender: Any) {
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     

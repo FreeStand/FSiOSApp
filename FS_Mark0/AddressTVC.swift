@@ -9,12 +9,19 @@
 import UIKit
 import Alamofire
 
+class AddressSender {
+    public static var sidebar = "sidebar"
+    public static var forced = "forced"
+}
+
 class AddressTVC: UIViewController, UITableViewDataSource, UITableViewDelegate, AddressViewControllerDelegate {
     
     @IBOutlet weak var backgroundImg: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    
     var addressList = [Address]()
-
+    var sender = AddressSender.sidebar
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -118,7 +125,12 @@ class AddressTVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        if sender == AddressSender.forced {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ThankYouVC") as? ThankYouVC
+            present(vc!, animated: true, completion: nil)
+        } else if sender == AddressSender.sidebar {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

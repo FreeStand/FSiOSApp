@@ -164,7 +164,7 @@ class HomeTVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         if !survey.empty! {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
             vc?.quesArray = survey.quesArray
-            vc?.sender = "HomeTVC"
+            vc?.sender = FeedbackSender.homeTVC
             self.present(vc!, animated: true, completion: nil)
         }
         tableView.deselectRow(at: indexPath, animated: true)
