@@ -31,16 +31,15 @@ class CouponCell: UITableViewCell {
         self.coupon = coupon
         titleLabel.text = coupon.title
         subtitleLabel.text = coupon.subtitle
-//        subtitleTextView.text = coupon.subtitle
         img.downloadedFrom(link: coupon.imgURL)
-        if coupon.showCouponOnScreen != nil {
-//            couponLabel.isHidden = false
-            couponLabel.text = coupon.showCouponOnScreen
+        if coupon.redeem != nil {
+            couponLabel.isHidden = false
+            getCouponLabel.text = "Coupon Code"
+            couponLabel.text = coupon.redeem
         } else {
             couponLabel.isHidden = true
             getCouponLabel.text = "Click here to get your coupon"
         }
-//        redirectURL = coupon.redirectURL
         
         self.shadowView.layer.cornerRadius = 2.0
         self.shadowView.layer.borderWidth = 1.0

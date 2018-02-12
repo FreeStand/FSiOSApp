@@ -16,7 +16,6 @@ class AddressSender {
 
 class AddressTVC: UIViewController, UITableViewDataSource, UITableViewDelegate, AddressViewControllerDelegate {
     
-    @IBOutlet weak var backgroundImg: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
     var addressList = [Address]()
@@ -25,8 +24,7 @@ class AddressTVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Addresses"        
-        backgroundImg.clipsToBounds = true
+        self.navigationItem.title = "Add/Select Address"        
         tableView.delegate = self
         tableView.dataSource = self
         getAddresses()
@@ -121,15 +119,24 @@ class AddressTVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 173
-        
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if sender == AddressSender.forced {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if sender == AddressSender.sidebar {
+            print("Sidebar")
+        } else if sender == AddressSender.forced {
+            let address = self.addressList[indexPath.row]
+            var url = "\(APIEndpoints.newOrderEndpoint)?uid=\(UserInfo.uid!)&addressID=\(address.nickname!)"
+            url = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            Alamofire.request(url).responseJSON(completionHandler: { (res) in
+                print("Order: \(res.result.value!)")
+            })
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ThankYouVC") as? ThankYouVC
-            present(vc!, animated: true, completion: nil)
-        } else if sender == AddressSender.sidebar {
-            tableView.deselectRow(at: indexPath, animated: true)
+            vc?.sender = TYSender.addressForced
+            vc?.address = addressList[indexPath.row]
+            self.navigationController?.pushViewController(vc!, animated: true)
+
         }
     }
     

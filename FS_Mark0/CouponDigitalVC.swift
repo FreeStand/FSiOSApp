@@ -7,26 +7,39 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
+
 
 class CouponDigitalVC: UIViewController {
 
     var couponCode: String!
     @IBOutlet weak var couponLbl: UILabel!
     @IBOutlet weak var doneBtn: UIButton!
-    @IBOutlet weak var copyBtn: UIButton!
-    @IBOutlet weak var backgroundImg: UIImageView!
+    @IBOutlet weak var videoView: UIView!
+    var player : AVPlayer!
+    var avPlayerLayer : AVPlayerLayer!
 
-    
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        heightConstraint.constant = self.videoView.frame.width * 1080 / 1440
+        playVideo()
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: nil, using: { (_) in
+            DispatchQueue.main.async {
+                self.player?.seek(to: CMTimeMake(5, 10))
+                self.player?.play()
+            }
+        })
 
+        
         doneBtn.layer.cornerRadius = 4
-        copyBtn.layer.cornerRadius = 2
         couponLbl.text = couponCode
-        backgroundImg.clipsToBounds = true
     }
     
     @IBAction func copyBtnPressed(_ sender: Any) {
+        print("copied")
         UIPasteboard.general.string = couponCode
     }
 
@@ -34,4 +47,22 @@ class CouponDigitalVC: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
+    
+    override func viewDidLayoutSubviews() {
+        avPlayerLayer.frame = videoView.layer.bounds
+    }
+    
+    func playVideo() {
+        print("here")
+        guard let path = Bundle.main.path(forResource: "Animation_2x", ofType:"mp4") else {
+            debugPrint("Animation.mp4 not found")
+            return
+        }
+        player = AVPlayer(url: URL(fileURLWithPath: path))
+        avPlayerLayer = AVPlayerLayer(player: player)
+        avPlayerLayer.videoGravity = AVLayerVideoGravity.resize
+        
+        videoView.layer.addSublayer(avPlayerLayer)
+        player.play()
+    }
 }

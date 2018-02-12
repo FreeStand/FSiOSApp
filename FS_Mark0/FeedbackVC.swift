@@ -15,6 +15,8 @@ class FeedbackSender {
     public static var couponVC = "couponVC"
     public static var homeTVC = "homeTVC"
     public static var qrScanVC = "qrScanVC"
+    public static var preSampling = "preSampling"
+    public static var postSampling = "postSampling"
 }
 
 class FeedbackVC: UIViewController {
@@ -33,6 +35,7 @@ class FeedbackVC: UIViewController {
     var selectedCheckBoxes = [String]()
     var counter = 0.0
     var timer = Timer()
+    var brand: String!
     
     enum QuestionType {
         case check, radio
@@ -43,7 +46,6 @@ class FeedbackVC: UIViewController {
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var questionTransitionView: UIView!
     @IBOutlet weak var checkBoxView: UIView!
-    @IBOutlet weak var backgroundImg: UIImageView!
 
     
     @IBOutlet weak var option1: RadioButton!
@@ -114,14 +116,12 @@ class FeedbackVC: UIViewController {
             questionsLoadedCallback()
         }
         
-        backgroundImg.clipsToBounds = true
         totalQuestions = quesArray.count
         questionTransitionView.layer.cornerRadius = 7
-        nextBtn.layer.cornerRadius = 7
         checkBoxView.isHidden = true
 
         checkBoxView.layer.cornerRadius = 7
-        self.nextBtn.setTitle("NEXT", for: .normal)
+        self.nextBtn.setTitle(">>> NEXT >>>", for: .normal)
         disableNextBtn()
 //        checkBoxView.dropShadow()
 //        questionTransitionView.dropShadow()
@@ -313,7 +313,7 @@ class FeedbackVC: UIViewController {
                     UIView.transition(with: self.questionTransitionView, duration: 0.3, options: .transitionFlipFromRight, animations: nil, completion: { (flag) in
                         if flag {
                             if self.quesIterator == self.totalQuestions - 1 {
-                                self.nextBtn.setTitle("SUBMIT", for: .normal)
+                                self.nextBtn.setTitle(">>> SUBMIT >>>", for: .normal)
                             }
                         }
                     })
@@ -323,7 +323,7 @@ class FeedbackVC: UIViewController {
                 UIView.transition(from: self.checkBoxView, to: self.questionTransitionView, duration: 0.3, options: .transitionFlipFromRight, completion: { (flag) in
                     if flag {
                         if self.quesIterator == self.totalQuestions - 1 {
-                            self.nextBtn.setTitle("SUBMIT", for: .normal)
+                            self.nextBtn.setTitle(">>> SUBMIT >>>", for: .normal)
                         }
                     }
                 })
@@ -336,7 +336,7 @@ class FeedbackVC: UIViewController {
                     UIView.transition(from: self.questionTransitionView, to: self.checkBoxView, duration: 0.3, options: .transitionFlipFromRight, completion: { (flag) in
                         if flag {
                             if self.quesIterator == self.totalQuestions - 1 {
-                                self.nextBtn.setTitle("SUBMIT", for: .normal)
+                                self.nextBtn.setTitle(">>> SUBMIT >>>", for: .normal)
                             }
                         }
                     })
@@ -344,7 +344,7 @@ class FeedbackVC: UIViewController {
                     UIView.transition(with: self.checkBoxView, duration: 0.3, options: .transitionFlipFromRight, animations: nil, completion: { (flag) in
                         if flag {
                             if self.quesIterator == self.totalQuestions - 1 {
-                                self.nextBtn.setTitle("SUBMIT", for: .normal)
+                                self.nextBtn.setTitle(">>> SUBMIT >>>", for: .normal)
                             }
                         }
                     })
@@ -363,35 +363,59 @@ class FeedbackVC: UIViewController {
             checkBoxAnswer()
         }
         
-        if sender.title(for: .normal) == "NEXT" {
+        if sender.title(for: .normal) == ">>> NEXT >>>" {
             changeQuestion()
-        } else if sender.title(for: .normal) == "SUBMIT" {
+        } else if sender.title(for: .normal) == ">>> SUBMIT >>>" {
             handleSubmit()
         }
     }
     
     func handleSubmit() {
         stopTimer()
-        print("Aryan: Total Time taken = \(counter) seconds.")
-        print("Answers: \(answersArray)")
         if sender == FeedbackSender.couponVC {
+            // add feedback to /users/feedback/brand/surveyID
+            DataService.ds.REF_USER_CURRENT.child("feedback").child("brands").child(brand).updateChildValues([surveyID: ["answers": answersArray, "timeTaken":self.counter]])
             // push couponDetailVC
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let CouponDigitalVC = storyBoard.instantiateViewController(withIdentifier: "CouponDigitalVC") as! CouponDigitalVC
             CouponDigitalVC.couponCode = self.couponCode
             self.navigationController?.pushViewController(CouponDigitalVC, animated: true)
         } else if sender == FeedbackSender.eventQR {
+            // add feedback to /surveys/pre_sampling
+            DataService.ds.REF_USER_CURRENT.child("surveys").child("pre_sampling").updateChildValues([surveyID: ["answers": answersArray, "timeTaken":self.counter]])
+            
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
-            self.present(ThankYouVC, animated: true, completion: nil)
+            ThankYouVC.sender = TYSender.others
+            self.navigationController?.pushViewController(ThankYouVC, animated: true)
         } else if sender == FeedbackSender.qrScanVC {
+            // add feedback to /surveys/pre_sampling
+            DataService.ds.REF_USER_CURRENT.child("surveys").child("pre_sampling").updateChildValues([surveyID: ["answers": answersArray, "timeTaken":self.counter]])
+
+            
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
-            self.present(ThankYouVC, animated: true, completion: nil)
-        } else if sender == FeedbackSender.homeTVC{
+            ThankYouVC.sender = TYSender.others
+            self.navigationController?.pushViewController(ThankYouVC, animated: true)
+        } else if sender == FeedbackSender.preSampling{
+            // add feedback to /surveys/pre_sampling
+            DataService.ds.REF_USER_CURRENT.child("surveys").child("pre_sampling").updateChildValues([surveyID: ["answers": answersArray, "timeTaken":self.counter]])
+
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let AddressTVC = storyBoard.instantiateViewController(withIdentifier: "AddressTVC") as! AddressTVC
+            AddressTVC.sender = AddressSender.forced
+            self.navigationController?.pushViewController(AddressTVC, animated: true)
+        } else if sender == FeedbackSender.postSampling {
+            // add feedback to /surveys/post_sampling
+            DataService.ds.REF_USER_CURRENT.child("surveys").child("post_sampling").updateChildValues([surveyID: ["answers": answersArray, "timeTaken":self.counter]])
+            
+            
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
-            self.present(ThankYouVC, animated: true, completion: nil)
+            ThankYouVC.sender = TYSender.others
+            self.navigationController?.pushViewController(ThankYouVC, animated: true)
+
         }
     }
     

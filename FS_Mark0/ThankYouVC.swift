@@ -10,22 +10,29 @@ import UIKit
 import AVKit
 import AVFoundation
 
+class TYSender {
+    public static var addressForced = "addressForced"
+    public static var others = "others"
+}
+
 class ThankYouVC: UIViewController {
     
     @IBOutlet weak var videoView: UIView!
-    @IBOutlet weak var doneBtn: UIButton!
-    @IBOutlet weak var backgroundImg: UIImageView!
-
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var doneView: UIView!
     var player : AVPlayer!
     var avPlayerLayer : AVPlayerLayer!
+    var sender: String!
+    var address: Address!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
 
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        videoView.layer.cornerRadius = 8
-        doneBtn.layer.cornerRadius = 18
-        backgroundImg.clipsToBounds = true
-        
+//        videoView.layer.cornerRadius = 2
+        addressLabel.layer.cornerRadius = 2
+        heightConstraint.constant = self.videoView.frame.width * 1080 / 1440
+
         playVideo()
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: nil, using: { (_) in
             DispatchQueue.main.async {
@@ -33,11 +40,22 @@ class ThankYouVC: UIViewController {
                 self.player?.play()
             }
         })
+        
+        if sender! == TYSender.addressForced {
+            addressLabel.text = "Your box will be delivered to:\n \(self.address.addressLine1!)\n\(self.address.addressLine2!)\n\(self.address.city!)\n\(self.address.pincode!)\n\(self.address.state!)"
+        }
+        
+        let swipeButtonRight: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ThankYouVC.buttonRight))
+        swipeButtonRight.direction = UISwipeGestureRecognizerDirection.right
+        self.doneView.addGestureRecognizer(swipeButtonRight)
+
 
     }
     
-    
-    
+    @objc func buttonRight() {
+        self.navigationController?.popToRootViewController(animated: false)
+    }
+
     override func viewDidLayoutSubviews() {
         avPlayerLayer.frame = videoView.layer.bounds
     }
@@ -56,13 +74,4 @@ class ThankYouVC: UIViewController {
         player.play()
     }
 
-
-    @IBAction func tyBtnPressed(_ sender: Any?) {
-        print("pressed")
-        
-        let delegateTemp = UIApplication.shared.delegate
-        self.dismiss(animated: true, completion: nil)
-        delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-
-    }
 }

@@ -13,6 +13,5 @@ class Coupon: Decodable{
     var subtitle: String
     var title: String
     var couponID: String
-    var showCouponOnScreen: String?
-    var generalCouponCode: String?
+    var redeem: String?
 }

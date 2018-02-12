@@ -56,7 +56,11 @@
 		92FD4CE61F93DBF800F4F1FD /* FaqTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */; };
 		E720E8812021F59F00F3B495 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720E8802021F59F00F3B495 /* Survey.swift */; };
 		E720E8832021F62A00F3B495 /* SurveyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720E8822021F62A00F3B495 /* SurveyCell.swift */; };
-		E720E8852021F76200F3B495 /* HomeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720E8842021F76200F3B495 /* HomeTVC.swift */; };
+		E744EA0C202F17D00050418E /* CollegeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E744EA0B202F17D00050418E /* CollegeTVC.swift */; };
+		E744EA0E202F18860050418E /* CollegeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E744EA0D202F18860050418E /* CollegeCell.swift */; };
+		E744EA1220305B8D0050418E /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E744EA1120305B8D0050418E /* Product.swift */; };
+		E744EA1420305BE90050418E /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E744EA1320305BE90050418E /* ProductCell.swift */; };
+		E744EA1620305CC00050418E /* HomeProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E744EA1520305CC00050418E /* HomeProductVC.swift */; };
 		E75338C8202DA4100004911C /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75338C7202DA4100004911C /* AddressCell.swift */; };
 		E75338CA202DA4D90004911C /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75338C9202DA4D90004911C /* Address.swift */; };
 		E75338CC202DA6150004911C /* AddressTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75338CB202DA6150004911C /* AddressTVC.swift */; };
@@ -64,10 +68,7 @@
 		E78AD39E2017B4C2006B44D2 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E78AD39D2017B4C2006B44D2 /* SignIn.storyboard */; };
 		E78C5212202B989C005F3AD4 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78C5211202B989C005F3AD4 /* StatusBarView.swift */; };
 		E78C5214202BA227005F3AD4 /* MarqueeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78C5213202BA227005F3AD4 /* MarqueeLabel.swift */; };
-		E7A7D25A1FFE3B2C001C9CFD /* CVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A7D2581FFE3B2C001C9CFD /* CVCell.swift */; };
-		E7A7D25B1FFE3B2C001C9CFD /* CVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7A7D2591FFE3B2C001C9CFD /* CVCell.xib */; };
 		E7A7D25F1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A7D25E1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift */; };
-		E7B31BBC20037388008EBFE3 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B31BBB20037388008EBFE3 /* HomeVC.swift */; };
 		E7D61D6B20074FE200897895 /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D61D6A20074FE200897895 /* LocationVC.swift */; };
 		E7D61D6D20077F8700897895 /* QRScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D61D6C20077F8700897895 /* QRScanVC.swift */; };
 		E7D65734200CAC6E009A1C0A /* BrandsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D65733200CAC6E009A1C0A /* BrandsTVC.swift */; };
@@ -131,7 +132,11 @@
 		A6655B9E9A9DB8CC9CECBCA7 /* Pods-FS_Mark0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FS_Mark0.release.xcconfig"; path = "Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0.release.xcconfig"; sourceTree = "<group>"; };
 		E720E8802021F59F00F3B495 /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		E720E8822021F62A00F3B495 /* SurveyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCell.swift; sourceTree = "<group>"; };
-		E720E8842021F76200F3B495 /* HomeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTVC.swift; sourceTree = "<group>"; };
+		E744EA0B202F17D00050418E /* CollegeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegeTVC.swift; sourceTree = "<group>"; };
+		E744EA0D202F18860050418E /* CollegeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegeCell.swift; sourceTree = "<group>"; };
+		E744EA1120305B8D0050418E /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		E744EA1320305BE90050418E /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		E744EA1520305CC00050418E /* HomeProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProductVC.swift; sourceTree = "<group>"; };
 		E75338C7202DA4100004911C /* AddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCell.swift; sourceTree = "<group>"; };
 		E75338C9202DA4D90004911C /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		E75338CB202DA6150004911C /* AddressTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTVC.swift; sourceTree = "<group>"; };
@@ -139,10 +144,7 @@
 		E78AD39D2017B4C2006B44D2 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		E78C5211202B989C005F3AD4 /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
 		E78C5213202BA227005F3AD4 /* MarqueeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeLabel.swift; sourceTree = "<group>"; };
-		E7A7D2581FFE3B2C001C9CFD /* CVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVCell.swift; sourceTree = "<group>"; };
-		E7A7D2591FFE3B2C001C9CFD /* CVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CVCell.xib; sourceTree = "<group>"; };
 		E7A7D25E1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+multiplier.swift"; sourceTree = "<group>"; };
-		E7B31BBB20037388008EBFE3 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		E7D61D6A20074FE200897895 /* LocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVC.swift; sourceTree = "<group>"; };
 		E7D61D6C20077F8700897895 /* QRScanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanVC.swift; sourceTree = "<group>"; };
 		E7D65733200CAC6E009A1C0A /* BrandsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsTVC.swift; sourceTree = "<group>"; };
@@ -197,19 +199,15 @@
 			isa = PBXGroup;
 			children = (
 				92680D011F82A2E1007E3C50 /* Resources */,
-				9298BD451F7A63360048ABFA /* GoogleService-Info.plist */,
 				922785641F48B0B70066F700 /* Model */,
 				922785631F48B0710066F700 /* View */,
 				92125DDF1F03CD1800826AC1 /* Controllers */,
 				92125DE01F03CD3800826AC1 /* Services */,
 				92AB4E631F2CF8DD00CB0DAA /* Helpers */,
-				92125DC61F010BAC00826AC1 /* Main.storyboard */,
-				E78AD39D2017B4C2006B44D2 /* SignIn.storyboard */,
-				92125DCB1F010BAC00826AC1 /* LaunchScreen.storyboard */,
-				E7A7D2591FFE3B2C001C9CFD /* CVCell.xib */,
-				92125DC91F010BAC00826AC1 /* Assets.xcassets */,
-				92125DCE1F010BAC00826AC1 /* Info.plist */,
+				E744EA09202EFED90050418E /* Visuals */,
+				E744EA0A202EFEFC0050418E /* plists */,
 				92125DDC1F025D2600826AC1 /* FS_Mark0.entitlements */,
+				92125DC91F010BAC00826AC1 /* Assets.xcassets */,
 			);
 			path = FS_Mark0;
 			sourceTree = "<group>";
@@ -252,7 +250,6 @@
 			isa = PBXGroup;
 			children = (
 				E75338C7202DA4100004911C /* AddressCell.swift */,
-				E7A7D2581FFE3B2C001C9CFD /* CVCell.swift */,
 				92B14B431F349134005C45FE /* CouponCell.swift */,
 				920BF1CE1F3F6F46007E6DC8 /* OrderCell.swift */,
 				92BCD5371F4E0A8A00284E3B /* AlertCell.swift */,
@@ -261,6 +258,8 @@
 				923D7CA71F9F23FD0081F3C2 /* BottomTextField.swift */,
 				E720E8822021F62A00F3B495 /* SurveyCell.swift */,
 				E78C5211202B989C005F3AD4 /* StatusBarView.swift */,
+				E744EA0D202F18860050418E /* CollegeCell.swift */,
+				E744EA1320305BE90050418E /* ProductCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -276,6 +275,7 @@
 				E788BD9D201382AE00829FA0 /* BrandCV.swift */,
 				E720E8802021F59F00F3B495 /* Survey.swift */,
 				E75338C9202DA4D90004911C /* Address.swift */,
+				E744EA1120305B8D0050418E /* Product.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -295,11 +295,10 @@
 		922785661F48B0EF0066F700 /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
-				E7B31BBB20037388008EBFE3 /* HomeVC.swift */,
 				E7D65733200CAC6E009A1C0A /* BrandsTVC.swift */,
 				E7D61D6C20077F8700897895 /* QRScanVC.swift */,
 				92BCF4E61F30BF470047EB74 /* AlertVC.swift */,
-				E720E8842021F76200F3B495 /* HomeTVC.swift */,
+				E744EA1520305CC00050418E /* HomeProductVC.swift */,
 			);
 			name = MainTabBar;
 			sourceTree = "<group>";
@@ -339,6 +338,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E744EA09202EFED90050418E /* Visuals */ = {
+			isa = PBXGroup;
+			children = (
+				92125DC61F010BAC00826AC1 /* Main.storyboard */,
+				E78AD39D2017B4C2006B44D2 /* SignIn.storyboard */,
+				92125DCB1F010BAC00826AC1 /* LaunchScreen.storyboard */,
+			);
+			name = Visuals;
+			sourceTree = "<group>";
+		};
+		E744EA0A202EFEFC0050418E /* plists */ = {
+			isa = PBXGroup;
+			children = (
+				9298BD451F7A63360048ABFA /* GoogleService-Info.plist */,
+				92125DCE1F010BAC00826AC1 /* Info.plist */,
+			);
+			name = plists;
+			sourceTree = "<group>";
+		};
 		E75338CD202DECAA0004911C /* Sidebar */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +376,7 @@
 				92AA3DF71F2D247D00A6613E /* MoreVC.swift */,
 				92BCD53F1F554EEA00284E3B /* FeedbackVC.swift */,
 				92F490B51F38ECB10096521D /* ThankYouVC.swift */,
+				E744EA0B202F17D00050418E /* CollegeTVC.swift */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -399,7 +418,7 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 468S6LB8MD;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -442,7 +461,6 @@
 				9283CA731F9FBD2D00FD41B7 /* animation.gif in Resources */,
 				92125DCD1F010BAC00826AC1 /* LaunchScreen.storyboard in Resources */,
 				E78AD39E2017B4C2006B44D2 /* SignIn.storyboard in Resources */,
-				E7A7D25B1FFE3B2C001C9CFD /* CVCell.xib in Resources */,
 				9298BD461F7A63360048ABFA /* GoogleService-Info.plist in Resources */,
 				92125DCA1F010BAC00826AC1 /* Assets.xcassets in Resources */,
 				92125DC81F010BAC00826AC1 /* Main.storyboard in Resources */,
@@ -487,7 +505,6 @@
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
-				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
@@ -506,7 +523,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
@@ -545,14 +561,16 @@
 			files = (
 				92BCD53E1F5544C400284E3B /* UIColor+FIAdditions.swift in Sources */,
 				9298BD481F7ADFA50048ABFA /* Brand.swift in Sources */,
-				E7B31BBC20037388008EBFE3 /* HomeVC.swift in Sources */,
 				E7D61D6D20077F8700897895 /* QRScanVC.swift in Sources */,
 				92EA3E211F2CB71F00060424 /* UIView.swift in Sources */,
 				E7EDEA5B1FFCDB700092F1A4 /* Events.swift in Sources */,
 				E75338CA202DA4D90004911C /* Address.swift in Sources */,
+				E744EA0E202F18860050418E /* CollegeCell.swift in Sources */,
+				E744EA0C202F17D00050418E /* CollegeTVC.swift in Sources */,
 				9220FE7F1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift in Sources */,
 				92125DC31F010BAC00826AC1 /* AppDelegate.swift in Sources */,
 				E78C5212202B989C005F3AD4 /* StatusBarView.swift in Sources */,
+				E744EA1620305CC00050418E /* HomeProductVC.swift in Sources */,
 				92AA3DFC1F2D32C800A6613E /* ProfileVC.swift in Sources */,
 				E75338C8202DA4100004911C /* AddressCell.swift in Sources */,
 				92FD4CE41F93D54900F4F1FD /* FAQCell.swift in Sources */,
@@ -569,7 +587,7 @@
 				E75338CC202DA6150004911C /* AddressTVC.swift in Sources */,
 				E78C5214202BA227005F3AD4 /* MarqueeLabel.swift in Sources */,
 				9220FE7B1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift in Sources */,
-				E720E8852021F76200F3B495 /* HomeTVC.swift in Sources */,
+				E744EA1220305B8D0050418E /* Product.swift in Sources */,
 				92BCD5421F55620900284E3B /* RadioCheck.swift in Sources */,
 				92125DE21F03CD5600826AC1 /* DataService.swift in Sources */,
 				9298BD4A1F7AE0430048ABFA /* BrandCell.swift in Sources */,
@@ -584,7 +602,6 @@
 				E720E8832021F62A00F3B495 /* SurveyCell.swift in Sources */,
 				92FD4CE61F93DBF800F4F1FD /* FaqTVC.swift in Sources */,
 				E788BD9E201382AE00829FA0 /* BrandCV.swift in Sources */,
-				E7A7D25A1FFE3B2C001C9CFD /* CVCell.swift in Sources */,
 				E7A7D25F1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift in Sources */,
 				E720E8812021F59F00F3B495 /* Survey.swift in Sources */,
 				920BF1CF1F3F6F46007E6DC8 /* OrderCell.swift in Sources */,
@@ -597,6 +614,7 @@
 				92642CA81F88CB70002FCF6E /* CouponDigitalVC.swift in Sources */,
 				92C2F1F91F11818E004C79DC /* UIColor.swift in Sources */,
 				92642CAA1F892E1B002FCF6E /* CouponFeedbackOnlineVC.swift in Sources */,
+				E744EA1420305BE90050418E /* ProductCell.swift in Sources */,
 				920BF1CD1F3F641A007E6DC8 /* Order.swift in Sources */,
 				922785681F4921A20066F700 /* Coupon.swift in Sources */,
 			);
@@ -739,9 +757,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FS_Mark0/FS_Mark0.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 468S6LB8MD;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -751,8 +769,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "buildFlash.FS-Mark0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "565a2c30-6a4c-40f1-96e1-e4b24460c100";
+				PROVISIONING_PROFILE_SPECIFIER = Freestand_bf_dev;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -767,9 +785,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FS_Mark0/FS_Mark0.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 468S6LB8MD;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -779,8 +797,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "buildFlash.FS-Mark0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "0f57f088-6e68-47f2-a24a-1ed68a20aa63";
+				PROVISIONING_PROFILE_SPECIFIER = Freestand_bf_dist;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

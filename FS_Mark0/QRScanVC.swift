@@ -16,11 +16,15 @@ import FirebaseAuth
 import Alamofire
 import SideMenu
 
+
 class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
     
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var previewView: UIView!
+    
+    var collegeList = [College]()
+    var filteredCollegeList = [College]()
     
     var qrcodeRef: DatabaseReference!
     var surveyID: String!
@@ -47,9 +51,8 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
         SideMenuManager.default.menuAnimationFadeStrength = 0.35
         SideMenuManager.default.menuAnimationTransformScaleFactor = 0.90
         SideMenuManager.default.menuAnimationBackgroundColor = UIColor.fiBlack
-        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
-        SideMenuManager.defaultManager.menuAllowPushOfSameClassTwice = false
-
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view, forMenu: .left)
+        SideMenuManager.default.menuWidth = 220
         
         previewView.layer.cornerRadius = 10
         Analytics.logEvent(Events.SCREEN_QR, parameters: nil)
@@ -60,9 +63,23 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
             NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17)!
         ]
         navigationController?.navigationBar.titleTextAttributes = attrs
-
+        getColleges()
         scanInPreviewAction()
     }
+    
+    func getColleges() {
+        Alamofire.request(APIEndpoints.collegeListEndpoint).responseJSON { (res) in
+            guard let data = res.data else { return }
+            do {
+                let colleges = try JSONDecoder().decode([College].self, from: data)
+                print(colleges)
+                self.collegeList = colleges
+            } catch {
+                print(error)
+            }
+        }
+    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         scanInPreviewAction()
@@ -94,7 +111,8 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
         if category == "G" {
             category = "General"
         } else if category == "S"{
-            category = UserInfo.gender
+            let gender = UserDefaults.standard.string(forKey: "userGender")
+            category = gender
         }
         let url = "\(APIEndpoints.checkQREndpoint)?uid=\(UserInfo.uid!)&lid=\(self.locationID!)&sid=\(self.surveyID!)&category=\(self.category!)"
         print(url)
@@ -107,11 +125,9 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
                     let dict = response!["dict"] as! NSDictionary
                     
                     Analytics.logEvent(Events.QR_SUCC, parameters: nil)
-                    let FeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
-                    FeedbackVC?.sender = FeedbackSender.eventQR
-                    FeedbackVC?.quesArray = dict["questions"] as? NSArray
-                    FeedbackVC?.surveyID = dict["surveyID"] as? String
-                    self.present(FeedbackVC!, animated: true, completion: nil)
+                    self.quesArray = dict["questions"] as? NSArray
+                    self.surveyID = dict["surveyID"] as? String
+                    self.handleValid()
                 } else if status == "invalid" {
                     Analytics.logEvent(Events.QR_INVALID, parameters: nil)
                     self.makeAlert("Invalid Code Scanned", message: "The code scanned by you is invalid.")
@@ -121,6 +137,41 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
                 }
             }
         }
+    }
+    
+    func handleValid() {
+        let lower = self.locationID!.lowercased()
+        filteredCollegeList = collegeList.filter({ (college: College) -> Bool in
+            return (college.abbreviation?.lowercased().contains(lower))!
+        })
+        
+        let college = filteredCollegeList[0]
+        
+        let alert = UIAlertController(title: title, message: "Do you study at \(college.name!)?", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "YES", style: UIAlertActionStyle.default, handler: { (alert) in
+            DataService.ds.REF_USER_CURRENT.updateChildValues(["college": college.name!])
+            DataService.ds.REF_COLLEGES.child(self.locationID).child("users").updateChildValues([(Auth.auth().currentUser?.uid)!:true])
+            let FeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
+            FeedbackVC?.sender = FeedbackSender.eventQR
+            FeedbackVC?.quesArray = self.quesArray
+            FeedbackVC?.surveyID = self.surveyID
+            self.navigationController?.pushViewController(FeedbackVC!, animated: true)
+//            self.present(FeedbackVC!, animated: true, completion: nil)
+
+        }))
+        alert.addAction(UIAlertAction(title: "NO", style: .default, handler: { (alert) in
+            let CollegeTVC = self.storyboard?.instantiateViewController(withIdentifier: "CollegeTVC") as? CollegeTVC
+            CollegeTVC?.surveyID = self.surveyID
+            CollegeTVC?.quesArray = self.quesArray
+            CollegeTVC?.collegeList = self.collegeList
+            
+            let backItem = UIBarButtonItem()
+            backItem.title = ""
+            self.navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
+
+            self.navigationController?.pushViewController(CollegeTVC!, animated: true)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func updateQRCode(qrCode: String) {

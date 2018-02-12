@@ -36,20 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UIApplication.shared.statusBarStyle = .lightContent
         IQKeyboardManager.shared().isEnabled = true
 
-        let userDefaults = UserDefaults.standard
-        if let isLogin = userDefaults.value(forKey: "isLoggedIn") as! Bool? {
-            if (isLogin == false) {
-                print("1")
-                self.window?.rootViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
-            } else {
-                print("2")
-                self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-            }
-        } else {
-            print("3")
-
-            self.window?.rootViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
-        }
 
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
@@ -74,10 +60,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification(notification:)), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
         
         let customBannerView = StatusBarView.init()
-    UIApplication.shared.statusBarView?.addSubview(customBannerView)
+        UIApplication.shared.statusBarView?.addSubview(customBannerView)
 
-        FirebaseConfiguration.shared.setLoggerLevel(.min)
         FirebaseApp.configure()
+        
+        let userDefaults = UserDefaults.standard
+        if let isLogin = userDefaults.value(forKey: "isLoggedIn") as! Bool? {
+            if (isLogin == false) {
+                print("1")
+                self.window?.rootViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
+            } else {
+                print("2")
+                if let _ = userDefaults.string(forKey: "usergender") {
+//                    print
+                    self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                } else {
+                    DataService.ds.REF_USER_CURRENT.observeSingleEvent(of: .value, with: { (snapshot) in
+                        if let dict = snapshot.value as? NSDictionary {
+                            if let gender = dict["gender"] as? String {
+                                userDefaults.set(gender, forKey: "userGender")
+                                self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                            }
+                        }
+                    })
+                    
+                }
+            }
+        } else {
+            print("3")
+            
+            self.window?.rootViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
+        }
+
         
         return true
     }
@@ -116,6 +130,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         connectToFCM()
+        let customBannerView = StatusBarView.init()
+        UIApplication.shared.statusBarView?.addSubview(customBannerView)
+
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {

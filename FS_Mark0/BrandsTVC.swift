@@ -14,16 +14,16 @@ import SideMenu
 class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var backgroundImg: UIImageView!
 
     var brandList = [Brand]()
     var couponList = [Coupon]()
     var selectedBrand: Brand!
+    var quesArray: NSArray!
+    var couponCode: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundImg.clipsToBounds = true
         
         let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = sideMenuNC
@@ -31,8 +31,9 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         SideMenuManager.default.menuAnimationFadeStrength = 0.35
         SideMenuManager.default.menuAnimationTransformScaleFactor = 0.90
         SideMenuManager.default.menuAnimationBackgroundColor = UIColor.fiBlack
-        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
-        SideMenuManager.defaultManager.menuAllowPushOfSameClassTwice = false
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view, forMenu: .left)
+        SideMenuManager.default.menuWidth = 220
+        SideMenuManager.default.menuAllowPushOfSameClassTwice = false
 
         let rc = UIRefreshControl()
         tableView.refreshControl = rc
@@ -52,16 +53,15 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         ]
         navigationController?.navigationBar.titleTextAttributes = attrs
         self.tableView.tableFooterView = UIView()
-        tableView.backgroundView = UIImageView(image: UIImage(named: "Doodle-Login.png"))
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         showCoupons()
     }
+    
     
     @objc func refresh(refreshControl: UIRefreshControl) {
         showCoupons()
-        tableView.reloadData()
         refreshControl.endRefreshing()
     }
 
@@ -122,76 +122,27 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.cellForRow(at: indexPath) as? CouponCell {
             let coupon = couponList[indexPath.row]
             
-            if coupon.showCouponOnScreen == nil {
+            if coupon.redeem == nil {
                 // Hit APIEndpopints
-                
                 cell.activityIndicator.startAnimating()
-
-                if coupon.generalCouponCode != nil {
-                    let url = "\(APIEndpoints.generalCouponEndpoint)?uid=\(UserInfo.uid!)&brand=\(coupon.brandName)&couponID=\(coupon.couponID)"
-                    Alamofire.request(url).responseJSON(completionHandler: { (response) in
-                        if let dict = response.result.value as? NSDictionary {
-                            if let containsFeedBack = dict["containsFeedBack"] as? Bool {
-                                if containsFeedBack {
-                                    let feedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
-                                    feedbackVC?.couponCode = coupon.generalCouponCode
-                                    feedbackVC?.quesArray = dict["questions"] as? NSArray
-                                    feedbackVC?.sender = FeedbackSender.couponVC
-                                    feedbackVC?.surveyID = coupon.couponID
-                                    cell.activityIndicator.stopAnimating()
-                                    self.navigationController?.pushViewController(feedbackVC!, animated: true)
-                                    
-                                } else {
-                                    // no feedback
-                                    // show coupon
-                                    let couponDigitalVC = self.storyboard?.instantiateViewController(withIdentifier: "CouponDigitalVC") as? CouponDigitalVC
-                                    couponDigitalVC?.couponCode = coupon.generalCouponCode
-                                    cell.activityIndicator.stopAnimating()
-                                    self.navigationController?.pushViewController(couponDigitalVC!, animated: true)
-                                    
-                                }
-                            } else {
-                                print("Can't cast containsFeedBack in generalCoupon")
-                            }
-                        } else {
-                            print("Can't cast dict in generalCoupon")
-                        }
-                    })
-                    
-                } else {
-                    let url = "\(APIEndpoints.couponEndpoint)?uid=\(UserInfo.uid!)&brand=\(coupon.brandName)&couponID=\(coupon.couponID)"
-                    Alamofire.request(url).responseJSON { (response) in
-                        if let dict = response.result.value as? NSDictionary {
-                            if let containsFeedBack = dict["containsFeedBack"] as? Bool {
-                                if !containsFeedBack {
-                                    //does not contain feedback
-                                    //show couponcode directly
-                                    let couponDigitalVC = self.storyboard?.instantiateViewController(withIdentifier: "CouponDigitalVC") as? CouponDigitalVC
-                                    couponDigitalVC?.couponCode = dict["couponCode"] as? String
-                                    cell.activityIndicator.stopAnimating()
-                                    self.navigationController?.pushViewController(couponDigitalVC!, animated: true)
-                                } else {
-                                    //contains feedback
-                                    //show feedback
-                                    //then couponCode
-                                    let feedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
-                                    feedbackVC?.couponCode = dict["couponCode"] as? String
-                                    feedbackVC?.quesArray = dict["questions"] as? NSArray
-                                    feedbackVC?.sender = FeedbackSender.couponVC
-                                    feedbackVC?.surveyID = coupon.couponID
-                                    cell.activityIndicator.stopAnimating()
-                                    self.navigationController?.pushViewController(feedbackVC!, animated: true)
-                                }
-                            }
-                        }
+                Alamofire.request("\(APIEndpoints.couponSurveyEndpoint)&brand=\(coupon.brandName)&couponID=\(coupon.couponID)").responseJSON(completionHandler: { (res) in
+                    if let response = res.result.value as? NSDictionary {
+                        let feedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
+                        feedbackVC?.couponCode = response["couponCode"] as? String
+                        feedbackVC?.quesArray = response["questions"] as? NSArray
+                        feedbackVC?.sender = FeedbackSender.couponVC
+                        feedbackVC?.surveyID = coupon.couponID
+                        feedbackVC?.brand = coupon.brandName
+                        cell.activityIndicator.stopAnimating()
+                        self.navigationController?.pushViewController(feedbackVC!, animated: true)
+                    } else {
+                        print("Error: Can't cast couponOnClick resp as dict")
                     }
-                }
+                })
          
             } else {
-                // Coupon code displayed
-                // Copy Coupon Code
                 cell.showCopyView()
-                UIPasteboard.general.string = coupon.showCouponOnScreen
+                UIPasteboard.general.string = coupon.redeem
             }
             
         }

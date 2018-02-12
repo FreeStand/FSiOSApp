@@ -13,7 +13,6 @@ class FaqTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var faqList = [FAQ]()
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var backgroundImg: UIImageView!
 
     
     override func viewDidLoad() {
@@ -21,9 +20,7 @@ class FaqTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        backgroundImg.clipsToBounds = true
-        
+                
         self.navigationItem.title = "FAQs"
 
         self.tableView.tableFooterView = UIView()

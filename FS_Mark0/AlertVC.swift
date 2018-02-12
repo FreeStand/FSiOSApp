@@ -13,7 +13,6 @@ import SideMenu
 class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var backgroundImg: UIImageView!
 
     
     var alertList = [Alert]()
@@ -21,7 +20,6 @@ class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundImg.clipsToBounds = true
         
         let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = sideMenuNC
@@ -29,8 +27,8 @@ class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         SideMenuManager.default.menuAnimationFadeStrength = 0.35
         SideMenuManager.default.menuAnimationTransformScaleFactor = 0.90
         SideMenuManager.default.menuAnimationBackgroundColor = UIColor.fiBlack
-        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
-        SideMenuManager.defaultManager.menuAllowPushOfSameClassTwice = false
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view, forMenu: .left)
+        SideMenuManager.default.menuWidth = 220
 
         
         let rc = UIRefreshControl()

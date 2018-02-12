@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class OrderTVC: UITableViewController {
 
@@ -16,47 +17,25 @@ class OrderTVC: UITableViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Orders"
         
-        getSamplesFromUserDB()
+        getOrders()
     }
     
-    func getSamplesFromUserDB() {
-        DataService.ds.REF_USER_CURRENT.child("samples").observe(.childAdded, with: { (snapshot) in
-            self.getSamplesInfoFromSamplesDB(key: snapshot.key)
-        }) { (error) in
-            print("Error: Can't load samples from users DB.")
-        }
-    }
-    
-    func getSamplesInfoFromSamplesDB(key: String) {
-        DataService.ds.REF_COLLEGES.child(key).observe(.value, with: { (snapshot) in
-            if let dict = snapshot.value as? [String: AnyObject] {
-                let order = Order()
-
-                if let campaignID = dict["campaignID"] as? String {
-                    order.campaignID = campaignID
-                } else {
-                    print("Error: Can't retrieve CampaignID")
+    func getOrders() {
+        Alamofire.request(APIEndpoints.getOrdersEndpoint).responseJSON { (res) in
+            if let response = res.result.value as? NSDictionary {
+                if response["isEmpty"] as? Bool == false {
+                    let array = response["orders"] as? [[String:String]]
+                    for anOrder in array! {
+                        let order = Order()
+                        order.campaignID = anOrder["campaignID"]
+                        self.orderList.append(order)
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    }
                 }
-                if let partnerID = dict["partnerID"] as? String {
-                    order.partnerID = partnerID
-                } else {
-                    print("Error: Can't retrieve partnerID")
-                }
-
-
-                self.orderList.append(order)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } else {
-                print("Error: Can't cast dict from snapshot in getSamplesInfoFromSamplesDB")
             }
-
-        }) { (error) in
-            print("Error: Can't load samples from Samples DB")
         }
-        
-        
     }
     
     // MARK: - Table view data source

@@ -125,6 +125,7 @@ class SIgnInVC: UIViewController {
                 if let dict = snapshot.value as? NSDictionary {
                     if let _ = dict["dob"] as? String {
                         UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                        UserDefaults.standard.set(dict["gender"] as? String, forKey: "userGender")
                         self.dismiss(animated: true, completion: nil)
                         let delegateTemp = UIApplication.shared.delegate
                         delegateTemp?.window!?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()

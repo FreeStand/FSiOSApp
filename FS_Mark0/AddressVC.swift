@@ -12,7 +12,7 @@ protocol AddressViewControllerDelegate {
     func addressViewControllerResponse(address: Address)
 }
 
-class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var nickName: UITextField!
     @IBOutlet weak var al1: UITextField!
@@ -22,7 +22,6 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     @IBOutlet weak var state: UITextField!
     @IBOutlet weak var submitBtn: UIButton!
     @IBOutlet weak var shadowView: UIView!
-    @IBOutlet weak var backgroundImg: UIImageView!
 
     var delegate: AddressViewControllerDelegate?
     var statePicker: UIPickerView!
@@ -34,7 +33,6 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundImg.clipsToBounds = true
         nickName.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         al1.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         al2.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
@@ -65,29 +63,28 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         state.inputView = statePicker
         state.text = statePickerValues[0]
         
-        // ToolBar
-        let toolBar = UIToolbar()
-        toolBar.barStyle = .default
-        toolBar.isTranslucent = false
-        toolBar.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-        toolBar.sizeToFit()
-        
-        // Adding Button ToolBar
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneClick))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelClick))
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-        state.inputAccessoryView = toolBar
+        let tap = UITapGestureRecognizer(target: self, action: #selector(pickerTapped))
+        tap.delegate = self
+        self.statePicker.addGestureRecognizer(tap)
     }
     
-    @objc func doneClick() {
-        state.resignFirstResponder()
-    }
-    @objc func cancelClick() {
-        state.resignFirstResponder()
+    @objc func pickerTapped(tapRecognizer: UITapGestureRecognizer) {
+        if tapRecognizer.state == .ended {
+            let rowHeight = self.statePicker.rowSize(forComponent: 0).height
+            let selectedRowFrame = self.statePicker.bounds.insetBy(dx: 0, dy: (self.statePicker.frame.height - rowHeight) / 2)
+            let userTappedOnSelectedRow = selectedRowFrame.contains(tapRecognizer.location(in: self.statePicker))
+            if userTappedOnSelectedRow {
+                let selectedRow = self.statePicker.selectedRow(inComponent: 0)
+                pickerView(self.statePicker, didSelectRow: selectedRow, inComponent: 0)
+                state.resignFirstResponder()
+            }
+        }
     }
     
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -104,6 +101,7 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         state.text = statePickerValues[row]
     }
+    
     
     
     // MARK: TextField Delegates
@@ -142,6 +140,14 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         address.pincode = pincode.text!
         address.state = state.text!
         address.nickname = nickName.text!
+        DataService.ds.REF_USER_CURRENT.child("addresses").updateChildValues([address.nickname!:[
+            "addressLine1":address.addressLine1,
+            "addressLine2":address.addressLine2,
+            "city":address.city,
+            "pincode":address.pincode,
+            "state":address.state,
+            "nickName":address.nickname
+            ]])
         self.navigationController?.popViewController(animated: true)
         self.delegate?.addressViewControllerResponse(address: address)
     }
