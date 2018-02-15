@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import SwiftKeychainWrapper
 import FBSDKLoginKit
+import FirebaseAnalytics
 
 class MoreVC: UITableViewController {
     
@@ -39,6 +40,7 @@ class MoreVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Analytics.logEvent(Events.SCREEN_MORE, parameters: nil)
         nameLbl.text = Auth.auth().currentUser?.displayName!
         emailLbl.text = Auth.auth().currentUser?.email!
 
@@ -78,19 +80,23 @@ class MoreVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 1:
+            Analytics.logEvent(Events.ORDERS_TAPPED, parameters: nil)
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderTVC") as? OrderTVC
             self.navigationController?.pushViewController(vc!, animated: true)
             break
         case 2:
+            Analytics.logEvent(Events.ADDRESS_TAPPED, parameters: nil)
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddressTVC") as? AddressTVC
             self.navigationController?.pushViewController(vc!, animated: true)
             break
         case 3:
+            Analytics.logEvent(Events.FAQ_TAPPED, parameters: nil)
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "FaqTVC") as? FaqTVC
             self.navigationController?.pushViewController(vc!, animated: true)
             break
         
         case 4:
+            Analytics.logEvent(Events.CONTACT_US_TAPPED, parameters: nil)
             var nsObject = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
             let version = nsObject as! String
             nsObject = Bundle.main.infoDictionary!["CFBundleVersion"]
@@ -101,6 +107,7 @@ class MoreVC: UITableViewController {
             }
             break
         case 5:
+            Analytics.logEvent(Events.LOG_OUT_TAPPED, parameters: nil)
             logOut()
             break
         default:

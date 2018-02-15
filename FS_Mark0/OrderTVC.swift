@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import FirebaseAnalytics
 
 class OrderTVC: UITableViewController {
 
@@ -16,6 +17,7 @@ class OrderTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Orders"
+        Analytics.logEvent(Events.SCREEN_ORDERS, parameters: nil)
         
         getOrders()
     }
@@ -71,6 +73,7 @@ class OrderTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Analytics.logEvent(Events.ORDER_TAPPED, parameters: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 

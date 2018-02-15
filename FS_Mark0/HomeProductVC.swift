@@ -9,6 +9,7 @@
 import UIKit
 import SideMenu
 import Alamofire
+import FirebaseAnalytics
 
 class count {
     public static var count = 0
@@ -37,6 +38,7 @@ class HomeProductVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         tableView.delegate = self
         tableView.dataSource = self
         
+        Analytics.logEvent(Events.SCREEN_HOME, parameters: nil)
         
         let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = sideMenuNC
@@ -74,8 +76,9 @@ class HomeProductVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        getProducts()
+
         if count.count > 0 {
-            getProducts()
         }
         count.count += 1
     }
@@ -83,6 +86,7 @@ class HomeProductVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @objc func buttonRight () {
         if self.quesArray != nil && self.surveyID != nil {
             if self.sender == FeedbackSender.preSampling {
+                Analytics.logEvent(Events.HOME_SWIPE_COLLECT, parameters: nil)
                 self.swipeLabel.text = "INITIATING LAUNCH IN 3.."
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { (timer) in
                     self.swipeLabel.text = "INITIATING LAUNCH IN 3..2.."
@@ -101,6 +105,7 @@ class HomeProductVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                     })
                 })
             } else if self.sender == FeedbackSender.postSampling {
+                Analytics.logEvent(Events.HOME_SWIPE_ANSWER, parameters: nil)
                 self.swipeLabel.text = "HUM AAPKE AABHAARI HAI"
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { (timer) in
                     self.swipeLabel.text = "HUM AAPKE AABHAARI HAI."
@@ -113,11 +118,12 @@ class HomeProductVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         self.quesArray = nil
                         FeedbackVC?.sender = self.sender
                         self.navigationController?.pushViewController(FeedbackVC!, animated: true)
-                        self.swipeLabel.text = ">>> SWIPE TO COLLECT !! >>>"
+                        self.swipeLabel.text = ">>> SWIPE TO ANSWER !! >>>"
                     })
                 })
             }
         } else {
+            Analytics.logEvent(Events.HOME_SWIPE_DO_NOT, parameters: nil)
             self.swipeLabel.text = "HAHAHAHAHAHA"
             self.swipeView.backgroundColor = UIColor.fiYellow
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (timer) in
@@ -218,9 +224,13 @@ class HomeProductVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         return 80
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Analytics.logEvent(Events.HOME_PRODUCT_TAPPED, parameters: nil)
+    }
     
     
     @IBAction func sideMenuPressed(_ sender: Any) {
+        Analytics.logEvent(Events.SIDEBAR_TAPPED, parameters: nil)
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
     

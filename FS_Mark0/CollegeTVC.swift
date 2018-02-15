@@ -27,7 +27,7 @@ class CollegeTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     let searchController = UISearchController(searchResultsController: nil)
     var quesArray: NSArray!
     var surveyID: String!
-    var sender = FeedbackSender.preSampling
+    var sender = FeedbackSender.eventQR
     
     override func viewDidLoad() {
         super.viewDidLoad()

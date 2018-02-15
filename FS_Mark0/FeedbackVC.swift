@@ -112,6 +112,7 @@ class FeedbackVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Analytics.logEvent(Events.SCREEN_FEED, parameters: nil)
         if quesArray != nil {
             questionsLoadedCallback()
         }
@@ -123,8 +124,6 @@ class FeedbackVC: UIViewController {
         checkBoxView.layer.cornerRadius = 7
         self.nextBtn.setTitle(">>> NEXT >>>", for: .normal)
         disableNextBtn()
-//        checkBoxView.dropShadow()
-//        questionTransitionView.dropShadow()
         nextBtn.dropShadow()
         
         option1?.alternateButton = [option2!, option3!, option4!, option5!, option6!, option7!, option8!]
@@ -355,7 +354,7 @@ class FeedbackVC: UIViewController {
     
     @IBAction func nextBtnpressed(_ sender: UIButton) {
         disableNextBtn()
-        
+        Analytics.logEvent(Events.FEED_NEXT_TAPPED, parameters: nil)
         if selectedState == QuestionType.radio {
             answersArray.append(selectedAnswer)
             print(selectedAnswer)
@@ -366,6 +365,7 @@ class FeedbackVC: UIViewController {
         if sender.title(for: .normal) == ">>> NEXT >>>" {
             changeQuestion()
         } else if sender.title(for: .normal) == ">>> SUBMIT >>>" {
+            Analytics.logEvent(Events.FEED_SUBMIT_TAPPED, parameters: nil)
             handleSubmit()
         }
     }
@@ -386,7 +386,7 @@ class FeedbackVC: UIViewController {
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
-            ThankYouVC.sender = TYSender.others
+            ThankYouVC.sender = TYSender.qr
             self.navigationController?.pushViewController(ThankYouVC, animated: true)
         } else if sender == FeedbackSender.qrScanVC {
             // add feedback to /surveys/pre_sampling
@@ -395,7 +395,7 @@ class FeedbackVC: UIViewController {
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
-            ThankYouVC.sender = TYSender.others
+            ThankYouVC.sender = TYSender.qr
             self.navigationController?.pushViewController(ThankYouVC, animated: true)
         } else if sender == FeedbackSender.preSampling{
             // add feedback to /surveys/pre_sampling
@@ -413,7 +413,7 @@ class FeedbackVC: UIViewController {
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
-            ThankYouVC.sender = TYSender.others
+            ThankYouVC.sender = TYSender.postSampling
             self.navigationController?.pushViewController(ThankYouVC, animated: true)
 
         }

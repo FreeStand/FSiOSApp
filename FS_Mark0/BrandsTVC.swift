@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 import SideMenu
-
+import FirebaseAnalytics
 
 class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -24,7 +24,7 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        Analytics.logEvent(Events.SCREEN_COUPON, parameters: nil)
         let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = sideMenuNC
         SideMenuManager.default.menuPresentMode = .menuSlideIn
@@ -123,6 +123,7 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let coupon = couponList[indexPath.row]
             
             if coupon.redeem == nil {
+                Analytics.logEvent(Events.COUPON_SEL, parameters: nil)
                 // Hit APIEndpopints
                 cell.activityIndicator.startAnimating()
                 Alamofire.request("\(APIEndpoints.couponSurveyEndpoint)&brand=\(coupon.brandName)&couponID=\(coupon.couponID)").responseJSON(completionHandler: { (res) in
@@ -141,6 +142,7 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 })
          
             } else {
+                Analytics.logEvent(Events.COUPON_COPIED, parameters: nil)
                 cell.showCopyView()
                 UIPasteboard.general.string = coupon.redeem
             }
@@ -152,6 +154,7 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     @IBAction func sideMenuPressed(_ sender: Any) {
+        Analytics.logEvent(Events.SIDEBAR_TAPPED, parameters: nil)
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
 

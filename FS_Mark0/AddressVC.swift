@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 protocol AddressViewControllerDelegate {
     func addressViewControllerResponse(address: Address)
@@ -32,6 +33,7 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        Analytics.logEvent(Events.SCREEN_ADDRESS_NEW, parameters: nil)
         
         nickName.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         al1.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
@@ -133,6 +135,7 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     }
     
     @IBAction func submitBtnPressed(_ sender: Any) {
+        Analytics.logEvent(Events.ADDRESS_ADD_SUBMIT, parameters: nil)
         let address = Address()
         address.addressLine1 = al1.text!
         address.addressLine2 = al2.text!

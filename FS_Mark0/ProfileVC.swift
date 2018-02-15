@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class ProfileVC: UIViewController {
     
@@ -20,7 +21,7 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        Analytics.logEvent(Events.SCREEN_PROFILE, parameters: nil)
         let imageData = UserDefaults.standard.object(forKey: "profImageData") as! NSData
         profImgView.maskCircle(anyImage: UIImage(data: imageData as Data)!)
  

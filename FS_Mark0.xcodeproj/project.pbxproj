@@ -25,7 +25,6 @@
 		923D7CA61F9F10250081F3C2 /* AddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923D7CA51F9F10250081F3C2 /* AddressVC.swift */; };
 		923D7CA81F9F23FD0081F3C2 /* BottomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923D7CA71F9F23FD0081F3C2 /* BottomTextField.swift */; };
 		92642CA81F88CB70002FCF6E /* CouponDigitalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92642CA71F88CB70002FCF6E /* CouponDigitalVC.swift */; };
-		92642CAA1F892E1B002FCF6E /* CouponFeedbackOnlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92642CA91F892E1B002FCF6E /* CouponFeedbackOnlineVC.swift */; };
 		92680D3C1F862A39007E3C50 /* Int+degreesToRadians.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92680D3B1F862A39007E3C50 /* Int+degreesToRadians.swift */; };
 		9283CA6C1F9FB89A00FD41B7 /* AIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9283CA6B1F9FB89A00FD41B7 /* AIImage.swift */; };
 		9283CA731F9FBD2D00FD41B7 /* animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9283CA721F9FBD2700FD41B7 /* animation.gif */; };
@@ -97,7 +96,6 @@
 		923D7CA51F9F10250081F3C2 /* AddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressVC.swift; sourceTree = "<group>"; };
 		923D7CA71F9F23FD0081F3C2 /* BottomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTextField.swift; sourceTree = "<group>"; };
 		92642CA71F88CB70002FCF6E /* CouponDigitalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponDigitalVC.swift; sourceTree = "<group>"; };
-		92642CA91F892E1B002FCF6E /* CouponFeedbackOnlineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponFeedbackOnlineVC.swift; sourceTree = "<group>"; };
 		92680D031F82A2F2007E3C50 /* Animation.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Animation.mp4; sourceTree = "<group>"; };
 		92680D3B1F862A39007E3C50 /* Int+degreesToRadians.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+degreesToRadians.swift"; sourceTree = "<group>"; };
 		9283CA6B1F9FB89A00FD41B7 /* AIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIImage.swift; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 				E75338CD202DECAA0004911C /* Sidebar */,
 				922785651F48B0D10066F700 /* Login/SignUp */,
 				922785661F48B0EF0066F700 /* MainTabBar */,
-				9215537A1F87642700B85434 /* Coupon */,
 				E75338CE202DECE80004911C /* Misc */,
 			);
 			name = Controllers;
@@ -235,15 +232,6 @@
 				E7D65735200CCBD7009A1C0A /* APIEndpoints.swift */,
 			);
 			name = Services;
-			sourceTree = "<group>";
-		};
-		9215537A1F87642700B85434 /* Coupon */ = {
-			isa = PBXGroup;
-			children = (
-				92642CA91F892E1B002FCF6E /* CouponFeedbackOnlineVC.swift */,
-				92642CA71F88CB70002FCF6E /* CouponDigitalVC.swift */,
-			);
-			name = Coupon;
 			sourceTree = "<group>";
 		};
 		922785631F48B0710066F700 /* View */ = {
@@ -372,6 +360,7 @@
 		E75338CE202DECE80004911C /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				92642CA71F88CB70002FCF6E /* CouponDigitalVC.swift */,
 				92AF006F1F3734410061E243 /* TabBarTBC.swift */,
 				92AA3DF71F2D247D00A6613E /* MoreVC.swift */,
 				92BCD53F1F554EEA00284E3B /* FeedbackVC.swift */,
@@ -613,7 +602,6 @@
 				E7D61D6B20074FE200897895 /* LocationVC.swift in Sources */,
 				92642CA81F88CB70002FCF6E /* CouponDigitalVC.swift in Sources */,
 				92C2F1F91F11818E004C79DC /* UIColor.swift in Sources */,
-				92642CAA1F892E1B002FCF6E /* CouponFeedbackOnlineVC.swift in Sources */,
 				E744EA1420305BE90050418E /* ProductCell.swift in Sources */,
 				920BF1CD1F3F641A007E6DC8 /* Order.swift in Sources */,
 				922785681F4921A20066F700 /* Coupon.swift in Sources */,

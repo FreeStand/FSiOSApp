@@ -118,12 +118,9 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
         print(url)
         Alamofire.request(url).responseJSON { (res) in
             let response = res.result.value as? NSDictionary
-//            print(response)
             if let status = response!["status"] as? String {
-                
                 if status == "valid" {
                     let dict = response!["dict"] as! NSDictionary
-                    
                     Analytics.logEvent(Events.QR_SUCC, parameters: nil)
                     self.quesArray = dict["questions"] as? NSArray
                     self.surveyID = dict["surveyID"] as? String
@@ -149,6 +146,7 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
         
         let alert = UIAlertController(title: title, message: "Do you study at \(college.name!)?", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "YES", style: UIAlertActionStyle.default, handler: { (alert) in
+            Analytics.logEvent(Events.QR_COLLEGE_SAME, parameters: nil)
             DataService.ds.REF_USER_CURRENT.updateChildValues(["college": college.name!])
             DataService.ds.REF_COLLEGES.child(self.locationID).child("users").updateChildValues([(Auth.auth().currentUser?.uid)!:true])
             let FeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
@@ -156,10 +154,10 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
             FeedbackVC?.quesArray = self.quesArray
             FeedbackVC?.surveyID = self.surveyID
             self.navigationController?.pushViewController(FeedbackVC!, animated: true)
-//            self.present(FeedbackVC!, animated: true, completion: nil)
 
         }))
         alert.addAction(UIAlertAction(title: "NO", style: .default, handler: { (alert) in
+            Analytics.logEvent(Events.QR_COLLEGE_DIFF, parameters: nil)
             let CollegeTVC = self.storyboard?.instantiateViewController(withIdentifier: "CollegeTVC") as? CollegeTVC
             CollegeTVC?.surveyID = self.surveyID
             CollegeTVC?.quesArray = self.quesArray
@@ -262,6 +260,7 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
     }
     
     @IBAction func sideMenuPressed(_ sender: Any) {
+        Analytics.logEvent(Events.SIDEBAR_TAPPED, parameters: nil)
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
 

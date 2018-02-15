@@ -9,7 +9,7 @@
 import UIKit
 import AVKit
 import AVFoundation
-
+import FirebaseAnalytics
 
 class CouponDigitalVC: UIViewController {
 
@@ -23,6 +23,7 @@ class CouponDigitalVC: UIViewController {
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
+        Analytics.logEvent(Events.SCREEN_COUPON_DETAIL, parameters: nil)
         super.viewDidLoad()
         heightConstraint.constant = self.videoView.frame.width * 1080 / 1440
         playVideo()
@@ -40,10 +41,12 @@ class CouponDigitalVC: UIViewController {
     
     @IBAction func copyBtnPressed(_ sender: Any) {
         print("copied")
+        Analytics.logEvent(Events.COUPON_COPIED, parameters: nil)
         UIPasteboard.general.string = couponCode
     }
 
     @IBAction func doneBtnPressed(_ sender: Any) {
+        Analytics.logEvent(Events.COUPON_DETAIL_DONE, parameters: nil)
         self.navigationController?.popToRootViewController(animated: true)
     }
     

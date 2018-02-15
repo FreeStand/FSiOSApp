@@ -103,7 +103,7 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
     }
     
     @IBAction func submitPressed(sender: Any) {
-        
+        Analytics.logEvent(Events.DOB_CONFIRM, parameters: nil)
         switch gender {
         case "Male":
             Analytics.logEvent(Events.GENDER_MALE_SEL, parameters: nil)

@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import FirebaseAnalytics
 
 class AddressSender {
     public static var sidebar = "sidebar"
@@ -24,6 +25,7 @@ class AddressTVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Analytics.logEvent(Events.SCREEN_ADDRESS_LIST, parameters: nil)
         self.navigationItem.title = "Add/Select Address"        
         tableView.delegate = self
         tableView.dataSource = self
@@ -38,6 +40,7 @@ class AddressTVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
 
     @objc func addAddress() {
+        Analytics.logEvent(Events.ADDRESS_ADD_PRESSED, parameters: nil)
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddressVC") as? AddressVC
         vc?.delegate = self
         self.navigationController?.pushViewController(vc!, animated: true)
@@ -124,8 +127,10 @@ class AddressTVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if sender == AddressSender.sidebar {
+            Analytics.logEvent(Events.ADDRESS_SEL_SIDEBAR, parameters: nil)
             print("Sidebar")
         } else if sender == AddressSender.forced {
+            Analytics.logEvent(Events.ADDRESS_SEL_ORDER, parameters: nil)
             let address = self.addressList[indexPath.row]
             var url = "\(APIEndpoints.newOrderEndpoint)?uid=\(UserInfo.uid!)&addressID=\(address.nickname!)"
             url = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!

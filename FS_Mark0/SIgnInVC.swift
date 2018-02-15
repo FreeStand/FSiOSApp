@@ -78,16 +78,6 @@ class SIgnInVC: UIViewController {
                 print("FS: Successfully authenticated with Firebase")
                 print("Current User: \(String(describing: user)) in FB Auth")
                 
-                FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": " gender"]).start { (connection, result, err) in
-                    
-                    guard let result = result as? NSDictionary,
-                        let user_gender = result[["gender"]] as? String else {
-                            return
-                    }
-                    print(user_gender)
-                    let userData = ["gender":user_gender]
-                    DataService.ds.updateFirebaseDBUserWithUserData( userData: [userData as Dictionary<String, AnyObject>] )
-                }
                 
                 if let user = user {
                     let userData = [["email":user.email],["name":user.displayName],["fcmToken":InstanceID.instanceID().token()]]
@@ -103,7 +93,8 @@ class SIgnInVC: UIViewController {
     }
     
     func completeSignIn(id: String, userData: [Dictionary<String, String>]) {
-        DataService.ds.createFirebaseUserWithUID(uID: (Auth.auth().currentUser?.uid)!, userData: userData)
+        let uid = Auth.auth().currentUser?.uid
+        DataService.ds.createFirebaseUserWithUID(uID: uid!, userData: userData)
         let keychainResult = KeychainWrapper.standard.set(id, forKey: "KEY_UID")
         print("FS: Data saved to keychain with result: \(keychainResult)")
         

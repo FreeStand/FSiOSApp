@@ -9,10 +9,12 @@
 import UIKit
 import AVKit
 import AVFoundation
+import FirebaseAnalytics
 
 class TYSender {
     public static var addressForced = "addressForced"
-    public static var others = "others"
+    public static var postSampling = "postSampling"
+    public static var qr = "qr"
 }
 
 class ThankYouVC: UIViewController {
@@ -29,6 +31,7 @@ class ThankYouVC: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        Analytics.logEvent(Events.SCREEN_THANK_YOU, parameters: nil)
 //        videoView.layer.cornerRadius = 2
         addressLabel.layer.cornerRadius = 2
         heightConstraint.constant = self.videoView.frame.width * 1080 / 1440
@@ -42,8 +45,14 @@ class ThankYouVC: UIViewController {
         })
         
         if sender! == TYSender.addressForced {
+            Analytics.logEvent(Events.THANK_YOU_ONLINE_PRE, parameters: nil)
             addressLabel.text = "Your box will be delivered to:\n \(self.address.addressLine1!)\n\(self.address.addressLine2!)\n\(self.address.city!)\n\(self.address.pincode!)\n\(self.address.state!)"
+        } else if sender! == TYSender.qr {
+            Analytics.logEvent(Events.THANK_YOU_QR, parameters: nil)
+        } else if sender! == TYSender.postSampling {
+            Analytics.logEvent(Events.THANK_YOU_POST, parameters: nil)
         }
+        
         
         let swipeButtonRight: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ThankYouVC.buttonRight))
         swipeButtonRight.direction = UISwipeGestureRecognizerDirection.right
@@ -53,6 +62,7 @@ class ThankYouVC: UIViewController {
     }
     
     @objc func buttonRight() {
+        Analytics.logEvent(Events.THANK_YOU_DONE_SWIPE, parameters: nil)
         self.navigationController?.popToRootViewController(animated: false)
     }
 

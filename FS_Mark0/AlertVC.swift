@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SideMenu
+import FirebaseAnalytics
 
 class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -19,7 +20,7 @@ class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        Analytics.logEvent(Events.SCREEN_ALERTS, parameters: nil)
         
         let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = sideMenuNC
@@ -107,10 +108,12 @@ class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func sideMenuPressed(_ sender: Any) {
+        Analytics.logEvent(Events.SIDEBAR_TAPPED, parameters: nil)
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Analytics.logEvent(Events.ALERT_TAPPED, parameters: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
