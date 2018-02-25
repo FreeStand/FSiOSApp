@@ -21,5 +21,7 @@ pod 'Firebase/RemoteConfig'
 pod 'Alamofire'
 pod 'SideMenu'
 pod 'IQKeyboardManager'
+pod 'Fabric'
+pod 'Crashlytics'
 
 end

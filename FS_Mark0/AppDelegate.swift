@@ -13,6 +13,8 @@ import FirebaseInstanceID
 import FirebaseMessaging
 import UserNotifications
 import IQKeyboardManager
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -91,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.window?.rootViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
         }
         Analytics.logEvent(Events.APP_STARTED, parameters: nil)
-        
+        Fabric.with([Crashlytics.self])
         return true
     }
     
