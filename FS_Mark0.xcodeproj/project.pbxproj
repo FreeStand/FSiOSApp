@@ -55,7 +55,6 @@
 		92FD4CE61F93DBF800F4F1FD /* FaqTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */; };
 		E720E8812021F59F00F3B495 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720E8802021F59F00F3B495 /* Survey.swift */; };
 		E720E8832021F62A00F3B495 /* SurveyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720E8822021F62A00F3B495 /* SurveyCell.swift */; };
-		E72257992042BD3900CAF6DB /* FBLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72257982042BD3900CAF6DB /* FBLoginVC.swift */; };
 		E744EA0C202F17D00050418E /* CollegeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E744EA0B202F17D00050418E /* CollegeTVC.swift */; };
 		E744EA0E202F18860050418E /* CollegeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E744EA0D202F18860050418E /* CollegeCell.swift */; };
 		E744EA1220305B8D0050418E /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E744EA1120305B8D0050418E /* Product.swift */; };
@@ -134,7 +133,6 @@
 		A6655B9E9A9DB8CC9CECBCA7 /* Pods-FS_Mark0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FS_Mark0.release.xcconfig"; path = "Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0.release.xcconfig"; sourceTree = "<group>"; };
 		E720E8802021F59F00F3B495 /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		E720E8822021F62A00F3B495 /* SurveyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCell.swift; sourceTree = "<group>"; };
-		E72257982042BD3900CAF6DB /* FBLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLoginVC.swift; sourceTree = "<group>"; };
 		E744EA0B202F17D00050418E /* CollegeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegeTVC.swift; sourceTree = "<group>"; };
 		E744EA0D202F18860050418E /* CollegeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegeCell.swift; sourceTree = "<group>"; };
 		E744EA1120305B8D0050418E /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -286,7 +284,6 @@
 				9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */,
 				92984C1E1F62C2C6000FF983 /* DobVC.swift */,
 				E7D61D6A20074FE200897895 /* LocationVC.swift */,
-				E72257982042BD3900CAF6DB /* FBLoginVC.swift */,
 			);
 			name = Login/SignUp;
 			sourceTree = "<group>";
@@ -500,14 +497,11 @@
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
@@ -520,14 +514,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
@@ -599,7 +590,6 @@
 				923D7CA81F9F23FD0081F3C2 /* BottomTextField.swift in Sources */,
 				E7D65736200CCBD7009A1C0A /* APIEndpoints.swift in Sources */,
 				92125DDE1F026C1000826AC1 /* UserData.swift in Sources */,
-				E72257992042BD3900CAF6DB /* FBLoginVC.swift in Sources */,
 				92B14B441F349134005C45FE /* CouponCell.swift in Sources */,
 				92BCD5381F4E0A8A00284E3B /* AlertCell.swift in Sources */,
 				92984C1F1F62C2C6000FF983 /* DobVC.swift in Sources */,

@@ -8,9 +8,8 @@ target 'FS_Mark0' do
 
   # Pods for FS_Mark0
 
-pod 'FBSDKCoreKit', "4.24.0"
-pod 'FBSDKShareKit', "4.24.0"
-pod 'FBSDKLoginKit', "4.24.0"
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
 pod 'QRCodeReader.swift', '~> 8.0.1'
 pod 'Firebase/Core'
 pod 'Firebase/Database'
@@ -22,5 +21,5 @@ pod 'Firebase/RemoteConfig'
 pod 'Alamofire'
 pod 'SideMenu'
 pod 'IQKeyboardManager'
-pod 'RealmSwift'
+
 end
