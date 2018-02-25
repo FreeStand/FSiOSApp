@@ -23,7 +23,7 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("Coupons")
         Analytics.logEvent(Events.SCREEN_COUPON, parameters: nil)
         let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = sideMenuNC

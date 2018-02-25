@@ -71,8 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 self.window?.rootViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "SIgnInVC")
             } else {
                 print("2")
-                if let _ = userDefaults.string(forKey: "usergender") {
-//                    print
+                if let _ = userDefaults.string(forKey: "userGender") {
                     self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
                 } else {
                     DataService.ds.REF_USER_CURRENT.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -95,10 +94,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         return true
     }
-    
-//    override init() {
-//        FirebaseApp.configure()
-//    }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let chars = (deviceToken as NSData).bytes.bindMemory(to: CChar.self, capacity: deviceToken.count)

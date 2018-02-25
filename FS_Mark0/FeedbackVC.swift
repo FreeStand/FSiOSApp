@@ -383,7 +383,7 @@ class FeedbackVC: UIViewController {
         } else if sender == FeedbackSender.eventQR {
             // add feedback to /surveys/pre_sampling
             DataService.ds.REF_USER_CURRENT.child("surveys").child("pre_sampling").updateChildValues([surveyID: ["answers": answersArray, "timeTaken":self.counter]])
-            
+            DataService.ds.REF_USER_CURRENT.child("lastSurvey").setValue(self.surveyID)
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
             ThankYouVC.sender = TYSender.qr
@@ -391,7 +391,7 @@ class FeedbackVC: UIViewController {
         } else if sender == FeedbackSender.qrScanVC {
             // add feedback to /surveys/pre_sampling
             DataService.ds.REF_USER_CURRENT.child("surveys").child("pre_sampling").updateChildValues([surveyID: ["answers": answersArray, "timeTaken":self.counter]])
-
+            DataService.ds.REF_USER_CURRENT.child("lastSurvey").setValue(self.surveyID)
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
@@ -400,7 +400,7 @@ class FeedbackVC: UIViewController {
         } else if sender == FeedbackSender.preSampling{
             // add feedback to /surveys/pre_sampling
             DataService.ds.REF_USER_CURRENT.child("surveys").child("pre_sampling").updateChildValues([surveyID: ["answers": answersArray, "timeTaken":self.counter]])
-
+            DataService.ds.REF_USER_CURRENT.child("lastSurvey").setValue(self.surveyID)
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let AddressTVC = storyBoard.instantiateViewController(withIdentifier: "AddressTVC") as! AddressTVC
@@ -409,7 +409,7 @@ class FeedbackVC: UIViewController {
         } else if sender == FeedbackSender.postSampling {
             // add feedback to /surveys/post_sampling
             DataService.ds.REF_USER_CURRENT.child("surveys").child("post_sampling").updateChildValues([surveyID: ["answers": answersArray, "timeTaken":self.counter]])
-            
+            DataService.ds.REF_USER_CURRENT.child("lastSurvey").setValue(self.surveyID)
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let ThankYouVC = storyBoard.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC

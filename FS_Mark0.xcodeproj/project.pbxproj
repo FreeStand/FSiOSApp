@@ -55,6 +55,7 @@
 		92FD4CE61F93DBF800F4F1FD /* FaqTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */; };
 		E720E8812021F59F00F3B495 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720E8802021F59F00F3B495 /* Survey.swift */; };
 		E720E8832021F62A00F3B495 /* SurveyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720E8822021F62A00F3B495 /* SurveyCell.swift */; };
+		E72257992042BD3900CAF6DB /* FBLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72257982042BD3900CAF6DB /* FBLoginVC.swift */; };
 		E744EA0C202F17D00050418E /* CollegeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E744EA0B202F17D00050418E /* CollegeTVC.swift */; };
 		E744EA0E202F18860050418E /* CollegeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E744EA0D202F18860050418E /* CollegeCell.swift */; };
 		E744EA1220305B8D0050418E /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E744EA1120305B8D0050418E /* Product.swift */; };
@@ -68,6 +69,9 @@
 		E78C5212202B989C005F3AD4 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78C5211202B989C005F3AD4 /* StatusBarView.swift */; };
 		E78C5214202BA227005F3AD4 /* MarqueeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78C5213202BA227005F3AD4 /* MarqueeLabel.swift */; };
 		E7A7D25F1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A7D25E1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift */; };
+		E7C7E40E2036BACC00AF17A8 /* BrandLoyaltyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C7E40D2036BACC00AF17A8 /* BrandLoyaltyVC.swift */; };
+		E7C7E4102036BC0800AF17A8 /* LoyaltyCoupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C7E40F2036BC0800AF17A8 /* LoyaltyCoupon.swift */; };
+		E7C7E4122036BE4A00AF17A8 /* LoyaltyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C7E4112036BE4A00AF17A8 /* LoyaltyCell.swift */; };
 		E7D61D6B20074FE200897895 /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D61D6A20074FE200897895 /* LocationVC.swift */; };
 		E7D61D6D20077F8700897895 /* QRScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D61D6C20077F8700897895 /* QRScanVC.swift */; };
 		E7D65734200CAC6E009A1C0A /* BrandsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D65733200CAC6E009A1C0A /* BrandsTVC.swift */; };
@@ -130,6 +134,7 @@
 		A6655B9E9A9DB8CC9CECBCA7 /* Pods-FS_Mark0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FS_Mark0.release.xcconfig"; path = "Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0.release.xcconfig"; sourceTree = "<group>"; };
 		E720E8802021F59F00F3B495 /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		E720E8822021F62A00F3B495 /* SurveyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCell.swift; sourceTree = "<group>"; };
+		E72257982042BD3900CAF6DB /* FBLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLoginVC.swift; sourceTree = "<group>"; };
 		E744EA0B202F17D00050418E /* CollegeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegeTVC.swift; sourceTree = "<group>"; };
 		E744EA0D202F18860050418E /* CollegeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegeCell.swift; sourceTree = "<group>"; };
 		E744EA1120305B8D0050418E /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -143,6 +148,9 @@
 		E78C5211202B989C005F3AD4 /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
 		E78C5213202BA227005F3AD4 /* MarqueeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeLabel.swift; sourceTree = "<group>"; };
 		E7A7D25E1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+multiplier.swift"; sourceTree = "<group>"; };
+		E7C7E40D2036BACC00AF17A8 /* BrandLoyaltyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandLoyaltyVC.swift; sourceTree = "<group>"; };
+		E7C7E40F2036BC0800AF17A8 /* LoyaltyCoupon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyCoupon.swift; sourceTree = "<group>"; };
+		E7C7E4112036BE4A00AF17A8 /* LoyaltyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyCell.swift; sourceTree = "<group>"; };
 		E7D61D6A20074FE200897895 /* LocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVC.swift; sourceTree = "<group>"; };
 		E7D61D6C20077F8700897895 /* QRScanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanVC.swift; sourceTree = "<group>"; };
 		E7D65733200CAC6E009A1C0A /* BrandsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsTVC.swift; sourceTree = "<group>"; };
@@ -248,6 +256,7 @@
 				E78C5211202B989C005F3AD4 /* StatusBarView.swift */,
 				E744EA0D202F18860050418E /* CollegeCell.swift */,
 				E744EA1320305BE90050418E /* ProductCell.swift */,
+				E7C7E4112036BE4A00AF17A8 /* LoyaltyCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -264,6 +273,7 @@
 				E720E8802021F59F00F3B495 /* Survey.swift */,
 				E75338C9202DA4D90004911C /* Address.swift */,
 				E744EA1120305B8D0050418E /* Product.swift */,
+				E7C7E40F2036BC0800AF17A8 /* LoyaltyCoupon.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -276,6 +286,7 @@
 				9220FE7E1F0DD2EA00B0D402 /* PhoneAuthVerificationVC.swift */,
 				92984C1E1F62C2C6000FF983 /* DobVC.swift */,
 				E7D61D6A20074FE200897895 /* LocationVC.swift */,
+				E72257982042BD3900CAF6DB /* FBLoginVC.swift */,
 			);
 			name = Login/SignUp;
 			sourceTree = "<group>";
@@ -287,6 +298,7 @@
 				E7D61D6C20077F8700897895 /* QRScanVC.swift */,
 				92BCF4E61F30BF470047EB74 /* AlertVC.swift */,
 				E744EA1520305CC00050418E /* HomeProductVC.swift */,
+				E7C7E40D2036BACC00AF17A8 /* BrandLoyaltyVC.swift */,
 			);
 			name = MainTabBar;
 			sourceTree = "<group>";
@@ -494,6 +506,8 @@
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
@@ -512,6 +526,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
@@ -583,12 +599,14 @@
 				923D7CA81F9F23FD0081F3C2 /* BottomTextField.swift in Sources */,
 				E7D65736200CCBD7009A1C0A /* APIEndpoints.swift in Sources */,
 				92125DDE1F026C1000826AC1 /* UserData.swift in Sources */,
+				E72257992042BD3900CAF6DB /* FBLoginVC.swift in Sources */,
 				92B14B441F349134005C45FE /* CouponCell.swift in Sources */,
 				92BCD5381F4E0A8A00284E3B /* AlertCell.swift in Sources */,
 				92984C1F1F62C2C6000FF983 /* DobVC.swift in Sources */,
 				92AF00701F3734420061E243 /* TabBarTBC.swift in Sources */,
 				92BCF4E71F30BF470047EB74 /* AlertVC.swift in Sources */,
 				E720E8832021F62A00F3B495 /* SurveyCell.swift in Sources */,
+				E7C7E40E2036BACC00AF17A8 /* BrandLoyaltyVC.swift in Sources */,
 				92FD4CE61F93DBF800F4F1FD /* FaqTVC.swift in Sources */,
 				E788BD9E201382AE00829FA0 /* BrandCV.swift in Sources */,
 				E7A7D25F1FFE50FF001C9CFD /* NSLayoutConstraint+multiplier.swift in Sources */,
@@ -598,8 +616,10 @@
 				92AF006A1F35B4880061E243 /* Notification.swift in Sources */,
 				9283CA6C1F9FB89A00FD41B7 /* AIImage.swift in Sources */,
 				923D7CA61F9F10250081F3C2 /* AddressVC.swift in Sources */,
+				E7C7E4102036BC0800AF17A8 /* LoyaltyCoupon.swift in Sources */,
 				92BCD5361F4E0A4C00284E3B /* Alert.swift in Sources */,
 				E7D61D6B20074FE200897895 /* LocationVC.swift in Sources */,
+				E7C7E4122036BE4A00AF17A8 /* LoyaltyCell.swift in Sources */,
 				92642CA81F88CB70002FCF6E /* CouponDigitalVC.swift in Sources */,
 				92C2F1F91F11818E004C79DC /* UIColor.swift in Sources */,
 				E744EA1420305BE90050418E /* ProductCell.swift in Sources */,

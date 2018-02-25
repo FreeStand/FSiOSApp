@@ -93,8 +93,8 @@ class SIgnInVC: UIViewController {
     }
     
     func completeSignIn(id: String, userData: [Dictionary<String, String>]) {
-        let uid = Auth.auth().currentUser?.uid
-        DataService.ds.createFirebaseUserWithUID(uID: uid!, userData: userData)
+        let uid = (Auth.auth().currentUser?.uid)!
+        DataService.ds.createFirebaseUserWithUID(uID: uid, userData: userData)
         let keychainResult = KeychainWrapper.standard.set(id, forKey: "KEY_UID")
         print("FS: Data saved to keychain with result: \(keychainResult)")
         

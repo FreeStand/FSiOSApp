@@ -18,8 +18,7 @@ import SideMenu
 
 
 class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
-    
-    
+
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var previewView: UIView!
     
@@ -72,7 +71,6 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
             guard let data = res.data else { return }
             do {
                 let colleges = try JSONDecoder().decode([College].self, from: data)
-                print(colleges)
                 self.collegeList = colleges
             } catch {
                 print(error)

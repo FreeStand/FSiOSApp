@@ -22,5 +22,5 @@ pod 'Firebase/RemoteConfig'
 pod 'Alamofire'
 pod 'SideMenu'
 pod 'IQKeyboardManager'
-
+pod 'RealmSwift'
 end

@@ -9,9 +9,6 @@
 import UIKit
 
 class TabBarTBC: UITabBarController, UITabBarControllerDelegate, UIGestureRecognizerDelegate {
-    
-    
-   
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +20,6 @@ class TabBarTBC: UITabBarController, UITabBarControllerDelegate, UIGestureRecogn
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func unwindToMainQR(segue:UIStoryboardSegue) {
-        print("Unwinding to custom tab bar controller...")
-        selectedIndex = 0
-    }
     
     @objc func goToPreviousTab(sender:UISwipeGestureRecognizer) {
         

@@ -20,8 +20,9 @@ class APIEndpoints {
     public static var faqEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/getFAQs"
     public static var addressEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/getAddresses?uid=" + (Auth.auth().currentUser?.uid)!
     public static var collegeListEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/getColleges"
-    public static var newHomeEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/newHome"
+    public static var newHomeEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/fsHome"
     public static var newOrderEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/newOrder"
+    public static var loyaltyCouponsEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/loyaltyCoupons"
     public static var getOrdersEndpoint = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/getOrders?uid=" + (Auth.auth().currentUser?.uid)!
 
 
