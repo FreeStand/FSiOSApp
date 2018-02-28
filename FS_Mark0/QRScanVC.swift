@@ -15,11 +15,11 @@ import SwiftKeychainWrapper
 import FirebaseAuth
 import Alamofire
 import SideMenu
+import SVProgressHUD
 
 
 class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
 
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var previewView: UIView!
     
     var collegeList = [College]()
@@ -92,6 +92,7 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
         
         reader.startScanning()
         reader.didFindCode = { result in
+            SVProgressHUD.show()
             let res = result.value
             var index = res.index(res.startIndex, offsetBy: 5)
             self.surveyID = String(res[..<index])
@@ -115,6 +116,7 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
         let url = "\(APIEndpoints.checkQREndpoint)?uid=\(UserInfo.uid!)&lid=\(self.locationID!)&sid=\(self.surveyID!)&category=\(self.category!)"
         print(url)
         Alamofire.request(url).responseJSON { (res) in
+            SVProgressHUD.dismiss()
             let response = res.result.value as? NSDictionary
             if let status = response!["status"] as? String {
                 if status == "valid" {
@@ -173,7 +175,6 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
     func updateQRCode(qrCode: String) {
         DataService.ds.updateFirebaseDBUserWithQR(userData: [["\(qrCode)": "true" as AnyObject]])
         DataService.ds.REF_COLLEGES.child(qrCode).child("users").updateChildValues([(Auth.auth().currentUser?.uid)!:true])
-        self.activityIndicator.stopAnimating()
         
         let FeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
         FeedbackVC?.sender = "InitialQR"

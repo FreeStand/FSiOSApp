@@ -10,6 +10,7 @@ import UIKit
 import SideMenu
 import Alamofire
 import FirebaseAnalytics
+import SwiftyJSON
 
 class count {
     public static var count = 0
@@ -75,12 +76,32 @@ class HomeProductVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.catchIt), name: NSNotification.Name(rawValue: "myNotif"), object: nil)
+    }
+    
+    @objc func catchIt(_ userInfo: Notification){
+        print("Catch It")
+        print(userInfo)
+        let notif = JSON(userInfo.object!)
+        if let _ = notif["url"].string {
+            let url = notif["url"].string?.replacingOccurrences(of: "\"" , with: "")
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "WebVC") as? WebVC
+            vc?.url = url
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+    }
+
+    
     override func viewDidAppear(_ animated: Bool) {
         getProducts()
 
-        if count.count > 0 {
+        let prefs:UserDefaults = UserDefaults.standard
+        if prefs.value(forKey: "startUpNotif") != nil{
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "myNotif"), object: prefs.value(forKey: "startUpNotif"))
+            prefs.removeObject(forKey: "startUpNotif")
+            prefs.synchronize()
         }
-        count.count += 1
     }
     
     @objc func buttonRight () {

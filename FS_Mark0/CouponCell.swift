@@ -17,7 +17,6 @@ class CouponCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var img: UIImageView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var couponLabel: UILabel!
     @IBOutlet weak var getCouponLabel: UILabel!
     @IBOutlet weak var copyView: UIView!

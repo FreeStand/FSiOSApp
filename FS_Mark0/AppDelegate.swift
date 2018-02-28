@@ -15,6 +15,7 @@ import UserNotifications
 import IQKeyboardManager
 import Fabric
 import Crashlytics
+import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -37,6 +38,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UITabBar.appearance().tintColor = UIColor.white
         UIApplication.shared.statusBarStyle = .lightContent
         IQKeyboardManager.shared().isEnabled = true
+
+        
+        let prefs: UserDefaults = UserDefaults.standard
+        if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? NSDictionary {
+            prefs.set(remoteNotification as! [AnyHashable: Any], forKey: "startUpNotif")
+            prefs.synchronize()
+        }
 
 
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -154,28 +162,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+        
+        let notif = JSON(userInfo)
+        if let _ = notif["url"].string {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "myNotif"), object: userInfo)
         }
         
+    }
 
-        
-        // Print full message.
-        print(userInfo)
-    }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        
-        // Print full message.
-        print(userInfo)
-        
-        completionHandler(UIBackgroundFetchResult.newData)
-    }
     
    
 }

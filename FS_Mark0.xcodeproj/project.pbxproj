@@ -55,6 +55,7 @@
 		92FD4CE61F93DBF800F4F1FD /* FaqTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4CE51F93DBF800F4F1FD /* FaqTVC.swift */; };
 		E720E8812021F59F00F3B495 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720E8802021F59F00F3B495 /* Survey.swift */; };
 		E720E8832021F62A00F3B495 /* SurveyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720E8822021F62A00F3B495 /* SurveyCell.swift */; };
+		E722579C2043FDB500CAF6DB /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722579B2043FDB500CAF6DB /* WebVC.swift */; };
 		E744EA0C202F17D00050418E /* CollegeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E744EA0B202F17D00050418E /* CollegeTVC.swift */; };
 		E744EA0E202F18860050418E /* CollegeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E744EA0D202F18860050418E /* CollegeCell.swift */; };
 		E744EA1220305B8D0050418E /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E744EA1120305B8D0050418E /* Product.swift */; };
@@ -133,6 +134,7 @@
 		A6655B9E9A9DB8CC9CECBCA7 /* Pods-FS_Mark0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FS_Mark0.release.xcconfig"; path = "Pods/Target Support Files/Pods-FS_Mark0/Pods-FS_Mark0.release.xcconfig"; sourceTree = "<group>"; };
 		E720E8802021F59F00F3B495 /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		E720E8822021F62A00F3B495 /* SurveyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCell.swift; sourceTree = "<group>"; };
+		E722579B2043FDB500CAF6DB /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		E744EA0B202F17D00050418E /* CollegeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegeTVC.swift; sourceTree = "<group>"; };
 		E744EA0D202F18860050418E /* CollegeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegeCell.swift; sourceTree = "<group>"; };
 		E744EA1120305B8D0050418E /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -291,10 +293,10 @@
 		922785661F48B0EF0066F700 /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
+				E744EA1520305CC00050418E /* HomeProductVC.swift */,
 				E7D65733200CAC6E009A1C0A /* BrandsTVC.swift */,
 				E7D61D6C20077F8700897895 /* QRScanVC.swift */,
 				92BCF4E61F30BF470047EB74 /* AlertVC.swift */,
-				E744EA1520305CC00050418E /* HomeProductVC.swift */,
 				E7C7E40D2036BACC00AF17A8 /* BrandLoyaltyVC.swift */,
 			);
 			name = MainTabBar;
@@ -375,6 +377,7 @@
 				92BCD53F1F554EEA00284E3B /* FeedbackVC.swift */,
 				92F490B51F38ECB10096521D /* ThankYouVC.swift */,
 				E744EA0B202F17D00050418E /* CollegeTVC.swift */,
+				E722579B2043FDB500CAF6DB /* WebVC.swift */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -503,8 +506,10 @@
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -520,8 +525,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -595,6 +602,7 @@
 				92DE41C11F16920A00535ACE /* UserInfo.swift in Sources */,
 				922785621F476C450066F700 /* OrderTVC.swift in Sources */,
 				E75338CC202DA6150004911C /* AddressTVC.swift in Sources */,
+				E722579C2043FDB500CAF6DB /* WebVC.swift in Sources */,
 				E78C5214202BA227005F3AD4 /* MarqueeLabel.swift in Sources */,
 				9220FE7B1F04F3E200B0D402 /* NSUserDefaults+isFirstLaunch.swift in Sources */,
 				E744EA1220305B8D0050418E /* Product.swift in Sources */,

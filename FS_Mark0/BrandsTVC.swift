@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SideMenu
 import FirebaseAnalytics
+import SVProgressHUD
 
 class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -125,7 +126,7 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if coupon.redeem == nil {
                 Analytics.logEvent(Events.COUPON_SEL, parameters: nil)
                 // Hit APIEndpopints
-                cell.activityIndicator.startAnimating()
+                SVProgressHUD.show()
                 Alamofire.request("\(APIEndpoints.couponSurveyEndpoint)&brand=\(coupon.brandName)&couponID=\(coupon.couponID)").responseJSON(completionHandler: { (res) in
                     if let response = res.result.value as? NSDictionary {
                         let feedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
@@ -134,7 +135,7 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         feedbackVC?.sender = FeedbackSender.couponVC
                         feedbackVC?.surveyID = coupon.couponID
                         feedbackVC?.brand = coupon.brandName
-                        cell.activityIndicator.stopAnimating()
+                        SVProgressHUD.dismiss()
                         self.navigationController?.pushViewController(feedbackVC!, animated: true)
                     } else {
                         print("Error: Can't cast couponOnClick resp as dict")

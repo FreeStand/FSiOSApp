@@ -23,5 +23,7 @@ pod 'SideMenu'
 pod 'IQKeyboardManager'
 pod 'Fabric'
 pod 'Crashlytics'
+pod 'SwiftyJSON'
+pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
 
 end

@@ -13,7 +13,6 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
     
     @IBOutlet weak var male: RadioButton!
     @IBOutlet weak var female: RadioButton!
-    @IBOutlet weak var others: RadioButton!
     @IBOutlet weak var ageTextField: UITextField!
     var gender: String!
     
@@ -27,11 +26,8 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
         case phoneAuthVCNotification
     }
 
-    
     var agePicker: UIPickerView!
-    
     let agePickerValues = ["Below 18","18-24", "25-30", "31-36", "37-42", "43-49", "Above 50"]
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,21 +45,6 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
         ageTextField.text = agePickerValues[0]
         ageTextField.becomeFirstResponder()
         
-        // ToolBar
-        let toolBar = UIToolbar()
-        toolBar.barStyle = .default
-        toolBar.isTranslucent = false
-        toolBar.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-        toolBar.sizeToFit()
-        
-        // Adding Button ToolBar
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneClick))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelClick))
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-        ageTextField.inputAccessoryView = toolBar
-
     }
 
     @objc func doneClick() {
@@ -72,7 +53,6 @@ class DobVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPick
     @objc func cancelClick() {
         ageTextField.resignFirstResponder()
     }
-    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
