@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import FirebaseAuth.FIRAuth
 
 struct College: Codable {
@@ -25,7 +24,7 @@ class CollegeTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     var collegeList: [College]!
     var filteredCollegeList = [College]()
     let searchController = UISearchController(searchResultsController: nil)
-    var quesArray: NSArray!
+    var quesArray: [APIService.Question]!
     var surveyID: String!
     var sender = FeedbackSender.eventQR
     

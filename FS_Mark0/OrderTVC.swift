@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import FirebaseAnalytics
 
 class OrderTVC: UITableViewController {
@@ -19,25 +18,10 @@ class OrderTVC: UITableViewController {
         self.navigationItem.title = "Orders"
         Analytics.logEvent(Events.SCREEN_ORDERS, parameters: nil)
         
-        getOrders()
     }
     
     func getOrders() {
-        Alamofire.request(APIEndpoints.getOrdersEndpoint).responseJSON { (res) in
-            if let response = res.result.value as? NSDictionary {
-                if response["isEmpty"] as? Bool == false {
-                    let array = response["orders"] as? [[String:String]]
-                    for anOrder in array! {
-                        let order = Order()
-                        order.campaignID = anOrder["campaignID"]
-                        self.orderList.append(order)
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    }
-                }
-            }
-        }
+
     }
     
     // MARK: - Table view data source

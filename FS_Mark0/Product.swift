@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Product: NSObject {
+class Product:  Decodable {
     var imgURL: String?
     var name: String?
     var price: String?

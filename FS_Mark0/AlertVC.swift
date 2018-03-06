@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Alamofire
+import SVProgressHUD
 import SideMenu
 import FirebaseAnalytics
 
@@ -62,19 +62,11 @@ class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     func getAlerts() {
-        Alamofire.request(APIEndpoints.alertsEndpoint).responseJSON { (res) in
-            self.alertList.removeAll()
-            
-            guard let data = res.data else { return }
-            do {
-                let alerts = try JSONDecoder().decode([Alert].self, from: data)
-                self.alertList = alerts
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } catch {
-                print(error)
-            }
+        SVProgressHUD.show()
+        APIService.shared.fetchAlerts { (alertList) in
+            self.alertList = alertList
+            self.tableView.reloadData()
+            SVProgressHUD.dismiss()
         }
     }
 
@@ -96,7 +88,6 @@ class AlertVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let alert: Alert!
             alert = alertList[indexPath.row]
             cell.configureCell(alert: alert)
-            
             return cell
         }
         

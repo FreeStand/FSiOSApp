@@ -11,9 +11,7 @@ import UIKit
 import QRCodeReader
 import FirebaseDatabase
 import FirebaseAnalytics
-import SwiftKeychainWrapper
 import FirebaseAuth
-import Alamofire
 import SideMenu
 import SVProgressHUD
 
@@ -29,7 +27,7 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
     var surveyID: String!
     var locationID: String!
     var category: String!
-    var quesArray: NSArray!
+    var quesArray: [APIService.Question]!
     
     lazy var reader: QRCodeReader = QRCodeReader()
     lazy var readerVC: QRCodeReaderViewController = {
@@ -67,17 +65,10 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
     }
     
     func getColleges() {
-        Alamofire.request(APIEndpoints.collegeListEndpoint).responseJSON { (res) in
-            guard let data = res.data else { return }
-            do {
-                let colleges = try JSONDecoder().decode([College].self, from: data)
-                self.collegeList = colleges
-            } catch {
-                print(error)
-            }
+        APIService.shared.fetchColleges { (colleges) in
+            self.collegeList = colleges
         }
     }
-
     
     override func viewDidAppear(_ animated: Bool) {
         scanInPreviewAction()
@@ -113,25 +104,28 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
             let gender = UserDefaults.standard.string(forKey: "userGender")
             category = gender
         }
-        let url = "\(APIEndpoints.checkQREndpoint)?uid=\(UserInfo.uid!)&lid=\(self.locationID!)&sid=\(self.surveyID!)&category=\(self.category!)"
-        print(url)
-        Alamofire.request(url).responseJSON { (res) in
+        
+        APIService.shared.fetchQRResponse(locationID: self.locationID, surveyID: self.surveyID, category: self.category) { (response) in
             SVProgressHUD.dismiss()
-            let response = res.result.value as? NSDictionary
-            if let status = response!["status"] as? String {
-                if status == "valid" {
-                    let dict = response!["dict"] as! NSDictionary
-                    Analytics.logEvent(Events.QR_SUCC, parameters: nil)
-                    self.quesArray = dict["questions"] as? NSArray
-                    self.surveyID = dict["surveyID"] as? String
+            if response.status == "valid" {
+                Analytics.logEvent(Events.QR_SUCC, parameters: nil)
+                self.quesArray = response.dict?.questions
+                self.surveyID = response.dict?.surveyID
+                if self.collegeList.count > 0 {
                     self.handleValid()
-                } else if status == "invalid" {
-                    Analytics.logEvent(Events.QR_INVALID, parameters: nil)
-                    self.makeAlert("Invalid Code Scanned", message: "The code scanned by you is invalid.")
-                } else if status == "duplicate" {
-                    self.makeAlert("Already Redeemed", message: "You have already redeemed this offer. Stay tuned for more")
-                    Analytics.logEvent(Events.QR_DUPL, parameters: nil)
+                } else {
+                    APIService.shared.fetchColleges(completionHandler: { (colleges) in
+                        self.collegeList = colleges
+                        self.handleValid()
+                    })
                 }
+                
+            } else if response.status == "invalid" {
+                Analytics.logEvent(Events.QR_INVALID, parameters: nil)
+                self.makeAlert("Invalid Code Scanned", message: "The code scanned by you is invalid.")
+            } else if response.status == "duplicate" {
+                self.makeAlert("Already Redeemed", message: "You have already redeemed this offer. Stay tuned for more")
+                Analytics.logEvent(Events.QR_DUPL, parameters: nil)
             }
         }
     }

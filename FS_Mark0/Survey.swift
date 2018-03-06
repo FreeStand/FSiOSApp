@@ -12,6 +12,6 @@ class Survey: NSObject {
     var imgURL: String?
     var title: String?
     var subtitle: String?
-    var quesArray: NSArray?
+    var quesArray: [APIService.Question]?
     var empty: Bool?
 }

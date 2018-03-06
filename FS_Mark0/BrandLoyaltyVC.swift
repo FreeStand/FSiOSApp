@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Alamofire
+import SVProgressHUD
 
 class BrandLoyaltyVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -39,31 +39,14 @@ class BrandLoyaltyVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func getLoyaltyCoupons() {
-        let url = "\(APIEndpoints.loyaltyCouponsEndpoint)?uid=\(UserInfo.uid!)&brand=Kadak"
-        Alamofire.request(url).responseJSON { (response) in
-            if let res = response.result.value as? NSDictionary {
-                self.brandImgURL = res["brandImgURL"] as? String
-                self.brandImgView.downloadedFrom(link: self.brandImgURL)
-                
-                if let couponList = res["couponList"] as? [[String:Any]] {
-                    self.loyaltyCouponList.removeAll()
-                    for coupon in couponList {
-                        let loyaltyCoupon = LoyaltyCoupon()
-                        loyaltyCoupon.couponID = (coupon["couponID"] as? String)!
-                        loyaltyCoupon.imgURL = (coupon["imgURL"] as? String)!
-                        loyaltyCoupon.redeem = (coupon["redeem"] as? Bool)!
-                        loyaltyCoupon.unlockable = (coupon["unlockable"] as? Bool)!
-                        loyaltyCoupon.subtitle = (coupon["subtitle"] as? String)!
-                        loyaltyCoupon.title = (coupon["title"] as? String)!
-                        loyaltyCoupon.lockScreenText = (coupon["lockScreenText"] as? String)!
-                        self.loyaltyCouponList.append(loyaltyCoupon)
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    }
-                }
-            }
+        SVProgressHUD.show()
+        APIService.shared.fetchLoyaltyCoupon(brand: "Kadak") { (response) in
+            self.brandImgView.downloadedFrom(link: response.brandImgURL)
+            self.loyaltyCouponList = response.couponList!
+            self.tableView.reloadData()
+            SVProgressHUD.dismiss()
         }
+        
     }
 
     //  MARK: TableView Delegates
@@ -118,37 +101,5 @@ class BrandLoyaltyVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offset = tableView.contentOffset
-        
-        if let startOffset = self.defaultOffSet {
-            if offset.y < startOffset.y {
-                // Scrolling down
-                // check if your collection view height is less than normal height, do your logic.
-             
-                print("down")
-                UIView.animate(withDuration: 2.0, animations: {
-//                    self.brandImgHeightConstraint.constant = 164
-                }, completion: { (flag) in
-                    self.defaultOffSet = self.tableView.contentOffset
-                })
-                
-            } else {
-                // Scrolling up
-                print("up")
-                UIView.animate(withDuration: 2.0, animations: {
-//                    self.brandImgHeightConstraint.constant = 0
-                }, completion: { (flag) in
-                    self.defaultOffSet = self.tableView.contentOffset
-                })
-
-            }
-            
-            self.view.layoutIfNeeded()
-        }
-
-    }
-
     
 }

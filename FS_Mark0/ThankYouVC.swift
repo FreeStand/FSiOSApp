@@ -10,6 +10,7 @@ import UIKit
 import AVKit
 import AVFoundation
 import FirebaseAnalytics
+import SAConfettiView
 
 class TYSender {
     public static var addressForced = "addressForced"
@@ -19,38 +20,68 @@ class TYSender {
 
 class ThankYouVC: UIViewController {
     
-    @IBOutlet weak var videoView: UIView!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var doneView: UIView!
-    var player : AVPlayer!
-    var avPlayerLayer : AVPlayerLayer!
-    var sender: String!
-    var address: Address!
-    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var orderIDLbl: UILabel!
+    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var al1Lbl: UILabel!
+    @IBOutlet weak var al2Lbl: UILabel!
+    @IBOutlet weak var cityLbl: UILabel!
+    @IBOutlet weak var pincodeLbl: UILabel!
+    @IBOutlet weak var stateLbl: UILabel!
+    @IBOutlet weak var deliveryAddressLbl: UILabel!
 
+    
+    @IBOutlet weak var doneView: UIView!
+    @IBOutlet weak var confView: UIView!
+    @IBOutlet weak var tyLbl: UILabel!
+    var order: Order!
+    var sender: String!
    
     override func viewDidLoad() {
         super.viewDidLoad()
         Analytics.logEvent(Events.SCREEN_THANK_YOU, parameters: nil)
-//        videoView.layer.cornerRadius = 2
-        addressLabel.layer.cornerRadius = 2
-        heightConstraint.constant = self.videoView.frame.width * 1080 / 1440
+        let confettiView = SAConfettiView(frame: self.confView.bounds)
+        confettiView.type = .Confetti
+        self.confView.addSubview(confettiView)
+        confView.sendSubview(toBack: confettiView)
+        confettiView.startConfetti()
 
-        playVideo()
-        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: nil, using: { (_) in
-            DispatchQueue.main.async {
-                self.player?.seek(to: CMTimeMake(5, 10))
-                self.player?.play()
-            }
-        })
-        
         if sender! == TYSender.addressForced {
             Analytics.logEvent(Events.THANK_YOU_ONLINE_PRE, parameters: nil)
-            addressLabel.text = "Your box will be delivered to:\n \(self.address.addressLine1!)\n\(self.address.addressLine2!)\n\(self.address.city!)\n\(self.address.pincode!)\n\(self.address.state!)"
+            tyLbl.text = "Order Placed!!"
+            orderIDLbl.text = "OrderID: " + order.orderID!
+            nameLbl.text = order.name!
+            al1Lbl.text = order.addressLine1!
+            al2Lbl.text = order.addressLine2!
+            cityLbl.text = order.city!
+            stateLbl.text = order.state!
+            pincodeLbl.text = order.pincode!
+            
         } else if sender! == TYSender.qr {
             Analytics.logEvent(Events.THANK_YOU_QR, parameters: nil)
+            tyLbl.text = "Show this screen to the Free Stand volunteer & collect your box."
+            tyLbl.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+            orderIDLbl.isHidden = true
+            nameLbl.isHidden = true
+            al1Lbl.isHidden = true
+            al2Lbl.isHidden = true
+            cityLbl.isHidden = true
+            stateLbl.isHidden = true
+            pincodeLbl.isHidden = true
+            deliveryAddressLbl.isHidden = true
+
         } else if sender! == TYSender.postSampling {
             Analytics.logEvent(Events.THANK_YOU_POST, parameters: nil)
+            tyLbl.text = "Thank you for taking."
+            tyLbl.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+            orderIDLbl.isHidden = true
+            nameLbl.isHidden = true
+            al1Lbl.isHidden = true
+            al2Lbl.isHidden = true
+            cityLbl.isHidden = true
+            stateLbl.isHidden = true
+            pincodeLbl.isHidden = true
+            deliveryAddressLbl.isHidden = true
+
         }
         
         
@@ -64,24 +95,6 @@ class ThankYouVC: UIViewController {
     @objc func buttonRight() {
         Analytics.logEvent(Events.THANK_YOU_DONE_SWIPE, parameters: nil)
         self.navigationController?.popToRootViewController(animated: false)
-    }
-
-    override func viewDidLayoutSubviews() {
-        avPlayerLayer.frame = videoView.layer.bounds
-    }
-    
-    func playVideo() {
-        print("here")
-        guard let path = Bundle.main.path(forResource: "Animation_2x", ofType:"mp4") else {
-            debugPrint("Animation.mp4 not found")
-            return
-        }
-        player = AVPlayer(url: URL(fileURLWithPath: path))
-        avPlayerLayer = AVPlayerLayer(player: player)
-        avPlayerLayer.videoGravity = AVLayerVideoGravity.resize
-        
-        videoView.layer.addSublayer(avPlayerLayer)
-        player.play()
     }
 
 }

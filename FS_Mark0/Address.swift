@@ -8,8 +8,8 @@
 
 import Foundation
 
-class Address: NSObject {
-    var nickname: String?
+class Address: Decodable {
+    var nickName: String?
     var addressLine1: String?
     var addressLine2: String?
     var city: String?

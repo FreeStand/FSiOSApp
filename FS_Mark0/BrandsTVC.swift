@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import SideMenu
 import FirebaseAnalytics
 import SVProgressHUD
@@ -19,7 +18,7 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var brandList = [Brand]()
     var couponList = [Coupon]()
     var selectedBrand: Brand!
-    var quesArray: NSArray!
+    var quesArray: [APIService.Question]!
     var couponCode: String!
 
     override func viewDidLoad() {
@@ -68,21 +67,11 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     func showCoupons() {
-        let url = "\(APIEndpoints.showCouponsEndpoint)?uid=\(UserInfo.uid!)"
-        print(url)
-        Alamofire.request(url).responseJSON { (res) in
-            self.couponList.removeAll()
-            
-            guard let data = res.data else { return }
-            do {
-                let coupons = try JSONDecoder().decode([Coupon].self, from: data)
-                self.couponList = coupons
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } catch {
-                print(error)
-            }
+        SVProgressHUD.show()
+        APIService.shared.fetchCoupons { (coupons) in
+            SVProgressHUD.dismiss()
+            self.couponList = coupons
+            self.tableView.reloadData()
         }
     }
     
@@ -127,21 +116,18 @@ class BrandsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 Analytics.logEvent(Events.COUPON_SEL, parameters: nil)
                 // Hit APIEndpopints
                 SVProgressHUD.show()
-                Alamofire.request("\(APIEndpoints.couponSurveyEndpoint)&brand=\(coupon.brandName)&couponID=\(coupon.couponID)").responseJSON(completionHandler: { (res) in
-                    if let response = res.result.value as? NSDictionary {
-                        let feedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
-                        feedbackVC?.couponCode = response["couponCode"] as? String
-                        feedbackVC?.quesArray = response["questions"] as? NSArray
-                        feedbackVC?.sender = FeedbackSender.couponVC
-                        feedbackVC?.surveyID = coupon.couponID
-                        feedbackVC?.brand = coupon.brandName
-                        SVProgressHUD.dismiss()
-                        self.navigationController?.pushViewController(feedbackVC!, animated: true)
-                    } else {
-                        print("Error: Can't cast couponOnClick resp as dict")
-                    }
+                
+                APIService.shared.couponSurvey(brand: coupon.brandName, couponID: coupon.couponID, completionHandler: { (response) in
+                    let feedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "EventFeedbackVC") as? FeedbackVC
+                    feedbackVC?.couponCode = response.couponCode
+                    feedbackVC?.quesArray = response.questions
+                    feedbackVC?.sender = FeedbackSender.couponVC
+                    feedbackVC?.surveyID = coupon.couponID
+                    feedbackVC?.brand = coupon.brandName
+                    SVProgressHUD.dismiss()
+                    self.navigationController?.pushViewController(feedbackVC!, animated: true)
+
                 })
-         
             } else {
                 Analytics.logEvent(Events.COUPON_COPIED, parameters: nil)
                 cell.showCopyView()

@@ -142,14 +142,14 @@ class AddressVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         address.city = city.text!
         address.pincode = pincode.text!
         address.state = state.text!
-        address.nickname = nickName.text!
-        DataService.ds.REF_USER_CURRENT.child("addresses").updateChildValues([address.nickname!:[
+        address.nickName = nickName.text!
+        DataService.ds.REF_USER_CURRENT.child("addresses").updateChildValues([address.nickName!:[
             "addressLine1":address.addressLine1,
             "addressLine2":address.addressLine2,
             "city":address.city,
             "pincode":address.pincode,
             "state":address.state,
-            "nickName":address.nickname
+            "nickName":address.nickName
             ]])
         self.navigationController?.popViewController(animated: true)
         self.delegate?.addressViewControllerResponse(address: address)

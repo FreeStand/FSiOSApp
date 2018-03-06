@@ -21,7 +21,7 @@ class AddressCell: UITableViewCell {
     
     func configureCell(address: Address) {
         self.address = address
-        nicknameLabel.text = address.nickname
+        nicknameLabel.text = address.nickName
         AddressLine1label.text = address.addressLine1
         AddressLine2label.text = address.addressLine2!
         Citylabel.text = address.city

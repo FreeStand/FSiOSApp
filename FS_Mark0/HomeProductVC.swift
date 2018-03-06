@@ -8,9 +8,9 @@
 
 import UIKit
 import SideMenu
-import Alamofire
 import FirebaseAnalytics
 import SwiftyJSON
+import SAConfettiView
 
 class count {
     public static var count = 0
@@ -28,17 +28,20 @@ class HomeProductVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var boxLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     
+    var confettiView: SAConfettiView!
     var productList = [Product]()
     var surveyID: String!
-    var quesArray: NSArray!
+    var quesArray: [APIService.Question]!
     var sender: String!
-
+    var i = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.delegate = self
         tableView.dataSource = self
-        
+        confettiView = SAConfettiView(frame: comingUpView.bounds)
+
         Analytics.logEvent(Events.SCREEN_HOME, parameters: nil)
         
         let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! UISideMenuNavigationController
@@ -73,6 +76,10 @@ class HomeProductVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         let swipeButtonRight: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(HomeProductVC.buttonRight))
         swipeButtonRight.direction = UISwipeGestureRecognizerDirection.right
         self.swipeView.addGestureRecognizer(swipeButtonRight)
+        
+        confettiView.type = .Confetti
+        self.comingUpView.addSubview(confettiView)
+
 
     }
     
@@ -94,7 +101,8 @@ class HomeProductVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
 
     
     override func viewDidAppear(_ animated: Bool) {
-        getProducts()
+//        getProducts()
+        getHome()
 
         let prefs:UserDefaults = UserDefaults.standard
         if prefs.value(forKey: "startUpNotif") != nil{
@@ -103,6 +111,7 @@ class HomeProductVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             prefs.synchronize()
         }
     }
+    
     
     @objc func buttonRight () {
         if self.quesArray != nil && self.surveyID != nil {
@@ -147,6 +156,28 @@ class HomeProductVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             Analytics.logEvent(Events.HOME_SWIPE_DO_NOT, parameters: nil)
             self.swipeLabel.text = "HAHAHAHAHAHA"
             self.swipeView.backgroundColor = UIColor.fiYellow
+            confettiView.type = SAConfettiView.ConfettiType.Diamond
+            i += 1
+            switch i%4 {
+                case 0:
+                    confettiView.stopConfetti()
+                    confettiView.type = SAConfettiView.ConfettiType.Diamond
+                    confettiView.startConfetti()
+                case 1:
+                    confettiView.stopConfetti()
+                    confettiView.type = SAConfettiView.ConfettiType.Star
+                    confettiView.startConfetti()
+                case 2:
+                    confettiView.stopConfetti()
+                    confettiView.type = SAConfettiView.ConfettiType.Triangle
+                    confettiView.startConfetti()
+                case 3:
+                    confettiView.stopConfetti()
+                    confettiView.type = SAConfettiView.ConfettiType.Confetti
+                    confettiView.startConfetti()
+            default:
+                break
+            }
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (timer) in
                 self.swipeLabel.text = ">>> DO NOT SWIPE !! >>>"
                 self.swipeView.backgroundColor = UIColor.red
@@ -154,69 +185,45 @@ class HomeProductVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    func getProducts() {
-        let gender = UserDefaults.standard.string(forKey: "userGender")
+    func getHome() {
         self.swipeLabel.text = "LOADING..."
         self.swipeView.backgroundColor = UIColor().HexToColor(hexString: "#5B86FF")
-        Alamofire.request("\(APIEndpoints.newHomeEndpoint)?uid=\(UserInfo.uid!)&gender=\(gender!)").responseJSON { (response) in
-            if let res = response.result.value as? NSDictionary {
-                if let isEmpty = res["isEmpty"] as? Bool, let surveyType = res["surveyType"] as? String {
-                    if !isEmpty {
-                        if surveyType == "pre"{
-                            if let survey = res["survey"] as? NSDictionary {
-                                if let products = survey["products"] as? [[String:String]] {
-                                    self.productList.removeAll()
-                                    for aProduct in products {
-                                        let product = Product()
-                                        product.name = aProduct["name"]
-                                        product.imgURL = aProduct["imgURL"]
-                                        product.price = aProduct["price"]
-                                        
-                                        self.productList.append(product)
-                                        self.shadowView.isHidden = false
-                                        self.comingUpView.isHidden = true
-                                        DispatchQueue.main.async {
-                                            self.tableView.reloadData()
-                                            self.updatePriceLabel()
-                                        }
-                                    }
-                                }
-                                self.surveyID = nil
-                                self.quesArray = nil
+        APIService.shared.fetchHomeScreenData { (homeScreenResult) in
+            if !homeScreenResult.isEmpty! {
+                if homeScreenResult.surveyType == "pre" {
+                    self.productList = (homeScreenResult.survey?.products)!
+                    self.tableView.reloadData()
+                    self.surveyID = nil
+                    self.surveyID = homeScreenResult.survey?.surveyID
+                    self.quesArray = nil
+                    self.quesArray = homeScreenResult.survey?.questions
+                    self.sender = FeedbackSender.preSampling
+                    self.swipeLabel.text = ">>> SWIPE TO COLLECT !! >>>"
+                    self.swipeView.backgroundColor = UIColor().HexToColor(hexString: "#5B86FF")
+                    self.shadowView.isHidden = false
+                    self.comingUpView.isHidden = true
 
-                                self.quesArray = survey["questions"] as? NSArray
-                                self.surveyID = survey["surveyID"] as? String
-                                self.sender = FeedbackSender.preSampling
-                                self.swipeLabel.text = ">>> SWIPE TO COLLECT !! >>>"
-                                self.swipeView.backgroundColor = UIColor().HexToColor(hexString: "#5B86FF")
-                            } else {
-                                print("Error: Can't cast survey")
-                            }
-                        } else if surveyType == "post" {
-                            if let postSurvey = res["survey"] as? NSDictionary {
-                                self.surveyID = nil
-                                self.quesArray = nil
-                                self.quesArray = postSurvey["questions"] as? NSArray
-                                self.surveyID = postSurvey["surveyID"] as? String
-                                self.sender = FeedbackSender.postSampling
-                                self.shadowView.isHidden = true
-                                self.swipeView.backgroundColor = UIColor().HexToColor(hexString: "#5E7E47")
-                                self.comingUpView.isHidden = false
-                                self.swipeLabel.text = ">>> SWIPE TO ANSWER >>>"
-                                self.messageLabel.text = res["message"] as? String
-                            }
-                        }
-                    } else {
-                        // show coming up view
-                        self.shadowView.isHidden = true
-                        self.comingUpView.isHidden = false
-                        self.swipeLabel.text = ">>> DO NOT SWIPE !! >>>"
-                        self.messageLabel.text = res["message"] as? String
-                        self.swipeView.backgroundColor = UIColor().HexToColor(hexString: "#FF0000")
-                    }
+                } else if homeScreenResult.surveyType == "post" {
+                    self.surveyID = nil
+                    self.quesArray = nil
+                    self.quesArray = homeScreenResult.survey?.questions
+                    self.surveyID = homeScreenResult.survey?.surveyID
+                    self.sender = FeedbackSender.postSampling
+                    self.shadowView.isHidden = true
+                    self.swipeView.backgroundColor = UIColor().HexToColor(hexString: "#5E7E47")
+                    self.comingUpView.isHidden = false
+                    self.swipeLabel.text = ">>> SWIPE TO ANSWER >>>"
+                    self.messageLabel.text = homeScreenResult.message
+
                 }
             } else {
-                print("Error")
+                self.confettiView.startConfetti()
+                self.shadowView.isHidden = true
+                self.comingUpView.isHidden = false
+                self.swipeLabel.text = ">>> DO NOT SWIPE !! >>>"
+                self.messageLabel.text = homeScreenResult.message
+                self.swipeView.backgroundColor = UIColor().HexToColor(hexString: "#FF0000")
+
             }
         }
     }
@@ -262,6 +269,5 @@ class HomeProductVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
         self.totalWorthLabel.text = "Worth Rs.\(price)/-"
     }
-
     
 }

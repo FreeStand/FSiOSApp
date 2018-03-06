@@ -18,7 +18,7 @@ class OrderCell: UITableViewCell {
     
     func configureCell(order: Order) {
         self.order = order
-        campaignLabel.text = order.campaignID
+//        campaignLabel.text = order.campaignID
         productImgView.clipsToBounds = true
     }
 

@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import Alamofire
 import FirebaseAnalytics
+import SVProgressHUD
 
 class AddressSender {
     public static var sidebar = "sidebar"
@@ -47,65 +47,14 @@ class AddressTVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
     
     func getAddresses() {
-        Alamofire.request(APIEndpoints.addressEndpoint).responseJSON { (res) in
-            if let result = res.result.value as? NSDictionary {
-                if let isEmpty = result["isEmpty"] as? Bool {
-                    if !isEmpty{
-                        if let addresses = result["addresses"] as? [[String:String]] {
-                            for anAddress in addresses {
-                                let address = Address()
-                                
-                                if let addressLine1 = anAddress["addressLine1"] {
-                                    address.addressLine1 = addressLine1
-                                } else {
-                                    print("Error: Can't get addressLine1 from addresses in AddressTVC")
-                                }
-                                
-                                if let addressLine2 = anAddress["addressLine2"] {
-                                    address.addressLine2 = addressLine2
-                                } else {
-                                    print("Error: Can't get addressLine2 from addresses in AddressTVC")
-                                }
-                                
-                                if let city = anAddress["city"] {
-                                    address.city = city
-                                } else {
-                                    print("Error: Can't get city from addresses in AddressTVC")
-                                }
-                                
-                                if let state = anAddress["state"] {
-                                    address.state = state
-                                } else {
-                                    print("Error: Can't get state from addresses in AddressTVC")
-                                }
-
-                                if let pincode = anAddress["pincode"] {
-                                    address.pincode = pincode
-                                } else {
-                                    print("Error: Can't get pincode from addresses in AddressTVC")
-                                }
-                                
-                                if let nickname = anAddress["nickName"] {
-                                    address.nickname = nickname
-                                } else {
-                                    print("Error: Can't get nickname from addresses in AddressTVC")
-                                }
-
-                                self.addressList.append(address)
-                                DispatchQueue.main.async {
-                                    self.tableView.reloadData()
-                                }
-
-                            }
-                        } else {
-                            print("Error: Can't get addresses in AddressTVC")
-                        }
-                    }
-                } else {
-                    print("Error: Can't get isEmpty in addresses in AddressTVC")
-                }
+        SVProgressHUD.show()
+        APIService.shared.fetchAddresses { (response) in
+            if response.isEmpty {
+                SVProgressHUD.dismiss()
             } else {
-                print("Error: Can't cast result in AddressTVC")
+                self.addressList = response.addresses!
+                self.tableView.reloadData()
+                SVProgressHUD.dismiss()
             }
         }
     }
@@ -130,18 +79,18 @@ class AddressTVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             Analytics.logEvent(Events.ADDRESS_SEL_SIDEBAR, parameters: nil)
             print("Sidebar")
         } else if sender == AddressSender.forced {
+            SVProgressHUD.show()
             Analytics.logEvent(Events.ADDRESS_SEL_ORDER, parameters: nil)
             let address = self.addressList[indexPath.row]
-            var url = "\(APIEndpoints.newOrderEndpoint)?uid=\(UserInfo.uid!)&addressID=\(address.nickname!)"
-            url = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            Alamofire.request(url).responseJSON(completionHandler: { (res) in
-                print("Order: \(res.result.value!)")
-            })
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ThankYouVC") as? ThankYouVC
-            vc?.sender = TYSender.addressForced
-            vc?.address = addressList[indexPath.row]
-            self.navigationController?.pushViewController(vc!, animated: true)
+            
+            APIService.shared.createNewOrder(nickName: address.nickName!, completionHandler: { (order) in
+                SVProgressHUD.dismiss()
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ThankYouVC") as? ThankYouVC
+                vc?.sender = TYSender.addressForced
+                vc?.order = order
+                self.navigationController?.pushViewController(vc!, animated: true)
 
+            })
         }
     }
     

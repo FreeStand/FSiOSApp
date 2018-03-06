@@ -25,7 +25,7 @@ class FeedbackVC: UIViewController {
     var answersArray = [Any]()
     var selectedAnswer: String!
     var quesDict: NSDictionary!
-    var quesArray: NSArray!
+    var quesArray: [APIService.Question]!
     var totalQuestions: Int!
     var quesIterator = 0
     var surveyID: String!
@@ -139,20 +139,22 @@ class FeedbackVC: UIViewController {
     
     func questionsLoadedCallback() {
         print("Aryan: questionsLoadedCallback")
-        let quesData = quesArray[quesIterator] as? [String:String]
-        if let type = quesData?["type"] {
-            if type == "single_choice" {
+        
+        
+        let quesData = quesArray[quesIterator]
+//        if let type = quesData?["type"] {
+            if quesData.type == "single_choice" {
                 startTimer()
                 questionTransitionView.isHidden = false
                 checkBoxView.isHidden = true
                 self.loadRadioButtons()
-            } else if type == "multiple_choice"{
+            } else if quesData.type == "multiple_choice"{
                 startTimer()
                 checkBoxView.isHidden = false
                 questionTransitionView.isHidden = true
                 self.loadCheckBoxes()
             }
-        }
+//        }
     }
     
     func loadRadioButtons() {
@@ -163,15 +165,15 @@ class FeedbackVC: UIViewController {
         resetRadioButtons()
         hideOptions()
 
-        let quesData = quesArray[quesIterator] as? [String:String]
+        let quesData = quesArray[quesIterator]
         
-        if let question = quesData?["question"] {
+        if let question = quesData.question {
             questionLabel.text = question
         } else {
             print("Aryan: Can't load questions in radioButtons in FeedbackVC")
         }
         
-        if let option1 = quesData!["option1"] {
+        if let option1 = quesData.option1 {
             print(option1)
             option1View.isHidden = false
             option1Label.text = option1
@@ -180,7 +182,7 @@ class FeedbackVC: UIViewController {
         }
 
         
-        if let option2 = quesData?["option2"] {
+        if let option2 = quesData.option2 {
             option2View.isHidden = false
             option2Label.text = option2
         } else {
@@ -188,7 +190,7 @@ class FeedbackVC: UIViewController {
         }
 
         
-        if let option3 = quesData?["option3"] {
+        if let option3 = quesData.option3 {
             option3View.isHidden = false
             option3Label.text = option3
         } else {
@@ -196,7 +198,7 @@ class FeedbackVC: UIViewController {
         }
 
         
-        if let option4 = quesData?["option4"] {
+        if let option4 = quesData.option4 {
             option4View.isHidden = false
             option4Label.text = option4
         } else {
@@ -204,7 +206,7 @@ class FeedbackVC: UIViewController {
         }
 
         
-        if let option5 = quesData?["option5"] {
+        if let option5 = quesData.option5 {
             option5View.isHidden = false
             option5Label.text = option5
         } else {
@@ -212,7 +214,7 @@ class FeedbackVC: UIViewController {
         }
 
         
-        if let option6 = quesData?["option6"] {
+        if let option6 = quesData.option6 {
             option6View.isHidden = false
             option6Label.text = option6
         } else {
@@ -220,7 +222,7 @@ class FeedbackVC: UIViewController {
         }
 
         
-        if let option7 = quesData?["option7"] {
+        if let option7 = quesData.option7 {
             option7View.isHidden = false
             option7Label.text = option7
         } else {
@@ -228,7 +230,7 @@ class FeedbackVC: UIViewController {
         }
 
         
-        if let option8 = quesData?["option8"] {
+        if let option8 = quesData.option8 {
             option8View.isHidden = false
             option8Label.text = option8
         } else {
@@ -245,47 +247,47 @@ class FeedbackVC: UIViewController {
         updateCountLabel()
         resetCheckBoxes()
         hideCheckBoxes()
-        let quesData = quesArray[quesIterator] as? [String:String]
-        if let question = quesData?["question"] {
+        let quesData = quesArray[quesIterator]
+        if let question = quesData.question {
             questionLabel.text = question
         }
         
-        if let option1 = quesData?["option1"] {
+        if let option1 = quesData.option1 {
             checkbox1View.isHidden = false
             checkbox1Label.text = option1
         }
         
-        if let option2 = quesData?["option2"] {
+        if let option2 = quesData.option2 {
             checkbox2View.isHidden = false
             checkbox2Label.text = option2
         }
         
-        if let option3 = quesData?["option3"] {
+        if let option3 = quesData.option3 {
             checkbox3View.isHidden = false
             checkbox3Label.text = option3
         }
         
-        if let option4 = quesData?["option4"] {
+        if let option4 = quesData.option4 {
             checkbox4View.isHidden = false
             checkbox4Label.text = option4
         }
         
-        if let option5 = quesData?["option5"] {
+        if let option5 = quesData.option5 {
             checkbox5View.isHidden = false
             checkbox5Label.text = option5
         }
         
-        if let option6 = quesData?["option6"] {
+        if let option6 = quesData.option6{
             checkbox6View.isHidden = false
             checkbox6Label.text = option6
         }
         
-        if let option7 = quesData?["option7"] {
+        if let option7 = quesData.option7 {
             checkbox7View.isHidden = false
             checkbox7Label.text = option7
         }
         
-        if let option8 = quesData?["option8"] {
+        if let option8 = quesData.option8 {
             checkbox8View.isHidden = false
             checkbox8Label.text = option8
         }
@@ -303,8 +305,8 @@ class FeedbackVC: UIViewController {
     
     func changeQuestion() {
         quesIterator += 1
-        let quesData = quesArray[quesIterator] as? [String:String]
-        if let type = quesData?["type"] {
+        let quesData = quesArray[quesIterator]
+        if let type = quesData.type {
             let fromView = self.getCurrentView()
             if type == "single_choice" {
                 self.loadRadioButtons()

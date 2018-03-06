@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LoyaltyCoupon: NSObject {
+class LoyaltyCoupon: Decodable {
     var imgURL: String?
     var subtitle: String?
     var title: String?

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Alamofire
+import SVProgressHUD
 
 class FaqTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -43,18 +43,11 @@ class FaqTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     func getFAQs() {
-        Alamofire.request(APIEndpoints.faqEndpoint).responseJSON { (res) in
-            self.faqList.removeAll()
-            guard let data = res.data else { return }
-            do {
-                let faqs = try JSONDecoder().decode([FAQ].self, from: data)
-                self.faqList = faqs
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } catch {
-                print(error)
-            }
+        SVProgressHUD.show()
+        APIService.shared.fetchFaqs { (faqList) in
+            self.faqList = faqList
+            self.tableView.reloadData()
+            SVProgressHUD.dismiss()
         }
     }
     
